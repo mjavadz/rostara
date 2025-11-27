@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '../supabase';
 
 const AuthContext = createContext();
 
@@ -15,45 +16,46 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Check if user is logged in from localStorage
-        const storedUser = localStorage.getItem('currentUser');
-        if (storedUser) {
-            setCurrentUser(JSON.parse(storedUser));
-        }
-        setLoading(false);
+        // Get initial session
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setCurrentUser(session?.user ?? null);
+            setLoading(false);
+        });
+
+        // Listen for auth changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setCurrentUser(session?.user ?? null);
+        });
+
+        return () => subscription.unsubscribe();
     }, []);
 
     const signup = async (email, password, name) => {
-        // Mock signup - in production, this would call Firebase
-        const user = {
-            id: Date.now().toString(),
+        const { data, error } = await supabase.auth.signUp({
             email,
-            name,
-            createdAt: new Date().toISOString()
-        };
-
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        setCurrentUser(user);
-        return user;
+            password,
+            options: {
+                data: {
+                    display_name: name
+                }
+            }
+        });
+        if (error) throw error;
+        return data.user;
     };
 
     const login = async (email, password) => {
-        // Mock login - in production, this would call Firebase
-        const user = {
-            id: Date.now().toString(),
+        const { data, error } = await supabase.auth.signInWithPassword({
             email,
-            name: email.split('@')[0],
-            createdAt: new Date().toISOString()
-        };
-
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        setCurrentUser(user);
-        return user;
+            password
+        });
+        if (error) throw error;
+        return data.user;
     };
 
-    const logout = () => {
-        localStorage.removeItem('currentUser');
-        setCurrentUser(null);
+    const logout = async () => {
+        const { error } = await supabase.auth.signOut();
+        if (error) throw error;
     };
 
     const value = {
