@@ -1,0 +1,258 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "method": "Method",
+        "products": "Products",
+        "experience": "Experience",
+        "gallery": "Gallery",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "Growth in <br/> <span class=\"italic font-light\">Natural Order</span>",
+        "subtitle": "Where the ancient wisdom of Shizen meets the fertile soul of Gilan. Authentic, effortless, and deeply rooted in the earth.",
+        "cta": "Explore Rostara"
+    },
+    "philosophy": {
+        "label": "The Philosophy",
+        "title": "\"Nature does not hurry, <br/> yet everything is accomplished.\"",
+        "p1": "Rostara is born from the concept of <span class=\"italic\">Shizen</span> (自然) — naturalness without pretense. We believe that true quality comes not from forcing the land, but from listening to it. Our farming practices in the lush plains of Gilan honor the rhythm of the seasons, the flow of water, and the life of the soil.",
+        "p2": "We reject artificial acceleration. Our rice grows at its own pace, nourished by rain and river, untouched by synthetic chemicals. The result is food that carries the honest taste of nature — pure, wholesome, and full of life force."
+    },
+    "footer": {
+        "desc": "Rostara; Natural Orderly Growth. Cultivating harmony through the Shizen philosophy.",
+        "explore": "Explore",
+        "connect": "Connect",
+        "rights": "Rostara. All rights reserved."
+    },
+    "products": {
+        "title": "Our Products",
+        "subtitle": "Organic and natural products, straight from farm to table",
+        "categories": {
+            "all": "All",
+            "fermented": "Fermented",
+            "vegetables": "Vegetables",
+            "microgreens": "Microgreens",
+            "mushrooms": "Mushrooms",
+            "probiotics": "Probiotics",
+            "prebiotics": "Prebiotics",
+            "grains": "Grains",
+            "legumes": "Legumes"
+        },
+        "items": {
+            "rice_hashemi": {
+                "name": "Tarom Hashemi Rice",
+                "desc": "Aromatic high-quality rice with long grains and unique taste",
+                "features": [
+                    "100% Organic",
+                    "Toxin-free",
+                    "Freshly Harvested"
+                ]
+            },
+            "rice_demsiah": {
+                "name": "Demsiah Rice",
+                "desc": "Traditional Gilan rice with excellent quality and pleasant taste",
+                "features": [
+                    "All Natural",
+                    "Nutrient-rich",
+                    "Local Product"
+                ]
+            },
+            "rice_brown": {
+                "name": "Brown Rice",
+                "desc": "Whole grain rice rich in fiber and vitamins",
+                "features": [
+                    "High Fiber",
+                    "Vitamin B",
+                    "Diet Friendly"
+                ]
+            },
+            "miso": {
+                "name": "Handmade Miso",
+                "desc": "Traditional fermented soybean paste with deep umami flavor",
+                "features": [
+                    "Natural Fermentation",
+                    "Probiotic",
+                    "No Preservatives"
+                ]
+            },
+            "kimchi": {
+                "name": "Gilani Kimchi",
+                "desc": "Fermented cabbage pickle with local Gilan spices",
+                "features": [
+                    "Spicy & Delicious",
+                    "Vitamin Rich",
+                    "Traditional Fermentation"
+                ]
+            },
+            "kale": {
+                "name": "Organic Kale",
+                "desc": "Fresh and crisp kale, rich in antioxidants",
+                "features": [
+                    "Organic",
+                    "Freshly Picked",
+                    "Calcium Rich"
+                ]
+            },
+            "micro_radish": {
+                "name": "Radish Microgreens",
+                "desc": "Fresh radish sprouts with a spicy peppery taste",
+                "features": [
+                    "Spicy Flavor",
+                    "Garnish",
+                    "Vitamin Bomb"
+                ]
+            },
+            "shiitake": {
+                "name": "Shiitake Mushrooms",
+                "desc": "Shiitake mushrooms grown on oak logs",
+                "features": [
+                    "Log Grown",
+                    "Medicinal Properties",
+                    "Umami Flavor"
+                ]
+            },
+            "kombucha": {
+                "name": "Rose Kombucha",
+                "desc": "Probiotic drink with rose and cardamom aroma",
+                "features": [
+                    "Naturally Carbonated",
+                    "Low Sugar",
+                    "Refreshing"
+                ]
+            },
+            "sourdough": {
+                "name": "Sourdough Bread",
+                "desc": "Whole wheat bread baked with natural sourdough starter",
+                "features": [
+                    "Easy Digestion",
+                    "No Baking Soda",
+                    "Long Shelf Life"
+                ]
+            },
+            "natto": {
+                "name": "Natto",
+                "desc": "Fermented soybeans with sticky texture and unique taste",
+                "features": [
+                    "Vitamin K2 Source",
+                    "Traditional Fermentation",
+                    "Unique Texture"
+                ]
+            },
+            "nukazuke": {
+                "name": "Nukazuke",
+                "desc": "Vegetables pickled in fermented rice bran",
+                "features": [
+                    "Strong Probiotic",
+                    "Rice Bran",
+                    "Authentic Taste"
+                ]
+            },
+            "micro_broccoli": {
+                "name": "Broccoli Microgreens",
+                "desc": "Broccoli sprouts rich in sulforaphane and antioxidants",
+                "features": [
+                    "Anti-cancer",
+                    "Crisp & Fresh",
+                    "Organic"
+                ]
+            },
+            "micro_sunflower": {
+                "name": "Sunflower Microgreens",
+                "desc": "Crispy and delicious sunflower sprouts with nutty flavor",
+                "features": [
+                    "Nutty Flavor",
+                    "Plant Protein",
+                    "Salad Friendly"
+                ]
+            },
+            "chickpeas": {
+                "name": "Local Chickpeas",
+                "desc": "Organic rain-fed chickpeas, delicious and easy to cook",
+                "features": [
+                    "Rain-fed",
+                    "Quick Cook",
+                    "Great Taste"
+                ]
+            }
+        },
+        "labels": {
+            "weight": "Weight",
+            "price": "Price",
+            "order": "Order Now",
+            "addToCart": "Add to Cart",
+            "added": "Added!"
+        }
+    },
+    "auth": {
+        "login": {
+            "title": "Login",
+            "subtitle": "Sign in to your account",
+            "submit": "Sign In",
+            "signingIn": "Signing in...",
+            "noAccount": "Don't have an account?",
+            "signupLink": "Sign up"
+        },
+        "signup": {
+            "title": "Sign Up",
+            "subtitle": "Create a new account",
+            "submit": "Sign Up",
+            "signingUp": "Signing up...",
+            "haveAccount": "Already have an account?",
+            "loginLink": "Sign in"
+        },
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "name": "Full Name",
+        "namePlaceholder": "Enter your name",
+        "logout": "Logout",
+        "errors": {
+            "fillFields": "Please fill in all fields",
+            "passwordMismatch": "Passwords do not match",
+            "passwordShort": "Password must be at least 6 characters",
+            "loginFailed": "Login failed. Please try again",
+            "signupFailed": "Signup failed. Please try again"
+        }
+    },
+    "cart": {
+        "title": "Shopping Cart",
+        "subtitle": "You have {{count}} items in your cart",
+        "empty": {
+            "title": "Your cart is empty",
+            "subtitle": "You haven't added any products to your cart yet",
+            "shopNow": "Start Shopping"
+        },
+        "clearCart": "Clear Cart",
+        "checkout": "Proceed to Checkout",
+        "continueShopping": "Continue Shopping",
+        "summary": {
+            "title": "Order Summary",
+            "items": "Items",
+            "subtotal": "Subtotal",
+            "total": "Total"
+        }
+    },
+    "checkout": {
+        "title": "Checkout",
+        "shippingInfo": "Shipping Information",
+        "fullName": "Full Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "address": "Address",
+        "city": "City",
+        "postalCode": "Postal Code",
+        "notes": "Notes",
+        "optional": "optional",
+        "placeOrder": "Place Order",
+        "processing": "Processing...",
+        "orderSummary": "Order Summary",
+        "total": "Total",
+        "paymentOnDelivery": "Payment on Delivery",
+        "success": {
+            "title": "Order Placed Successfully!",
+            "subtitle": "Thank you for your order. We will contact you soon.",
+            "backHome": "Back to Home"
+        }
+    }
+}
