@@ -1,12 +1,14 @@
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-cream text-brown-900 font-sans antialiased;
+    @apply bg-cream text-brown-900 font-sans antialiased dark:bg-brown-950 dark:text-cream transition-colors duration-300;
+  }
+
+  .dark body {
+    color-scheme: dark;
   }
 
   h1,
@@ -25,7 +27,7 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/80 backdrop-blur-md;
+    @apply bg-white/80 backdrop-blur-md dark:bg-brown-900/80 dark:border-brown-700;
   }
 
   .text-gradient {

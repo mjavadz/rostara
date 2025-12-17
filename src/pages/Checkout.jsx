@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
+import { supabase } from '../supabase';
 import { Package, MapPin, Phone, Mail, CreditCard, CheckCircle } from 'lucide-react';
 
 const Checkout = () => {
@@ -22,6 +23,13 @@ const Checkout = () => {
         notes: ''
     });
 
+    // Coupon State
+    const [couponCode, setCouponCode] = useState('');
+    const [discount, setDiscount] = useState(0);
+    const [couponMessage, setCouponMessage] = useState('');
+    const [isCouponValid, setIsCouponValid] = useState(false);
+    const [validCouponCode, setValidCouponCode] = useState('');
+
     const formatPrice = (price) => {
         if (i18n.language === 'en') {
             return new Intl.NumberFormat('en-US').format(price) + ' Toman';
@@ -36,31 +44,75 @@ const Checkout = () => {
         });
     };
 
+    const handleApplyCoupon = async () => {
+        if (!couponCode) return;
+        setLoading(true);
+        setCouponMessage('');
+
+        try {
+            const { data, error } = await supabase.rpc('validate_coupon', {
+                code_input: couponCode,
+                cart_total: getCartTotal(),
+                cart_items_count: cartItems.reduce((sum, item) => sum + item.quantity, 0)
+            });
+
+            if (error) throw error;
+
+            if (data.valid) {
+                setDiscount(data.discount_amount);
+                setValidCouponCode(data.coupon_code);
+                setIsCouponValid(true);
+                setCouponMessage(data.message);
+            } else {
+                setDiscount(0);
+                setIsCouponValid(false);
+                setCouponMessage(data.message);
+                setValidCouponCode('');
+            }
+        } catch (err) {
+            console.error('Coupon error:', err);
+            setCouponMessage('خطا در بررسی کد تخفیف');
+            setIsCouponValid(false);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const finalTotal = getCartTotal() - discount;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
-        // Simulate order processing
-        setTimeout(() => {
-            // In production, this would save to Firebase/Database
-            const order = {
-                id: Date.now().toString(),
-                items: cartItems,
-                total: getCartTotal(),
-                customerInfo: formData,
-                createdAt: new Date().toISOString(),
-                status: 'pending'
-            };
+        try {
+            const { data, error } = await supabase
+                .from('orders')
+                .insert([
+                    {
+                        user_id: currentUser?.id,
+                        full_name: formData.fullName,
+                        email: formData.email,
+                        phone: formData.phone,
+                        address: formData.address,
+                        city: formData.city,
+                        postal_code: formData.postalCode,
+                        notes: formData.notes + (validCouponCode ? ` | Coupon: ${validCouponCode}` : ''),
+                        total_price: finalTotal,
+                        items: cartItems,
+                        status: 'pending'
+                    }
+                ]);
 
-            // Store order in localStorage for now
-            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-            orders.push(order);
-            localStorage.setItem('orders', JSON.stringify(orders));
+            if (error) throw error;
 
             setLoading(false);
             setOrderPlaced(true);
             clearCart();
-        }, 2000);
+        } catch (error) {
+            console.error('Error placing order:', error);
+            alert('خطا در ثبت سفارش. لطفاً دوباره تلاش کنید.');
+            setLoading(false);
+        }
     };
 
     if (cartItems.length === 0 && !orderPlaced) {
@@ -70,15 +122,15 @@ const Checkout = () => {
 
     if (orderPlaced) {
         return (
-            <div className="min-h-screen bg-cream flex items-center justify-center px-4">
+            <div className="min-h-screen bg-cream dark:bg-brown-950 flex items-center justify-center px-4 transition-colors duration-300">
                 <div className="max-w-md w-full text-center">
-                    <div className="inline-flex items-center justify-center w-24 h-24 bg-green-100 rounded-full mb-6">
-                        <CheckCircle className="w-16 h-16 text-green-600" />
+                    <div className="inline-flex items-center justify-center w-24 h-24 bg-green-100 dark:bg-green-900/30 rounded-full mb-6">
+                        <CheckCircle className="w-16 h-16 text-green-600 dark:text-green-400" />
                     </div>
-                    <h1 className="text-4xl font-display font-bold text-brown-900 mb-4">
+                    <h1 className="text-4xl font-display font-bold text-brown-900 dark:text-cream mb-4">
                         {t('checkout.success.title')}
                     </h1>
-                    <p className="text-brown-600 mb-8 text-lg">
+                    <p className="text-brown-600 dark:text-brown-300 mb-8 text-lg">
                         {t('checkout.success.subtitle')}
                     </p>
                     <button
@@ -93,24 +145,24 @@ const Checkout = () => {
     }
 
     return (
-        <div className="min-h-screen bg-cream pt-32 pb-20">
+        <div className="min-h-screen bg-cream dark:bg-brown-950 pt-32 pb-20 transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 className="text-4xl md:text-5xl font-display font-bold text-brown-900 mb-8">
+                <h1 className="text-4xl md:text-5xl font-display font-bold text-brown-900 dark:text-cream mb-8">
                     {t('checkout.title')}
                 </h1>
 
                 <div className="grid lg:grid-cols-3 gap-8">
                     {/* Checkout Form */}
                     <div className="lg:col-span-2">
-                        <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 border border-brown-100">
-                            <h2 className="text-2xl font-display font-bold text-brown-900 mb-6 flex items-center gap-2">
-                                <MapPin className="w-6 h-6 text-primary-600" />
+                        <form onSubmit={handleSubmit} className="bg-white dark:bg-brown-900 rounded-2xl p-8 border border-brown-100 dark:border-brown-800 transition-colors">
+                            <h2 className="text-2xl font-display font-bold text-brown-900 dark:text-cream mb-6 flex items-center gap-2">
+                                <MapPin className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                                 {t('checkout.shippingInfo')}
                             </h2>
 
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div className="md:col-span-2">
-                                    <label className="block text-brown-800 font-medium mb-2">
+                                    <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
                                         {t('checkout.fullName')}
                                     </label>
                                     <input
@@ -119,12 +171,12 @@ const Checkout = () => {
                                         value={formData.fullName}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-cream border border-brown-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                        className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-brown-800 font-medium mb-2">
+                                    <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
                                         {t('checkout.email')}
                                     </label>
                                     <input
@@ -134,12 +186,12 @@ const Checkout = () => {
                                         onChange={handleChange}
                                         required
                                         dir="ltr"
-                                        className="w-full px-4 py-3 bg-cream border border-brown-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                        className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-brown-800 font-medium mb-2">
+                                    <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
                                         {t('checkout.phone')}
                                     </label>
                                     <input
@@ -149,12 +201,12 @@ const Checkout = () => {
                                         onChange={handleChange}
                                         required
                                         dir="ltr"
-                                        className="w-full px-4 py-3 bg-cream border border-brown-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                        className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
                                     />
                                 </div>
 
                                 <div className="md:col-span-2">
-                                    <label className="block text-brown-800 font-medium mb-2">
+                                    <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
                                         {t('checkout.address')}
                                     </label>
                                     <textarea
@@ -163,12 +215,12 @@ const Checkout = () => {
                                         onChange={handleChange}
                                         required
                                         rows="3"
-                                        className="w-full px-4 py-3 bg-cream border border-brown-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
+                                        className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-brown-900 dark:text-cream"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-brown-800 font-medium mb-2">
+                                    <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
                                         {t('checkout.city')}
                                     </label>
                                     <input
@@ -177,12 +229,12 @@ const Checkout = () => {
                                         value={formData.city}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 bg-cream border border-brown-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                        className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-brown-800 font-medium mb-2">
+                                    <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
                                         {t('checkout.postalCode')}
                                     </label>
                                     <input
@@ -192,12 +244,12 @@ const Checkout = () => {
                                         onChange={handleChange}
                                         required
                                         dir="ltr"
-                                        className="w-full px-4 py-3 bg-cream border border-brown-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500"
+                                        className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
                                     />
                                 </div>
 
                                 <div className="md:col-span-2">
-                                    <label className="block text-brown-800 font-medium mb-2">
+                                    <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
                                         {t('checkout.notes')} ({t('checkout.optional')})
                                     </label>
                                     <textarea
@@ -205,7 +257,7 @@ const Checkout = () => {
                                         value={formData.notes}
                                         onChange={handleChange}
                                         rows="2"
-                                        className="w-full px-4 py-3 bg-cream border border-brown-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
+                                        className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-brown-900 dark:text-cream"
                                     />
                                 </div>
                             </div>
@@ -230,25 +282,27 @@ const Checkout = () => {
 
                     {/* Order Summary */}
                     <div className="lg:col-span-1">
-                        <div className="bg-white rounded-2xl p-6 border border-brown-100 sticky top-32">
-                            <h2 className="text-2xl font-display font-bold text-brown-900 mb-6">
+                        <div className="bg-white dark:bg-brown-900 rounded-2xl p-6 border border-brown-100 dark:border-brown-800 sticky top-32 transition-colors">
+                            <h2 className="text-2xl font-display font-bold text-brown-900 dark:text-cream mb-6">
                                 {t('checkout.orderSummary')}
                             </h2>
 
                             <div className="space-y-4 mb-6">
+                                {/* ... cart items map ... */}
                                 {cartItems.map((item) => (
                                     <div key={item.id} className="flex gap-3">
-                                        <div className="w-16 h-16 bg-gradient-to-br from-primary-100 to-brown-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                            <Package className="w-8 h-8 text-primary-600/30" />
+                                        {/* ... existing item render ... */}
+                                        <div className="w-16 h-16 bg-gradient-to-br from-primary-100 to-brown-100 dark:from-brown-800 dark:to-brown-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <Package className="w-8 h-8 text-primary-600/30 dark:text-primary-400/30" />
                                         </div>
                                         <div className="flex-grow">
-                                            <h3 className="font-bold text-brown-900 text-sm mb-1">
+                                            <h3 className="font-bold text-brown-900 dark:text-cream text-sm mb-1">
                                                 {t(`products.items.${item.id}.name`)}
                                             </h3>
-                                            <p className="text-brown-600 text-xs mb-1">
+                                            <p className="text-brown-600 dark:text-brown-300 text-xs mb-1">
                                                 {item.quantity} × {formatPrice(item.price)}
                                             </p>
-                                            <p className="text-primary-700 font-bold text-sm">
+                                            <p className="text-primary-700 dark:text-primary-400 font-bold text-sm">
                                                 {formatPrice(item.price * item.quantity)}
                                             </p>
                                         </div>
@@ -256,12 +310,48 @@ const Checkout = () => {
                                 ))}
                             </div>
 
-                            <div className="border-t border-brown-100 pt-4">
-                                <div className="flex justify-between text-xl font-bold text-brown-900 mb-2">
-                                    <span>{t('checkout.total')}</span>
-                                    <span className="text-primary-700">{formatPrice(getCartTotal())}</span>
+                            {/* Coupon Input */}
+                            <div className="mb-6 pt-4 border-t border-brown-100 dark:border-brown-800">
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        placeholder="کد تخفیف"
+                                        value={couponCode}
+                                        onChange={(e) => setCouponCode(e.target.value)}
+                                        className="flex-grow px-3 py-2 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-lg text-sm text-brown-900 dark:text-cream focus:outline-none focus:ring-1 focus:ring-primary-500"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleApplyCoupon}
+                                        disabled={loading || !couponCode}
+                                        className="px-4 py-2 bg-primary-600 text-white text-sm rounded-lg hover:bg-primary-700 disabled:opacity-50"
+                                    >
+                                        اعمال
+                                    </button>
                                 </div>
-                                <p className="text-brown-500 text-xs">
+                                {couponMessage && (
+                                    <p className={`text-xs mt-2 ${isCouponValid ? 'text-green-600' : 'text-red-500'}`}>
+                                        {couponMessage}
+                                    </p>
+                                )}
+                            </div>
+
+                            <div className="border-t border-brown-100 dark:border-brown-800 pt-4">
+                                <div className="flex justify-between text-sm text-brown-600 dark:text-brown-300 mb-2">
+                                    <span>جمع کل</span>
+                                    <span>{formatPrice(getCartTotal())}</span>
+                                </div>
+                                {discount > 0 && (
+                                    <div className="flex justify-between text-sm text-green-600 dark:text-green-400 mb-2">
+                                        <span>تخفیف</span>
+                                        <span>- {formatPrice(discount)}</span>
+                                    </div>
+                                )}
+                                <div className="flex justify-between text-xl font-bold text-brown-900 dark:text-cream mb-2">
+                                    <span>{t('checkout.total')}</span>
+                                    <span className="text-primary-700 dark:text-primary-400">{formatPrice(finalTotal)}</span>
+                                </div>
+                                <p className="text-brown-500 dark:text-brown-400 text-xs text-right">
                                     {t('checkout.paymentOnDelivery')}
                                 </p>
                             </div>

@@ -37,7 +37,8 @@ export const AuthProvider = ({ children }) => {
             options: {
                 data: {
                     display_name: name
-                }
+                },
+                emailRedirectTo: `${window.location.origin}/verify-email`
             }
         });
         if (error) throw error;

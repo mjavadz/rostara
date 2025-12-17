@@ -134,14 +134,14 @@ const Products = () => {
     };
 
     return (
-        <div className="min-h-screen bg-cream">
+        <div className="min-h-screen bg-cream dark:bg-brown-950 transition-colors duration-300">
             {/* Hero */}
-            <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 to-brown-50">
+            <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 to-brown-50 dark:from-brown-900 dark:to-brown-950">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-5xl md:text-6xl font-display font-bold text-brown-900 mb-6">
+                    <h1 className="text-5xl md:text-6xl font-display font-bold text-brown-900 dark:text-cream mb-6">
                         {t('products.title')}
                     </h1>
-                    <p className="text-xl text-brown-700 leading-relaxed">
+                    <p className="text-xl text-brown-700 dark:text-brown-200 leading-relaxed">
                         {t('products.subtitle')}
                     </p>
                 </div>
@@ -153,14 +153,14 @@ const Products = () => {
                     {/* Category Filter */}
                     <div className="flex items-center gap-2 mb-12 overflow-x-auto pb-4 scrollbar-hide">
                         <div className="flex items-center gap-2 px-2">
-                            <Filter className="w-5 h-5 text-brown-500 ml-2" />
+                            <Filter className="w-5 h-5 text-brown-500 dark:text-brown-400 ml-2" />
                             {categories.map((cat) => (
                                 <button
                                     key={cat.id}
                                     onClick={() => setSelectedCategory(cat.id)}
                                     className={`px-6 py-2.5 rounded-full whitespace-nowrap transition-all duration-300 font-medium ${selectedCategory === cat.id
                                         ? 'bg-primary-600 text-white shadow-lg scale-105'
-                                        : 'bg-white text-brown-600 hover:bg-primary-50 hover:text-primary-700 border border-brown-100'
+                                        : 'bg-white dark:bg-brown-800 text-brown-600 dark:text-brown-300 hover:bg-primary-50 dark:hover:bg-brown-700 hover:text-primary-700 dark:hover:text-primary-400 border border-brown-100 dark:border-brown-700'
                                         }`}
                                 >
                                     {cat.label}
@@ -177,23 +177,23 @@ const Products = () => {
                             return (
                                 <div
                                     key={product.id}
-                                    className="group bg-white rounded-2xl overflow-hidden border border-brown-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col"
+                                    className="group bg-white dark:bg-brown-800 rounded-2xl overflow-hidden border border-brown-100 dark:border-brown-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col"
                                 >
                                     {/* Image Placeholder */}
-                                    <div className="h-64 bg-gradient-to-br from-primary-100 to-brown-100 flex items-center justify-center relative overflow-hidden">
+                                    <div className="h-64 bg-gradient-to-br from-primary-100 to-brown-100 dark:from-brown-700 dark:to-brown-600 flex items-center justify-center relative overflow-hidden">
                                         <div className="absolute inset-0 bg-rice-pattern opacity-10"></div>
-                                        <Package className="w-20 h-20 text-primary-600/30 group-hover:scale-110 transition-transform duration-500" />
-                                        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary-700 shadow-sm">
+                                        <Package className="w-20 h-20 text-primary-600/30 dark:text-primary-400/30 group-hover:scale-110 transition-transform duration-500" />
+                                        <div className="absolute top-4 right-4 bg-white/90 dark:bg-brown-900/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary-700 dark:text-primary-400 shadow-sm">
                                             {categories.find(c => c.id === product.category)?.label}
                                         </div>
                                     </div>
 
                                     {/* Content */}
                                     <div className="p-6 flex-grow flex flex-col">
-                                        <h3 className="text-2xl font-display font-bold text-brown-900 mb-2">
+                                        <h3 className="text-2xl font-display font-bold text-brown-900 dark:text-cream mb-2">
                                             {t(`products.items.${product.id}.name`)}
                                         </h3>
-                                        <p className="text-brown-600 mb-4 leading-relaxed text-sm flex-grow">
+                                        <p className="text-brown-600 dark:text-brown-300 mb-4 leading-relaxed text-sm flex-grow">
                                             {t(`products.items.${product.id}.desc`)}
                                         </p>
 
@@ -201,21 +201,21 @@ const Products = () => {
                                         <div className="space-y-2 mb-6">
                                             {Array.isArray(features) && features.map((feature, index) => (
                                                 <div key={index} className="flex items-center gap-2">
-                                                    <Star className="w-4 h-4 text-primary-600 fill-primary-600" />
-                                                    <span className="text-sm text-brown-700">{feature}</span>
+                                                    <Star className="w-4 h-4 text-primary-600 dark:text-primary-400 fill-primary-600 dark:fill-primary-400" />
+                                                    <span className="text-sm text-brown-700 dark:text-brown-200">{feature}</span>
                                                 </div>
                                             ))}
                                         </div>
 
                                         {/* Price & Weight */}
-                                        <div className="flex items-center justify-between mb-6 pb-6 border-b border-brown-100 mt-auto">
+                                        <div className="flex items-center justify-between mb-6 pb-6 border-b border-brown-100 dark:border-brown-700 mt-auto">
                                             <div>
-                                                <p className="text-xs text-brown-500 mb-1">{t('products.labels.weight')}</p>
-                                                <p className="font-bold text-brown-900">{product.weight}</p>
+                                                <p className="text-xs text-brown-500 dark:text-brown-400 mb-1">{t('products.labels.weight')}</p>
+                                                <p className="font-bold text-brown-900 dark:text-cream">{product.weight}</p>
                                             </div>
                                             <div className="text-left">
-                                                <p className="text-xs text-brown-500 mb-1">{t('products.labels.price')}</p>
-                                                <p className="text-xl font-bold text-primary-700">{formatPrice(product.price)}</p>
+                                                <p className="text-xs text-brown-500 dark:text-brown-400 mb-1">{t('products.labels.price')}</p>
+                                                <p className="text-xl font-bold text-primary-700 dark:text-primary-400">{formatPrice(product.price)}</p>
                                             </div>
                                         </div>
 
@@ -247,12 +247,12 @@ const Products = () => {
             </section>
 
             {/* Shipping Info */}
-            <section className="py-16 bg-white">
+            <section className="py-16 bg-white dark:bg-brown-900 transition-colors duration-500">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-center gap-4 p-6 bg-primary-50 rounded-2xl border border-primary-100">
-                        <Truck className="w-8 h-8 text-primary-600" />
-                        <p className="text-brown-800 font-medium">
-                            ارسال رایگان برای سفارش‌های بالای ۲۰۰,۰۰۰ تومان
+                    <div className="flex items-center justify-center gap-4 p-6 bg-primary-50 dark:bg-brown-800 rounded-2xl border border-primary-100 dark:border-brown-700">
+                        <Truck className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+                        <p className="text-brown-600 dark:text-brown-300">
+                            ارسال رایگان برای سفارش‌های بالای ۹۰۰,۰۰۰ تومان
                         </p>
                     </div>
                 </div>

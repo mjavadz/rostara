@@ -9,7 +9,7 @@ const Experience = () => {
         {
             icon: Home,
             title: 'اقامت بوم‌گردی',
-            description: 'در خانه‌های سنتی گیلانی اقامت کنید و زندگی روستایی را تجربه کنید',
+            description: 'در خانه‌های سنتی شمالی اقامت کنید و زندگی روستایی را تجربه کنید',
         },
         {
             icon: Leaf,
@@ -39,14 +39,14 @@ const Experience = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-cream">
+        <div className="min-h-screen bg-cream dark:bg-brown-950 transition-colors duration-300">
             {/* Hero */}
-            <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 to-brown-50">
+            <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 to-brown-50 dark:from-brown-900 dark:to-brown-950 transition-colors duration-500">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-5xl md:text-6xl font-display font-bold text-brown-900 mb-6">
+                    <h1 className="text-5xl md:text-6xl font-display font-bold text-brown-900 dark:text-cream mb-6">
                         تجربه رُستارا
                     </h1>
-                    <p className="text-xl text-brown-700 leading-relaxed">
+                    <p className="text-xl text-brown-700 dark:text-brown-200 leading-relaxed">
                         فراتر از خرید محصول، یک تجربه به یادماندنی
                     </p>
                 </div>
@@ -61,15 +61,15 @@ const Experience = () => {
                             return (
                                 <div
                                     key={index}
-                                    className="group p-8 bg-white rounded-2xl border border-brown-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+                                    className="group p-8 bg-white dark:bg-brown-900 rounded-2xl border border-brown-100 dark:border-brown-800 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
                                 >
                                     <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                                         <Icon className="w-8 h-8 text-white" />
                                     </div>
-                                    <h3 className="text-2xl font-display font-bold text-brown-900 mb-4">
+                                    <h3 className="text-2xl font-display font-bold text-brown-900 dark:text-cream mb-4">
                                         {exp.title}
                                     </h3>
-                                    <p className="text-brown-700 leading-relaxed text-lg">
+                                    <p className="text-brown-700 dark:text-brown-300 leading-relaxed text-lg">
                                         {exp.description}
                                     </p>
                                 </div>

@@ -6,21 +6,32 @@
         "products": "Products",
         "experience": "Experience",
         "gallery": "Gallery",
-        "contact": "Contact"
+        "contact": "Contact",
+        "theme": {
+            "light": "Light Mode",
+            "dark": "Dark Mode",
+            "auto": "System Theme"
+        },
+        "club": "Club"
+    },
+    "common": {
+        "back": "Back",
+        "sending": "Sending...",
+        "user": "User"
     },
     "hero": {
         "title": "Growth in <br/> <span class=\"italic font-light\">Natural Order</span>",
-        "subtitle": "Where the ancient wisdom of Shizen meets the fertile soul of Gilan. Authentic, effortless, and deeply rooted in the earth.",
+        "subtitle": "Where the ancient wisdom of Gilan meets the fertile soul of the earth. Authentic, effortless, and deeply rooted.",
         "cta": "Explore Rostara"
     },
     "philosophy": {
-        "label": "The Philosophy",
-        "title": "\"Nature does not hurry, <br/> yet everything is accomplished.\"",
-        "p1": "Rostara is born from the concept of <span class=\"italic\">Shizen</span> (自然) — naturalness without pretense. We believe that true quality comes not from forcing the land, but from listening to it. Our farming practices in the lush plains of Gilan honor the rhythm of the seasons, the flow of water, and the life of the soil.",
-        "p2": "We reject artificial acceleration. Our rice grows at its own pace, nourished by rain and river, untouched by synthetic chemicals. The result is food that carries the honest taste of nature — pure, wholesome, and full of life force."
+        "label": "Life's Heritage",
+        "title": "\"The earth is generous, <br/> if treated with respect.\"",
+        "p1": "Rostara is born from the heart of Hyrcanian forests and lush rice paddies of Gilan. We believe true quality comes from coexistence with the land, not forcing it. Our farming practices are a thousand-year-old heritage passed down through generations.",
+        "p2": "We reject the haste of the modern world. Our products grow with the rhythm of nature, nourished by Gilan's silver rains, carrying the authentic taste of the fertile northern soil."
     },
     "footer": {
-        "desc": "Rostara; Natural Orderly Growth. Cultivating harmony through the Shizen philosophy.",
+        "desc": "Rostara; Natural Orderly Growth. Preserving Gilan's agricultural heritage.",
         "explore": "Explore",
         "connect": "Connect",
         "rights": "Rostara. All rights reserved."
@@ -184,6 +195,34 @@
             "added": "Added!"
         }
     },
+    "admin": {
+        "title": "Admin Panel",
+        "login": {
+            "title": "Admin Login",
+            "subtitle": "Please enter admin password",
+            "passwordPlaceholder": "Password...",
+            "submit": "Enter Panel"
+        },
+        "tabs": {
+            "users": "Users",
+            "orders": "Orders"
+        },
+        "users": {
+            "email": "Email",
+            "name": "Name",
+            "joined": "Joined Date",
+            "lastLogin": "Last Login",
+            "noUsers": "No users found"
+        },
+        "orders": {
+            "customer": "Customer",
+            "items": "Items",
+            "total": "Total Amount",
+            "date": "Date",
+            "status": "Status",
+            "noOrders": "No orders found"
+        }
+    },
     "auth": {
         "login": {
             "title": "Login",
@@ -191,7 +230,46 @@
             "submit": "Sign In",
             "signingIn": "Signing in...",
             "noAccount": "Don't have an account?",
-            "signupLink": "Sign up"
+            "signupLink": "Sign up",
+            "forgotPassword": "Forgot your password?"
+        },
+        "forgotPassword": {
+            "title": "Forgot Password",
+            "subtitle": "Enter your email to receive a recovery link",
+            "submit": "Send Recovery Link",
+            "sending": "Sending...",
+            "successTitle": "Email Sent!",
+            "successDesc": "Password recovery link has been sent to your email.",
+            "checkEmail": "Please check your email and click on the recovery link.",
+            "spamCheck": "If you don't see the email, please check your spam folder.",
+            "backToLogin": "Back to Login",
+            "error": "Error sending recovery email. Please try again."
+        },
+        "errors": {
+            "general": "An error occurred. Please try again.",
+            "fillFields": "Please fill in all fields",
+            "passwordMismatch": "Passwords do not match",
+            "passwordShort": "Password must be at least 6 characters",
+            "loginFailed": "Login failed. Please try again",
+            "signupFailed": "Signup failed. Please try again"
+        },
+        "verifyEmail": {
+            "title": "Email Verified Successfully!",
+            "errorTitle": "Verification Failed",
+            "welcome": "Welcome, dear {{name}}!",
+            "activated": "Your account has been successfully verified.",
+            "readyToShop": "You can now access all features and start shopping.",
+            "startShopping": "Start Shopping",
+            "home": "Back to Home",
+            "verifying": "Verifying your email...",
+            "invalidLink": "Invalid or expired verification link.",
+            "timeout": "Verification timed out. Please try logging in."
+        },
+        "checkEmail": {
+            "title": "Check Your Email",
+            "subtitle": "We've sent a verification link to your email address. Please check your inbox to activate your account.",
+            "spamNote": "If you don't see the email, please check your spam folder.",
+            "backHome": "Back to Home"
         },
         "signup": {
             "title": "Sign Up",
@@ -206,14 +284,7 @@
         "confirmPassword": "Confirm Password",
         "name": "Full Name",
         "namePlaceholder": "Enter your name",
-        "logout": "Logout",
-        "errors": {
-            "fillFields": "Please fill in all fields",
-            "passwordMismatch": "Passwords do not match",
-            "passwordShort": "Password must be at least 6 characters",
-            "loginFailed": "Login failed. Please try again",
-            "signupFailed": "Signup failed. Please try again"
-        }
+        "logout": "Logout"
     },
     "cart": {
         "title": "Shopping Cart",
@@ -253,6 +324,80 @@
             "title": "Order Placed Successfully!",
             "subtitle": "Thank you for your order. We will contact you soon.",
             "backHome": "Back to Home"
+        }
+    },
+    "club": {
+        "hero": {
+            "badge": "Customers Club",
+            "title": "Join the Rostara Community",
+            "subtitle": "Exclusive offers, discussions, and a space for nature lovers."
+        },
+        "offers": {
+            "title": "Exclusive Offers",
+            "copy": "Copy Code",
+            "copied": "Copied!",
+            "welcome": {
+                "title": "Welcome Discount",
+                "desc": "Get 10% off your first order as a club member."
+            },
+            "shipping": {
+                "title": "Free Shipping",
+                "desc": "Free shipping on orders over $50.",
+                "discountBadge": "Free Ship"
+            },
+            "bulk": {
+                "title": "Bulk Savings",
+                "desc": "Save 20% when you buy 3 or more items."
+            }
+        },
+        "time": {
+            "hoursAgo": "{{count}} hours ago",
+            "daysAgo": "{{count}} days ago"
+        }
+    },
+    "forum": {
+        "title": "Community Board",
+        "create": {
+            "title": "Create New Topic",
+            "titlePlaceholder": "Enter topic title...",
+            "contentPlaceholder": "Write your content here...",
+            "submit": "Post Topic",
+            "error": "Error creating post. Please try again.",
+            "loginRequired": "Please login to join the discussion.",
+            "starUserOnly": "Star Members Only!",
+            "starUserDesc": "Only users with at least one purchase can create new topics."
+        },
+        "categories": {
+            "general": "General",
+            "recipes": "Recipes",
+            "farming": "Farming",
+            "announcement": "Announcement"
+        },
+        "empty": "No discussions yet. Be the first!",
+        "comments": "Comments",
+        "noComments": "No comments yet.",
+        "writeComment": "Write a comment...",
+        "loginToComment": "Please login to comment.",
+        "notFound": "Topic not found.",
+        "viewAll": "View All Topics",
+        "authors": {
+            "team": "Rostara Team",
+            "user1": "Sarah M.",
+            "user2": "Ali R."
+        },
+        "tags": {
+            "recipes": "Recipes",
+            "farming": "Farming",
+            "announcement": "Announcement"
+        },
+        "topic1": {
+            "title": "Best way to cook Brown Rice?"
+        },
+        "topic2": {
+            "title": "Sustainable farming practices in Gilan"
+        },
+        "topic3": {
+            "title": "New harvest arriving soon!"
         }
     }
 }
