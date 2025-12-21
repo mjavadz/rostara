@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <footer className="bg-brown-900 text-brown-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Brand */}
                     <div>
                         <h3 className="text-2xl font-display font-bold mb-4">رُستارا</h3>
@@ -17,29 +17,21 @@ const Footer = () => {
                         </p>
                     </div>
 
-                    {/* Links */}
+                    {/* Quick Links */}
                     <div>
                         <h4 className="font-semibold mb-4">{t('footer.explore')}</h4>
-                        <ul className="space-y-2 text-sm">
+                        <ul className="grid grid-cols-2 gap-2 text-sm">
                             <li><Link to="/about" className="text-brown-300 hover:text-primary-400 transition-colors">{t('nav.about')}</Link></li>
-                            <li><Link to="/method" className="text-brown-300 hover:text-primary-400 transition-colors">{t('nav.method')}</Link></li>
                             <li><Link to="/products" className="text-brown-300 hover:text-primary-400 transition-colors">{t('nav.products')}</Link></li>
-                            <li><Link to="/experience" className="text-brown-300 hover:text-primary-400 transition-colors">{t('nav.experience')}</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Contact */}
-                    <div>
-                        <h4 className="font-semibold mb-4">{t('footer.connect')}</h4>
-                        <ul className="space-y-2 text-sm text-brown-300">
-                            <li><Link to="/contact" className="hover:text-primary-400 transition-colors">{t('nav.contact')}</Link></li>
-                            <li><Link to="/gallery" className="hover:text-primary-400 transition-colors">{t('nav.gallery')}</Link></li>
+                            <li><Link to="/method" className="text-brown-300 hover:text-primary-400 transition-colors">{t('nav.experience')}</Link></li>
+                            <li><Link to="/gallery" className="text-brown-300 hover:text-primary-400 transition-colors">{t('nav.gallery')}</Link></li>
+                            <li><Link to="/club" className="text-brown-300 hover:text-primary-400 transition-colors">{t('nav.club')}</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="mt-12 pt-8 border-t border-brown-800 text-center text-sm text-brown-400">
-                    <p>{t('footer.rights')}</p>
+                    <p>ساخته شده با عشق به طبیعت و احترام به زمین • رُستارا</p>
                 </div>
             </div>
         </footer>

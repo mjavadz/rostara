@@ -57,7 +57,7 @@ const Signup = () => {
     };
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 flex items-center justify-center px-4 py-20 transition-colors duration-300">
+        <div className="min-h-screen bg-cream dark:bg-brown-950 flex items-center justify-center px-4 pt-24 pb-8 sm:py-20 transition-colors duration-300">
             <div className="max-w-md w-full">
                 {/* Header */}
                 <div className="text-center mb-8">

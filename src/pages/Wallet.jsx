@@ -82,7 +82,7 @@ const Wallet = () => {
 
     const handleConvertTicket = async () => {
         if (balance.credit < 500000) return alert('موجودی اعتباری کافی نیست. (نیاز: ۵۰۰,۰۰۰ تومان)');
-        if (!confirm('آیا مطمئن هستید؟ ۵۰۰,۰۰۰ تومان از اعتبار شما کسر و ۱ تیکت اضافه می‌شود.')) return;
+        if (!confirm('آیا مطمئن هستید؟ ۵۰۰,۰۰۰ تومان از اعتبار شما کسر و ۱ بلیط اضافه می‌شود.')) return;
 
         try {
             const { error } = await supabase.rpc('convert_credit_to_ticket');
@@ -96,12 +96,12 @@ const Wallet = () => {
 
     const handleTransferTicket = async (e) => {
         e.preventDefault();
-        if (balance.tickets < 1) return alert('تیکت کافی ندارید.');
+        if (balance.tickets < 1) return alert('بلیط کافی ندارید.');
 
         const isDonation = transferEmail === 'donate@rostara.ir';
         const msg = isDonation
-            ? 'با اهدای این تیکت، ۲۵۰,۰۰۰ تومان (۵۰٪) به حساب اعتباری شما باز میگردد. ادامه میدهید؟'
-            : `آیا از ارسال ۱ تیکت به ${transferEmail} اطمینان دارید؟`;
+            ? 'با اهدای این بلیط، ۲۵۰,۰۰۰ تومان (۵۰٪) به حساب اعتباری شما باز میگردد. ادامه میدهید؟'
+            : `آیا از ارسال ۱ بلیط به ${transferEmail} اطمینان دارید؟`;
 
         if (!confirm(msg)) return;
 
@@ -231,40 +231,62 @@ const Wallet = () => {
                                 کیف پول من
                             </h2>
                         </div>
-                        <p className="text-brown-600 dark:text-brown-300">مدیریت کیف پول، سفارشات و تیکت‌ها</p>
+                        <p className="text-brown-600 dark:text-brown-300">مدیریت کیف پول، سفارشات و بلیط‌ها</p>
                     </div>
                 </div>
 
                 {/* Balances - Grid Layout */}
                 <div className="grid md:grid-cols-3 gap-6 mb-8">
-                    {/* Cash Wallet */}
+                    {/* Cash Wallet - Shows USDT and Toman */}
                     <div className="bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10"></div>
                         <div className="relative z-10">
-                            <p className="text-gray-300 mb-2">کیف پول نقدی (تومان)</p>
-                            <h2 className="text-3xl font-bold mb-4" dir="ltr">{formatPrice(balance.cash)}</h2>
-                            <button
-                                onClick={() => setActiveTab('deposit')}
-                                className="bg-white/10 hover:bg-white/20 text-white text-sm py-2 px-4 rounded-lg transition-colors flex items-center gap-2 w-full justify-center"
-                            >
-                                <CreditCard className="w-4 h-4" />
-                                شارژ با رمز ارز
-                            </button>
+                            <p className="text-gray-300 mb-3">کیف پول نقدی</p>
+                            <div className="space-y-2 mb-4">
+                                <div className="flex justify-between items-center">
+                                    <span className="text-sm text-gray-400">تتر (USDT):</span>
+                                    <span className="text-lg font-bold" dir="ltr">{formatPrice(balance.cash)} USDT</span>
+                                </div>
+                                <div className="flex justify-between items-center border-t border-gray-600 pt-2">
+                                    <span className="text-sm text-gray-400">تومان:</span>
+                                    <span className="text-lg font-bold" dir="ltr">{formatPrice(balance.credit)}</span>
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-2">
+                                <button
+                                    onClick={() => setActiveTab('deposit')}
+                                    className="bg-white/10 hover:bg-white/20 text-white text-xs py-2 px-3 rounded-lg transition-colors flex items-center gap-1 justify-center"
+                                >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>رمز ارز</span>
+                                </button>
+                                <button
+                                    onClick={() => setActiveTab('deposit')}
+                                    className="bg-white/10 hover:bg-white/20 text-white text-xs py-2 px-3 rounded-lg transition-colors flex items-center gap-1 justify-center"
+                                >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                    </svg>
+                                    <span>حساب بانکی</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
                     {/* Credit Wallet */}
                     <div className="bg-gradient-to-br from-brown-800 to-brown-900 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10"></div>
-                        <div className="relative z-10">
-                            <p className="text-brown-200 mb-2">کیف پول اعتباری (پاداش)</p>
-                            <h2 className="text-3xl font-bold mb-4" dir="ltr">{formatPrice(balance.credit)}</h2>
+                        <div className="relative z-10 flex flex-col h-full">
+                            <p className="text-brown-200 text-sm mb-1">کیف پول اعتباری (پاداش)</p>
+                            <h2 className="text-3xl font-bold mb-auto" dir="ltr">{formatPrice(balance.credit)}</h2>
                             <button
                                 onClick={handleConvertTicket}
-                                className="bg-white/10 hover:bg-white/20 text-white text-sm py-2 px-4 rounded-lg transition-colors flex items-center gap-2 w-full justify-center"
+                                className="mt-6 bg-white/10 hover:bg-white/20 text-white text-sm py-2.5 px-4 rounded-lg transition-colors flex items-center gap-2 w-full justify-center"
                             >
                                 <ArrowRightLeft className="w-4 h-4" />
-                                تبدیل به تیکت
+                                تبدیل به بلیط
                             </button>
                         </div>
                     </div>
@@ -272,12 +294,12 @@ const Wallet = () => {
                     {/* Ticket Wallet */}
                     <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10"></div>
-                        <div className="relative z-10">
-                            <p className="text-primary-100 mb-2">تیکت‌های جشنواره</p>
-                            <h2 className="text-3xl font-bold mb-4">{toPersianDigits(balance.tickets)}</h2>
+                        <div className="relative z-10 flex flex-col h-full">
+                            <p className="text-primary-100 text-sm mb-1">بلیط‌های جشنواره</p>
+                            <h2 className="text-3xl font-bold mb-auto">{toPersianDigits(balance.tickets)}</h2>
                             <button
                                 onClick={() => setActiveTab('transfer')}
-                                className="bg-white/10 hover:bg-white/20 text-white text-sm py-2 px-4 rounded-lg transition-colors flex items-center gap-2 w-full justify-center"
+                                className="mt-6 bg-white/10 hover:bg-white/20 text-white text-sm py-2.5 px-4 rounded-lg transition-colors flex items-center gap-2 w-full justify-center"
                             >
                                 <Send className="w-4 h-4" />
                                 ارسال / اهدا
@@ -327,7 +349,7 @@ const Wallet = () => {
                                 <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 border-2 
                                     ${vipData.level >= 3 ? (vipData.claimedRewards.includes(3) ? 'bg-green-500/80 border-green-300 text-white shadow-lg' : 'bg-white/90 text-[#b38728] border-white/80 cursor-pointer hover:scale-110 transition shadow-lg') : 'bg-black/20 border-white/10 text-white/40 backdrop-blur-sm'}`}
                                     onClick={() => vipData.level >= 3 && !vipData.claimedRewards.includes(3) && handleClaimReward(3)}
-                                    title="دریافت ۱ تیکت (سطح ۳)"
+                                    title="دریافت ۱ بلیط (سطح ۳)"
                                 >
                                     <Gift className="w-6 h-6" />
                                 </div>
@@ -339,7 +361,7 @@ const Wallet = () => {
                                 <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 border-2
                                     ${vipData.level >= 7 ? (vipData.claimedRewards.includes(7) ? 'bg-green-500/80 border-green-300 text-white shadow-lg' : 'bg-white/90 text-[#b38728] border-white/80 cursor-pointer hover:scale-110 transition shadow-lg') : 'bg-black/20 border-white/10 text-white/40 backdrop-blur-sm'}`}
                                     onClick={() => vipData.level >= 7 && !vipData.claimedRewards.includes(7) && handleClaimReward(7)}
-                                    title="دریافت ۲ تیکت (سطح ۷)"
+                                    title="دریافت ۲ بلیط (سطح ۷)"
                                 >
                                     <Award className="w-6 h-6" />
                                 </div>
@@ -379,7 +401,7 @@ const Wallet = () => {
                             className={`w-full text-right p-4 rounded-xl font-medium transition-colors flex items-center gap-3 ${activeTab === 'transfer' ? 'bg-primary-600 text-white shadow-md' : 'bg-white dark:bg-brown-900 text-brown-700 dark:text-brown-200 hover:bg-brown-50 dark:hover:bg-brown-800'}`}
                         >
                             <Send className="w-5 h-5" />
-                            انتقال تیکت
+                            انتقال بلیط
                         </button>
                     </div>
 
@@ -466,10 +488,10 @@ const Wallet = () => {
                         {/* 3. TRANSFER TAB */}
                         {activeTab === 'transfer' && (
                             <div className="bg-white dark:bg-brown-900 rounded-2xl p-6 border border-brown-100 dark:border-brown-800 min-h-[400px]">
-                                <h3 className="text-xl font-bold text-brown-900 dark:text-cream mb-4">ارسال تیکت / اهدا</h3>
+                                <h3 className="text-xl font-bold text-brown-900 dark:text-cream mb-4">ارسال بلیط / اهدا</h3>
                                 <div className="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-xl mb-6">
                                     <p className="text-sm text-primary-800 dark:text-primary-200">
-                                        💡 <strong>نکته اهدا:</strong> با ارسال تیکت به آدرس <code className="bg-white/50 px-1 rounded">donate@rostara.ir</code>، شما ۵۰٪ ارزش تیکت (۲۵۰ هزار تومان) را به عنوان پاداش اعتباری دریافت میکنید!
+                                        💡 <strong>نکته اهدا:</strong> با ارسال بلیط به آدرس <code className="bg-white/50 px-1 rounded">donate@rostara.ir</code>، شما ۵۰٪ ارزش تیکت (۲۵۰ هزار تومان) را به عنوان پاداش اعتباری دریافت میکنید!
                                     </p>
                                 </div>
                                 <form onSubmit={handleTransferTicket} className="space-y-4 max-w-md mx-auto">
@@ -485,7 +507,7 @@ const Wallet = () => {
                                         />
                                     </div>
                                     <button className="w-full py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition">
-                                        ارسال تیکت
+                                        ارسال بلیط
                                     </button>
                                 </form>
                             </div>

@@ -17,13 +17,11 @@ const Navbar = () => {
 
     const navItems = [
         { path: '/', label: t('nav.home') },
-        { path: '/about', label: t('nav.about') },
-        { path: '/method', label: t('nav.method') },
         { path: '/products', label: t('nav.products') },
-        { path: '/experience', label: t('nav.experience') },
+        { path: '/method', label: t('nav.experience') },
         { path: '/gallery', label: t('nav.gallery') },
         { path: '/club', label: t('nav.club') },
-        { path: '/contact', label: t('nav.contact') },
+        { path: '/about', label: t('nav.about') },
     ];
 
     const isActive = (path) => location.pathname === path;
@@ -151,6 +149,58 @@ const Navbar = () => {
                                 {item.label}
                             </Link>
                         ))}
+
+                        {/* Mobile Cart */}
+                        <Link
+                            to="/cart"
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center justify-between py-3 border-t border-brown-200/20 text-brown-700 dark:text-brown-200"
+                        >
+                            <div className="flex items-center gap-2">
+                                <ShoppingCart className="w-5 h-5" />
+                                <span className="font-medium">سبد خرید</span>
+                            </div>
+                            {getCartCount() > 0 && (
+                                <span className="bg-primary-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                                    {getCartCount()}
+                                </span>
+                            )}
+                        </Link>
+
+                        {/* Mobile User Menu */}
+                        {currentUser ? (
+                            <div className="border-t border-brown-200/20 pt-3 space-y-2">
+                                <Link
+                                    to="/wallet"
+                                    onClick={() => setIsOpen(false)}
+                                    className="flex items-center gap-2 py-2 text-brown-700 dark:text-brown-200"
+                                >
+                                    <User className="w-5 h-5" />
+                                    <span className="font-medium">
+                                        {currentUser.user_metadata?.display_name || currentUser.email}
+                                    </span>
+                                </Link>
+                                <button
+                                    onClick={() => {
+                                        logout();
+                                        setIsOpen(false);
+                                    }}
+                                    className="flex items-center gap-2 py-2 text-red-600 dark:text-red-400 w-full"
+                                >
+                                    <LogOut className="w-5 h-5" />
+                                    <span className="font-medium">{t('auth.logout')}</span>
+                                </button>
+                            </div>
+                        ) : (
+                            <Link
+                                to="/login"
+                                onClick={() => setIsOpen(false)}
+                                className="flex items-center gap-2 py-3 border-t border-brown-200/20 text-brown-700 dark:text-brown-200"
+                            >
+                                <User className="w-5 h-5" />
+                                <span className="font-medium">{t('auth.login.title')}</span>
+                            </Link>
+                        )}
 
                         <div className="flex items-center gap-4 pt-4 border-t border-brown-200/20">
                             {/* Mobile Theme Toggle */}
