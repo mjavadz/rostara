@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Package, Star, Truck, Filter, ShoppingCart, Check } from 'lucide-react';
+import { Package, Star, Truck, Filter, ShoppingCart, Check, Sprout, Sparkles, HeartPulse, Leaf } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 
 const Products = () => {
@@ -11,94 +11,20 @@ const Products = () => {
 
     const categories = [
         { id: 'all', label: t('products.categories.all') },
-        { id: 'fermented', label: t('products.categories.fermented') },
-        { id: 'vegetables', label: t('products.categories.vegetables') },
         { id: 'microgreens', label: t('products.categories.microgreens') },
+        { id: 'growing_kits', label: t('products.categories.growing_kits') },
+        { id: 'fermented', label: t('products.categories.fermented') },
         { id: 'mushrooms', label: t('products.categories.mushrooms') },
-        { id: 'probiotics', label: t('products.categories.probiotics') },
-        { id: 'prebiotics', label: t('products.categories.prebiotics') },
-        { id: 'grains', label: t('products.categories.grains') },
-        { id: 'legumes', label: t('products.categories.legumes') },
+        { id: 'superfoods', label: t('products.categories.superfoods') },
+        { id: 'grains_seeds', label: t('products.categories.grains_seeds') },
     ];
 
     const allProducts = [
         {
-            id: 'rice_hashemi',
-            category: 'grains',
-            price: 1500000,
-            weight: '۵ کیلوگرم',
-        },
-        {
-            id: 'rice_demsiah',
-            category: 'grains',
-            price: 1450000,
-            weight: '۵ کیلوگرم',
-        },
-        {
-            id: 'rice_brown',
-            category: 'grains',
-            price: 1200000,
-            weight: '۵ کیلوگرم',
-        },
-        {
-            id: 'miso',
-            category: 'fermented',
-            price: 850000,
-            weight: '۵۰۰ گرم',
-        },
-        {
-            id: 'kimchi',
-            category: 'fermented',
-            price: 600000,
-            weight: '۱ کیلوگرم',
-        },
-        {
-            id: 'kale',
-            category: 'vegetables',
-            price: 250000,
-            weight: '۱ کیلوگرم',
-        },
-        {
-            id: 'micro_radish',
-            category: 'microgreens',
-            price: 150000,
-            weight: '۱۰۰ گرم',
-        },
-        {
-            id: 'shiitake',
-            category: 'mushrooms',
-            price: 950000,
-            weight: '۵۰۰ گرم',
-        },
-        {
-            id: 'kombucha',
-            category: 'probiotics',
-            price: 180000,
-            weight: '۱ لیتر',
-        },
-        {
-            id: 'sourdough',
-            category: 'prebiotics',
-            price: 120000,
-            weight: '۷۰۰ گرم',
-        },
-        {
-            id: 'chickpeas',
-            category: 'legumes',
-            price: 180000,
-            weight: '۱ کیلوگرم',
-        },
-        {
-            id: 'natto',
-            category: 'fermented',
-            price: 750000,
-            weight: '۳۰۰ گرم',
-        },
-        {
-            id: 'nukazuke',
-            category: 'fermented',
-            price: 550000,
-            weight: '۵۰۰ گرم',
+            id: 'micro_kit_starter',
+            category: 'growing_kits',
+            price: 680000,
+            weight: 'پک کامل با ۴ بذر',
         },
         {
             id: 'micro_broccoli',
@@ -107,10 +33,88 @@ const Products = () => {
             weight: '۱۰۰ گرم',
         },
         {
+            id: 'micro_radish',
+            category: 'microgreens',
+            price: 150000,
+            weight: '۱۰۰ گرم',
+        },
+        {
             id: 'micro_sunflower',
             category: 'microgreens',
             price: 160000,
             weight: '۱۰۰ گرم',
+        },
+        {
+            id: 'micro_pea',
+            category: 'microgreens',
+            price: 170000,
+            weight: '۱۰۰ گرم',
+        },
+        {
+            id: 'micro_seeds_pack',
+            category: 'growing_kits',
+            price: 240000,
+            weight: '۴ بسته بذر ارگانیک',
+        },
+        {
+            id: 'growing_medium_coco',
+            category: 'growing_kits',
+            price: 190000,
+            weight: 'بسته ۵ لیتری',
+        },
+        {
+            id: 'kombucha',
+            category: 'fermented',
+            price: 185000,
+            weight: '۱ لیتر',
+        },
+        {
+            id: 'kimchi',
+            category: 'fermented',
+            price: 490000,
+            weight: '۸۰۰ گرم',
+        },
+        {
+            id: 'miso',
+            category: 'fermented',
+            price: 650000,
+            weight: '۴۰۰ گرم',
+        },
+        {
+            id: 'sourdough',
+            category: 'fermented',
+            price: 160000,
+            weight: '۷۵۰ گرم',
+        },
+        {
+            id: 'lions_mane',
+            category: 'mushrooms',
+            price: 890000,
+            weight: '۱۵۰ گرم عصاره',
+        },
+        {
+            id: 'shiitake',
+            category: 'mushrooms',
+            price: 520000,
+            weight: '۳۰۰ گرم',
+        },
+        {
+            id: 'reishi_extract',
+            category: 'mushrooms',
+            price: 780000,
+            weight: '۱۰۰ گرم عصاره',
+        },
+        {
+            id: 'wheatgrass_shot',
+            category: 'superfoods',
+            price: 340000,
+            weight: '۲۰۰ گرم پودر خالص',
+        },
+        {
+            id: 'kale',
+            category: 'superfoods',
+            price: 140000,
+            weight: '۵۰۰ گرم تازه',
         },
     ];
 
@@ -179,11 +183,17 @@ const Products = () => {
                                     key={product.id}
                                     className="group bg-white dark:bg-brown-800 rounded-2xl overflow-hidden border border-brown-100 dark:border-brown-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col"
                                 >
-                                    {/* Image Placeholder */}
-                                    <div className="h-64 bg-gradient-to-br from-primary-100 to-brown-100 dark:from-brown-700 dark:to-brown-600 flex items-center justify-center relative overflow-hidden">
-                                        <div className="absolute inset-0 bg-rice-pattern opacity-10"></div>
-                                        <Package className="w-20 h-20 text-primary-600/30 dark:text-primary-400/30 group-hover:scale-110 transition-transform duration-500" />
-                                        <div className="absolute top-4 right-4 bg-white/90 dark:bg-brown-900/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary-700 dark:text-primary-400 shadow-sm">
+                                    {/* Visual Header */}
+                                    <div className="h-60 bg-gradient-to-br from-primary-50 via-cream to-primary-100 dark:from-brown-800 dark:via-brown-900 dark:to-brown-800 flex items-center justify-center relative overflow-hidden group-hover:from-primary-100 group-hover:to-primary-200 dark:group-hover:from-brown-750 dark:group-hover:to-brown-800 transition-colors">
+                                        <div className="w-24 h-24 rounded-3xl bg-white/70 dark:bg-brown-700/60 backdrop-blur-sm flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500">
+                                            {product.category === 'microgreens' && <Sprout className="w-12 h-12 text-primary-600 dark:text-primary-400" />}
+                                            {product.category === 'growing_kits' && <Package className="w-12 h-12 text-primary-600 dark:text-primary-400" />}
+                                            {product.category === 'fermented' && <Sparkles className="w-12 h-12 text-amber-600 dark:text-amber-400" />}
+                                            {product.category === 'mushrooms' && <HeartPulse className="w-12 h-12 text-emerald-600 dark:text-emerald-400" />}
+                                            {product.category === 'superfoods' && <Leaf className="w-12 h-12 text-primary-600 dark:text-primary-400" />}
+                                            {product.category === 'grains_seeds' && <Sprout className="w-12 h-12 text-amber-600 dark:text-amber-400" />}
+                                        </div>
+                                        <div className="absolute top-4 right-4 bg-white/95 dark:bg-brown-900/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary-700 dark:text-primary-400 shadow-sm border border-primary-100 dark:border-brown-700">
                                             {categories.find(c => c.id === product.category)?.label}
                                         </div>
                                     </div>

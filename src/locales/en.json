@@ -1,18 +1,18 @@
 {
     "nav": {
         "home": "Home",
-        "about": "About",
-        "method": "Method",
-        "products": "Products",
-        "experience": "Experience",
-        "gallery": "Gallery",
+        "about": "About Rostara",
+        "method": "Organic Farming Guide",
+        "products": "Products & Kits",
+        "experience": "Healthy Lifestyle",
+        "gallery": "Growth Gallery",
         "contact": "Contact",
         "theme": {
             "light": "Light Mode",
             "dark": "Dark Mode",
             "auto": "System Theme"
         },
-        "club": "Club"
+        "club": "Wellness Club"
     },
     "common": {
         "back": "Back",
@@ -20,170 +20,177 @@
         "user": "User"
     },
     "hero": {
-        "title": "Growth in <br/> <span class=\"italic font-light\">Natural Order</span>",
-        "subtitle": "Where the ancient wisdom of Gilan meets the fertile soul of the earth. Authentic, effortless, and deeply rooted.",
-        "cta": "Explore Rostara"
+        "title": "Living Growth in <br/> <span class=\"italic font-light\">Natural Order</span>",
+        "subtitle": "Pioneering healthy lifestyle, organic & urban agriculture.<br/> From nutrient-dense microgreens and home growing kits to living ferments and functional superfoods.",
+        "cta": "Explore Products & Kits"
     },
     "philosophy": {
-        "label": "Life's Heritage",
-        "title": "\"The earth is generous, <br/> if treated with respect.\"",
-        "p1": "Rostara is born from the heart of Hyrcanian forests and lush rice paddies of Gilan. We believe true quality comes from coexistence with the land, not forcing it. Our farming practices are a thousand-year-old heritage passed down through generations.",
-        "p2": "We reject the haste of the modern world. Our products grow with the rhythm of nature, nourished by Gilan's silver rains, carrying the authentic taste of the fertile northern soil."
+        "label": "Rostara's Eco-Manifesto",
+        "title": "\"Mindful Nutrition, <br/> Returning to the Soil's Intelligence.\"",
+        "p1": "Rostara is a conscious response to the rush of modern urban living and ultra-processed food systems. We believe genuine vitality sprouts when we restore our daily connection with living food, honest seeds, and regenerative biology.",
+        "p2": "From harvesting enzyme-rich microgreens right on your windowsill to nourishing your microbiome with authentic probiotic ferments; Rostara provides the knowledge, tools, and organic products for a clean, energized lifestyle."
     },
     "footer": {
-        "desc": "Rostara; Natural Orderly Growth. Preserving Gilan's agricultural heritage.",
-        "explore": "Explore",
-        "connect": "Connect",
+        "desc": "Rostara; Platform for Healthy Living, Urban Organic Agriculture, Microgreens and Living Foods.",
+        "explore": "Quick Links",
+        "connect": "Connect with Rostara",
         "rights": "Rostara. All rights reserved."
     },
     "products": {
-        "title": "Our Products",
-        "subtitle": "Organic and natural products, straight from farm to table",
+        "title": "Products & Wellness Kits",
+        "subtitle": "Fresh microgreens, home cultivation kits, living ferments and functional superfoods",
         "categories": {
             "all": "All",
-            "fermented": "Fermented",
-            "vegetables": "Vegetables",
-            "microgreens": "Microgreens",
-            "mushrooms": "Mushrooms",
-            "probiotics": "Probiotics",
-            "prebiotics": "Prebiotics",
-            "grains": "Grains",
-            "legumes": "Legumes"
+            "microgreens": "Microgreens & Sprouts",
+            "growing_kits": "Growing Kits & Supplies",
+            "fermented": "Ferments & Probiotics",
+            "mushrooms": "Functional Mushrooms",
+            "superfoods": "Superfoods & Greens",
+            "grains_seeds": "Organic Seeds & Grains"
         },
         "items": {
-            "rice_hashemi": {
-                "name": "Tarom Hashemi Rice",
-                "desc": "Aromatic high-quality rice with long grains and unique taste",
+            "micro_broccoli": {
+                "name": "Broccoli Microgreens",
+                "desc": "Young broccoli shoots packed with up to 50x the sulforaphane of mature broccoli and cellular antioxidants",
                 "features": [
-                    "100% Organic",
-                    "Toxin-free",
-                    "Freshly Harvested"
-                ]
-            },
-            "rice_demsiah": {
-                "name": "Demsiah Rice",
-                "desc": "Traditional Gilan rice with excellent quality and pleasant taste",
-                "features": [
-                    "All Natural",
-                    "Nutrient-rich",
-                    "Local Product"
-                ]
-            },
-            "rice_brown": {
-                "name": "Brown Rice",
-                "desc": "Whole grain rice rich in fiber and vitamins",
-                "features": [
-                    "High Fiber",
-                    "Vitamin B",
-                    "Diet Friendly"
-                ]
-            },
-            "miso": {
-                "name": "Handmade Miso",
-                "desc": "Traditional fermented soybean paste with deep umami flavor",
-                "features": [
-                    "Natural Fermentation",
-                    "Probiotic",
-                    "No Preservatives"
-                ]
-            },
-            "kimchi": {
-                "name": "Gilani Kimchi",
-                "desc": "Fermented cabbage pickle with local Gilan spices",
-                "features": [
-                    "Spicy & Delicious",
-                    "Vitamin Rich",
-                    "Traditional Fermentation"
-                ]
-            },
-            "kale": {
-                "name": "Organic Kale",
-                "desc": "Fresh and crisp kale, rich in antioxidants",
-                "features": [
-                    "Organic",
-                    "Freshly Picked",
-                    "Calcium Rich"
+                    "Sulforaphane powerhouse",
+                    "Cellular defense",
+                    "Crisp mild flavor"
                 ]
             },
             "micro_radish": {
-                "name": "Radish Microgreens",
-                "desc": "Fresh radish sprouts with a spicy peppery taste",
+                "name": "Purple Radish Microgreens",
+                "desc": "Stunning ruby stems with a refreshing spicy kick, loaded with vitamin C and active anthocyanins",
                 "features": [
-                    "Spicy Flavor",
-                    "Garnish",
-                    "Vitamin Bomb"
-                ]
-            },
-            "shiitake": {
-                "name": "Shiitake Mushrooms",
-                "desc": "Shiitake mushrooms grown on oak logs",
-                "features": [
-                    "Log Grown",
-                    "Medicinal Properties",
-                    "Umami Flavor"
-                ]
-            },
-            "kombucha": {
-                "name": "Rose Kombucha",
-                "desc": "Probiotic drink with rose and cardamom aroma",
-                "features": [
-                    "Naturally Carbonated",
-                    "Low Sugar",
-                    "Refreshing"
-                ]
-            },
-            "sourdough": {
-                "name": "Sourdough Bread",
-                "desc": "Whole wheat bread baked with natural sourdough starter",
-                "features": [
-                    "Easy Digestion",
-                    "No Baking Soda",
-                    "Long Shelf Life"
-                ]
-            },
-            "natto": {
-                "name": "Natto",
-                "desc": "Fermented soybeans with sticky texture and unique taste",
-                "features": [
-                    "Vitamin K2 Source",
-                    "Traditional Fermentation",
-                    "Unique Texture"
-                ]
-            },
-            "nukazuke": {
-                "name": "Nukazuke",
-                "desc": "Vegetables pickled in fermented rice bran",
-                "features": [
-                    "Strong Probiotic",
-                    "Rice Bran",
-                    "Authentic Taste"
-                ]
-            },
-            "micro_broccoli": {
-                "name": "Broccoli Microgreens",
-                "desc": "Broccoli sprouts rich in sulforaphane and antioxidants",
-                "features": [
-                    "Anti-cancer",
-                    "Crisp & Fresh",
-                    "Organic"
+                    "Spicy vibrant taste",
+                    "High Vitamin C",
+                    "Gourmet salad booster"
                 ]
             },
             "micro_sunflower": {
                 "name": "Sunflower Microgreens",
-                "desc": "Crispy and delicious sunflower sprouts with nutty flavor",
+                "desc": "Succulent nutty micro-leaves delivering plant protein, zinc, and bioavailable vitamin E",
                 "features": [
-                    "Nutty Flavor",
-                    "Plant Protein",
-                    "Salad Friendly"
+                    "High plant protein",
+                    "Delicious nutty crunch",
+                    "Daily energy booster"
                 ]
             },
-            "chickpeas": {
-                "name": "Local Chickpeas",
-                "desc": "Organic rain-fed chickpeas, delicious and easy to cook",
+            "micro_pea": {
+                "name": "Snow Pea Microgreens",
+                "desc": "Crisp sweet tendrils rich in plant fiber, pure chlorophyll, and active folate",
                 "features": [
-                    "Rain-fed",
-                    "Quick Cook",
-                    "Great Taste"
+                    "Sweet & tender",
+                    "Chlorophyll rich",
+                    "Raw diet staple"
+                ]
+            },
+            "micro_kit_starter": {
+                "name": "Rostara Home Microgreens Kit",
+                "desc": "Complete indoor cultivation setup: 2-tier drainage tray, organic cellulose mats, fine mist sprayer, and 4 seed varieties",
+                "features": [
+                    "First harvest in 7 days",
+                    "Zero chemical fertilizers",
+                    "Apartment friendly"
+                ]
+            },
+            "micro_seeds_pack": {
+                "name": "Organic Microgreen Seeds (4-Pack)",
+                "desc": "Non-GMO, untreated seed varieties with 95%+ germination rate (Broccoli, Radish, Mustard, Pea)",
+                "features": [
+                    "Untreated Non-GMO",
+                    "High germination guarantee",
+                    "Clean food-grade"
+                ]
+            },
+            "growing_medium_coco": {
+                "name": "Organic Coco Coir & Perlite Mix",
+                "desc": "Sterile, lightweight growing medium enhanced with natural humic acid for clean home indoor farming",
+                "features": [
+                    "Sterile & pathogen-free",
+                    "Optimal moisture balance",
+                    "100% Biodegradable"
+                ]
+            },
+            "kombucha": {
+                "name": "Ginger-Lemon Living Kombucha",
+                "desc": "Traditionally fermented raw beverage brewed with active SCOBY, live probiotics, and organic acids",
+                "features": [
+                    "Living raw culture",
+                    "Naturally effervescent",
+                    "Supports gut biome"
+                ]
+            },
+            "kimchi": {
+                "name": "Artisanal Organic Kimchi",
+                "desc": "Naturally lacto-fermented napa cabbage with radishes, ginger, and authentic spices",
+                "features": [
+                    "Lactobacillus powerhouse",
+                    "Immune support",
+                    "Raw & unpasteurized"
+                ]
+            },
+            "miso": {
+                "name": "Aged Soybean Miso",
+                "desc": "Ancient fermented umami paste cultured with koji; rich in essential amino acids and digestive enzymes",
+                "features": [
+                    "Aged traditional brew",
+                    "Deep umami profile",
+                    "Digestive balance"
+                ]
+            },
+            "sourdough": {
+                "name": "Wild Ferment Sourdough Loaf",
+                "desc": "48-hour slow fermented whole grain loaf using stone-ground organic flour and pure sourdough culture",
+                "features": [
+                    "Low glycemic index",
+                    "Natural prebiotics",
+                    "Easily digestible"
+                ]
+            },
+            "shiitake": {
+                "name": "Medicinal Shiitake Mushrooms",
+                "desc": "Hardwood-grown shiitake rich in lentinan and beta-glucans to support immunity and vitality",
+                "features": [
+                    "Immune system support",
+                    "Rich umami flavor",
+                    "Beta-glucan source"
+                ]
+            },
+            "lions_mane": {
+                "name": "Lion's Mane Mushroom Extract",
+                "desc": "Powerful neuro-adaptogen supporting nerve growth factor (NGF), cognitive sharpness, and memory",
+                "features": [
+                    "Natural nootropic",
+                    "Deep focus & clarity",
+                    "Neural support"
+                ]
+            },
+            "reishi_extract": {
+                "name": "Organic Reishi Mushroom (Ganoderma)",
+                "desc": "The quintessential longevity adaptogen to modulate stress, balance cortisol, and encourage restorative sleep",
+                "features": [
+                    "Stress modulating",
+                    "Deep sleep enhancer",
+                    "Liver support"
+                ]
+            },
+            "wheatgrass_shot": {
+                "name": "Organic Wheatgrass Powder",
+                "desc": "Pure raw dehydrated wheatgrass containing 70% bioavailable chlorophyll, magnesium, and detoxifying enzymes",
+                "features": [
+                    "Oxygenating & alkalizing",
+                    "Cellular cleansing",
+                    "Clean energy boost"
+                ]
+            },
+            "kale": {
+                "name": "Fresh Organic Curly Kale",
+                "desc": "Dark leafy greens harvested fresh daily, containing multiple times the calcium and vitamin K of standard greens",
+                "features": [
+                    "Superfood green",
+                    "High in Vitamin K & Lutein",
+                    "Perfect for green smoothies"
                 ]
             }
         },
@@ -391,13 +398,13 @@
             "announcement": "Announcement"
         },
         "topic1": {
-            "title": "Best way to cook Brown Rice?"
+            "title": "Step-by-step guide to growing broccoli microgreens on your kitchen counter"
         },
         "topic2": {
-            "title": "Sustainable farming practices in Gilan"
+            "title": "The critical link between fermented living foods and the gut-brain axis"
         },
         "topic3": {
-            "title": "New harvest arriving soon!"
+            "title": "How 50 grams of daily microgreens can transform your vitality"
         }
     }
 }

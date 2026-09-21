@@ -1,129 +1,143 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { MapPin, Users, Target } from 'lucide-react';
+import { Sprout, Users, Target, ShieldCheck, Heart, Sparkles, Mail, MapPin } from 'lucide-react';
 
 const About = () => {
     const { t } = useTranslation();
 
+    const values = [
+        {
+            icon: Sprout,
+            title: 'غذای زنده و غنی',
+            description: 'تمرکز بر میکروگرین‌ها و جوانه‌هایی که در اوج تراکم زیستی و آنزیمی هستند؛ تغذیه‌ای مستقیم از طبیعت به سلول‌های شما.'
+        },
+        {
+            icon: ShieldCheck,
+            title: 'خلوص و اصالت بذر',
+            description: 'تعهد قطعی به بذور غیرتراریخته، بدون استفاده از حتی یک قطره کود شیمیایی، آفت‌کش یا علف‌کش‌های صنعتی.'
+        },
+        {
+            icon: Sparkles,
+            title: 'سلامت میکروبیوم و روده',
+            description: 'باور عمیق به فرآورده‌های تخمیری زنده (کامبوچا، کیمچی، میسو) به عنوان پایهٔ ایمنی قوی و تعادل خلق‌وخو.'
+        },
+        {
+            icon: Users,
+            title: 'توانمندسازی خانگی',
+            description: 'ارائه کیت‌ها و آموزش‌های گام‌به‌گام تا هر فرد بتواند در آپارتمان خود ریزسبزی‌های تازه تولید کند.'
+        },
+        {
+            icon: Heart,
+            title: 'پایداری زیست‌محیطی',
+            description: 'حذف زنجیره طولانی حمل‌ونقل و استفاده از بسترهای کشت ارگانیک و سلولزی کاملاً زیست‌تخریب‌پذیر.'
+        },
+        {
+            icon: Target,
+            title: 'دانش‌محور و شفاف',
+            description: 'ترویج سبک زندگی سالم بر مبنای پژوهش‌های نوین تغذیه پاک (Clean Eating) و فیزیولوژی انسانی.'
+        }
+    ];
+
     return (
         <div className="min-h-screen bg-cream dark:bg-brown-950 transition-colors duration-300">
             {/* Hero */}
-            <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 to-brown-50 dark:from-brown-900 dark:to-brown-950">
+            <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 via-cream to-brown-50 dark:from-brown-900 dark:via-brown-950 dark:to-brown-950">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-5xl md:text-6xl font-display font-bold text-brown-900 dark:text-cream mb-6">
-                        داستان ما
+                    <span className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
+                        مانیفست رویش
+                    </span>
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-brown-900 dark:text-cream mb-6 leading-tight">
+                        داستان رُستارا؛ رویشِ آراسته‌ی سلامت
                     </h1>
-                    <p className="text-xl text-brown-700 dark:text-brown-200 leading-relaxed">
-                        سفری از حکمت باستانی به زمین‌های حاصلخیز شمال
+                    <p className="text-lg sm:text-xl text-brown-700 dark:text-brown-200 leading-relaxed max-w-3xl mx-auto">
+                        سفری به سوی پیوند دوباره با غذای زنده، کشاورزی ارگانیک و دستیابی به نشاط پایدار سلولی در زندگی روزمره.
                     </p>
                 </div>
             </section>
 
-            {/* Story */}
-            <section className="py-20">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="prose prose-lg max-w-none">
-                        <p className="text-brown-800 dark:text-brown-100 leading-relaxed text-lg mb-6">
-                            رُستارا از دل جنگل‌های هیرکانی و بیجارهای سرسبز شمال متولد شده است. ما میراث‌دار کشاورزانی هستیم که قرن‌ها با احترام به زمین، بهترین محصول دنیا را تولید کرده‌اند. ما معتقدیم که کیفیت واقعی نه از اجبار زمین، بلکه از همزیستی با آن حاصل می‌شود.
-                        </p>
-                        <p className="text-brown-800 dark:text-brown-100 leading-relaxed text-lg mb-6">
-                            در دشت‌های سرسبز شمال، ما محصولات را به روشی کاملاً طبیعی کشت می‌کنیم - بدون سموم شیمیایی،
-                            بلکه با استفاده از زنبورهای تریکوگراما برای مبارزه با آفات و اردک‌هایی که در بیجارها آزادانه می‌چرخند
-                            و خاک را غنی می‌کنند.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Values */}
+            {/* Story / Mission */}
             <section className="py-20 bg-white dark:bg-brown-900 transition-colors duration-300">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-4xl font-display font-bold text-brown-900 dark:text-cream text-center mb-16">
-                        ارزش‌های ما
-                    </h2>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <div className="text-center p-8">
-                            <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                                <MapPin className="w-8 h-8 text-primary-600 dark:text-primary-400" />
-                            </div>
-                            <h3 className="text-xl font-display font-bold text-brown-900 dark:text-cream mb-4">محلی و اصیل</h3>
-                            <p className="text-brown-700 dark:text-brown-300 leading-relaxed">
-                                ریشه در خاک شمال، با افتخار به میراث کشاورزی ایران
-                            </p>
-                        </div>
-
-                        <div className="text-center p-8">
-                            <div className="w-16 h-16 bg-brown-100 dark:bg-brown-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                                <Users className="w-8 h-8 text-brown-600 dark:text-brown-300" />
-                            </div>
-                            <h3 className="text-xl font-display font-bold text-brown-900 dark:text-cream mb-4">جامعه‌محور</h3>
-                            <p className="text-brown-700 dark:text-brown-300 leading-relaxed">
-                                حمایت از کشاورزان محلی و ایجاد اشتغال پایدار
-                            </p>
-                        </div>
-
-                        <div className="text-center p-8">
-                            <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                                <Target className="w-8 h-8 text-primary-600 dark:text-primary-400" />
-                            </div>
-                            <h3 className="text-xl font-display font-bold text-brown-900 dark:text-cream mb-4">کیفیت بی‌نظیر</h3>
-                            <p className="text-brown-700 dark:text-brown-300 leading-relaxed">
-                                تعهد به بالاترین استانداردهای کیفیت و سلامت
-                            </p>
-                        </div>
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="prose prose-lg max-w-none text-brown-800 dark:text-brown-200 space-y-6 leading-relaxed">
+                        <p className="text-xl font-medium text-primary-800 dark:text-primary-300">
+                            رُستارا با این پرسش بنیادین متولد شد: چگونه می‌توان در دنیای پرترافیک و پراسترس امروز، سلامت واقعی و غذای زنده را به قلب خانه‌ها آورد؟
+                        </p>
+                        <p>
+                            ما متوجه شدیم که بخش عمده‌ای از خستگی‌های مزمن، افت تمرکز و مشکلات ایمنی انسان معاصر، ریشه در مصرف مواد غذایی فوق‌فراوری‌شده و سبزیجات دورافتاده از زمان چیده‌شدن دارد. وقتی یک سبزی روزها در یخچال‌ها و زنجیره انتقال می‌ماند، بخش بزرگی از آنزیم‌ها و ویتامین‌های حساس خود را از دست می‌دهد.
+                        </p>
+                        <p>
+                            پاسخ ما، بازگشت به اعجاز <strong>میکروگرین‌ها (ریزسبزی‌ها)</strong>، <strong>تخمیرهای زنده</strong> و <strong>کشاورزی ارگانیک آپارتمانی</strong> بود. میکروگرین‌ها تنها یک سبزی ساده نیستند؛ بلکه بسته‌های متراکمی از مواد مغذی و آنتی‌اکسیدان‌ها هستند که تا ۵۰ برابر سبزیجات معمولی ارزش غذایی دارند و در فضایی به وسعت یک سینی کوچک، روی میز آشپزخانه شما جوانه می‌زنند.
+                        </p>
+                        <p>
+                            هدف رُستارا این است که با ارائه باکیفیت‌ترین بذور ارگانیک، کیت‌های رشد استاندارد خانگی، خوراکی‌های تخمیری زنده و دانش کاربردی، شما را به کشاورز و حامی سلامت خود و خانواده‌تان تبدیل کند.
+                        </p>
                     </div>
                 </div>
             </section>
 
-            {/* Contact Section */}
-            <section className="py-20">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-brown-900 dark:text-cream mb-6">
-                            تماس با ما
+            {/* Values Grid */}
+            <section className="py-20 bg-cream/60 dark:bg-brown-950 transition-colors duration-300">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <h2 className="text-3xl sm:text-4xl font-display font-bold text-brown-900 dark:text-cream mb-4">
+                            اصول و باورهای ما
                         </h2>
-                        <p className="text-xl text-brown-700 dark:text-brown-200 leading-relaxed">
-                            ما همیشه خوشحال می‌شویم که از شما بشنویم
+                        <p className="text-brown-600 dark:text-brown-300 text-lg">
+                            هر آنچه در رُستارا آماده می‌شود، از این شش ارزش بنیادین سرچشمه می‌گیرد.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8 mb-12">
-                        <div className="flex flex-col items-center text-center p-6 bg-white dark:bg-brown-900 rounded-xl border border-brown-100 dark:border-brown-800">
-                            <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-4">
-                                <svg className="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </div>
-                            <h3 className="font-bold text-brown-900 dark:text-cream mb-2">آدرس</h3>
-                            <p className="text-brown-700 dark:text-brown-300 leading-relaxed">
-                                شمال کشور، سیاهکل، روستای گوکه
-                            </p>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {values.map((val, idx) => {
+                            const IconComponent = val.icon;
+                            return (
+                                <div
+                                    key={idx}
+                                    className="p-8 bg-white dark:bg-brown-900 rounded-3xl border border-brown-100 dark:border-brown-800 hover:shadow-xl transition-all duration-300 flex flex-col"
+                                >
+                                    <div className="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mb-6 text-primary-600 dark:text-primary-400">
+                                        <IconComponent className="w-7 h-7" />
+                                    </div>
+                                    <h3 className="text-xl font-display font-bold text-brown-900 dark:text-cream mb-3">
+                                        {val.title}
+                                    </h3>
+                                    <p className="text-brown-600 dark:text-brown-300 leading-relaxed text-sm flex-grow">
+                                        {val.description}
+                                    </p>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            {/* Contact & Support */}
+            <section className="py-20 bg-white dark:bg-brown-900 transition-colors duration-300">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 className="text-3xl sm:text-4xl font-display font-bold text-brown-900 dark:text-cream mb-4">
+                        ارتباط با تیم رُستارا
+                    </h2>
+                    <p className="text-lg text-brown-600 dark:text-brown-300 mb-12 max-w-2xl mx-auto">
+                        سوالی درباره پرورش میکروگرین‌ها، انتخاب کیت یا همکاری در زمینه محصولات ارگانیک دارید؟ با کمال میل پاسخگوی شما هستیم.
+                    </p>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        <div className="p-8 bg-cream/40 dark:bg-brown-800/60 rounded-3xl border border-brown-100 dark:border-brown-700 flex flex-col items-center">
+                            <Mail className="w-8 h-8 text-primary-600 dark:text-primary-400 mb-4" />
+                            <h4 className="font-bold text-brown-900 dark:text-cream mb-2">ایمیل مستقیم</h4>
+                            <p className="text-brown-600 dark:text-brown-300 text-sm" dir="ltr">info@rostara.ir</p>
                         </div>
 
-                        <div className="flex flex-col items-center text-center p-6 bg-white dark:bg-brown-900 rounded-xl border border-brown-100 dark:border-brown-800">
-                            <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-4">
-                                <svg className="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                </svg>
-                            </div>
-                            <h3 className="font-bold text-brown-900 dark:text-cream mb-2">تلفن‌های تماس</h3>
-                            <div className="space-y-1 text-brown-700 dark:text-brown-300">
-                                <p className="text-sm">آقای زمانی: <span dir="ltr">0911 123 4567</span></p>
-                                <p className="text-sm">آقای عطایی: <span dir="ltr">0911 987 6543</span></p>
-                            </div>
+                        <div className="p-8 bg-cream/40 dark:bg-brown-800/60 rounded-3xl border border-brown-100 dark:border-brown-700 flex flex-col items-center">
+                            <MapPin className="w-8 h-8 text-primary-600 dark:text-primary-400 mb-4" />
+                            <h4 className="font-bold text-brown-900 dark:text-cream mb-2">خاستگاه و تولید</h4>
+                            <p className="text-brown-600 dark:text-brown-300 text-sm">مزرعه و کارگاه زیستی رُستارا</p>
                         </div>
 
-                        <div className="flex flex-col items-center text-center p-6 bg-white dark:bg-brown-900 rounded-xl border border-brown-100 dark:border-brown-800">
-                            <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center mb-4">
-                                <svg className="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <h3 className="font-bold text-brown-900 dark:text-cream mb-2">ایمیل</h3>
-                            <p className="text-brown-700 dark:text-brown-300 leading-relaxed" dir="ltr">
-                                info@rostara.ir
-                            </p>
+                        <div className="p-8 bg-cream/40 dark:bg-brown-800/60 rounded-3xl border border-brown-100 dark:border-brown-700 flex flex-col items-center">
+                            <Sparkles className="w-8 h-8 text-primary-600 dark:text-primary-400 mb-4" />
+                            <h4 className="font-bold text-brown-900 dark:text-cream mb-2">همراهی و پشتیبانی</h4>
+                            <p className="text-brown-600 dark:text-brown-300 text-sm">پاسخگویی در وبسایت و شبکه‌های رُستارا</p>
                         </div>
                     </div>
                 </div>
