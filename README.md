@@ -1,16 +1,59 @@
-# React + Vite
+# 🌿 رُستارا (Rostara)
+> **رویشِ آراسته‌ی سلامت در هماهنگی با طبیعت**  
+> پلتفرم جامع سبک زندگی سالم، کشاورزی ارگانیک و شهری، میکروگرین‌ها و خوراکی‌های زنده.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🌟 درباره رُستارا
+**رُستارا** بستری است برای بازگشت به تغذیه هوشمند و پیوند روزمره با غذای زنده. این پلتفرم از ریزسبزی‌های متراکم از مواد مغذی (میکروگرین) و کیت‌های پرورش خانگی گرفته تا فرآورده‌های تخمیری فعال و قارچ‌های دارویی، دانش و محصولات مورد نیاز برای یک سبک زندگی سرشار از شادابی و انرژی سلولی را فراهم می‌آورد.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 🍃 ارکان چهارگانه رُستارا
+1. **میکروگرین و جوانه‌های زنده:** ریزسبزی‌های ارگانیک با تراکم مواد مغذی تا ۴۰ برابر سبزیجات بالغ و منبع غنی سولفورافان.
+2. **تخمیری‌ها و پروبیوتیک‌ها:** کامبوچای زنده، کیمچی ارگانیک دست‌ساز و میسوی سنتی برای تندرستی میکروبیوم روده.
+3. **قارچ‌های دارویی و آداپتوژن:** عصاره یال شیر (Lion's Mane)، شیتاکه و ریشی برای وضوح ذهنی و آرامش پایدار.
+4. **کشاورزی خانگی و شهری:** کیت‌های استاندارد بدون نیاز به باغچه برای تولید سوپرفودهای تازه در آشپزخانه آپارتمان.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🎨 دیزاین سیستم و هویت بصری
+طراحی بصری این وب‌سایت با الگوبرداری از اصول دیزاین سیستم‌های پیشروی جهانی در حوزه سلامت و برندهای لوکس ارگانیک (**Starbucks & Botanical Craft** و ظرافت مینیمال **Aesop**) شکل گرفته است:
+- **پالت رنگی طبیعی و پایدار:** سبز باستانی برند (`#006241`)، سبز شاداب برگ (`#00754A`)، هاله نعنایی (`#d4e9e2`) و پس‌زمینه کرم گرم (`#f8f7f4`).
+- **حالت شب مخملی (Velvet Dark Mode):** زمینه زیتونی-کربنی عمیق (`#0a0e0c`) بدون کنتراست خشن و دوستدار سلامت چشم.
+- **تایپوگرافی اصیل فارسی:** فونت چشم‌نواز وزیرمتن با خوانایی عالی و هماهنگی با زبان بصری مدرن.
+- **فرم‌های ارگانیک (Pill Geometry):** دکمه‌های کپسولی کامل (`rounded-full`) و کارت‌های شناور با انحنای نرم.
+- **نماد وکتور اختصاصی:** لوگوی مینیمال برگ‌های جوانه از بستر خاک، شفاف و بدون کادرهای زائد.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ پشته فناوری (Tech Stack)
+- **فریم‌ورک فرانت‌اند:** [React 19](https://react.dev/) + [Vite 7](https://vite.dev/)
+- **استایل‌دهی:** [Tailwind CSS 3](https://tailwindcss.com/)
+- **آیکون‌ها:** [Lucide React](https://lucide.dev/)
+- **موشن و ترنزیشن:** [Framer Motion](https://www.framer.com/motion/)
+- **بین‌المللی‌سازی (i18n):** [i18next](https://www.i18next.com/) (فارسی و انگلیسی)
+- **مدیریت استیت:** React Contexts (Cart, Auth, Theme)
+- **دیتابیس و احراز هویت:** [Supabase](https://supabase.com/)
+
+---
+
+## 🚀 راه‌اندازی محلی (Local Development)
+
+```bash
+# کلون ریپازیتوری
+git clone https://github.com/mjavadz/rostara.git
+cd rostara
+
+# نصب وابستگی‌ها
+npm install
+
+# اجرای سرور توسعه
+npm run dev
+
+# ساخت بیلد نهایی پروداکشن
+npm run build
+```
+
+---
+
+## 📄 لایسنس
+تمامی حقوق برای برند **رُستارا** محفوظ است.
