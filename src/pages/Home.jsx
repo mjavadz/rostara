@@ -75,7 +75,7 @@ const Home = () => {
         {
             stat: '۱۰۰٪',
             title: 'ارگانیک و عاری از سموم',
-            desc: 'کشت کاملاً بیودینامیک با آب زلال و بذور غیرتراریخته، بدون قطره‌ای سموم شیمیایی و علف‌کش.'
+            desc: 'کشت کاملاً بیودینامیک با آب زلال و بذرها غیرتراریخته، بدون قطره‌ای سموم شیمیایی و علف‌کش.'
         },
         {
             stat: '۰ کیلومتر',
@@ -98,10 +98,10 @@ const Home = () => {
                 {/* Hero Content Container */}
                 <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     {/* Eyebrow badge */}
-                    <div className="mb-6 inline-flex items-center gap-2 px-5 py-2 bg-white dark:bg-primary-950/80 text-primary-800 dark:text-primary-300 rounded-full border border-primary-200/90 dark:border-primary-800/80 shadow-sm text-xs font-bold tracking-wider">
-                        <Sprout className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+                    <div className="mb-6 inline-flex items-center gap-2 px-5 py-2 bg-primary-100/90 dark:bg-primary-900/50 text-primary-900 dark:text-primary-200 rounded-full border border-primary-300/80 dark:border-primary-700/80 shadow-sm text-xs font-bold tracking-wider">
+                        <Sprout className="w-4 h-4 text-primary-700 dark:text-primary-300" />
                         <span>{t('philosophy.label')}</span>
-                        <Leaf className="w-3.5 h-3.5 text-primary-500 dark:text-primary-400" />
+                        <Leaf className="w-3.5 h-3.5 text-primary-700 dark:text-primary-300" />
                     </div>
 
                     {/* Headline */}
@@ -114,7 +114,7 @@ const Home = () => {
 
                     {/* Subtitle */}
                     <p 
-                        className="text-lg sm:text-xl text-brown-600 dark:text-brown-300 mb-10 max-w-3xl mx-auto leading-relaxed"
+                        className="text-lg sm:text-xl text-brown-700 dark:text-brown-200 mb-10 max-w-3xl mx-auto leading-relaxed"
                         dangerouslySetInnerHTML={{ __html: t('hero.subtitle') }}
                     />
 
@@ -129,7 +129,7 @@ const Home = () => {
                         </Link>
                         <Link
                             to="/method"
-                            className="w-full sm:w-auto px-9 py-4 bg-white dark:bg-brown-900 border border-brown-200 dark:border-brown-700 text-brown-800 dark:text-brown-200 rounded-full font-semibold hover:border-primary-600 hover:text-primary-700 dark:hover:text-primary-400 active:scale-95 transition-all duration-300 text-center shadow-sm"
+                            className="w-full sm:w-auto px-9 py-4 bg-white/95 dark:bg-brown-900/90 border border-brown-300 dark:border-primary-800 text-brown-900 dark:text-cream rounded-full font-semibold hover:border-primary-600 dark:hover:border-primary-400 hover:text-primary-700 dark:hover:text-primary-300 active:scale-95 transition-all duration-300 text-center shadow-sm"
                         >
                             راهنمای کشت خانگی
                         </Link>
@@ -143,9 +143,9 @@ const Home = () => {
                                 <Link
                                     key={idx}
                                     to="/products"
-                                    className="p-4 bg-white/90 dark:bg-brown-900/80 backdrop-blur-sm rounded-2xl border border-primary-100 dark:border-brown-800 hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-md transition-all flex items-center gap-4 group"
+                                    className="p-4 bg-white dark:bg-brown-900 rounded-2xl border border-brown-200/90 dark:border-brown-800 hover:border-primary-400 dark:hover:border-primary-700 shadow-sm hover:shadow-lg transition-all flex items-center gap-4 group"
                                 >
-                                    <div className="w-12 h-12 rounded-xl bg-primary-50 dark:bg-primary-950/60 border border-primary-200/60 dark:border-primary-800/40 flex items-center justify-center text-primary-600 dark:text-primary-400 group-hover:scale-110 transition-transform flex-shrink-0">
+                                    <div className="w-12 h-12 rounded-xl bg-primary-50 dark:bg-primary-950/80 border border-primary-200/80 dark:border-primary-800/60 flex items-center justify-center text-primary-700 dark:text-primary-400 group-hover:scale-110 transition-transform flex-shrink-0">
                                         <IconComponent className="w-6 h-6" />
                                     </div>
                                     <div className="flex-grow min-w-0">

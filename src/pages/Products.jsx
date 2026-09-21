@@ -140,12 +140,15 @@ const Products = () => {
     return (
         <div className="min-h-screen bg-cream dark:bg-brown-950 transition-colors duration-300">
             {/* Hero */}
-            <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 to-brown-50 dark:from-brown-900 dark:to-brown-950">
+            <section className="pt-32 pb-16 bg-gradient-to-b from-primary-50/50 via-cream to-brown-50/40 dark:from-primary-950/30 dark:via-brown-950 dark:to-brown-950">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-5xl md:text-6xl font-display font-bold text-brown-900 dark:text-cream mb-6">
+                    <span className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-950 text-primary-800 dark:text-primary-300 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-primary-200 dark:border-primary-800">
+                        فروشگاه ارگانیک رُستارا
+                    </span>
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-brown-900 dark:text-cream mb-4">
                         {t('products.title')}
                     </h1>
-                    <p className="text-xl text-brown-700 dark:text-brown-200 leading-relaxed">
+                    <p className="text-lg text-brown-600 dark:text-brown-300 leading-relaxed max-w-2xl mx-auto">
                         {t('products.subtitle')}
                     </p>
                 </div>
@@ -157,14 +160,14 @@ const Products = () => {
                     {/* Category Filter */}
                     <div className="flex items-center gap-2 mb-12 overflow-x-auto pb-4 scrollbar-hide">
                         <div className="flex items-center gap-2 px-2">
-                            <Filter className="w-5 h-5 text-brown-500 dark:text-brown-400 ml-2" />
+                            <Filter className="w-5 h-5 text-brown-500 dark:text-brown-400 ml-2 flex-shrink-0" />
                             {categories.map((cat) => (
                                 <button
                                     key={cat.id}
                                     onClick={() => setSelectedCategory(cat.id)}
-                                    className={`px-6 py-2.5 rounded-full whitespace-nowrap transition-all duration-300 font-medium ${selectedCategory === cat.id
-                                        ? 'bg-primary-600 text-white shadow-lg scale-105'
-                                        : 'bg-white dark:bg-brown-800 text-brown-600 dark:text-brown-300 hover:bg-primary-50 dark:hover:bg-brown-700 hover:text-primary-700 dark:hover:text-primary-400 border border-brown-100 dark:border-brown-700'
+                                    className={`px-6 py-2.5 rounded-full whitespace-nowrap transition-all duration-300 font-semibold text-sm ${selectedCategory === cat.id
+                                        ? 'bg-primary-600 text-white shadow-md scale-105'
+                                        : 'bg-white dark:bg-brown-900 text-brown-700 dark:text-brown-300 hover:bg-primary-50 dark:hover:bg-brown-800 hover:text-primary-700 dark:hover:text-primary-400 border border-brown-200 dark:border-brown-800'
                                         }`}
                                 >
                                     {cat.label}
@@ -181,26 +184,26 @@ const Products = () => {
                             return (
                                 <div
                                     key={product.id}
-                                    className="group bg-white dark:bg-brown-800 rounded-2xl overflow-hidden border border-brown-100 dark:border-brown-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col"
+                                    className="group bg-white dark:bg-brown-900 rounded-3xl overflow-hidden border border-brown-200/80 dark:border-brown-800 hover:border-primary-400 dark:hover:border-primary-600 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
                                 >
                                     {/* Visual Header */}
-                                    <div className="h-60 bg-gradient-to-br from-primary-50 via-cream to-primary-100 dark:from-brown-800 dark:via-brown-900 dark:to-brown-800 flex items-center justify-center relative overflow-hidden group-hover:from-primary-100 group-hover:to-primary-200 dark:group-hover:from-brown-750 dark:group-hover:to-brown-800 transition-colors">
-                                        <div className="w-24 h-24 rounded-3xl bg-white/70 dark:bg-brown-700/60 backdrop-blur-sm flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500">
-                                            {product.category === 'microgreens' && <Sprout className="w-12 h-12 text-primary-600 dark:text-primary-400" />}
-                                            {product.category === 'growing_kits' && <Package className="w-12 h-12 text-primary-600 dark:text-primary-400" />}
-                                            {product.category === 'fermented' && <Sparkles className="w-12 h-12 text-amber-600 dark:text-amber-400" />}
-                                            {product.category === 'mushrooms' && <HeartPulse className="w-12 h-12 text-emerald-600 dark:text-emerald-400" />}
-                                            {product.category === 'superfoods' && <Leaf className="w-12 h-12 text-primary-600 dark:text-primary-400" />}
-                                            {product.category === 'grains_seeds' && <Sprout className="w-12 h-12 text-amber-600 dark:text-amber-400" />}
+                                    <div className="h-56 bg-gradient-to-br from-primary-50/80 via-cream to-primary-100/50 dark:from-brown-850 dark:via-brown-900 dark:to-brown-850 flex items-center justify-center relative overflow-hidden transition-colors">
+                                        <div className="w-20 h-20 rounded-2xl bg-white dark:bg-brown-800 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500 border border-primary-100 dark:border-brown-700">
+                                            {product.category === 'microgreens' && <Sprout className="w-10 h-10 text-primary-600 dark:text-primary-400" />}
+                                            {product.category === 'growing_kits' && <Package className="w-10 h-10 text-primary-600 dark:text-primary-400" />}
+                                            {product.category === 'fermented' && <Sparkles className="w-10 h-10 text-amber-600 dark:text-amber-400" />}
+                                            {product.category === 'mushrooms' && <HeartPulse className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />}
+                                            {product.category === 'superfoods' && <Leaf className="w-10 h-10 text-primary-600 dark:text-primary-400" />}
+                                            {product.category === 'grains_seeds' && <Sprout className="w-10 h-10 text-amber-600 dark:text-amber-400" />}
                                         </div>
-                                        <div className="absolute top-4 right-4 bg-white/95 dark:bg-brown-900/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary-700 dark:text-primary-400 shadow-sm border border-primary-100 dark:border-brown-700">
+                                        <div className="absolute top-4 right-4 bg-white/95 dark:bg-brown-950/95 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary-700 dark:text-primary-400 shadow-sm border border-primary-100 dark:border-brown-800">
                                             {categories.find(c => c.id === product.category)?.label}
                                         </div>
                                     </div>
 
                                     {/* Content */}
                                     <div className="p-6 flex-grow flex flex-col">
-                                        <h3 className="text-2xl font-display font-bold text-brown-900 dark:text-cream mb-2">
+                                        <h3 className="text-xl font-display font-bold text-brown-900 dark:text-cream mb-2">
                                             {t(`products.items.${product.id}.name`)}
                                         </h3>
                                         <p className="text-brown-600 dark:text-brown-300 mb-4 leading-relaxed text-sm flex-grow">
@@ -211,21 +214,21 @@ const Products = () => {
                                         <div className="space-y-2 mb-6">
                                             {Array.isArray(features) && features.map((feature, index) => (
                                                 <div key={index} className="flex items-center gap-2">
-                                                    <Star className="w-4 h-4 text-primary-600 dark:text-primary-400 fill-primary-600 dark:fill-primary-400" />
-                                                    <span className="text-sm text-brown-700 dark:text-brown-200">{feature}</span>
+                                                    <Star className="w-3.5 h-3.5 text-primary-600 dark:text-primary-400 fill-primary-600 dark:fill-primary-400" />
+                                                    <span className="text-xs text-brown-700 dark:text-brown-200">{feature}</span>
                                                 </div>
                                             ))}
                                         </div>
 
                                         {/* Price & Weight */}
-                                        <div className="flex items-center justify-between mb-6 pb-6 border-b border-brown-100 dark:border-brown-700 mt-auto">
+                                        <div className="flex items-center justify-between mb-6 pb-6 border-b border-brown-100 dark:border-brown-800 mt-auto">
                                             <div>
                                                 <p className="text-xs text-brown-500 dark:text-brown-400 mb-1">{t('products.labels.weight')}</p>
                                                 <p className="font-bold text-brown-900 dark:text-cream">{product.weight}</p>
                                             </div>
                                             <div className="text-left">
                                                 <p className="text-xs text-brown-500 dark:text-brown-400 mb-1">{t('products.labels.price')}</p>
-                                                <p className="text-xl font-bold text-primary-700 dark:text-primary-400">{formatPrice(product.price)}</p>
+                                                <p className="text-xl font-extrabold text-primary-700 dark:text-primary-400">{formatPrice(product.price)}</p>
                                             </div>
                                         </div>
 
@@ -233,7 +236,7 @@ const Products = () => {
                                         <button
                                             onClick={() => handleAddToCart(product)}
                                             disabled={addedToCart[product.id]}
-                                            className={`w-full py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group-hover:from-primary-700 group-hover:to-primary-800 ${addedToCart[product.id] ? 'bg-green-600 from-green-600 to-green-700' : ''
+                                            className={`w-full py-3.5 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-bold shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 ${addedToCart[product.id] ? 'bg-emerald-600 hover:bg-emerald-600' : ''
                                                 }`}
                                         >
                                             {addedToCart[product.id] ? (

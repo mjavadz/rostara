@@ -11,53 +11,33 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-    // 'light' | 'dark' | 'auto'
     const [theme, setTheme] = useState(() => {
         const storedTheme = localStorage.getItem('theme');
-        return storedTheme || 'auto';
+        if (storedTheme === 'dark' || storedTheme === 'light') {
+            return storedTheme;
+        }
+        if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+        }
+        return 'light';
     });
 
     useEffect(() => {
-        const applyTheme = () => {
-            const root = document.documentElement;
-            let isDark = false;
-
-            if (theme === 'auto') {
-                const hour = new Date().getHours();
-                // Dark mode between 6 PM (18) and 6 AM (6)
-                isDark = hour >= 18 || hour < 6;
-            } else {
-                isDark = theme === 'dark';
-            }
-
-            if (isDark) {
-                root.classList.add('dark');
-            } else {
-                root.classList.remove('dark');
-            }
-        };
-
-        applyTheme();
-        localStorage.setItem('theme', theme);
-
-        // If auto, check every minute to update if time crosses threshold
-        let interval;
-        if (theme === 'auto') {
-            interval = setInterval(applyTheme, 60000);
+        const root = document.documentElement;
+        if (theme === 'dark') {
+            root.classList.add('dark');
+        } else {
+            root.classList.remove('dark');
         }
-
-        return () => {
-            if (interval) clearInterval(interval);
-        };
+        localStorage.setItem('theme', theme);
     }, [theme]);
 
-    const value = {
-        theme,
-        setTheme
+    const toggleTheme = () => {
+        setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
     };
 
     return (
-        <ThemeContext.Provider value={value}>
+        <ThemeContext.Provider value={{ theme, setTheme, toggleTheme, isDark: theme === 'dark' }}>
             {children}
         </ThemeContext.Provider>
     );

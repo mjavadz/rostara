@@ -13,8 +13,8 @@ const Footer = () => {
                     {/* Brand column */}
                     <div className="md:col-span-6 space-y-4">
                         <Link to="/" className="inline-flex items-center gap-3 group">
-                            <div className="w-10 h-10 rounded-xl bg-primary-900 border border-primary-800 p-1 flex items-center justify-center transition-transform group-hover:scale-105">
-                                <img src="/logo.png" alt="Rostara Logo" className="w-full h-full object-contain" />
+                            <div className="w-10 h-10 flex items-center justify-center transition-transform group-hover:scale-110">
+                                <img src="/logo.svg" alt="Rostara Logo" className="w-full h-full object-contain" />
                             </div>
                             <span className="text-2xl font-display font-extrabold text-white tracking-tight">
                                 رُستارا
@@ -26,7 +26,7 @@ const Footer = () => {
                         <div className="flex items-center gap-4 text-xs text-primary-300/70 pt-2">
                             <span className="flex items-center gap-1.5">
                                 <Sprout className="w-4 h-4 text-primary-400" />
-                                بذور ۱۰۰٪ غیرتراریخته
+                                بذرها ۱۰۰٪ غیرتراریخته
                             </span>
                             <span className="flex items-center gap-1.5">
                                 <ShieldCheck className="w-4 h-4 text-primary-400" />

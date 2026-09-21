@@ -1,27 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" fill="none">
   <defs>
-    <linearGradient id="stemGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+    <linearGradient id="primaryLeafGrad" x1="0%" y1="100%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#006241" />
-      <stop offset="100%" stop-color="#00875a" />
+      <stop offset="60%" stop-color="#00875a" />
+      <stop offset="100%" stop-color="#10b981" />
     </linearGradient>
-    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#34d399" />
+    <linearGradient id="secondaryLeafGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#004d33" />
       <stop offset="100%" stop-color="#059669" />
     </linearGradient>
   </defs>
 
-  <!-- Base Seed Arc -->
-  <path d="M 24 66 C 36 78, 64 78, 76 66" stroke="#00875a" stroke-width="3" stroke-linecap="round" fill="none" />
+  <!-- Left Main Leaf (Organic, sculptural curve tapering to base) -->
+  <path d="M 50 86 C 49 68, 46 52, 34 38 C 22 24, 25 10, 36 12 C 50 14, 55 36, 52 58 C 50 70, 50 78, 50 86 Z" 
+        fill="url(#primaryLeafGrad)" />
 
-  <!-- Central Seed Sprout Point -->
-  <circle cx="50" cy="74" r="2.5" fill="#00875a" />
+  <!-- Right Ascending Sprout Leaf (Harmonious balance) -->
+  <path d="M 50 56 C 56 40, 68 24, 80 26 C 85 27, 84 38, 74 48 C 64 58, 54 58, 50 56 Z" 
+        fill="url(#secondaryLeafGrad)" />
 
-  <!-- Main Stem -->
-  <path d="M 50 68 C 50 52, 49.5 35, 49.5 24" stroke="url(#stemGrad)" stroke-width="3.5" stroke-linecap="round" fill="none" />
-
-  <!-- Left Cotyledon (Microgreen leaf) -->
-  <path d="M 49.5 45 C 36 43, 28 30, 32 18 C 44 18, 50 31, 49.5 45 Z" fill="url(#leafGrad)" />
-
-  <!-- Right Emerging Leaf -->
-  <path d="M 50 36 C 62 34, 70 23, 66 14 C 55 14, 49.5 25, 50 36 Z" fill="#00754A" />
+  <!-- Central Stem Vein Accent -->
+  <path d="M 50 86 C 50 68, 49 46, 44 32" 
+        stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.6" />
 </svg>

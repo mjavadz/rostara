@@ -13,7 +13,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const { getCartCount } = useCart();
     const { currentUser, logout } = useAuth();
-    const { theme, setTheme } = useTheme();
+    const { theme, toggleTheme, isDark } = useTheme();
 
     const navItems = [
         { path: '/', label: t('nav.home') },
@@ -45,9 +45,9 @@ const Navbar = () => {
                             <Link
                                 key={item.path}
                                 to={item.path}
-                                className={`text-sm font-medium transition-all ${isActive(item.path)
-                                    ? 'text-primary-600 border-b-2 border-primary-600'
-                                    : 'text-brown-700 dark:text-brown-200 hover:text-primary-600 dark:hover:text-primary-400'
+                                className={`text-sm font-semibold transition-all ${isActive(item.path)
+                                    ? 'text-primary-700 dark:text-primary-400 border-b-2 border-primary-600 pb-1'
+                                    : 'text-brown-800 dark:text-cream/85 hover:text-primary-700 dark:hover:text-primary-300'
                                     }`}
                             >
                                 {item.label}
@@ -96,11 +96,11 @@ const Navbar = () => {
 
                         {/* Theme Toggle Button */}
                         <button
-                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                            onClick={toggleTheme}
                             className="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-brown-100 dark:hover:bg-brown-800 text-brown-700 dark:text-brown-200 transition-colors"
-                            title={theme === 'dark' ? 'حالت روز' : 'حالت شب'}
+                            title={isDark ? 'حالت روز' : 'حالت شب'}
                         >
-                            {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-brown-700" />}
+                            {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-brown-700" />}
                         </button>
 
                         {/* Language Switcher */}
