@@ -18,8 +18,7 @@ const Navbar = () => {
     const navItems = [
         { path: '/', label: t('nav.home') },
         { path: '/products', label: t('nav.products') },
-        { path: '/method', label: t('nav.experience') },
-        { path: '/gallery', label: t('nav.gallery') },
+        { path: '/method', label: t('nav.method') },
         { path: '/club', label: t('nav.club') },
         { path: '/about', label: t('nav.about') },
     ];
@@ -27,35 +26,21 @@ const Navbar = () => {
     const isActive = (path) => location.pathname === path;
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-brown-200/20">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-brown-950/80 backdrop-blur-md border-b border-brown-200/40 dark:border-brown-800/40 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
-                    {/* Logo & Theme Toggle */}
-                    <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                        <button
-                            onClick={() => {
-                                const nextTheme = theme === 'light' ? 'dark' : theme === 'dark' ? 'auto' : 'light';
-                                setTheme(nextTheme);
-                            }}
-                            className="relative w-10 h-10 rounded-lg overflow-hidden transition-transform duration-500 hover:scale-110 active:scale-95"
-                            title={t('nav.theme.' + theme)}
-                            style={{ transform: `rotate(${theme === 'dark' ? 180 : 0}deg)` }}
-                        >
-                            <img src="/logo.png" alt="Rostara Logo" className="w-full h-full object-cover" />
-                            {/* Overlay for auto mode indicator */}
-                            {theme === 'auto' && (
-                                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                                    <span className="text-white text-xs font-bold">A</span>
-                                </div>
-                            )}
-                        </button>
-                        <Link to="/" className="text-2xl font-display font-bold text-brown-900 dark:text-cream hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                    {/* Logo & Brand */}
+                    <Link to="/" className="flex items-center gap-3 group">
+                        <div className="w-10 h-10 flex items-center justify-center transition-transform group-hover:scale-110">
+                            <img src="/logo.svg" alt="Rostara Logo" className="w-full h-full object-contain" />
+                        </div>
+                        <span className="text-2xl font-display font-extrabold text-brown-900 dark:text-cream tracking-tight group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">
                             رُستارا
-                        </Link>
-                    </div>
+                        </span>
+                    </Link>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center gap-8">
+                    <div className="hidden md:flex items-center gap-8 lg:gap-10">
                         {navItems.map((item) => (
                             <Link
                                 key={item.path}
@@ -109,6 +94,15 @@ const Navbar = () => {
                             </Link>
                         )}
 
+                        {/* Theme Toggle Button */}
+                        <button
+                            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                            className="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-brown-100 dark:hover:bg-brown-800 text-brown-700 dark:text-brown-200 transition-colors"
+                            title={theme === 'dark' ? 'حالت روز' : 'حالت شب'}
+                        >
+                            {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-brown-700" />}
+                        </button>
+
                         {/* Language Switcher */}
                         <button
                             onClick={() => {
@@ -116,7 +110,7 @@ const Navbar = () => {
                                 i18n.changeLanguage(newLang);
                                 document.dir = newLang === 'fa' ? 'rtl' : 'ltr';
                             }}
-                            className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-brown-100 dark:hover:bg-brown-800 text-brown-700 dark:text-brown-200 font-medium transition-colors"
+                            className="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-brown-100 dark:hover:bg-brown-800 text-brown-700 dark:text-brown-200 font-bold text-xs transition-colors border border-brown-200/60 dark:border-brown-700"
                         >
                             {i18n.language === 'fa' ? 'EN' : 'فا'}
                         </button>
