@@ -19,22 +19,22 @@ const Home = () => {
 
     const featuredBadges = [
         {
-            title: 'میکروگرین بروکلی',
-            sub: '۵۰× سولفورافان بیشتر',
+            title: 'میکروگرین بروکلی تازه',
+            sub: 'غنی‌ترین منبع طبیعی سولفورافان (تا ۵۰ برابر بروکلی بالغ) برای پاکسازی سلولی و ارتقای ایمنی بدن.',
             icon: Sprout,
-            tag: 'سوپرفود روز',
+            tag: 'سوپرفود فعال',
         },
         {
             title: 'کیت کشت خانگی ۷ روزه',
-            sub: 'سینی ارگانیک + ۴ بذر',
+            sub: 'سینی دوطبقه زهکشی ارگانیک همراه پدهای سلولزی و ۴ نوع بذر غیرتراریخته برای رویش در آپارتمان.',
             icon: Package,
-            tag: 'پرفروش‌ترین',
+            tag: 'کشت آسان در خانه',
         },
         {
-            title: 'کامبوچای زنجبیل لیمو',
-            sub: 'پروبیوتیک زنده روده',
+            title: 'کامبوچای زنجبیل و لیمو',
+            sub: 'نوشیدنی تخمیری اصیل و گازدار طبیعی با باکتری‌های پروبیوتیک فعال برای تعادل و سلامت گوارش.',
             icon: Sparkles,
-            tag: 'تخمیر اصیل',
+            tag: 'پروبیوتیک زنده',
         }
     ];
 
@@ -136,30 +136,34 @@ const Home = () => {
                     </div>
 
                     {/* Botanical Preview Showcase Cards */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto text-right">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-right mt-4">
                         {featuredBadges.map((badge, idx) => {
                             const IconComponent = badge.icon;
                             return (
                                 <Link
                                     key={idx}
                                     to="/products"
-                                    className="p-4 bg-white dark:bg-brown-900 rounded-2xl border border-brown-200/90 dark:border-brown-800 hover:border-primary-400 dark:hover:border-primary-700 shadow-sm hover:shadow-lg transition-all flex items-center gap-4 group"
+                                    className="p-6 bg-white dark:bg-brown-900 rounded-3xl border border-brown-200/90 dark:border-brown-800 hover:border-primary-500 dark:hover:border-primary-500 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group text-right"
                                 >
-                                    <div className="w-12 h-12 rounded-xl bg-primary-50 dark:bg-primary-950/80 border border-primary-200/80 dark:border-primary-800/60 flex items-center justify-center text-primary-700 dark:text-primary-400 group-hover:scale-110 transition-transform flex-shrink-0">
-                                        <IconComponent className="w-6 h-6" />
-                                    </div>
-                                    <div className="flex-grow min-w-0">
-                                        <div className="flex items-center justify-between gap-2 mb-1">
-                                            <h4 className="text-sm font-bold text-brown-900 dark:text-cream truncate">
-                                                {badge.title}
-                                            </h4>
-                                            <span className="text-[10px] font-semibold text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-950 px-2 py-0.5 rounded-full border border-primary-100 dark:border-primary-900">
+                                    <div>
+                                        <div className="flex items-center justify-between gap-2 mb-4">
+                                            <div className="w-12 h-12 rounded-2xl bg-primary-50 dark:bg-primary-950/80 border border-primary-200/80 dark:border-primary-800/60 flex items-center justify-center text-primary-700 dark:text-primary-400 group-hover:scale-110 transition-transform flex-shrink-0">
+                                                <IconComponent className="w-6 h-6" />
+                                            </div>
+                                            <span className="text-xs font-bold text-primary-800 dark:text-primary-300 bg-primary-50 dark:bg-primary-950 px-3 py-1 rounded-full border border-primary-200 dark:border-primary-800">
                                                 {badge.tag}
                                             </span>
                                         </div>
-                                        <p className="text-xs text-brown-500 dark:text-brown-400 truncate">
+                                        <h3 className="text-lg font-display font-bold text-brown-900 dark:text-cream mb-2 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">
+                                            {badge.title}
+                                        </h3>
+                                        <p className="text-xs sm:text-sm text-brown-600 dark:text-brown-300 leading-relaxed">
                                             {badge.sub}
                                         </p>
+                                    </div>
+                                    <div className="pt-5 mt-4 border-t border-brown-100 dark:border-brown-800/60 flex items-center justify-between text-xs font-bold text-primary-700 dark:text-primary-400">
+                                        <span>مشاهده در محصولات</span>
+                                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1.5 transition-transform" />
                                     </div>
                                 </Link>
                             );

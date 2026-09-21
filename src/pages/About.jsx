@@ -44,7 +44,7 @@ const About = () => {
             <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 via-cream to-brown-50 dark:from-brown-900 dark:via-brown-950 dark:to-brown-950">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <span className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-                        مانیفست رویش
+                        منشور رویش و سلامت
                     </span>
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-brown-900 dark:text-cream mb-6 leading-tight">
                         داستان رُستارا؛ رویشِ آراسته‌ی سلامت
