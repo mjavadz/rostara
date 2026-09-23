@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../supabase';
-import { Lock, Users, ShoppingBag, LogOut, Eye, EyeOff } from 'lucide-react';
+import { Lock, Users, ShoppingBag, LogOut, Eye, EyeOff, Mail, Phone, Calendar, MessageSquare } from 'lucide-react';
 
 const ADMIN_PASSWORD = 'admin@rostara';
 
@@ -16,6 +16,7 @@ const Admin = () => {
     const [loading, setLoading] = useState(false);
     const [users, setUsers] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [messages, setMessages] = useState([]);
     const [activeTab, setActiveTab] = useState('users');
     const [selectedUser, setSelectedUser] = useState(null);
 
@@ -32,6 +33,7 @@ const Admin = () => {
         if (isAuthenticated) {
             fetchUsers();
             fetchOrders();
+            fetchMessages();
         }
     }, [isAuthenticated]);
 
@@ -43,7 +45,7 @@ const Admin = () => {
             setIsAuthenticated(true);
             localStorage.setItem('adminAuth', 'true');
         } else {
-            setError('رمز عبور اشتباه است');
+            setError('رمز عبور نادرست است');
         }
     };
 
@@ -56,19 +58,13 @@ const Admin = () => {
     const fetchUsers = async () => {
         setLoading(true);
         try {
-            // Note: This requires admin privileges in Supabase
-            // For now, we'll show a message that this needs configuration
             const { data, error } = await supabase.auth.admin.listUsers();
-
             if (error) {
-                console.error('Error fetching users:', error);
                 setUsers([]);
             } else {
                 setUsers(data.users || []);
             }
         } catch (err) {
-            console.error('Error:', err);
-            // Fallback: Show current user only
             if (currentUser) {
                 setUsers([currentUser]);
             }
@@ -84,9 +80,7 @@ const Admin = () => {
                 .select('*')
                 .order('created_at', { ascending: false });
 
-            if (error) {
-                console.error('Error fetching orders:', error);
-            } else {
+            if (!error && data) {
                 const formattedOrders = data.map(order => ({
                     id: order.id,
                     timestamp: order.created_at,
@@ -105,6 +99,20 @@ const Admin = () => {
             }
         } catch (err) {
             console.error('Error:', err);
+        }
+    };
+
+    const fetchMessages = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('contact_messages')
+                .select('*')
+                .order('created_at', { ascending: false });
+            if (!error && data) {
+                setMessages(data);
+            }
+        } catch (err) {
+            console.error('Error fetching messages:', err);
         }
     };
 
@@ -266,6 +274,16 @@ const Admin = () => {
                         <ShoppingBag className="w-5 h-5" />
                         {t('admin.tabs.orders')} ({orders.length})
                     </button>
+                    <button
+                        onClick={() => setActiveTab('messages')}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${activeTab === 'messages'
+                            ? 'bg-primary-600 text-white shadow-lg'
+                            : 'bg-white dark:bg-brown-900 text-brown-800 dark:text-brown-200 border border-brown-200 dark:border-brown-800'
+                            }`}
+                    >
+                        <Mail className="w-5 h-5" />
+                        پیام‌های تماس ({messages.length})
+                    </button>
                 </div>
 
                 {/* Users Table */}
@@ -408,6 +426,44 @@ const Admin = () => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+                )}
+
+                {/* Messages View */}
+                {activeTab === 'messages' && (
+                    <div className="space-y-4">
+                        {messages.length === 0 ? (
+                            <div className="p-12 text-center bg-white dark:bg-brown-900 rounded-3xl border border-brown-200/80 dark:border-brown-800 text-brown-500">
+                                هنوز پیامی دریافت نشده است.
+                            </div>
+                        ) : (
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {messages.map((msg) => (
+                                    <div
+                                        key={msg.id}
+                                        className="p-6 bg-white dark:bg-brown-900 rounded-3xl border border-brown-200/80 dark:border-brown-800 shadow-sm flex flex-col justify-between"
+                                    >
+                                        <div>
+                                            <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-brown-100 dark:border-brown-800">
+                                                <h3 className="font-bold text-brown-900 dark:text-cream text-lg">
+                                                    {msg.name}
+                                                </h3>
+                                                <span className="text-xs text-brown-500">
+                                                    {formatDate(msg.created_at)}
+                                                </span>
+                                            </div>
+                                            <div className="space-y-1 mb-4 text-xs text-brown-600 dark:text-brown-400">
+                                                <p>ایمیل: <span className="font-mono text-primary-700 dark:text-primary-400" dir="ltr">{msg.email}</span></p>
+                                                {msg.phone && <p>تلفن: <span className="font-mono" dir="ltr">{msg.phone}</span></p>}
+                                            </div>
+                                            <p className="text-sm text-brown-800 dark:text-brown-200 leading-relaxed bg-cream/50 dark:bg-brown-800/50 p-4 rounded-2xl">
+                                                {msg.message}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 )}
             </div>

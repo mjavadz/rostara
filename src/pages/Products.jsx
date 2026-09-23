@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Package, Star, Truck, Filter, ShoppingCart, Check, Sprout, Sparkles, HeartPulse, Leaf } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { supabase } from '../supabase';
 
 const Products = () => {
     const { t, i18n } = useTranslation();
@@ -118,9 +119,28 @@ const Products = () => {
         },
     ];
 
+    const [productsList, setProductsList] = useState(allProducts);
+
+    useEffect(() => {
+        const fetchDbProducts = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('products')
+                    .select('*')
+                    .eq('in_stock', true);
+                if (!error && data && data.length > 0) {
+                    setProductsList(data);
+                }
+            } catch (err) {
+                // Keep default curated list
+            }
+        };
+        fetchDbProducts();
+    }, []);
+
     const filteredProducts = selectedCategory === 'all'
-        ? allProducts
-        : allProducts.filter(p => p.category === selectedCategory);
+        ? productsList
+        : productsList.filter(p => p.category === selectedCategory);
 
     const formatPrice = (price) => {
         if (i18n.language === 'en') {
@@ -179,7 +199,9 @@ const Products = () => {
                     {/* Products Grid */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredProducts.map((product) => {
-                            const features = t(`products.items.${product.id}.features`, { returnObjects: true });
+                            const features = product.features || t(`products.items.${product.id}.features`, { returnObjects: true });
+                            const displayName = t(`products.items.${product.id}.name`, { defaultValue: product.name });
+                            const displayDesc = t(`products.items.${product.id}.desc`, { defaultValue: product.desc });
 
                             return (
                                 <div
@@ -204,10 +226,10 @@ const Products = () => {
                                     {/* Content */}
                                     <div className="p-6 flex-grow flex flex-col">
                                         <h3 className="text-xl font-display font-bold text-brown-900 dark:text-cream mb-2">
-                                            {t(`products.items.${product.id}.name`)}
+                                            {displayName}
                                         </h3>
                                         <p className="text-brown-600 dark:text-brown-300 mb-4 leading-relaxed text-sm flex-grow">
-                                            {t(`products.items.${product.id}.desc`)}
+                                            {displayDesc}
                                         </p>
 
                                         {/* Features */}
