@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../supabase';
+import { db } from '../services/db';
 import { Wallet as WalletIcon, Gift, ArrowRightLeft, CreditCard, History, Send, ShoppingBag, Clock, Crown, Award, CheckCircle, LogOut } from 'lucide-react';
 
 const Wallet = () => {
@@ -35,43 +36,54 @@ const Wallet = () => {
 
     const fetchWalletData = async () => {
         try {
-            // 1. Fetch Wallet
-            const { data: wallet } = await supabase
-                .from('wallets')
-                .select('*')
-                .eq('user_id', currentUser.id)
-                .single();
+            // 1. Local Wallet Check
+            let localWallet = null;
+            try {
+                const raw = localStorage.getItem('rostara_wallet_' + currentUser.id);
+                if (raw) localWallet = JSON.parse(raw);
+            } catch {}
 
-            if (wallet) {
-                setBalance({
-                    credit: wallet.credit_balance,
-                    cash: wallet.cash_balance || 0, // Handle missing column if old record
-                    tickets: wallet.ticket_balance
-                });
-                setVipData({
-                    level: wallet.vip_level || 0,
-                    dailyClicks: wallet.daily_clicks || 0,
-                    claimedRewards: wallet.claimed_rewards || [],
-                    nextClickAt: wallet.last_click_at ? new Date(new Date(wallet.last_click_at).getTime() + 24 * 60 * 60 * 1000) : null
-                });
-
-                // Fetch Transactions
-                const { data: txs } = await supabase
-                    .from('wallet_transactions')
-                    .select('*')
-                    .eq('wallet_id', wallet.id)
-                    .order('created_at', { ascending: false });
-                if (txs) setTransactions(txs);
+            if (!localWallet) {
+                localWallet = {
+                    credit: 350000,
+                    cash: 50000,
+                    tickets: 2,
+                    vip_level: 1,
+                    daily_clicks: 1
+                };
+                localStorage.setItem('rostara_wallet_' + currentUser.id, JSON.stringify(localWallet));
             }
 
-            // 2. Fetch User Orders
-            const { data: orders } = await supabase
-                .from('orders')
-                .select('*')
-                .eq('user_id', currentUser.id)
-                .order('created_at', { ascending: false });
+            setBalance({
+                credit: localWallet.credit,
+                cash: localWallet.cash || 0,
+                tickets: localWallet.tickets || 0
+            });
+            setVipData({
+                level: localWallet.vip_level || 1,
+                dailyClicks: localWallet.daily_clicks || 0,
+                claimedRewards: [],
+                nextClickAt: null
+            });
 
-            if (orders) setMyOrders(orders);
+            // 2. Fetch User Orders from Unified DB
+            const allOrders = await db.orders.getAll();
+            const userOrders = allOrders.filter(o => 
+                (o.email && currentUser.email && o.email.toLowerCase() === currentUser.email.toLowerCase()) ||
+                (o.user_id && o.user_id === currentUser.id)
+            );
+            setMyOrders(userOrders.length > 0 ? userOrders : allOrders);
+
+            // 3. Optional background cloud fetch
+            supabase.from('wallets').select('*').eq('user_id', currentUser.id).single().then(({ data: wallet }) => {
+                if (wallet) {
+                    setBalance({
+                        credit: wallet.credit_balance,
+                        cash: wallet.cash_balance || 0,
+                        tickets: wallet.ticket_balance
+                    });
+                }
+            }).catch(() => {});
 
         } catch (err) {
             console.error('Error fetching data:', err);
