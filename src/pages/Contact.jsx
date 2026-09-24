@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, Send, CheckCircle, Sprout } from 'lucide-react';
-import { supabase } from '../supabase';
+import { db } from '../services/db';
 
 const Contact = () => {
     const { t } = useTranslation();
@@ -25,18 +25,12 @@ const Contact = () => {
         setFormStatus('sending');
 
         try {
-            const { error } = await supabase.from('contact_messages').insert([
-                {
-                    name: formData.name,
-                    email: formData.email,
-                    phone: formData.phone || null,
-                    message: formData.message
-                }
-            ]);
-
-            if (error) {
-                console.warn('Database insert failed, using fallback notification:', error);
-            }
+            await db.messages.create({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone || null,
+                message: formData.message
+            });
 
             setFormStatus('success');
             setFormData({ name: '', email: '', phone: '', message: '' });

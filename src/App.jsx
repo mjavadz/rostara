@@ -23,6 +23,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Wallet from './pages/Wallet';
 import Admin from './pages/Admin';
+import TrackOrder from './pages/TrackOrder';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/wallet" element={<Wallet />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/track" element={<TrackOrder />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Layout>

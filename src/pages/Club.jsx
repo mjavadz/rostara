@@ -66,7 +66,7 @@ const Club = () => {
                     <div className="flex items-center gap-3 mb-6">
                         <Gift className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                         <h2 className="text-2xl font-display font-bold text-brown-900 dark:text-cream">
-                            {t('forum.title')}
+                            {t('club.offers.title', { defaultValue: 'پیشنهادات و کدهای تخفیف اختصاصی' })}
                         </h2>
                     </div>
 

@@ -43,6 +43,7 @@ const Footer = () => {
                         <ul className="space-y-2.5 text-sm">
                             <li><Link to="/products" className="text-primary-200/70 hover:text-white transition-colors">{t('nav.products')}</Link></li>
                             <li><Link to="/method" className="text-primary-200/70 hover:text-white transition-colors">{t('nav.method')}</Link></li>
+                            <li><Link to="/track" className="text-primary-200/70 hover:text-white transition-colors">پیگیری سفارش</Link></li>
                             <li><Link to="/experience" className="text-primary-200/70 hover:text-white transition-colors">{t('nav.experience')}</Link></li>
                             <li><Link to="/gallery" className="text-primary-200/70 hover:text-white transition-colors">{t('nav.gallery')}</Link></li>
                         </ul>

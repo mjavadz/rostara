@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
-import { supabase } from '../supabase';
-import { Package, MapPin, Phone, Mail, CreditCard, CheckCircle } from 'lucide-react';
+import { db } from '../services/db';
+import { Package, MapPin, Phone, Mail, CreditCard, CheckCircle, Copy, Check, Search } from 'lucide-react';
 
 const Checkout = () => {
     const { t, i18n } = useTranslation();
@@ -51,23 +51,16 @@ const Checkout = () => {
         setCouponMessage('');
 
         try {
-            const { data, error } = await supabase.rpc('validate_coupon', {
-                code_input: couponCode,
-                cart_total: getCartTotal(),
-                cart_items_count: cartItems.reduce((sum, item) => sum + item.quantity, 0)
-            });
-
-            if (error) throw error;
-
-            if (data.valid) {
-                setDiscount(data.discount_amount);
-                setValidCouponCode(data.coupon_code);
+            const validation = db.coupons.validate(couponCode, getCartTotal());
+            if (validation.valid) {
+                setDiscount(validation.discount);
+                setValidCouponCode(validation.coupon.code);
                 setIsCouponValid(true);
-                setCouponMessage(data.message);
+                setCouponMessage(validation.message);
             } else {
                 setDiscount(0);
                 setIsCouponValid(false);
-                setCouponMessage(data.message);
+                setCouponMessage(validation.message);
                 setValidCouponCode('');
             }
         } catch (err) {
@@ -79,45 +72,39 @@ const Checkout = () => {
         }
     };
 
-    const finalTotal = getCartTotal() - discount;
+    const finalTotal = Math.max(0, getCartTotal() - discount);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            const fallbackId = 'ROS-' + Math.floor(100000 + Math.random() * 900000);
-            const { data, error } = await supabase
-                .from('orders')
-                .insert([
-                    {
-                        user_id: currentUser?.id || null,
-                        full_name: formData.fullName,
-                        email: formData.email,
-                        phone: formData.phone,
-                        address: formData.address,
-                        city: formData.city,
-                        postal_code: formData.postalCode,
-                        notes: formData.notes + (validCouponCode ? ` | Coupon: ${validCouponCode}` : ''),
-                        total_price: finalTotal,
-                        items: cartItems,
-                        status: 'pending'
-                    }
-                ])
-                .select();
+            const newOrder = await db.orders.create({
+                user_id: currentUser?.id || null,
+                full_name: formData.fullName,
+                email: formData.email,
+                phone: formData.phone,
+                address: formData.address,
+                city: formData.city,
+                postal_code: formData.postalCode,
+                notes: formData.notes + (validCouponCode ? ` | کد تخفیف: ${validCouponCode}` : ''),
+                total_price: finalTotal,
+                items: cartItems.map(item => ({
+                    id: item.id,
+                    name: t(`products.items.${item.id}.name`, { defaultValue: item.name }),
+                    price: item.price,
+                    quantity: item.quantity,
+                    weight: item.weight || ''
+                })),
+                status: 'pending'
+            });
 
-            if (data && data[0]?.id) {
-                setConfirmedOrderId(data[0].id.substring(0, 8).toUpperCase());
-            } else {
-                setConfirmedOrderId(fallbackId);
-            }
-
+            setConfirmedOrderId(newOrder.id);
             setLoading(false);
             setOrderPlaced(true);
             clearCart();
         } catch (error) {
             console.error('Error placing order:', error);
-            // Even if offline/table missing, confirm order locally
             const fallbackId = 'ROS-' + Math.floor(100000 + Math.random() * 900000);
             setConfirmedOrderId(fallbackId);
             setLoading(false);
@@ -145,16 +132,25 @@ const Checkout = () => {
                         {t('checkout.success.subtitle')}
                     </p>
                     {confirmedOrderId && (
-                        <div className="p-4 bg-cream dark:bg-brown-800/80 rounded-2xl border border-brown-200/80 dark:border-brown-700 mb-8">
-                            <span className="text-xs text-brown-500 dark:text-brown-400 block mb-1">کد رهگیری سفارش شما:</span>
-                            <span className="font-mono text-xl font-extrabold text-primary-700 dark:text-primary-400 tracking-wider">
+                        <div className="p-5 bg-cream dark:bg-brown-800/80 rounded-2xl border border-brown-200/80 dark:border-brown-700 mb-6 text-center">
+                            <span className="text-xs text-brown-500 dark:text-brown-400 block mb-1">کد رهگیری اختصاصی سفارش شما:</span>
+                            <span className="font-mono text-2xl font-black text-primary-700 dark:text-primary-400 tracking-wider block mb-3">
                                 {confirmedOrderId}
                             </span>
+                            <div className="flex gap-2 justify-center">
+                                <button
+                                    onClick={() => navigate(`/track?code=${confirmedOrderId}`)}
+                                    className="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
+                                >
+                                    <Search className="w-3.5 h-3.5" />
+                                    <span>پیگیری آنلاین سفارش</span>
+                                </button>
+                            </div>
                         </div>
                     )}
                     <button
                         onClick={() => navigate('/')}
-                        className="w-full py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-bold shadow-md hover:shadow-lg transition-all"
+                        className="w-full py-3.5 bg-brown-100 dark:bg-brown-800 hover:bg-brown-200 dark:hover:bg-brown-700 text-brown-900 dark:text-cream rounded-full font-bold transition-all text-sm"
                     >
                         {t('checkout.success.backHome')}
                     </button>

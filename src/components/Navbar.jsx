@@ -19,6 +19,7 @@ const Navbar = () => {
         { path: '/', label: t('nav.home') },
         { path: '/products', label: t('nav.products') },
         { path: '/method', label: t('nav.method') },
+        { path: '/track', label: 'پیگیری سفارش' },
         { path: '/club', label: t('nav.club') },
         { path: '/about', label: t('nav.about') },
     ];
