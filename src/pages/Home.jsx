@@ -9,201 +9,257 @@ import {
     Package, 
     ShieldCheck, 
     HeartPulse,
-    Search,
-    Award,
-    CheckCircle2
+    Activity,
+    Dna,
+    Layers,
+    ArrowUpRight,
+    Check
 } from 'lucide-react';
 
 const Home = () => {
     const { t } = useTranslation();
 
-    const featuredBadges = [
+    // Seed-style Specimen Products
+    const specimens = [
         {
-            title: 'میکروگرین بروکلی تازه',
-            sub: 'غنی‌ترین منبع طبیعی سولفورافان (تا ۵۰ برابر بروکلی بالغ) برای سم‌زدایی سلولی و تقویت سیستم ایمنی.',
-            icon: Sprout,
-            tag: 'سوپرفود فعال',
-            id: 'micro_broccoli'
+            code: 'BIO-MG01',
+            name: 'میکروگرین بروکلی تازه',
+            scientificName: 'Brassica oleracea var. italica',
+            potencyBadge: 'سولفورافان تا ۵۰×',
+            desc: 'غنی‌ترین تراکم زیستی گلوکورافانین در جهان؛ تبدیل آنزیمی سریع به سولفورافان خالص برای پاکسازی رادیکال‌های آزاد و محافظت از سلول‌های خاکستری مغز.',
+            metrics: [
+                { label: 'دوره جوانه', val: '۷ روز' },
+                { label: 'روش کشت', val: 'سلولزی هیدروپونیک' },
+                { label: 'خلوص', val: '۱۰۰٪ عاری از سم' }
+            ],
+            icon: Sprout
         },
         {
-            title: 'کیت کشت خانگی ۷ روزه',
-            sub: 'سینی دو‌طبقه با زهکشی خودکار، پدهای سلولزی ارگانیک و ۴ بسته بذر خالص غیرتراریخته برای رویش در آپارتمان.',
-            icon: Package,
-            tag: 'کشت آسان در خانه',
-            id: 'micro_kit_starter'
+            code: 'KIT-HK04',
+            name: 'کیت خانگی کشت ۷ روزه',
+            scientificName: 'Automated Urban Micro-Farm',
+            potencyBadge: 'سیستم زهکشی دو‌طبقه',
+            desc: 'مهندسی اختصاصی برای بازتولید اقلیم بهینه جوانه‌زنی در محیط بسته آپارتمان؛ همراه با پدهای زیست‌تخریب‌پذیر و ۴ واریته بذر دیم غیرتراریخته.',
+            metrics: [
+                { label: 'زمان تا برداشت', val: '۷ تا ۱۰ روز' },
+                { label: 'ظرفیت', val: '۴ کشت متوالی' },
+                { label: 'نگهداری', val: 'فقط آب تصفیه' }
+            ],
+            icon: Package
         },
         {
-            title: 'کامبوچای تخمیری زنجبیل و لیمو',
-            sub: 'نوشیدنی زنده تخمیر سنتی با پروبیوتیک‌های فعال برای احیای میکروبیوم و هضم سبک غذا.',
-            icon: Sparkles,
-            tag: 'پروبیوتیک زنده',
-            id: 'kombucha'
+            code: 'FERM-KB21',
+            name: 'کامبوچای زنجبیل و لیمو',
+            scientificName: 'Symbiotic Ferment Matrix',
+            potencyBadge: 'پروبیوتیک زنده فعال',
+            desc: 'تخمیر سنتی ۲۱ روزه چای سبز و سیاه با کشت همزیست باکتری و مخمر (SCOBY)؛ سرشار از اسید گلوکونیک و باکتری‌های مفید استیک برای احیای میکروبیوم روده.',
+            metrics: [
+                { label: 'مدت تخمیر', val: '۲۱ روز سنتی' },
+                { label: 'گازدار', val: 'تخمیر طبیعی' },
+                { label: 'شکر افزوده', val: 'صفر' }
+            ],
+            icon: Sparkles
         }
     ];
 
-    const pillars = [
+    // Seed Biological Comparison Matrix
+    const clinicalComparison = [
         {
-            icon: Sprout,
-            title: 'میکروگرین و جوانه‌ها',
-            desc: 'ریزسبزی‌های ارگانیک سرشار از آنزیم‌های فعال، کلروفیل و سولفورافان با تراکم مواد مغذی تا ۴۰ برابر سبزیجات بالغ.'
+            num: '۰۱',
+            title: 'زیست‌دسترسی و جذب آنزیمی',
+            subtitle: 'Cellular Bioavailability',
+            rostara: 'جذب مستقیم و هم‌افزا از طریق ماتریکس کامل گیاهی بدون نیاز به فرآوری کبد',
+            synthetic: 'دفع بیش از ۸۰٪ املاح و ویتامین‌های سنتتیک شیمیایی پیش از ورود به بافت سلولی'
         },
         {
-            icon: Sparkles,
-            title: 'تخمیری‌ها و پروبیوتیک',
-            desc: 'کامبوچا، کیمچی و میسوی زنده برای احیا و تقویت میکروبیوم روده و محور حیاتی مغز-گوارش.'
+            num: '۰۲',
+            title: 'سولفورافان و آنتی‌اکسیدان‌های فعال',
+            subtitle: 'Phase II Enzyme Induction',
+            rostara: 'آنزیم میروزیناز زنده برای تبدیل کامل گلوکورافانین به مولکول محافظ DNA',
+            synthetic: 'از بین رفتن آنزیم‌های فعال در فرآیندهای خشک‌کردن صنعتی و حرارتی مکمل‌ها'
         },
         {
-            icon: HeartPulse,
-            title: 'قارچ‌های دارویی و آداپتوژن',
-            desc: 'شیتاکه، یال شیر و ریشی برای ارتقای وضوح ذهنی، تنظیم پاسخ به استرس و استحکام سیستم ایمنی.'
+            num: '۰۳',
+            title: 'تنوع اکوسیستم میکروبیوم',
+            subtitle: 'Living Symbiotic Flora',
+            rostara: 'میلیاردها میکروارگانیسم زنده و پایدار که با مخاط گوارش انسان سازگارند',
+            synthetic: 'کپسول‌های لیوفیلیزه که بخش عمده آنها در اسید معده از بین می‌روند'
         },
         {
-            icon: Package,
-            title: 'کشاورزی ارگانیک و شهری',
-            desc: 'کیت‌ها و ملزومات خانگی برای تبدیل هر خانه به یک بومِ سبز و تولید مستقل سوپرفودهای تازه.'
+            num: '۰۴',
+            title: 'پایداری بوم‌شناختی و زنجیره سرد',
+            subtitle: 'Zero-Distance Freshness',
+            rostara: 'صفر کیلومتر فاصله از بستر رویش تا سفره؛ بالاترین غلظت ویتامین در لحظه چیدن',
+            synthetic: 'ماهها ماندگی در انبارهای توزیع، اکسیداسیون و افت شدید ارزش بیولوژیک'
         }
     ];
 
-    const microBenefits = [
-        {
-            stat: '۴۰×',
-            title: 'تراکم ریزمغذی‌ها',
-            desc: 'میکروگرین‌ها غلظت خیره‌کننده‌ای از ویتامین‌های C، E، K و کاروتنوئیدهای ضدالتهاب نسبت به برگ‌های بالغ دارند.'
-        },
-        {
-            stat: '۷-۱۰',
-            title: 'روز تا چیدن تازه',
-            desc: 'چرخه رویش فوق‌سریع در خانه؛ بدون نیاز به باغچه، روی پیشخوان آشپزخانه جوانه می‌زنند و تازه مصرف می‌شوند.'
-        },
-        {
-            stat: '۱۰۰٪',
-            title: 'ارگانیک و عاری از سموم',
-            desc: 'کشت کاملاً پاک با آب زلال و بذرهای دیم اصلاح‌نشده، بدون استفاده از حتی یک قطره سم یا کود شیمیایی.'
-        },
-        {
-            stat: '۰ کیلومتر',
-            title: 'فاصله مزرعه تا بشقاب',
-            desc: 'حذف کامل حمل‌ونقل و افت تازگی در انبارها؛ سوپرفود زنده مستقیماً از بستر کشت خانگی به سالاد شما می‌آید.'
-        }
+    const stats = [
+        { val: '۵۰×', label: 'تراکم سولفورافان نسبت به کلم بالغ' },
+        { val: '۷', label: 'روز از بذر تا چیدن در آپارتمان' },
+        { val: '۰٪', label: 'سموم، آفت‌کش و دستکاری ژنتیکی' },
+        { val: '۲۱', label: 'روز تخمیر سنتی باکتری‌های زنده' }
     ];
 
     return (
-        <div className="min-h-screen bg-canvas-light dark:bg-canvas-dark text-brown-900 dark:text-cream transition-colors duration-500">
-            {/* HERO SECTION */}
-            <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-24 pb-20">
-                {/* Ambient Soft Mesh Glow */}
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-primary-600/10 via-primary-400/5 to-amber-500/5 dark:from-primary-600/15 dark:via-primary-950/20 dark:to-transparent rounded-full blur-[110px] pointer-events-none" />
-
-                <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    {/* Eyebrow Pill */}
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-500/10 dark:bg-primary-400/10 text-primary-800 dark:text-primary-300 border border-primary-500/20 dark:border-primary-400/20 text-xs font-bold tracking-wider mb-8">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span>پلتفرم زیست‌پایدار رُستارا</span>
-                        <span className="text-primary-400/60 dark:text-primary-500/60">•</span>
-                        <span>غذای زنده و کشاورزی شهری</span>
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-charcoal dark:text-seed-snow transition-colors duration-500 font-sans">
+            
+            {/* HERO SECTION (Seed.com Botanical-Clinical Chic) */}
+            <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 border-b border-seed-forest/10 dark:border-white/10">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    {/* Science Eyebrow Tag */}
+                    <div className="flex items-center gap-3 mb-8">
+                        <span className="badge-lime">
+                            <span className="w-1.5 h-1.5 rounded-full bg-seed-forest animate-pulse" />
+                            BIO-NUTRITION
+                        </span>
+                        <span className="label-mono">
+                            پلتفرم زیست‌پایدار کشاورزی شهری و غذای زنده
+                        </span>
                     </div>
 
-                    {/* Headline */}
-                    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-brown-900 dark:text-cream mb-6 tracking-tight leading-[1.14]">
-                        رویشِ آراسته‌ی سلامت <br />
-                        <span className="text-primary-700 dark:text-primary-400 font-medium">
-                            در هماهنگی با طبیعت
-                        </span>
-                    </h1>
+                    {/* Architectural Editorial Headline */}
+                    <div className="grid lg:grid-cols-12 gap-8 items-end mb-12">
+                        <div className="lg:col-span-8">
+                            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black tracking-tight leading-[1.12] text-seed-forest dark:text-seed-snow">
+                                هوشِ بیولوژیک گیاه، <br />
+                                <span className="font-light italic text-seed-sage dark:text-seed-lime">
+                                    تغذیهٔ زنده برای سلول.
+                                </span>
+                            </h1>
+                        </div>
+                        <div className="lg:col-span-4 text-seed-pewter dark:text-seed-snow/70 text-sm sm:text-base leading-relaxed pb-2 font-normal">
+                            رُستارا حلقهٔ مفقوده میان سلامتی انسان و خاک است؛ توسعهٔ کشت خانگی میکروگرین‌ها و فرآورده‌های پروبیوتیک زنده بدون فرآیندهای شیمیایی و نگهدارنده‌های صنعتی.
+                        </div>
+                    </div>
 
-                    {/* Subtitle */}
-                    <p className="text-base sm:text-lg lg:text-xl text-brown-700 dark:text-brown-300/90 mb-10 max-w-3xl mx-auto leading-relaxed font-normal">
-                        تجربهٔ کاشت و برداشت تازه‌ترین میکروگرین‌ها، نوشیدنی‌های تخمیری زنده و سوپرفودهای فعال بدون سموم شیمیایی؛ برای انرژی پایدار سلولی و پیوند دوباره با خاک.
-                    </p>
-
-                    {/* Primary & Secondary CTAs */}
-                    <div className="flex flex-col sm:flex-row gap-3.5 justify-center items-center mb-16">
+                    {/* Action Bar & Key Metrics */}
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-6 border-t border-seed-forest/10 dark:border-white/10">
                         <Link
                             to="/products"
-                            className="w-full sm:w-auto px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-bold shadow-lift shadow-primary-700/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 text-sm sm:text-base"
+                            className="btn-seed flex items-center justify-center gap-2"
                         >
-                            <span>کاوش محصولات ارگانیک</span>
+                            <span>مشاهده کاتالوگ زیستی</span>
                             <ArrowLeft className="w-4 h-4" />
                         </Link>
+                        
                         <Link
                             to="/method"
-                            className="w-full sm:w-auto px-8 py-4 bg-white/70 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] border border-black/[0.08] dark:border-white/[0.12] text-brown-900 dark:text-cream rounded-full font-bold text-sm sm:text-base backdrop-blur-md transition-all active:scale-[0.98]"
+                            className="btn-seed-outline flex items-center justify-center gap-2"
                         >
-                            راهنمای کشت خانگی
+                            <span>راهنمای رویش خانگی</span>
+                            <ArrowUpRight className="w-4 h-4" />
                         </Link>
-                    </div>
 
-                    {/* 3 HERO SHOWCASE CARDS (Quiet Luxury Bento Cards) */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-right">
-                        {featuredBadges.map((badge, idx) => {
-                            const IconComponent = badge.icon;
-                            return (
-                                <Link
-                                    key={idx}
-                                    to="/products"
-                                    className="p-6 bg-white/80 dark:bg-surface-dark/85 backdrop-blur-xl rounded-3xl border border-black/[0.06] dark:border-white/[0.08] hover:border-primary-500/40 dark:hover:border-primary-400/40 hover:shadow-lift hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
-                                >
-                                    <div>
-                                        <div className="flex items-center justify-between gap-2 mb-4">
-                                            <div className="w-11 h-11 rounded-2xl bg-primary-50 dark:bg-primary-950/60 border border-primary-100 dark:border-primary-900/60 flex items-center justify-center text-primary-700 dark:text-primary-400 group-hover:scale-105 transition-transform flex-shrink-0">
-                                                <IconComponent className="w-5 h-5" />
-                                            </div>
-                                            <span className="text-[11px] font-bold text-primary-800 dark:text-primary-300 bg-primary-50/80 dark:bg-primary-950/60 px-3 py-1 rounded-full border border-primary-200/60 dark:border-primary-800/60">
-                                                {badge.tag}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-base font-display font-bold text-brown-900 dark:text-cream mb-2 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">
-                                            {badge.title}
-                                        </h3>
-                                        <p className="text-xs text-brown-600 dark:text-brown-300/80 leading-relaxed">
-                                            {badge.sub}
-                                        </p>
-                                    </div>
-                                    <div className="pt-4 mt-4 border-t border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between text-xs font-bold text-primary-700 dark:text-primary-400">
-                                        <span>مشاهده محصول</span>
-                                        <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-                                    </div>
-                                </Link>
-                            );
-                        })}
+                        <div className="hidden md:flex items-center gap-6 mr-auto text-xs text-seed-pewter dark:text-seed-snow/60 font-mono">
+                            <span className="flex items-center gap-1.5">
+                                <Check className="w-3.5 h-3.5 text-seed-forest dark:text-seed-lime" />
+                                بذرها ۱۰۰٪ غیرتراریخته
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                                <Check className="w-3.5 h-3.5 text-seed-forest dark:text-seed-lime" />
+                                برداشت در ۷ روز
+                            </span>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* 4 CORE PILLARS SECTION */}
-            <section className="py-24 bg-surface-light dark:bg-surface-dark border-y border-black/[0.04] dark:border-white/[0.06] transition-colors duration-500">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className="text-[11px] font-extrabold uppercase tracking-widest text-primary-700 dark:text-primary-400 px-3.5 py-1.5 rounded-full bg-primary-50 dark:bg-primary-950/60 border border-primary-200/60 dark:border-primary-800/60">
-                            ستون‌های فلسفی رُستارا
-                        </span>
-                        <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-brown-900 dark:text-cream mt-4 mb-4">
-                            غذای زنده برای آگاهی و تندرستی سلولی
-                        </h2>
-                        <p className="text-brown-600 dark:text-brown-300/80 text-sm sm:text-base leading-relaxed">
-                            ما چرخه‌ای کامل از رویش خانگی، فرآوری سنتی زیستی و تغذیه پاک را در دسترس شما قرار می‌دهیم.
-                        </p>
+            {/* NUMERICAL DATA TICKER */}
+            <section className="bg-seed-stone/50 dark:bg-seed-forest/20 border-b border-seed-forest/10 dark:border-white/10 py-10">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-right">
+                        {stats.map((s, idx) => (
+                            <div key={idx} className="border-r-2 border-seed-forest/20 dark:border-seed-lime/30 pr-4">
+                                <div className="text-3xl sm:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime tracking-tight">
+                                    {s.val}
+                                </div>
+                                <div className="text-xs text-seed-charcoal/90 dark:text-seed-snow mt-1 font-bold">
+                                    {s.label}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* SPECIMEN SHOWCASE (Living Organisms Under Glass) */}
+            <section className="py-24 border-b border-seed-forest/10 dark:border-white/10">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
+                        <div>
+                            <span className="label-mono mb-2 block">CATALOGUE • نمونه‌های فعال زیستی</span>
+                            <h2 className="text-3xl sm:text-4xl font-display font-black text-seed-forest dark:text-seed-snow">
+                                گیاهان ریزمقیاس و محصولات زنده
+                            </h2>
+                        </div>
+                        <Link 
+                            to="/products"
+                            className="inline-flex items-center gap-1 text-xs font-bold text-seed-forest dark:text-seed-lime hover:underline"
+                        >
+                            <span>مشاهده تمام ۱۶ محصول</span>
+                            <ArrowLeft className="w-3.5 h-3.5" />
+                        </Link>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {pillars.map((item, idx) => {
-                            const IconComponent = item.icon;
+                    {/* 3 Specimen Cards */}
+                    <div className="grid md:grid-cols-3 gap-6">
+                        {specimens.map((item, idx) => {
+                            const IconC = item.icon;
                             return (
-                                <div
+                                <div 
                                     key={idx}
-                                    className="p-7 bg-canvas-light/60 dark:bg-canvas-dark/60 rounded-3xl border border-black/[0.05] dark:border-white/[0.07] hover:border-primary-400/40 dark:hover:border-primary-500/40 hover:shadow-whisper transition-all duration-300 flex flex-col justify-between group"
+                                    className="seed-card p-6 flex flex-col justify-between hover:border-seed-forest/30 dark:hover:border-seed-lime/40"
                                 >
                                     <div>
-                                        <div className="w-12 h-12 bg-primary-600 text-white rounded-2xl flex items-center justify-center mb-5 group-hover:scale-105 transition-transform shadow-sm">
-                                            <IconComponent className="w-6 h-6" />
+                                        {/* Card Meta Bar */}
+                                        <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-seed-forest/10 dark:border-white/10">
+                                            <span className="font-mono text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50 tracking-wider">
+                                                [{item.code}]
+                                            </span>
+                                            <span className="badge-lime text-[10px]">
+                                                {item.potencyBadge}
+                                            </span>
                                         </div>
-                                        <h3 className="text-lg font-display font-bold text-brown-900 dark:text-cream mb-2.5">
-                                            {item.title}
+
+                                        {/* Visual Icon Container */}
+                                        <div className="w-12 h-12 rounded-xl bg-seed-stone dark:bg-white/5 flex items-center justify-center text-seed-forest dark:text-seed-lime mb-5">
+                                            <IconC className="w-6 h-6" />
+                                        </div>
+
+                                        <h3 className="text-xl font-display font-bold text-seed-forest dark:text-seed-snow mb-1">
+                                            {item.name}
                                         </h3>
-                                        <p className="text-xs text-brown-600 dark:text-brown-300/80 leading-relaxed">
+                                        <p className="font-mono text-xs text-seed-sage dark:text-seed-snow/50 italic mb-4">
+                                            {item.scientificName}
+                                        </p>
+
+                                        <p className="text-xs text-seed-pewter dark:text-seed-snow/80 leading-relaxed mb-6 font-normal">
                                             {item.desc}
                                         </p>
                                     </div>
+
+                                    <div>
+                                        {/* Clinical Metrics Specs */}
+                                        <div className="space-y-2 py-4 border-t border-seed-forest/10 dark:border-white/10 text-[11px] font-mono">
+                                            {item.metrics.map((m, mi) => (
+                                                <div key={mi} className="flex justify-between text-seed-pewter dark:text-seed-snow/60">
+                                                    <span>{m.label}:</span>
+                                                    <span className="font-bold text-seed-forest dark:text-seed-snow">{m.val}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <Link
+                                            to="/products"
+                                            className="mt-2 w-full py-2.5 rounded-pill bg-seed-stone dark:bg-white/10 hover:bg-seed-forest hover:text-seed-snow dark:hover:bg-seed-lime dark:hover:text-seed-forest text-seed-forest dark:text-seed-snow text-xs font-bold transition-all flex items-center justify-center gap-1.5"
+                                        >
+                                            <span>بررسی و ثبت سفارش</span>
+                                            <ArrowLeft className="w-3.5 h-3.5" />
+                                        </Link>
+                                    </div>
                                 </div>
                             );
                         })}
@@ -211,111 +267,125 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* IMPACT / WHY MICROGREENS */}
-            <section className="py-24 transition-colors duration-500">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-12 gap-12 items-center">
-                        <div className="lg:col-span-5">
-                            <span className="text-[11px] font-extrabold uppercase tracking-widest text-primary-700 dark:text-primary-400 px-3.5 py-1.5 rounded-full bg-primary-50 dark:bg-primary-950/60 border border-primary-200/60 dark:border-primary-800/60">
-                                انقلاب سبز خانگی
-                            </span>
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-brown-900 dark:text-cream mt-4 mb-6 leading-tight">
-                                چرا میکروگرین‌ها تحولی در تغذیه مدرن هستند؟
-                            </h2>
-                            <p className="text-brown-700 dark:text-brown-300 text-sm sm:text-base leading-relaxed mb-6 font-normal">
-                                میکروگرین‌ها در مرحلهٔ نخستین رویش پس از جوانه زدن برداشت می‌شوند؛ درست زمانی که گیاه تمام پتانسیل ژنتیکی، آنزیم‌ها و منابع زیستی خود را برای شکوفایی متمرکز کرده است.
-                            </p>
+            {/* SEED BIOLOGICAL COMPARISON MATRIX (Clinical Superiority) */}
+            <section className="py-24 bg-seed-stone/40 dark:bg-seed-forestDeep/40 border-b border-seed-forest/10 dark:border-white/10">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div className="max-w-2xl mb-16 text-right">
+                        <span className="label-mono mb-2 block">SCIENTIFIC PROOF • برتری بیولوژیک</span>
+                        <h2 className="text-3xl sm:text-4xl font-display font-black text-seed-forest dark:text-seed-snow mb-4">
+                            تفاوت غذای زیست‌فعال با مکمل‌های شیمیایی
+                        </h2>
+                        <p className="text-sm text-seed-pewter dark:text-seed-snow/70 leading-relaxed">
+                            چرا زیست‌شناسی انسان مولکول‌های گیاهی استخراج‌شده در ماتریکس طبیعی را به ویتامین‌ها و قرص‌های آزمایشگاهی ترجیح می‌دهد؟
+                        </p>
+                    </div>
 
-                            <div className="space-y-3.5 mb-8">
-                                <div className="flex items-start gap-3">
-                                    <ShieldCheck className="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" />
-                                    <p className="text-brown-800 dark:text-brown-200 text-xs sm:text-sm">
-                                        <strong>بمب آنتی‌اکسیدان:</strong> بروکلی میکروگرین منبع بی‌رقیب ماده ضدسرطان سولفورافان (Sulforaphane) است.
+                    {/* Comparison Grid */}
+                    <div className="space-y-4">
+                        {clinicalComparison.map((comp, ci) => (
+                            <div 
+                                key={ci}
+                                className="seed-card p-6 sm:p-8 grid md:grid-cols-12 gap-6 items-center"
+                            >
+                                <div className="md:col-span-4">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <span className="font-mono text-xs font-bold text-seed-sage dark:text-seed-lime">{comp.num}</span>
+                                        <h3 className="text-base sm:text-lg font-bold text-seed-forest dark:text-seed-snow">
+                                            {comp.title}
+                                        </h3>
+                                    </div>
+                                    <span className="font-mono text-xs text-seed-pewter dark:text-seed-snow/50 italic">
+                                        {comp.subtitle}
+                                    </span>
+                                </div>
+
+                                <div className="md:col-span-4 bg-seed-snow dark:bg-seed-forest/50 p-4 rounded-xl border border-seed-forest/10 dark:border-white/10">
+                                    <span className="text-[10px] font-mono font-bold uppercase text-seed-forest dark:text-seed-lime block mb-1">
+                                        [ رُستارا: گیاه زنده ]
+                                    </span>
+                                    <p className="text-xs text-seed-forest dark:text-seed-snow font-medium leading-relaxed">
+                                        {comp.rostara}
                                     </p>
                                 </div>
-                                <div className="flex items-start gap-3">
-                                    <ShieldCheck className="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" />
-                                    <p className="text-brown-800 dark:text-brown-200 text-xs sm:text-sm">
-                                        <strong>هضم سبک و جذب فوری:</strong> فاقد ترکیبات ضدتغذیه و پر از آنزیم‌های فعال برای بهبود هضم روزانه.
+
+                                <div className="md:col-span-4 bg-seed-stone/60 dark:bg-white/5 p-4 rounded-xl border border-seed-forest/5 dark:border-white/5">
+                                    <span className="text-[10px] font-mono font-bold uppercase text-seed-pewter dark:text-seed-snow/40 block mb-1">
+                                        [ مکمل‌های صنعتی و کپسول ]
+                                    </span>
+                                    <p className="text-xs text-seed-pewter dark:text-seed-snow/60 leading-relaxed">
+                                        {comp.synthetic}
                                     </p>
                                 </div>
                             </div>
-
-                            <Link
-                                to="/products"
-                                className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all"
-                            >
-                                <span>مشاهده کیت‌های کشت خانگی</span>
-                                <ArrowLeft className="w-4 h-4" />
-                            </Link>
-                        </div>
-
-                        <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-                            {microBenefits.map((b, i) => (
-                                <div
-                                    key={i}
-                                    className="p-7 bg-white dark:bg-surface-dark rounded-3xl border border-black/[0.05] dark:border-white/[0.07] shadow-whisper"
-                                >
-                                    <div className="text-3xl sm:text-4xl font-display font-extrabold text-primary-700 dark:text-primary-400 mb-2 font-mono">
-                                        {b.stat}
-                                    </div>
-                                    <h4 className="text-base font-bold text-brown-900 dark:text-cream mb-2">
-                                        {b.title}
-                                    </h4>
-                                    <p className="text-xs text-brown-600 dark:text-brown-300/80 leading-relaxed">
-                                        {b.desc}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* SUSTAINABLE CHARTER / EDITORIAL BANNER */}
-            <section className="py-24 bg-surface-light dark:bg-surface-dark border-t border-black/[0.04] dark:border-white/[0.06] transition-colors duration-500">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="text-[11px] font-extrabold tracking-widest uppercase text-primary-700 dark:text-primary-400 px-3.5 py-1.5 rounded-full bg-primary-50 dark:bg-primary-950/60 border border-primary-200/60 dark:border-primary-800/60">
-                        منشور زیست‌پایدار رُستارا
-                    </span>
-                    <h2 
-                        className="text-3xl sm:text-4xl font-display font-extrabold text-brown-900 dark:text-cream mt-4 mb-8 leading-snug"
-                        dangerouslySetInnerHTML={{ __html: t('philosophy.title') }}
-                    />
-                    <div className="space-y-6 text-sm sm:text-base text-brown-700 dark:text-brown-300/90 leading-relaxed max-w-3xl mx-auto font-normal">
-                        <p>{t('philosophy.p1')}</p>
-                        <p>{t('philosophy.p2')}</p>
+            {/* THE ROSTARA CHARTER (Seed-style Peer-Reviewed Manifesto) */}
+            <section className="py-24 border-b border-seed-forest/10 dark:border-white/10">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-right">
+                    
+                    <div className="border-b border-seed-forest/10 dark:border-white/10 pb-6 mb-8 flex items-center justify-between">
+                        <span className="label-mono">
+                            ROSTARA CHARTER • منشور زیست‌پایدار
+                        </span>
+                        <span className="font-mono text-xs text-seed-pewter dark:text-seed-snow/60">
+                            نسخهٔ رسمی ۱۴۰۵
+                        </span>
                     </div>
-                </div>
-            </section>
 
-            {/* EDITORIAL BOTTOM CTA */}
-            <section className="py-20 bg-primary-800 dark:bg-surface-dark text-white relative overflow-hidden border-t border-primary-700/40">
-                <div className="absolute top-0 right-0 w-80 h-80 bg-primary-600/20 rounded-full blur-3xl pointer-events-none" />
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-[11px] font-bold mb-6 backdrop-blur">
-                        <Award className="w-3.5 h-3.5 text-gold-500" />
-                        <span>تضمین اصالت و خلوص ۱۰۰٪ بذرها</span>
-                    </div>
-                    <h2 className="text-3xl sm:text-5xl font-display font-extrabold mb-6 leading-tight">
-                        آماده‌اید رویش سلامت را به خانه‌تان بیاورید؟
+                    <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-seed-forest dark:text-seed-snow mb-6 leading-snug">
+                        ما باور داریم که بدن انسان برای مصرف مواد نگه‌دارنده و مولکول‌های سنتتیک فرآوری‌شده طراحی نشده است.
                     </h2>
-                    <p className="text-sm sm:text-base text-primary-100/90 mb-10 max-w-2xl mx-auto leading-relaxed">
-                        با کیت‌های خانگی رُستارا، لذت چیدن و چشیدن سبزینه‌های زنده و سوپرفودهای طبیعی را در زندگی روزمره تجربه کنید.
+
+                    <div className="space-y-6 text-sm text-seed-pewter dark:text-seed-snow/80 leading-relaxed font-normal">
+                        <p>
+                            میکروگرین‌ها، محصولات تخمیری زنده و قارچ‌های دارویی، غذاهای زودگذر ترند اینترنت نیستند؛ آنها کهن‌ترین فناوری حیات برای بقا، خودترمیمی سلولی و پاکسازی بافت‌های زنده هستند. وقتی گیاه در سن ۷ تا ۱۰ روزگی مصرف می‌شود، قوی‌ترین پاسخ سازگاری زیستی را در متابولیسم ایجاد می‌کند.
+                        </p>
+                        <p>
+                            هدف رُستارا رساندن ابزار باغبانی علمی به آشپزخانه‌هاست تا وابستگی به زنجیره‌های غذایی متمرکز و انبارهای تجاری کاهش یابد و هر فرد بتواند تازه‌ترین سوپرفودهای طبیعی را با کمترین هزینه و در بالاترین خلوص زیستی برداشت کند.
+                        </p>
+                    </div>
+
+                    <div className="pt-8 mt-8 border-t border-seed-forest/10 dark:border-white/10 flex items-center justify-between text-xs text-seed-pewter dark:text-seed-snow/60 font-mono">
+                        <span>بنیان‌گذاری: رُستارا (محیط زیست‌پایدار)</span>
+                        <span>پلتفرم ثبت شده rostara.ir</span>
+                    </div>
+                </div>
+            </section>
+
+            {/* SEED STYLE FOOTER CTA (Deep Forest Section) */}
+            <section className="py-20 bg-seed-forest text-seed-snow relative overflow-hidden">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    
+                    <span className="inline-block px-3 py-1 rounded-full bg-seed-lime text-seed-forest font-mono text-xs font-bold mb-6">
+                        شروع پرورش در خانه
+                    </span>
+                    
+                    <h2 className="text-3xl sm:text-5xl font-display font-black mb-6 tracking-tight">
+                        اولین مزرعهٔ زیستی خود را در آپارتمان برپا کنید.
+                    </h2>
+                    
+                    <p className="text-sm sm:text-base text-seed-snow/80 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+                        کیت کامل کشت خانگی همراه با ۴ نوع بذر غیرتراریخته و پدهای سلولزی زیست‌تخریب‌پذیر؛ تحویل فوری با ضمانت جوانه‌زنی در سراسر کشور.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-3.5 justify-center">
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <Link
                             to="/products"
-                            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary-500 hover:bg-primary-600 text-white rounded-full font-bold text-sm shadow-lift transition-all"
+                            className="px-9 py-4 rounded-pill bg-seed-lime hover:bg-seed-limeHover text-seed-forest font-bold text-sm tracking-normal transition-all shadow-md active:scale-[0.98] flex items-center gap-2"
                         >
-                            <span>سفارش محصولات و کیت‌ها</span>
+                            <span>سفارش کیت کشت خانگی</span>
                             <ArrowLeft className="w-4 h-4" />
                         </Link>
+                        
                         <Link
-                            to="/about"
-                            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white rounded-full font-bold text-sm transition-all border border-white/15"
+                            to="/method"
+                            className="px-9 py-4 rounded-pill bg-transparent hover:bg-white/10 text-seed-snow font-bold text-sm border border-white/20 transition-all active:scale-[0.98]"
                         >
-                            داستان رُستارا
+                            مشاهده روش کشت ۷ روزه
                         </Link>
                     </div>
                 </div>

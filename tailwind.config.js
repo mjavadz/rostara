@@ -8,65 +8,81 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Seed.com Iconic Clinical Botanical & Living Organism Palette
+        seed: {
+          forest: '#1c3a13',      // Forest Depths: Primary brand ink & dark sections
+          forestDeep: '#10220b',  // Ultra deep forest
+          forestDark: '#0a1608',  // Midnight botanical canvas
+          lime: '#d3fa99',        // Lime Pulse: Signature scientific punctuation & active badge
+          limeHover: '#c4f084',
+          sage: '#757c5d',        // Sage Moss: Secondary botanical
+          olive: '#9f995b',       // Olive Gold
+          eucalyptus: '#698e79',   // Cool botanical blue-green
+          snow: '#fcfcf7',        // Snow White: Warm organic off-white canvas
+          stone: '#eeeee9',       // Warm Stone: Secondary surface & separators
+          pewter: '#666666',      // Clinical secondary text
+          charcoal: '#141414',
+          glassDark: '#132412',   // Specimen glass surface in dark mode
+        },
         primary: {
-          50: '#f0f9f5',
-          100: '#d8eee5',
-          200: '#b2ddd0',
-          300: '#80c4b3',
-          400: '#4da693',
-          500: '#00875a',
-          600: '#00754a', // Luminous botanical accent
-          700: '#006241', // Historic heritage green
-          800: '#1e3932', // Deep house pine
-          900: '#142722',
-          950: '#0a1613',
+          50: '#f4f9f2',
+          100: '#e5f2e1',
+          200: '#d3fa99', // Seed Lime
+          300: '#b0e86b',
+          400: '#757c5d',
+          500: '#2b581d',
+          600: '#1c3a13', // Seed Forest Depths
+          700: '#152d0e',
+          800: '#10220b',
+          900: '#0b1807',
+          950: '#070f05',
         },
         surface: {
           light: '#ffffff',
-          'light-subtle': '#f6f5f1',
-          dark: '#101714',
-          'dark-elevated': '#16201b',
+          'light-subtle': '#f6f6f1',
+          dark: '#111e10',
+          'dark-elevated': '#162815',
         },
         canvas: {
-          light: '#faf9f5', // Warm artisanal bone
-          dark: '#080d0b',  // Botanical obsidian
+          light: '#fcfcf7', // Seed Snow White
+          dark: '#0a1409',  // Seed Forest Dark
         },
         brown: {
-          50: '#faf9f6',
-          100: '#f3f1ec',
-          200: '#e5e2d9',
-          300: '#cfc9bd',
-          400: '#9b9487',
-          500: '#6f685c',
-          600: '#524c42',
-          700: '#38342d',
-          750: '#26231e',
-          800: '#1c2420',
-          850: '#141a17',
-          900: '#101613',
-          950: '#080d0b',
+          50: '#fcfcf7',
+          100: '#f5f5f0',
+          200: '#e8e8e2',
+          300: '#d1d1ca',
+          400: '#8e8e86',
+          500: '#666666',
+          600: '#4a4a45',
+          700: '#333330',
+          800: '#1a2419',
+          850: '#131d12',
+          900: '#0e170d',
+          950: '#0a1409',
         },
-        cream: '#faf9f5',
+        cream: '#fcfcf7',
+        ceramic: '#eeeee9',
         gold: {
           400: '#e0c89d',
-          500: '#cba258', // Editorial Reserve Gold
+          500: '#cba258',
           600: '#b68940',
         },
       },
       fontFamily: {
-        sans: ['Vazirmatn', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Vazirmatn', 'Inter', 'system-ui', 'sans-serif'],
         display: ['Vazirmatn', 'sans-serif'],
-      },
-      boxShadow: {
-        'whisper': '0 2px 8px -1px rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02)',
-        'lift': '0 12px 32px -4px rgba(0, 98, 65, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04)',
-        'glow-emerald': '0 0 24px -2px rgba(0, 117, 74, 0.28)',
+        mono: ['SF Mono', 'Menlo', 'Consolas', 'monospace'],
       },
       borderRadius: {
         'pill': '9999px',
-        '2.5xl': '20px',
-        '3xl': '24px',
-        '4xl': '32px',
+        'seed': '16px',
+        'seed-lg': '22px',
+      },
+      boxShadow: {
+        'seed-soft': '0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04)',
+        'seed-card': '0 8px 30px rgba(28, 58, 19, 0.04)',
+        'seed-glow': '0 0 20px rgba(211, 250, 153, 0.35)',
       }
     },
   },

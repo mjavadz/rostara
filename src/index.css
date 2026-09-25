@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-cream text-brown-900 font-sans antialiased dark:bg-canvas-dark dark:text-cream selection:bg-primary-200 selection:text-primary-900;
+    @apply bg-seed-snow text-seed-charcoal font-sans antialiased dark:bg-seed-forestDark dark:text-seed-snow selection:bg-seed-lime selection:text-seed-forest;
   }
 
   .dark body {
@@ -12,7 +12,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight text-brown-900 dark:text-cream;
+    @apply font-display tracking-tight text-seed-forest dark:text-seed-snow;
   }
 
   /* Smooth scrolling */
@@ -22,22 +22,36 @@
 }
 
 @layer utilities {
-  /* Hairline borders */
-  .border-hairline {
-    @apply border border-black/[0.06] dark:border-white/[0.08];
+  /* Seed Clinical Hairline Rule Lines */
+  .border-seed {
+    @apply border border-seed-forest/10 dark:border-white/10;
   }
   
-  .border-hairline-subtle {
-    @apply border border-black/[0.03] dark:border-white/[0.05];
+  .border-seed-subtle {
+    @apply border border-seed-forest/[0.05] dark:border-white/[0.06];
   }
 
-  /* High-end glassmorphism */
-  .glass-card {
-    @apply bg-white/80 dark:bg-surface-dark/85 backdrop-blur-xl border border-black/[0.06] dark:border-white/[0.08];
+  /* Seed Specimen Card: Weightless, no drop-shadow, 16px radius */
+  .seed-card {
+    @apply bg-white dark:bg-seed-glassDark rounded-seed border border-seed-forest/[0.07] dark:border-white/[0.08] transition-all duration-300;
   }
 
-  /* Quiet luxury pill transitions */
-  .btn-pill {
-    @apply rounded-full px-7 py-3.5 font-bold transition-all duration-300 active:scale-[0.98];
+  /* Seed Lime Pulse Active Tag */
+  .badge-lime {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-seed-lime text-seed-forest font-mono text-xs font-bold tracking-tight shadow-sm;
+  }
+
+  /* Seed Forest Pill Button */
+  .btn-seed {
+    @apply rounded-pill px-8 py-3.5 bg-seed-forest hover:bg-seed-forestDeep text-seed-snow font-bold text-sm tracking-normal transition-all duration-200 active:scale-[0.98] shadow-sm;
+  }
+
+  .btn-seed-outline {
+    @apply rounded-pill px-8 py-3.5 bg-transparent hover:bg-seed-forest/5 dark:hover:bg-white/5 border border-seed-forest/20 dark:border-white/20 text-seed-forest dark:text-seed-snow font-bold text-sm transition-all duration-200 active:scale-[0.98];
+  }
+
+  /* Scientific Monospace Label */
+  .label-mono {
+    @apply font-mono text-[11px] tracking-wider uppercase text-seed-pewter dark:text-seed-snow/60;
   }
 }
