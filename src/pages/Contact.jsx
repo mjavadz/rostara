@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, Send, CheckCircle, Sprout } from 'lucide-react';
 import { db } from '../services/db';
+import { ShineButton } from '@/components/animations/shine-button';
 
 const Contact = () => {
     const { t } = useTranslation();
@@ -194,12 +195,10 @@ const Contact = () => {
                                             ></textarea>
                                         </div>
 
-                                        <button
+                                        <ShineButton
                                             type="submit"
                                             disabled={formStatus === 'sending'}
-                                            className={`w-full py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-bold shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 ${
-                                                formStatus === 'sending' ? 'opacity-75 cursor-wait' : ''
-                                            }`}
+                                            className="w-full py-4 bg-seed-forest hover:bg-seed-forestDeep text-seed-snow rounded-full font-bold shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
                                         >
                                             {formStatus === 'sending' ? (
                                                 <span>در حال ارسال پیام...</span>
@@ -209,7 +208,7 @@ const Contact = () => {
                                                     <Send className="w-4 h-4" />
                                                 </>
                                             )}
-                                        </button>
+                                        </ShineButton>
                                     </form>
                                 </>
                             )}

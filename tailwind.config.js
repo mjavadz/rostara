@@ -108,8 +108,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Vazirmatn', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['Vazirmatn', 'sans-serif'],
+        sans: ['Vazirmatn RD', 'Vazirmatn', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['Vazirmatn RD', 'Vazirmatn', 'sans-serif'],
         mono: ['SF Mono', 'Menlo', 'Consolas', 'monospace'],
       },
       borderRadius: {

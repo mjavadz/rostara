@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { ShoppingCart, Trash2, Plus, Minus, ArrowRight, Package } from 'lucide-react';
+import { Price } from '@/components/ui/price';
+import { EmptyState } from '@/components/ui/empty-state';
 
 const Cart = () => {
     const { t, i18n } = useTranslation();
@@ -98,9 +100,7 @@ const Cart = () => {
 
                                             {/* Price */}
                                             <div className="text-left">
-                                                <p className="text-2xl font-bold text-primary-700 dark:text-primary-400">
-                                                    {formatPrice(item.price * item.quantity)}
-                                                </p>
+                                                <Price amount={item.price * item.quantity} size="md" className="text-seed-forest dark:text-seed-lime font-black" />
                                             </div>
 
                                             {/* Remove Button */}
@@ -137,14 +137,14 @@ const Cart = () => {
                                     <span>{t('cart.summary.items')}</span>
                                     <span>{cartItems.length}</span>
                                 </div>
-                                <div className="flex justify-between text-brown-700 dark:text-brown-300">
+                                <div className="flex justify-between items-center text-seed-pewter dark:text-seed-snow/70">
                                     <span>{t('cart.summary.subtotal')}</span>
-                                    <span>{formatPrice(getCartTotal())}</span>
+                                    <Price amount={getCartTotal()} size="sm" />
                                 </div>
-                                <div className="border-t border-brown-100 dark:border-brown-800 pt-4">
-                                    <div className="flex justify-between text-xl font-bold text-brown-900 dark:text-cream">
+                                <div className="border-t border-seed-forest/10 dark:border-white/10 pt-4">
+                                    <div className="flex justify-between items-center text-xl font-bold text-seed-forest dark:text-seed-snow">
                                         <span>{t('cart.summary.total')}</span>
-                                        <span className="text-primary-700 dark:text-primary-400">{formatPrice(getCartTotal())}</span>
+                                        <Price amount={getCartTotal()} size="md" className="text-seed-forest dark:text-seed-lime" />
                                     </div>
                                 </div>
                             </div>

@@ -4,6 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import { db } from '../services/db';
+import { Price } from '@/components/ui/price';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { ShineButton } from '@/components/animations/shine-button';
 import { Package, MapPin, Phone, Mail, CreditCard, CheckCircle, Copy, Check, Search } from 'lucide-react';
 
 const Checkout = () => {
@@ -351,22 +356,22 @@ const Checkout = () => {
                                 )}
                             </div>
 
-                            <div className="border-t border-brown-100 dark:border-brown-800 pt-4">
-                                <div className="flex justify-between text-sm text-brown-600 dark:text-brown-300 mb-2">
+                            <div className="border-t border-seed-forest/10 dark:border-white/10 pt-4">
+                                <div className="flex justify-between items-center text-sm text-seed-pewter dark:text-seed-snow/70 mb-2">
                                     <span>جمع کل</span>
-                                    <span>{formatPrice(getCartTotal())}</span>
+                                    <Price amount={getCartTotal()} size="sm" />
                                 </div>
                                 {discount > 0 && (
-                                    <div className="flex justify-between text-sm text-green-600 dark:text-green-400 mb-2">
-                                        <span>تخفیف</span>
-                                        <span>- {formatPrice(discount)}</span>
+                                    <div className="flex justify-between items-center text-sm text-emerald-600 dark:text-emerald-400 mb-2">
+                                        <span>تخفیف اعمال‌شده</span>
+                                        <span>- <Price amount={discount} size="sm" /></span>
                                     </div>
                                 )}
-                                <div className="flex justify-between text-xl font-bold text-brown-900 dark:text-cream mb-2">
+                                <div className="flex justify-between items-center text-lg font-bold text-seed-forest dark:text-seed-snow mb-2">
                                     <span>{t('checkout.total')}</span>
-                                    <span className="text-primary-700 dark:text-primary-400">{formatPrice(finalTotal)}</span>
+                                    <Price amount={finalTotal} size="md" className="text-seed-forest dark:text-seed-lime" />
                                 </div>
-                                <p className="text-brown-500 dark:text-brown-400 text-xs text-right">
+                                <p className="text-seed-pewter dark:text-seed-snow/60 text-xs text-right">
                                     {t('checkout.paymentOnDelivery')}
                                 </p>
                             </div>

@@ -24,6 +24,9 @@ import {
 } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { db } from '../services/db';
+import { Price } from '@/components/ui/price';
+import { Badge } from '@/components/ui/badge';
+import { fa } from '@/lib/utils';
 
 const Products = () => {
     const { t, i18n } = useTranslation();
@@ -212,12 +215,12 @@ const Products = () => {
                                         }`}
                                     >
                                         <span>{cat.label}</span>
-                                        <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
+                                        <span className={`text-[10px] px-2 py-0.5 rounded-full ${
                                             isSelected 
                                                 ? 'bg-white/20 text-white dark:bg-seed-forest/20 dark:text-seed-forest' 
                                                 : 'bg-seed-stone dark:bg-white/10 text-seed-pewter dark:text-seed-snow/60'
                                         }`}>
-                                            {count}
+                                            {fa(count)}
                                         </span>
                                     </button>
                                 );
@@ -258,7 +261,7 @@ const Products = () => {
                                             {/* Specimen Header */}
                                             <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-seed-forest/10 dark:border-white/10">
                                                 <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 uppercase tracking-wider">
-                                                    [{product.id.substring(0, 10)}]
+                                                    [{product.id.replace(/^_/, '').substring(0, 10).toUpperCase()}]
                                                 </span>
                                                 <span className="badge-lime text-[10px]">
                                                     {categories.find(c => c.id === product.category)?.label}
@@ -303,10 +306,8 @@ const Products = () => {
                                         <div>
                                             {/* Price & Unit Specs */}
                                             <div className="flex items-center justify-between py-3 border-t border-seed-forest/10 dark:border-white/10 mb-4 text-xs">
-                                                <span className="font-mono text-seed-pewter dark:text-seed-snow/60">{product.weight}</span>
-                                                <span className="font-mono font-black text-seed-forest dark:text-seed-snow text-base">
-                                                    {formatPrice(product.price)}
-                                                </span>
+                                                <span className="text-seed-pewter dark:text-seed-snow/70 font-medium">{product.weight}</span>
+                                                <Price amount={product.price} size="sm" />
                                             </div>
 
                                             {/* Action Grid */}
@@ -382,11 +383,9 @@ const Products = () => {
                                 </p>
                             )}
 
-                            <div className="flex justify-between items-center text-sm font-mono pt-2">
-                                <span className="text-seed-pewter">{selectedProduct.weight}</span>
-                                <span className="text-xl font-black text-seed-forest dark:text-seed-lime">
-                                    {formatPrice(selectedProduct.price)}
-                                </span>
+                            <div className="flex justify-between items-center text-sm pt-2">
+                                <span className="text-seed-pewter dark:text-seed-snow/70 font-medium">{selectedProduct.weight}</span>
+                                <Price amount={selectedProduct.price} size="md" className="text-seed-forest dark:text-seed-lime" />
                             </div>
                         </div>
 
