@@ -147,22 +147,22 @@ const Home = () => {
                     </div>
 
                     {/* Architectural Editorial Headline */}
-                    <div className="grid lg:grid-cols-12 gap-8 items-end mb-12">
+                    <div className="grid lg:grid-cols-12 gap-8 items-start mb-14 md:mb-16">
                         <div className="lg:col-span-8">
-                            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-normal leading-[1.38] text-seed-forest dark:text-seed-snow">
-                                هوشِ بیولوژیک گیاه، <br />
-                                <span className="font-normal text-seed-sage dark:text-seed-lime">
+                            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-normal leading-[1.4] text-seed-forest dark:text-seed-snow">
+                                <span>هوشِ بیولوژیک گیاه،</span>
+                                <span className="block mt-3 sm:mt-4 pb-2 font-normal text-seed-sage dark:text-seed-lime">
                                     تغذیهٔ زنده برای سلول.
                                 </span>
                             </h1>
                         </div>
-                        <div className="lg:col-span-4 text-seed-pewter dark:text-seed-snow/70 text-sm sm:text-base leading-relaxed pb-2 font-normal">
+                        <div className="lg:col-span-4 text-seed-pewter dark:text-seed-snow/75 text-sm sm:text-base leading-relaxed pt-2 font-normal">
                             رُستارا حلقهٔ مفقوده میان سلامتی انسان و خاک است؛ توسعهٔ کشت خانگی میکروگرین‌ها و فرآورده‌های پروبیوتیک زنده بدون فرآیندهای شیمیایی و نگهدارنده‌های صنعتی.
                         </div>
                     </div>
 
                     {/* Action Bar & Key Metrics */}
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-6 border-t border-seed-forest/10 dark:border-white/10">
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-8 border-t border-seed-forest/10 dark:border-white/10">
                         <Link to="/products">
                             <ShineButton className="btn-seed flex items-center justify-center gap-2">
                                 <span>مشاهده کاتالوگ زیستی</span>
