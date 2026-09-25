@@ -37,7 +37,7 @@ const Navbar = () => {
                                 <img src="/logo.svg" alt="Rostara Logo" className="w-full h-full object-contain" />
                             </div>
                             <div className="flex items-baseline gap-1.5">
-                                <span className="text-2xl font-display font-black tracking-tight text-seed-forest dark:text-seed-snow">
+                                <span className="text-2xl font-display font-black tracking-normal text-seed-forest dark:text-seed-snow">
                                     رُستارا
                                 </span>
                                 <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
@@ -168,6 +168,26 @@ const Navbar = () => {
                             {item.label}
                         </Link>
                     ))}
+
+                    <div className="pt-2">
+                        {currentUser ? (
+                            <Link
+                                to="/wallet"
+                                onClick={() => setIsOpen(false)}
+                                className="block w-full py-2.5 px-4 rounded-full bg-seed-forest text-seed-snow text-xs font-bold text-center"
+                            >
+                                حساب کاربری ({currentUser.user_metadata?.display_name || currentUser.email})
+                            </Link>
+                        ) : (
+                            <Link
+                                to="/login"
+                                onClick={() => setIsOpen(false)}
+                                className="block w-full py-2.5 px-4 rounded-full bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest text-xs font-bold text-center"
+                            >
+                                ورود / عضویت در رُستارا
+                            </Link>
+                        )}
+                    </div>
 
                     <div className="pt-4 border-t border-seed-forest/10 dark:border-white/10 flex items-center justify-between">
                         <button

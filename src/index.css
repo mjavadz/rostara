@@ -59,7 +59,7 @@
   }
 
   body {
-    @apply bg-seed-snow text-seed-charcoal font-sans antialiased dark:bg-seed-forestDark dark:text-seed-snow selection:bg-seed-lime selection:text-seed-forest;
+    @apply bg-seed-snow text-seed-charcoal font-sans antialiased dark:bg-seed-forestDark dark:text-seed-snow selection:bg-seed-lime selection:text-seed-forest leading-relaxed;
   }
 
   .dark body {
@@ -67,7 +67,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight text-seed-forest dark:text-seed-snow;
+    @apply font-display tracking-normal text-seed-forest dark:text-seed-snow leading-snug;
   }
 
   /* Smooth scrolling */
@@ -93,7 +93,7 @@
 
   /* Seed Lime Pulse Active Tag */
   .badge-lime {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-seed-lime text-seed-forest font-mono text-xs font-bold tracking-tight shadow-sm;
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-seed-lime text-seed-forest text-xs font-bold shadow-sm tracking-normal;
   }
 
   /* Seed Forest Pill Button */
@@ -108,6 +108,11 @@
   /* Scientific Monospace Label */
   .label-mono {
     @apply font-mono text-[11px] tracking-wider uppercase text-seed-pewter dark:text-seed-snow/60;
+  }
+
+  /* Persian Eyebrow Label */
+  .label-persian {
+    @apply text-xs font-bold text-seed-forest dark:text-seed-snow tracking-normal;
   }
 }
 

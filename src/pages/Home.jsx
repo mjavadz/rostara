@@ -141,7 +141,7 @@ const Home = () => {
                             <span className="w-1.5 h-1.5 rounded-full bg-seed-forest animate-pulse" />
                             BIO-NUTRITION
                         </span>
-                        <TextShimmer className="label-mono font-bold">
+                        <TextShimmer className="label-persian">
                             پلتفرم زیست‌پایدار کشاورزی شهری و غذای زنده • رُستارا
                         </TextShimmer>
                     </div>
@@ -149,7 +149,7 @@ const Home = () => {
                     {/* Architectural Editorial Headline */}
                     <div className="grid lg:grid-cols-12 gap-8 items-end mb-12">
                         <div className="lg:col-span-8">
-                            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black tracking-tight leading-[1.12] text-seed-forest dark:text-seed-snow">
+                            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black tracking-normal leading-[1.22] text-seed-forest dark:text-seed-snow">
                                 هوشِ بیولوژیک گیاه، <br />
                                 <span className="font-light italic text-seed-sage dark:text-seed-lime">
                                     تغذیهٔ زنده برای سلول.
@@ -178,10 +178,10 @@ const Home = () => {
                             <ArrowUpRight className="w-4 h-4" />
                         </Link>
 
-                        <div className="hidden md:flex items-center gap-6 mr-auto text-xs text-seed-pewter dark:text-seed-snow/60 font-mono">
+                        <div className="hidden md:flex items-center gap-6 mr-auto text-xs text-seed-pewter dark:text-seed-snow/70 font-normal">
                             <span className="flex items-center gap-1.5">
                                 <Check className="w-3.5 h-3.5 text-seed-forest dark:text-seed-lime" />
-                                بذرها ۱۰۰٪ غیرتراریخته
+                                بذرهای ۱۰۰٪ غیرتراریخته
                             </span>
                             <span className="flex items-center gap-1.5">
                                 <Check className="w-3.5 h-3.5 text-seed-forest dark:text-seed-lime" />
@@ -419,11 +419,11 @@ const Home = () => {
             <section className="py-20 bg-seed-forest text-seed-snow relative overflow-hidden">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     
-                    <span className="inline-block px-3 py-1 rounded-full bg-seed-lime text-seed-forest font-mono text-xs font-bold mb-6">
+                    <span className="inline-block px-3 py-1 rounded-full bg-seed-lime text-seed-forest text-xs font-bold mb-6">
                         شروع پرورش در خانه
                     </span>
                     
-                    <h2 className="text-3xl sm:text-5xl font-display font-black mb-6 tracking-tight">
+                    <h2 className="text-3xl sm:text-5xl font-display font-black mb-6 tracking-normal leading-snug">
                         اولین مزرعهٔ زیستی خود را در آپارتمان برپا کنید.
                     </h2>
                     

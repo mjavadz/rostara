@@ -59,12 +59,12 @@ const Contact = () => {
                 <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seed-stone/80 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 mb-6">
                         <span className="w-1.5 h-1.5 rounded-full bg-seed-lime animate-pulse" />
-                        <TextShimmer className="text-xs font-mono tracking-wider text-seed-forest dark:text-seed-snow">
+                        <TextShimmer className="text-xs font-bold text-seed-forest dark:text-seed-snow tracking-normal">
                             ارتباط مستقیم و پشتیبانی علمی • رُستارا
                         </TextShimmer>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-seed-forest dark:text-seed-snow tracking-tight mb-4">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-seed-forest dark:text-seed-snow tracking-normal mb-4">
                         ارتباط با کارشناسان رُستارا
                     </h1>
                     <p className="text-base sm:text-lg text-seed-pewter dark:text-seed-snow/75 leading-relaxed max-w-2xl mx-auto">

@@ -16,7 +16,7 @@ const Footer = () => {
                             <div className="w-8 h-8 flex items-center justify-center">
                                 <img src="/logo.svg" alt="Rostara Logo" className="w-full h-full object-contain" />
                             </div>
-                            <span className="text-2xl font-display font-black text-seed-snow tracking-tight">
+                            <span className="text-2xl font-display font-black text-seed-snow tracking-normal">
                                 رُستارا
                             </span>
                             <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
@@ -26,7 +26,7 @@ const Footer = () => {
                             پلتفرم جامع سبک زندگی سالم، باغبانی علمی شهری و سوپرفودهای فعال زیستی. بازتولید رابطه انسان مدرن با زیست‌شناسی پاک خاک و گیاه.
                         </p>
                         
-                        <div className="flex flex-wrap items-center gap-4 text-xs text-seed-snow/60 pt-2 font-mono">
+                        <div className="flex flex-wrap items-center gap-4 text-xs text-seed-snow/70 pt-2 font-normal">
                             <span className="flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
                                 بذرهای ۱۰۰٪ دیم غیرتراریخته

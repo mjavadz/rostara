@@ -232,7 +232,7 @@ const Products = () => {
                     {loading ? (
                         <div className="py-20 text-center">
                             <div className="w-8 h-8 border-2 border-seed-forest dark:border-seed-lime border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-                            <p className="text-xs text-seed-pewter font-mono">در حال فراخوانی کاتالوگ زیستی رُستارا...</p>
+                            <p className="text-xs text-seed-pewter">در حال فراخوانی کاتالوگ زیستی رُستارا...</p>
                         </div>
                     ) : filteredProducts.length === 0 ? (
                         <div className="py-16 text-center seed-card p-8 max-w-md mx-auto">
@@ -435,7 +435,7 @@ const Products = () => {
                                 >
                                     <Minus className="w-3.5 h-3.5" />
                                 </button>
-                                <span className="w-6 text-center font-mono font-bold text-xs">{modalQuantity}</span>
+                                <span className="w-6 text-center font-bold text-xs">{fa(modalQuantity)}</span>
                                 <button
                                     onClick={() => setModalQuantity(modalQuantity + 1)}
                                     className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-white dark:hover:bg-white/20 transition-colors"
@@ -452,7 +452,7 @@ const Products = () => {
                                 className="btn-seed flex-1 py-3 text-xs flex items-center justify-center gap-2"
                             >
                                 <ShoppingCart className="w-4 h-4" />
-                                <span>افزودن ({formatPrice(selectedProduct.price * modalQuantity)})</span>
+                                <span>افزودن به سبد • {formatPrice(selectedProduct.price * modalQuantity)}</span>
                             </button>
                         </div>
                     </div>
