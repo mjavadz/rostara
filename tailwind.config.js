@@ -9,51 +9,64 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#f2f9f5',
-          100: '#d4e9e2', // Mint wash (Starbucks / Botanical craft)
-          200: '#a7d9c6',
-          300: '#71c2a3',
-          400: '#3ba77e',
+          50: '#f0f9f5',
+          100: '#d8eee5',
+          200: '#b2ddd0',
+          300: '#80c4b3',
+          400: '#4da693',
           500: '#00875a',
-          600: '#00754A', // Green Accent (Luminous CTA)
-          700: '#006241', // Historic Brand Green
-          800: '#1E3932', // House Deep Green
-          900: '#132621',
+          600: '#00754a', // Luminous botanical accent
+          700: '#006241', // Historic heritage green
+          800: '#1e3932', // Deep house pine
+          900: '#142722',
           950: '#0a1613',
         },
+        surface: {
+          light: '#ffffff',
+          'light-subtle': '#f6f5f1',
+          dark: '#101714',
+          'dark-elevated': '#16201b',
+        },
+        canvas: {
+          light: '#faf9f5', // Warm artisanal bone
+          dark: '#080d0b',  // Botanical obsidian
+        },
         brown: {
-          50: '#fcfbf9',
-          100: '#f4f2ee',
-          200: '#e8e5de',
-          300: '#d2cdc3',
+          50: '#faf9f6',
+          100: '#f3f1ec',
+          200: '#e5e2d9',
+          300: '#cfc9bd',
           400: '#9b9487',
           500: '#6f685c',
           600: '#524c42',
           700: '#38342d',
-          750: '#2a2824',
-          800: '#202421',
-          850: '#171b18',
-          900: '#111513',
-          950: '#0a0e0c',
+          750: '#26231e',
+          800: '#1c2420',
+          850: '#141a17',
+          900: '#101613',
+          950: '#080d0b',
         },
-        cream: '#f8f7f4', // Warm canvas cream
-        ceramic: '#edebe9',
+        cream: '#faf9f5',
         gold: {
-          400: '#dfc49d',
-          500: '#cba258',
-          600: '#b88c42',
+          400: '#e0c89d',
+          500: '#cba258', // Editorial Reserve Gold
+          600: '#b68940',
         },
       },
       fontFamily: {
-        sans: ['Vazirmatn', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Vazirmatn', 'system-ui', '-apple-system', 'sans-serif'],
         display: ['Vazirmatn', 'sans-serif'],
       },
-      borderRadius: {
-        'pill': '50px',
-      },
       boxShadow: {
-        'card-soft': '0 4px 20px -2px rgba(0, 98, 65, 0.05)',
-        'float-cta': '0 8px 24px -4px rgba(0, 117, 74, 0.25)',
+        'whisper': '0 2px 8px -1px rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02)',
+        'lift': '0 12px 32px -4px rgba(0, 98, 65, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04)',
+        'glow-emerald': '0 0 24px -2px rgba(0, 117, 74, 0.28)',
+      },
+      borderRadius: {
+        'pill': '9999px',
+        '2.5xl': '20px',
+        '3xl': '24px',
+        '4xl': '32px',
       }
     },
   },

@@ -4,33 +4,40 @@
 
 @layer base {
   body {
-    @apply bg-cream text-brown-900 font-sans antialiased dark:bg-brown-950 dark:text-cream transition-colors duration-300;
+    @apply bg-cream text-brown-900 font-sans antialiased dark:bg-canvas-dark dark:text-cream selection:bg-primary-200 selection:text-primary-900;
   }
 
   .dark body {
     color-scheme: dark;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-display font-semibold;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-brown-900 dark:text-cream;
   }
 
-  * {
-    @apply transition-colors duration-200;
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 @layer utilities {
-  .glass {
-    @apply bg-white/80 backdrop-blur-md dark:bg-brown-900/80 dark:border-brown-700;
+  /* Hairline borders */
+  .border-hairline {
+    @apply border border-black/[0.06] dark:border-white/[0.08];
+  }
+  
+  .border-hairline-subtle {
+    @apply border border-black/[0.03] dark:border-white/[0.05];
   }
 
-  .text-gradient {
-    @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
+  /* High-end glassmorphism */
+  .glass-card {
+    @apply bg-white/80 dark:bg-surface-dark/85 backdrop-blur-xl border border-black/[0.06] dark:border-white/[0.08];
+  }
+
+  /* Quiet luxury pill transitions */
+  .btn-pill {
+    @apply rounded-full px-7 py-3.5 font-bold transition-all duration-300 active:scale-[0.98];
   }
 }

@@ -27,12 +27,12 @@ const Navbar = () => {
     const isActive = (path) => location.pathname === path;
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-brown-950/80 backdrop-blur-md border-b border-brown-200/40 dark:border-brown-800/40 transition-colors duration-300">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-canvas-dark/85 backdrop-blur-xl border-b border-black/[0.05] dark:border-white/[0.08] transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo & Brand */}
-                    <Link to="/" className="flex items-center gap-3 group">
-                        <div className="w-10 h-10 flex items-center justify-center transition-transform group-hover:scale-110">
+                    <Link to="/" className="flex items-center gap-2.5 group">
+                        <div className="w-9 h-9 flex items-center justify-center transition-transform group-hover:scale-105">
                             <img src="/logo.svg" alt="Rostara Logo" className="w-full h-full object-contain" />
                         </div>
                         <span className="text-2xl font-display font-extrabold text-brown-900 dark:text-cream tracking-tight group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">
@@ -41,14 +41,14 @@ const Navbar = () => {
                     </Link>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center gap-8 lg:gap-10">
+                    <div className="hidden md:flex items-center gap-1.5 p-1 bg-black/[0.02] dark:bg-white/[0.03] rounded-full border border-black/[0.04] dark:border-white/[0.06]">
                         {navItems.map((item) => (
                             <Link
                                 key={item.path}
                                 to={item.path}
-                                className={`text-sm font-semibold transition-all ${isActive(item.path)
-                                    ? 'text-primary-700 dark:text-primary-400 border-b-2 border-primary-600 pb-1'
-                                    : 'text-brown-800 dark:text-cream/85 hover:text-primary-700 dark:hover:text-primary-300'
+                                className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 ${isActive(item.path)
+                                    ? 'bg-white dark:bg-surface-dark text-primary-700 dark:text-primary-300 shadow-sm border border-black/[0.04] dark:border-white/[0.08]'
+                                    : 'text-brown-700 dark:text-brown-300 hover:text-primary-600 dark:hover:text-cream hover:bg-black/[0.02] dark:hover:bg-white/[0.02]'
                                     }`}
                             >
                                 {item.label}
@@ -57,15 +57,15 @@ const Navbar = () => {
                     </div>
 
                     {/* Right Side Icons */}
-                    <div className="hidden md:flex items-center gap-3">
+                    <div className="hidden md:flex items-center gap-2.5">
                         {/* Cart Icon */}
                         <Link
                             to="/cart"
-                            className="relative p-2 rounded-lg hover:bg-brown-100 dark:hover:bg-brown-800 text-brown-700 dark:text-brown-200 transition-colors"
+                            className="relative p-2.5 rounded-full hover:bg-black/[0.04] dark:hover:bg-white/[0.06] text-brown-700 dark:text-brown-200 transition-colors border border-transparent hover:border-black/[0.05] dark:hover:border-white/[0.08]"
                         >
-                            <ShoppingCart className="w-6 h-6" />
+                            <ShoppingCart className="w-5 h-5" />
                             {getCartCount() > 0 && (
-                                <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                                <span className="absolute -top-0.5 -right-0.5 bg-primary-600 text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-sm">
                                     {getCartCount()}
                                 </span>
                             )}
@@ -74,34 +74,34 @@ const Navbar = () => {
                         {/* User Menu */}
                         {currentUser ? (
                             <div className="flex items-center gap-2">
-                                <Link to="/wallet" className="text-sm text-brown-700 dark:text-brown-200 hover:text-primary-600 dark:hover:text-primary-400 font-medium transition-colors">
+                                <Link to="/wallet" className="text-xs font-bold text-brown-800 dark:text-brown-200 hover:text-primary-600 dark:hover:text-primary-400 px-3 py-1.5 rounded-full bg-primary-50 dark:bg-primary-950/40 border border-primary-200/60 dark:border-primary-800/60 transition-colors">
                                     {currentUser.user_metadata?.display_name || currentUser.email}
                                 </Link>
                                 <button
                                     onClick={logout}
-                                    className="p-2 rounded-lg hover:bg-brown-100 dark:hover:bg-brown-800 text-brown-700 dark:text-brown-200 transition-colors"
+                                    className="p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-950/40 text-brown-500 hover:text-red-600 transition-colors"
                                     title={t('auth.logout')}
                                 >
-                                    <LogOut className="w-5 h-5" />
+                                    <LogOut className="w-4 h-4" />
                                 </button>
                             </div>
                         ) : (
                             <Link
                                 to="/login"
-                                className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-brown-100 dark:hover:bg-brown-800 text-brown-700 dark:text-brown-200 transition-colors"
+                                className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-black/[0.03] dark:bg-white/[0.05] hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 text-brown-800 dark:text-brown-200 text-xs font-bold border border-black/[0.05] dark:border-white/[0.08] transition-all"
                             >
-                                <User className="w-5 h-5" />
-                                <span className="text-sm font-medium">{t('auth.login.title')}</span>
+                                <User className="w-3.5 h-3.5" />
+                                <span>{t('auth.login.title')}</span>
                             </Link>
                         )}
 
                         {/* Theme Toggle Button */}
                         <button
                             onClick={toggleTheme}
-                            className="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-brown-100 dark:hover:bg-brown-800 text-brown-700 dark:text-brown-200 transition-colors"
+                            className="flex items-center justify-center w-9 h-9 rounded-full bg-black/[0.02] dark:bg-white/[0.04] hover:bg-black/[0.06] dark:hover:bg-white/[0.08] text-brown-700 dark:text-brown-200 border border-black/[0.04] dark:border-white/[0.06] transition-colors"
                             title={isDark ? 'حالت روز' : 'حالت شب'}
                         >
-                            {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-brown-700" />}
+                            {isDark ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-brown-700" />}
                         </button>
 
                         {/* Language Switcher */}
@@ -111,7 +111,7 @@ const Navbar = () => {
                                 i18n.changeLanguage(newLang);
                                 document.dir = newLang === 'fa' ? 'rtl' : 'ltr';
                             }}
-                            className="flex items-center justify-center w-10 h-10 rounded-xl hover:bg-brown-100 dark:hover:bg-brown-800 text-brown-700 dark:text-brown-200 font-bold text-xs transition-colors border border-brown-200/60 dark:border-brown-700"
+                            className="flex items-center justify-center px-2.5 py-1 rounded-full bg-black/[0.02] dark:bg-white/[0.04] hover:bg-black/[0.06] dark:hover:bg-white/[0.08] text-brown-700 dark:text-brown-200 font-mono font-bold text-[11px] transition-colors border border-black/[0.04] dark:border-white/[0.06]"
                         >
                             {i18n.language === 'fa' ? 'EN' : 'فا'}
                         </button>
