@@ -13,8 +13,15 @@ import {
     Dna,
     Layers,
     ArrowUpRight,
-    Check
+    Check,
+    HelpCircle
 } from 'lucide-react';
+import { GridBackground } from '@/components/backgrounds/grid';
+import { TextShimmer } from '@/components/animations/text-shimmer';
+import { SpotlightCard } from '@/components/animations/spotlight-card';
+import { ShineButton } from '@/components/animations/shine-button';
+import { Stat } from '@/components/ui/stat';
+import { Accordion } from '@/components/ui/accordion';
 
 const Home = () => {
     const { t } = useTranslation();
@@ -94,29 +101,49 @@ const Home = () => {
         }
     ];
 
-    const stats = [
-        { val: '۵۰×', label: 'تراکم سولفورافان نسبت به کلم بالغ' },
-        { val: '۷', label: 'روز از بذر تا چیدن در آپارتمان' },
-        { val: '۰٪', label: 'سموم، آفت‌کش و دستکاری ژنتیکی' },
-        { val: '۲۱', label: 'روز تخمیر سنتی باکتری‌های زنده' }
+    // Scientific FAQ items for VibeFarsi Accordion
+    const faqItems = [
+        {
+            id: 'faq-1',
+            title: 'سولفورافان چیست و چرا میکروگرین بروکلی قوی‌ترین منبع آن است؟',
+            content: 'سولفورافان یک ترکیب ایزوتیوسیانات ارگانیک است که باعث فعال شدن مسیر Nrf2 در سلول‌ها می‌شود؛ این مسیر قوی‌ترین سیستم آنتی‌اکسیدانی درونی بدن را تحریک می‌کند. در میکروگرین بروکلی ۷ روزه، غلظت پیش‌ساز این ماده تا ۵۰ برابر بروکلی بالغ پخته‌شده است.'
+        },
+        {
+            id: 'faq-2',
+            title: 'کیت کشت خانگی رُستارا چگونه بدون نیاز به نور مستقیم آفتاب کار می‌کند؟',
+            content: 'میکروگرین‌ها در فاز اول انرژی خود را از آندوسپرم بذر تامین می‌کنند. سینی دوطبقه رُستارا سیستم زهکشی خودکار دارد و برای فتوسنتز نهایی فقط به نور ملایم پنجره یا نور معمول آپارتمان نیاز دارد؛ بدون نیاز به خاک، کود یا ابزار پیچیده.'
+        },
+        {
+            id: 'faq-3',
+            title: 'تفاوت کامبوچای تخمیری زنده رُستارا با نوشیدنی‌های صنعتی چیست؟',
+            content: 'کامبوچای رُستارا پاستوریزه نمی‌شود؛ به این معنا که باکتری‌های اسید استیک و پروبیوتیک‌های طبیعی آن زنده و فعال هستند و گاز آن حاصل تخمیر زیستی است، نه تزریق گاز دی‌اکسید کربن صنعتی.'
+        },
+        {
+            id: 'faq-4',
+            title: 'ارسال بسته‌ها و زمان تحویل به چه صورت است؟',
+            content: 'کیت‌ها و بذرهای ارگانیک به سراسر کشور با پست پیشتاز ارسال می‌شوند. محصولات تازه و زنده نیز در بسته‌بندی‌های عایق رطوبت و تنفس‌پذیر جهت حفظ شادابی سلولی ارسال می‌گردند.'
+        }
     ];
 
     return (
         <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-charcoal dark:text-seed-snow transition-colors duration-500 font-sans">
             
-            {/* HERO SECTION (Seed.com Botanical-Clinical Chic) */}
-            <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 border-b border-seed-forest/10 dark:border-white/10">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* HERO SECTION (Seed.com Clinical Botanical with VibeFarsi Grid & Shimmer) */}
+            <section className="relative pt-24 pb-20 md:pt-32 md:pb-28 border-b border-seed-forest/10 dark:border-white/10 overflow-hidden">
+                {/* VibeFarsi Grid Background */}
+                <GridBackground size={52} className="opacity-40 dark:opacity-20" />
+
+                <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     
-                    {/* Science Eyebrow Tag */}
+                    {/* Science Eyebrow Tag with VibeFarsi TextShimmer */}
                     <div className="flex items-center gap-3 mb-8">
                         <span className="badge-lime">
                             <span className="w-1.5 h-1.5 rounded-full bg-seed-forest animate-pulse" />
                             BIO-NUTRITION
                         </span>
-                        <span className="label-mono">
-                            پلتفرم زیست‌پایدار کشاورزی شهری و غذای زنده
-                        </span>
+                        <TextShimmer className="label-mono font-bold">
+                            پلتفرم زیست‌پایدار کشاورزی شهری و غذای زنده • رُستارا
+                        </TextShimmer>
                     </div>
 
                     {/* Architectural Editorial Headline */}
@@ -136,12 +163,11 @@ const Home = () => {
 
                     {/* Action Bar & Key Metrics */}
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-6 border-t border-seed-forest/10 dark:border-white/10">
-                        <Link
-                            to="/products"
-                            className="btn-seed flex items-center justify-center gap-2"
-                        >
-                            <span>مشاهده کاتالوگ زیستی</span>
-                            <ArrowLeft className="w-4 h-4" />
+                        <Link to="/products">
+                            <ShineButton className="btn-seed flex items-center justify-center gap-2">
+                                <span>مشاهده کاتالوگ زیستی</span>
+                                <ArrowLeft className="w-4 h-4" />
+                            </ShineButton>
                         </Link>
                         
                         <Link
@@ -166,25 +192,41 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* NUMERICAL DATA TICKER */}
-            <section className="bg-seed-stone/50 dark:bg-seed-forest/20 border-b border-seed-forest/10 dark:border-white/10 py-10">
+            {/* NUMERICAL DATA TICKER (VibeFarsi Stat Components) */}
+            <section className="bg-seed-stone/40 dark:bg-seed-forest/20 border-b border-seed-forest/10 dark:border-white/10 py-10">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-right">
-                        {stats.map((s, idx) => (
-                            <div key={idx} className="border-r-2 border-seed-forest/20 dark:border-seed-lime/30 pr-4">
-                                <div className="text-3xl sm:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime tracking-tight">
-                                    {s.val}
-                                </div>
-                                <div className="text-xs text-seed-charcoal/90 dark:text-seed-snow mt-1 font-bold">
-                                    {s.label}
-                                </div>
-                            </div>
-                        ))}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <Stat 
+                            label="تراکم سولفورافان بروکلی"
+                            value="۵۰"
+                            unit="برابر برگ بالغ"
+                            delta={42}
+                            deltaLabel="غلظت گلوکورافانین"
+                        />
+                        <Stat 
+                            label="زمان تا برداشت خانگی"
+                            value="۷"
+                            unit="روز در آپارتمان"
+                            delta={85}
+                            deltaLabel="سرعت رویش سلولزی"
+                        />
+                        <Stat 
+                            label="خلوص بیولوژیک بذرها"
+                            value="۱۰۰٪"
+                            unit="عاری از سموم"
+                        />
+                        <Stat 
+                            label="تخمیر سنتی زنده"
+                            value="۲۱"
+                            unit="روز فرآوری طبیعی"
+                            delta={100}
+                            deltaLabel="پروبیوتیک پایدار"
+                        />
                     </div>
                 </div>
             </section>
 
-            {/* SPECIMEN SHOWCASE (Living Organisms Under Glass) */}
+            {/* SPECIMEN SHOWCASE (Wrapped with VibeFarsi SpotlightCard) */}
             <section className="py-24 border-b border-seed-forest/10 dark:border-white/10">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     
@@ -204,63 +246,62 @@ const Home = () => {
                         </Link>
                     </div>
 
-                    {/* 3 Specimen Cards */}
+                    {/* 3 Specimen Cards with Spotlight Effect */}
                     <div className="grid md:grid-cols-3 gap-6">
                         {specimens.map((item, idx) => {
                             const IconC = item.icon;
                             return (
-                                <div 
-                                    key={idx}
-                                    className="seed-card p-6 flex flex-col justify-between hover:border-seed-forest/30 dark:hover:border-seed-lime/40"
-                                >
-                                    <div>
-                                        {/* Card Meta Bar */}
-                                        <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-seed-forest/10 dark:border-white/10">
-                                            <span className="font-mono text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50 tracking-wider">
-                                                [{item.code}]
-                                            </span>
-                                            <span className="badge-lime text-[10px]">
-                                                {item.potencyBadge}
-                                            </span>
+                                <SpotlightCard key={idx} className="h-full">
+                                    <div className="p-6 flex flex-col justify-between h-full">
+                                        <div>
+                                            {/* Card Meta Bar */}
+                                            <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-seed-forest/10 dark:border-white/10">
+                                                <span className="font-mono text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50 tracking-wider">
+                                                    [{item.code}]
+                                                </span>
+                                                <span className="badge-lime text-[10px]">
+                                                    {item.potencyBadge}
+                                                </span>
+                                            </div>
+
+                                            {/* Visual Icon Container */}
+                                            <div className="w-12 h-12 rounded-xl bg-seed-stone dark:bg-white/5 flex items-center justify-center text-seed-forest dark:text-seed-lime mb-5">
+                                                <IconC className="w-6 h-6" />
+                                            </div>
+
+                                            <h3 className="text-xl font-display font-bold text-seed-forest dark:text-seed-snow mb-1">
+                                                {item.name}
+                                            </h3>
+                                            <p className="font-mono text-xs text-seed-sage dark:text-seed-snow/50 italic mb-4">
+                                                {item.scientificName}
+                                            </p>
+
+                                            <p className="text-xs text-seed-pewter dark:text-seed-snow/80 leading-relaxed mb-6 font-normal">
+                                                {item.desc}
+                                            </p>
                                         </div>
 
-                                        {/* Visual Icon Container */}
-                                        <div className="w-12 h-12 rounded-xl bg-seed-stone dark:bg-white/5 flex items-center justify-center text-seed-forest dark:text-seed-lime mb-5">
-                                            <IconC className="w-6 h-6" />
+                                        <div>
+                                            {/* Clinical Metrics Specs */}
+                                            <div className="space-y-2 py-4 border-t border-seed-forest/10 dark:border-white/10 text-[11px] font-mono">
+                                                {item.metrics.map((m, mi) => (
+                                                    <div key={mi} className="flex justify-between text-seed-pewter dark:text-seed-snow/60">
+                                                        <span>{m.label}:</span>
+                                                        <span className="font-bold text-seed-forest dark:text-seed-snow">{m.val}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            <Link
+                                                to="/products"
+                                                className="mt-2 w-full py-2.5 rounded-pill bg-seed-stone dark:bg-white/10 hover:bg-seed-forest hover:text-seed-snow dark:hover:bg-seed-lime dark:hover:text-seed-forest text-seed-forest dark:text-seed-snow text-xs font-bold transition-all flex items-center justify-center gap-1.5"
+                                            >
+                                                <span>بررسی و ثبت سفارش</span>
+                                                <ArrowLeft className="w-3.5 h-3.5" />
+                                            </Link>
                                         </div>
-
-                                        <h3 className="text-xl font-display font-bold text-seed-forest dark:text-seed-snow mb-1">
-                                            {item.name}
-                                        </h3>
-                                        <p className="font-mono text-xs text-seed-sage dark:text-seed-snow/50 italic mb-4">
-                                            {item.scientificName}
-                                        </p>
-
-                                        <p className="text-xs text-seed-pewter dark:text-seed-snow/80 leading-relaxed mb-6 font-normal">
-                                            {item.desc}
-                                        </p>
                                     </div>
-
-                                    <div>
-                                        {/* Clinical Metrics Specs */}
-                                        <div className="space-y-2 py-4 border-t border-seed-forest/10 dark:border-white/10 text-[11px] font-mono">
-                                            {item.metrics.map((m, mi) => (
-                                                <div key={mi} className="flex justify-between text-seed-pewter dark:text-seed-snow/60">
-                                                    <span>{m.label}:</span>
-                                                    <span className="font-bold text-seed-forest dark:text-seed-snow">{m.val}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-
-                                        <Link
-                                            to="/products"
-                                            className="mt-2 w-full py-2.5 rounded-pill bg-seed-stone dark:bg-white/10 hover:bg-seed-forest hover:text-seed-snow dark:hover:bg-seed-lime dark:hover:text-seed-forest text-seed-forest dark:text-seed-snow text-xs font-bold transition-all flex items-center justify-center gap-1.5"
-                                        >
-                                            <span>بررسی و ثبت سفارش</span>
-                                            <ArrowLeft className="w-3.5 h-3.5" />
-                                        </Link>
-                                    </div>
-                                </div>
+                                </SpotlightCard>
                             );
                         })}
                     </div>
@@ -323,6 +364,24 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* VIBEFARSI SCIENTIFIC ACCORDION (Interactive FAQ) */}
+            <section className="py-24 border-b border-seed-forest/10 dark:border-white/10">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-right">
+                    
+                    <div className="mb-12">
+                        <span className="label-mono mb-2 block">KNOWLEDGE BASE • پرسش‌های علمی و فنی</span>
+                        <h2 className="text-3xl sm:text-4xl font-display font-black text-seed-forest dark:text-seed-snow mb-3">
+                            پاسخ به پرسش‌های متداول کشت و سلامت
+                        </h2>
+                        <p className="text-sm text-seed-pewter dark:text-seed-snow/70">
+                            اطلاعات کاربردی پیرامون نگهداری کیت‌ها، ارزش بیولوژیک جوانه‌ها و شیوه مصرف سوپرفودها
+                        </p>
+                    </div>
+
+                    <Accordion items={faqItems} multiple defaultOpen={['faq-1']} />
+                </div>
+            </section>
+
             {/* THE ROSTARA CHARTER (Seed-style Peer-Reviewed Manifesto) */}
             <section className="py-24 border-b border-seed-forest/10 dark:border-white/10">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-right">
@@ -356,7 +415,7 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* SEED STYLE FOOTER CTA (Deep Forest Section) */}
+            {/* SEED STYLE FOOTER CTA (Deep Forest Section with VibeFarsi ShineButton) */}
             <section className="py-20 bg-seed-forest text-seed-snow relative overflow-hidden">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     
@@ -373,12 +432,11 @@ const Home = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <Link
-                            to="/products"
-                            className="px-9 py-4 rounded-pill bg-seed-lime hover:bg-seed-limeHover text-seed-forest font-bold text-sm tracking-normal transition-all shadow-md active:scale-[0.98] flex items-center gap-2"
-                        >
-                            <span>سفارش کیت کشت خانگی</span>
-                            <ArrowLeft className="w-4 h-4" />
+                        <Link to="/products">
+                            <ShineButton className="px-9 py-4 rounded-pill bg-seed-lime hover:bg-seed-limeHover text-seed-forest font-bold text-sm tracking-normal transition-all shadow-md active:scale-[0.98] flex items-center gap-2">
+                                <span>سفارش کیت کشت خانگی</span>
+                                <ArrowLeft className="w-4 h-4" />
+                            </ShineButton>
                         </Link>
                         
                         <Link

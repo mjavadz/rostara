@@ -3,6 +3,61 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 60 20% 98%;
+    --foreground: 120 50% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 120 50% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 120 50% 15%;
+    --primary: 120 50% 15%;
+    --primary-foreground: 60 20% 98%;
+    --secondary: 60 8% 93%;
+    --secondary-foreground: 120 50% 15%;
+    --muted: 60 8% 93%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 85 92% 79%;
+    --accent-foreground: 120 50% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 120 20% 88%;
+    --input: 120 20% 88%;
+    --ring: 120 50% 15%;
+    --brand: 120 50% 15%;
+    --brand-foreground: 60 20% 98%;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+    --radius: 1rem;
+    --motion: 200ms;
+    --press: scale(0.98);
+  }
+
+  .dark {
+    --background: 120 40% 6%;
+    --foreground: 60 20% 98%;
+    --card: 120 35% 10%;
+    --card-foreground: 60 20% 98%;
+    --popover: 120 35% 10%;
+    --popover-foreground: 60 20% 98%;
+    --primary: 85 92% 79%;
+    --primary-foreground: 120 50% 12%;
+    --secondary: 120 30% 14%;
+    --secondary-foreground: 60 20% 98%;
+    --muted: 120 30% 14%;
+    --muted-foreground: 60 10% 70%;
+    --accent: 85 92% 79%;
+    --accent-foreground: 120 50% 12%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 120 30% 16%;
+    --input: 120 30% 16%;
+    --ring: 85 92% 79%;
+    --brand: 85 92% 79%;
+    --brand-foreground: 120 50% 12%;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+  }
+
   body {
     @apply bg-seed-snow text-seed-charcoal font-sans antialiased dark:bg-seed-forestDark dark:text-seed-snow selection:bg-seed-lime selection:text-seed-forest;
   }
@@ -55,3 +110,17 @@
     @apply font-mono text-[11px] tracking-wider uppercase text-seed-pewter dark:text-seed-snow/60;
   }
 }
+
+/* --- vibefarsi:shine-button --- */
+@keyframes shine {
+  0% { transform: translateX(-120%) skewX(-15deg); }
+  60%, 100% { transform: translateX(220%) skewX(-15deg); }
+}
+/* --- vibefarsi:shine-button-end --- */
+
+/* --- vibefarsi:text-shimmer --- */
+@keyframes shimmer {
+  from { background-position: 200% center; }
+  to { background-position: -200% center; }
+}
+/* --- vibefarsi:text-shimmer-end --- */
