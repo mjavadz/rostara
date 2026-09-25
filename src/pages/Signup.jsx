@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Mail, Lock, User, UserPlus } from 'lucide-react';
+import { ShineButton } from '@/components/animations/shine-button';
 
 const Signup = () => {
     const { t } = useTranslation();
@@ -28,17 +29,17 @@ const Signup = () => {
         e.preventDefault();
 
         if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
-            setError(t('auth.errors.fillFields'));
+            setError(t('auth.errors.fillFields', { defaultValue: 'لطفاً تمامی فیلدها را تکمیل کنید' }));
             return;
         }
 
         if (formData.password !== formData.confirmPassword) {
-            setError(t('auth.errors.passwordMismatch'));
+            setError(t('auth.errors.passwordMismatch', { defaultValue: 'رمز عبور و تکرار آن یکسان نیستند' }));
             return;
         }
 
         if (formData.password.length < 6) {
-            setError(t('auth.errors.passwordShort'));
+            setError(t('auth.errors.passwordShort', { defaultValue: 'رمز عبور باید حداقل ۶ کاراکتر باشد' }));
             return;
         }
 
@@ -50,69 +51,72 @@ const Signup = () => {
             navigate('/check-email');
         } catch (err) {
             console.error('Signup error:', err);
-            setError(err.message || t('auth.errors.signupFailed'));
+            setError(err.message || t('auth.errors.signupFailed', { defaultValue: 'خطا در ثبت‌نام حساب' }));
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 flex items-center justify-center px-4 pt-24 pb-8 sm:py-20 transition-colors duration-300">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow flex items-center justify-center px-4 pt-28 pb-12 transition-colors duration-300">
             <div className="max-w-md w-full">
                 {/* Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full mb-4">
-                        <UserPlus className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-seed-stone dark:bg-white/5 rounded-2xl mb-4 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10 shadow-sm">
+                        <UserPlus className="w-8 h-8" />
                     </div>
-                    <h1 className="text-3xl font-display font-bold text-brown-900 dark:text-cream mb-2">
-                        {t('auth.signup.title')}
+                    <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 block mb-1">
+                        [CREATE SCIENTIFIC PROFILE]
+                    </span>
+                    <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-2">
+                        عضویت در پلتفرم رُستارا
                     </h1>
-                    <p className="text-brown-600 dark:text-brown-300">
-                        {t('auth.signup.subtitle')}
+                    <p className="text-xs text-seed-pewter dark:text-seed-snow/70">
+                        دسترسی به باشگاه تندرستی، رهگیری آنلاین و تخفیف‌های ویژه اعضا
                     </p>
                 </div>
 
-                {/* Form */}
-                <div className="bg-white dark:bg-brown-900 rounded-2xl p-8 border border-brown-100 dark:border-brown-800 shadow-lg transition-colors">
+                {/* Form Card */}
+                <div className="bg-seed-snow dark:bg-[#132412] rounded-3xl p-8 border border-seed-forest/10 dark:border-white/10 shadow-md transition-colors">
                     {error && (
-                        <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-700 dark:text-red-300 text-sm">
+                        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-600 dark:text-red-400 text-xs font-medium">
                             {error}
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         {/* Name */}
                         <div>
-                            <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
-                                {t('auth.name')}
+                            <label className="block text-xs font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                نام و نام خانوادگی
                             </label>
                             <div className="relative">
-                                <User className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brown-400 dark:text-brown-500" />
+                                <User className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-seed-pewter" />
                                 <input
                                     type="text"
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 pr-12 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
-                                    placeholder={t('auth.namePlaceholder')}
+                                    className="w-full px-4 py-3 pr-11 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs font-medium"
+                                    placeholder="مثال: سارا محمدی"
                                 />
                             </div>
                         </div>
 
                         {/* Email */}
                         <div>
-                            <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
-                                {t('auth.email')}
+                            <label className="block text-xs font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                نشانی ایمیل
                             </label>
                             <div className="relative">
-                                <Mail className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brown-400 dark:text-brown-500" />
+                                <Mail className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-seed-pewter" />
                                 <input
                                     type="email"
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 pr-12 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
-                                    placeholder="example@email.com"
+                                    className="w-full px-4 py-3 pr-11 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs font-medium"
+                                    placeholder="name@example.com"
                                     dir="ltr"
                                 />
                             </div>
@@ -120,18 +124,18 @@ const Signup = () => {
 
                         {/* Password */}
                         <div>
-                            <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
-                                {t('auth.password')}
+                            <label className="block text-xs font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                رمز عبور
                             </label>
                             <div className="relative">
-                                <Lock className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brown-400 dark:text-brown-500" />
+                                <Lock className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-seed-pewter" />
                                 <input
                                     type="password"
                                     name="password"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 pr-12 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
-                                    placeholder="••••••••"
+                                    className="w-full px-4 py-3 pr-11 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs font-mono"
+                                    placeholder="حداقل ۶ نویسه"
                                     dir="ltr"
                                 />
                             </div>
@@ -139,17 +143,17 @@ const Signup = () => {
 
                         {/* Confirm Password */}
                         <div>
-                            <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
-                                {t('auth.confirmPassword')}
+                            <label className="block text-xs font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                تکرار رمز عبور
                             </label>
                             <div className="relative">
-                                <Lock className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brown-400 dark:text-brown-500" />
+                                <Lock className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-seed-pewter" />
                                 <input
                                     type="password"
                                     name="confirmPassword"
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 pr-12 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
+                                    className="w-full px-4 py-3 pr-11 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs font-mono"
                                     placeholder="••••••••"
                                     dir="ltr"
                                 />
@@ -157,32 +161,33 @@ const Signup = () => {
                         </div>
 
                         {/* Submit Button */}
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className={`w-full py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 ${loading ? 'opacity-75 cursor-wait' : ''
-                                }`}
-                        >
-                            {loading ? (
-                                <span>{t('auth.signup.signingUp')}</span>
-                            ) : (
-                                <>
-                                    <span>{t('auth.signup.submit')}</span>
-                                    <UserPlus className="w-5 h-5" />
-                                </>
-                            )}
-                        </button>
+                        <div className="pt-2">
+                            <ShineButton
+                                type="submit"
+                                disabled={loading}
+                                className="w-full py-3.5 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest rounded-full font-bold text-xs shadow-md flex items-center justify-center gap-2 hover:opacity-95"
+                            >
+                                {loading ? (
+                                    <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                ) : (
+                                    <>
+                                        <UserPlus className="w-4 h-4" />
+                                        <span>تکمیل عضویت در رُستارا</span>
+                                    </>
+                                )}
+                            </ShineButton>
+                        </div>
                     </form>
 
                     {/* Login Link */}
-                    <div className="mt-6 text-center">
-                        <p className="text-brown-600 dark:text-brown-300">
-                            {t('auth.signup.haveAccount')}{' '}
+                    <div className="mt-6 pt-6 border-t border-seed-forest/10 dark:border-white/10 text-center">
+                        <p className="text-xs text-seed-pewter dark:text-seed-snow/60">
+                            قبلاً حساب کاربری ساخته‌اید؟{' '}
                             <Link
                                 to="/login"
-                                className="text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+                                className="text-seed-forest dark:text-seed-lime font-bold hover:underline"
                             >
-                                {t('auth.signup.loginLink')}
+                                ورود به حساب
                             </Link>
                         </p>
                     </div>

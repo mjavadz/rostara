@@ -29,7 +29,7 @@ const Footer = () => {
                         <div className="flex flex-wrap items-center gap-4 text-xs text-seed-snow/60 pt-2 font-mono">
                             <span className="flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
-                                بذرها ۱۰۰٪ دیم غیرتراریخته
+                                بذرهای ۱۰۰٪ دیم غیرتراریخته
                             </span>
                             <span className="flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />

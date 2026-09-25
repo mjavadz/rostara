@@ -267,17 +267,17 @@ const Admin = () => {
     // If not authenticated, show login form
     if (!isAuthenticated) {
         return (
-            <div className="min-h-screen bg-cream dark:bg-brown-950 flex items-center justify-center px-4 py-12 transition-colors duration-300">
+            <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow flex items-center justify-center px-4 py-12 transition-colors duration-300">
                 <div className="max-w-md w-full">
-                    <div className="bg-white dark:bg-brown-900 rounded-3xl p-8 border border-brown-200/80 dark:border-brown-800 shadow-xl">
+                    <div className="bg-seed-snow dark:bg-[#132412] rounded-3xl p-8 border border-seed-forest/10 dark:border-white/10 shadow-xl">
                         <div className="text-center mb-8">
                             <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-950 rounded-2xl mb-4 text-primary-700 dark:text-primary-400 border border-primary-200 dark:border-primary-800">
                                 <Lock className="w-8 h-8" />
                             </div>
-                            <h1 className="text-2xl font-display font-extrabold text-brown-900 dark:text-cream">
+                            <h1 className="text-2xl font-display font-extrabold text-seed-forest dark:text-seed-snow">
                                 پنل مدیریت رُستارا
                             </h1>
-                            <p className="text-brown-600 dark:text-brown-400 text-xs mt-2">
+                            <p className="text-seed-pewter dark:text-seed-snow/70 text-xs mt-2">
                                 پایش سفارش‌ها، محصولات، پیام‌ها و کدهای تخفیف
                             </p>
                         </div>
@@ -299,7 +299,7 @@ const Admin = () => {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="admin@rostara"
-                                        className="w-full px-4 py-3.5 rounded-xl border border-brown-200 dark:border-brown-700 bg-white dark:bg-brown-800 text-brown-900 dark:text-cream focus:outline-none focus:ring-2 focus:ring-primary-500 font-mono text-sm"
+                                        className="w-full px-4 py-3.5 rounded-xl border border-brown-200 dark:border-brown-700 bg-white dark:bg-brown-800 text-seed-forest dark:text-seed-snow focus:outline-none focus:ring-2 focus:ring-primary-500 font-mono text-sm"
                                         required
                                     />
                                     <button
@@ -326,7 +326,7 @@ const Admin = () => {
     }
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 pt-28 pb-20 transition-colors duration-300">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow pt-28 pb-20 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Top Action Bar */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
@@ -337,7 +337,7 @@ const Admin = () => {
                                 پیشخوان هوشمند دیتابیس رُستارا
                             </span>
                         </div>
-                        <h1 className="text-3xl sm:text-4xl font-display font-extrabold text-brown-900 dark:text-cream">
+                        <h1 className="text-3xl sm:text-4xl font-display font-extrabold text-seed-forest dark:text-seed-snow">
                             مدیریت و کنترل فروشگاه
                         </h1>
                     </div>
@@ -346,7 +346,7 @@ const Admin = () => {
                         <button
                             onClick={refreshData}
                             disabled={loading}
-                            className="px-4 py-2.5 bg-white dark:bg-brown-900 border border-brown-200 dark:border-brown-800 text-brown-700 dark:text-brown-300 hover:bg-brown-50 dark:hover:bg-brown-800 rounded-xl text-xs font-bold flex items-center gap-2 shadow-sm transition-all"
+                            className="px-4 py-2.5 bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 text-brown-700 dark:text-brown-300 hover:bg-brown-50 dark:hover:bg-brown-800 rounded-xl text-xs font-bold flex items-center gap-2 shadow-sm transition-all"
                         >
                             <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
                             <span>به‌روزرسانی داده‌ها</span>
@@ -363,33 +363,33 @@ const Admin = () => {
 
                 {/* KPI Metrics Cards */}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <div className="bg-white dark:bg-brown-900 p-5 rounded-2xl border border-brown-200/80 dark:border-brown-800 shadow-sm">
+                    <div className="bg-seed-snow dark:bg-[#132412] p-5 rounded-2xl border border-seed-forest/10 dark:border-white/10 shadow-sm">
                         <div className="flex items-center justify-between mb-3">
-                            <span className="text-xs text-brown-500 dark:text-brown-400 font-medium">مجموع فروش</span>
+                            <span className="text-xs text-seed-pewter dark:text-seed-snow/60 font-medium">مجموع فروش</span>
                             <div className="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center">
                                 <DollarSign className="w-4 h-4" />
                             </div>
                         </div>
-                        <p className="text-xl sm:text-2xl font-extrabold text-brown-900 dark:text-cream">
+                        <p className="text-xl sm:text-2xl font-extrabold text-seed-forest dark:text-seed-snow">
                             {formatPrice(stats.totalRevenue)}
                         </p>
                     </div>
 
-                    <div className="bg-white dark:bg-brown-900 p-5 rounded-2xl border border-brown-200/80 dark:border-brown-800 shadow-sm">
+                    <div className="bg-seed-snow dark:bg-[#132412] p-5 rounded-2xl border border-seed-forest/10 dark:border-white/10 shadow-sm">
                         <div className="flex items-center justify-between mb-3">
-                            <span className="text-xs text-brown-500 dark:text-brown-400 font-medium">سفارش‌های ثبت شده</span>
+                            <span className="text-xs text-seed-pewter dark:text-seed-snow/60 font-medium">سفارش‌های ثبت شده</span>
                             <div className="w-8 h-8 rounded-lg bg-primary-100 dark:bg-primary-950 text-primary-600 flex items-center justify-center">
                                 <ShoppingBag className="w-4 h-4" />
                             </div>
                         </div>
-                        <p className="text-xl sm:text-2xl font-extrabold text-brown-900 dark:text-cream">
+                        <p className="text-xl sm:text-2xl font-extrabold text-seed-forest dark:text-seed-snow">
                             {stats.totalOrders} <span className="text-xs font-normal text-brown-500">سفارش</span>
                         </p>
                     </div>
 
-                    <div className="bg-white dark:bg-brown-900 p-5 rounded-2xl border border-brown-200/80 dark:border-brown-800 shadow-sm">
+                    <div className="bg-seed-snow dark:bg-[#132412] p-5 rounded-2xl border border-seed-forest/10 dark:border-white/10 shadow-sm">
                         <div className="flex items-center justify-between mb-3">
-                            <span className="text-xs text-brown-500 dark:text-brown-400 font-medium">در انتظار اقدام</span>
+                            <span className="text-xs text-seed-pewter dark:text-seed-snow/60 font-medium">در انتظار اقدام</span>
                             <div className="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-950 text-amber-600 flex items-center justify-center">
                                 <Clock className="w-4 h-4" />
                             </div>
@@ -399,9 +399,9 @@ const Admin = () => {
                         </p>
                     </div>
 
-                    <div className="bg-white dark:bg-brown-900 p-5 rounded-2xl border border-brown-200/80 dark:border-brown-800 shadow-sm">
+                    <div className="bg-seed-snow dark:bg-[#132412] p-5 rounded-2xl border border-seed-forest/10 dark:border-white/10 shadow-sm">
                         <div className="flex items-center justify-between mb-3">
-                            <span className="text-xs text-brown-500 dark:text-brown-400 font-medium">پیام‌های جدید</span>
+                            <span className="text-xs text-seed-pewter dark:text-seed-snow/60 font-medium">پیام‌های جدید</span>
                             <div className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 flex items-center justify-center">
                                 <MessageSquare className="w-4 h-4" />
                             </div>
@@ -413,13 +413,13 @@ const Admin = () => {
                 </div>
 
                 {/* Tabs Navigation */}
-                <div className="flex border-b border-brown-200 dark:border-brown-800 mb-8 overflow-x-auto scrollbar-hide">
+                <div className="flex border-b border-seed-forest/10 dark:border-white/10 mb-8 overflow-x-auto scrollbar-hide">
                     <button
                         onClick={() => setActiveTab('orders')}
                         className={`flex items-center gap-2 px-6 py-3 font-bold text-sm border-b-2 transition-all whitespace-nowrap ${
                             activeTab === 'orders'
                                 ? 'border-primary-600 text-primary-600 dark:text-primary-400'
-                                : 'border-transparent text-brown-500 dark:text-brown-400 hover:text-brown-700'
+                                : 'border-transparent text-seed-pewter dark:text-seed-snow/60 hover:text-brown-700'
                         }`}
                     >
                         <ShoppingBag className="w-4 h-4" />
@@ -431,7 +431,7 @@ const Admin = () => {
                         className={`flex items-center gap-2 px-6 py-3 font-bold text-sm border-b-2 transition-all whitespace-nowrap ${
                             activeTab === 'products'
                                 ? 'border-primary-600 text-primary-600 dark:text-primary-400'
-                                : 'border-transparent text-brown-500 dark:text-brown-400 hover:text-brown-700'
+                                : 'border-transparent text-seed-pewter dark:text-seed-snow/60 hover:text-brown-700'
                         }`}
                     >
                         <Sprout className="w-4 h-4" />
@@ -443,7 +443,7 @@ const Admin = () => {
                         className={`flex items-center gap-2 px-6 py-3 font-bold text-sm border-b-2 transition-all whitespace-nowrap ${
                             activeTab === 'messages'
                                 ? 'border-primary-600 text-primary-600 dark:text-primary-400'
-                                : 'border-transparent text-brown-500 dark:text-brown-400 hover:text-brown-700'
+                                : 'border-transparent text-seed-pewter dark:text-seed-snow/60 hover:text-brown-700'
                         }`}
                     >
                         <MessageSquare className="w-4 h-4" />
@@ -455,7 +455,7 @@ const Admin = () => {
                         className={`flex items-center gap-2 px-6 py-3 font-bold text-sm border-b-2 transition-all whitespace-nowrap ${
                             activeTab === 'coupons'
                                 ? 'border-primary-600 text-primary-600 dark:text-primary-400'
-                                : 'border-transparent text-brown-500 dark:text-brown-400 hover:text-brown-700'
+                                : 'border-transparent text-seed-pewter dark:text-seed-snow/60 hover:text-brown-700'
                         }`}
                     >
                         <Tag className="w-4 h-4" />
@@ -466,7 +466,7 @@ const Admin = () => {
                 {/* TAB 1: ORDERS */}
                 {activeTab === 'orders' && (
                     <div className="space-y-6">
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-brown-900 p-4 rounded-2xl border border-brown-200/80 dark:border-brown-800">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-seed-snow dark:bg-[#132412] p-4 rounded-2xl border border-seed-forest/10 dark:border-white/10">
                             <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0">
                                 {[
                                     { key: 'all', label: 'همه' },
@@ -497,34 +497,34 @@ const Admin = () => {
                                     value={orderSearch}
                                     onChange={(e) => setOrderSearch(e.target.value)}
                                     placeholder="جستجوی کد، مشتری یا موبایل..."
-                                    className="w-full pr-9 pl-3 py-2 text-xs rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream focus:outline-none"
+                                    className="w-full pr-9 pl-3 py-2 text-xs rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow focus:outline-none"
                                 />
                             </div>
                         </div>
 
                         {filteredOrders.length === 0 ? (
-                            <div className="p-12 text-center bg-white dark:bg-brown-900 rounded-2xl border border-brown-200/80 dark:border-brown-800">
+                            <div className="p-12 text-center bg-seed-snow dark:bg-[#132412] rounded-2xl border border-seed-forest/10 dark:border-white/10">
                                 <ShoppingBag className="w-12 h-12 text-brown-400 mx-auto mb-3" />
-                                <p className="text-brown-600 dark:text-brown-400 font-bold">هیچ سفارشی با این مشخصات یافت نشد</p>
+                                <p className="text-seed-pewter dark:text-seed-snow/70 font-bold">هیچ سفارشی با این مشخصات یافت نشد</p>
                             </div>
                         ) : (
                             <div className="space-y-4">
                                 {filteredOrders.map((order) => (
                                     <div
                                         key={order.id}
-                                        className="bg-white dark:bg-brown-900 rounded-2xl p-6 border border-brown-200/80 dark:border-brown-800 shadow-sm hover:shadow transition-all"
+                                        className="bg-seed-snow dark:bg-[#132412] rounded-2xl p-6 border border-seed-forest/10 dark:border-white/10 shadow-sm hover:shadow transition-all"
                                     >
-                                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-brown-100 dark:border-brown-800">
+                                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-seed-forest/10 dark:border-white/10">
                                             <div>
                                                 <div className="flex items-center gap-3 mb-1">
                                                     <span className="font-mono font-extrabold text-base text-primary-700 dark:text-primary-400">
                                                         {order.id}
                                                     </span>
-                                                    <span className="text-xs text-brown-500 dark:text-brown-400">
+                                                    <span className="text-xs text-seed-pewter dark:text-seed-snow/60">
                                                         {formatDate(order.created_at)}
                                                     </span>
                                                 </div>
-                                                <h3 className="font-bold text-brown-900 dark:text-cream text-sm">
+                                                <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm">
                                                     {order.full_name} <span className="text-xs text-brown-500 font-mono">({order.phone})</span>
                                                 </h3>
                                             </div>
@@ -534,7 +534,7 @@ const Admin = () => {
                                                 <select
                                                     value={order.status || 'pending'}
                                                     onChange={(e) => handleStatusChange(order.id, e.target.value)}
-                                                    className="px-3 py-1.5 rounded-xl text-xs font-bold bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream focus:outline-none"
+                                                    className="px-3 py-1.5 rounded-xl text-xs font-bold bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow focus:outline-none"
                                                 >
                                                     <option value="pending">⏳ در انتظار اقدام</option>
                                                     <option value="processing">🌿 در حال آماده‌سازی</option>
@@ -581,7 +581,7 @@ const Admin = () => {
                 {/* TAB 2: PRODUCTS */}
                 {activeTab === 'products' && (
                     <div className="space-y-6">
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-brown-900 p-4 rounded-2xl border border-brown-200/80 dark:border-brown-800">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-seed-snow dark:bg-[#132412] p-4 rounded-2xl border border-seed-forest/10 dark:border-white/10">
                             <div className="flex items-center gap-3">
                                 <button
                                     onClick={handleOpenAddProduct}
@@ -605,7 +605,7 @@ const Admin = () => {
                                     value={productSearch}
                                     onChange={(e) => setProductSearch(e.target.value)}
                                     placeholder="جستجوی نام محصول..."
-                                    className="w-full pr-9 pl-3 py-2 text-xs rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream focus:outline-none"
+                                    className="w-full pr-9 pl-3 py-2 text-xs rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow focus:outline-none"
                                 />
                             </div>
                         </div>
@@ -614,7 +614,7 @@ const Admin = () => {
                             {filteredProducts.map((p) => (
                                 <div
                                     key={p.id}
-                                    className="bg-white dark:bg-brown-900 rounded-2xl p-5 border border-brown-200/80 dark:border-brown-800 flex flex-col justify-between shadow-sm"
+                                    className="bg-seed-snow dark:bg-[#132412] rounded-2xl p-5 border border-seed-forest/10 dark:border-white/10 flex flex-col justify-between shadow-sm"
                                 >
                                     <div>
                                         <div className="flex items-center justify-between mb-2">
@@ -630,18 +630,18 @@ const Admin = () => {
                                             </span>
                                         </div>
 
-                                        <h4 className="font-bold text-brown-900 dark:text-cream text-base mb-1">
+                                        <h4 className="font-bold text-seed-forest dark:text-seed-snow text-base mb-1">
                                             {p.name}
                                         </h4>
                                         {p.name_en && (
                                             <p className="text-xs font-mono text-brown-400 mb-2">{p.name_en}</p>
                                         )}
-                                        <p className="text-xs text-brown-600 dark:text-brown-400 line-clamp-2 mb-4">
+                                        <p className="text-xs text-seed-pewter dark:text-seed-snow/70 line-clamp-2 mb-4">
                                             {p.benefits || p.desc}
                                         </p>
                                     </div>
 
-                                    <div className="pt-4 border-t border-brown-100 dark:border-brown-800">
+                                    <div className="pt-4 border-t border-seed-forest/10 dark:border-white/10">
                                         <div className="flex items-center justify-between mb-4">
                                             <span className="text-xs text-brown-500">{p.weight}</span>
                                             <span className="text-base font-extrabold text-primary-700 dark:text-primary-400">
@@ -676,23 +676,23 @@ const Admin = () => {
                 {activeTab === 'messages' && (
                     <div className="space-y-4">
                         {messages.length === 0 ? (
-                            <div className="p-12 text-center bg-white dark:bg-brown-900 rounded-2xl border border-brown-200/80 dark:border-brown-800">
+                            <div className="p-12 text-center bg-seed-snow dark:bg-[#132412] rounded-2xl border border-seed-forest/10 dark:border-white/10">
                                 <MessageSquare className="w-12 h-12 text-brown-400 mx-auto mb-3" />
-                                <p className="text-brown-600 dark:text-brown-400 font-bold">هیچ پیامی در صندوق تماس موجود نیست</p>
+                                <p className="text-seed-pewter dark:text-seed-snow/70 font-bold">هیچ پیامی در صندوق تماس موجود نیست</p>
                             </div>
                         ) : (
                             messages.map((msg) => (
                                 <div
                                     key={msg.id}
-                                    className={`bg-white dark:bg-brown-900 rounded-2xl p-6 border transition-all ${
+                                    className={`bg-seed-snow dark:bg-[#132412] rounded-2xl p-6 border transition-all ${
                                         msg.status === 'unread' 
                                             ? 'border-primary-400 dark:border-primary-600 bg-primary-50/20' 
-                                            : 'border-brown-200/80 dark:border-brown-800'
+                                            : 'border-seed-forest/10 dark:border-white/10'
                                     }`}
                                 >
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                                         <div className="flex items-center gap-2">
-                                            <span className="font-bold text-brown-900 dark:text-cream text-sm">
+                                            <span className="font-bold text-seed-forest dark:text-seed-snow text-sm">
                                                 {msg.name || msg.full_name || 'کاربر مهمان'}
                                             </span>
                                             {msg.status === 'unread' && (
@@ -718,7 +718,7 @@ const Admin = () => {
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-wrap gap-4 text-xs text-brown-600 dark:text-brown-400 mb-3">
+                                    <div className="flex flex-wrap gap-4 text-xs text-seed-pewter dark:text-seed-snow/70 mb-3">
                                         {msg.email && (
                                             <a href={`mailto:${msg.email}`} className="flex items-center gap-1 hover:text-primary-600">
                                                 <Mail className="w-3.5 h-3.5" />
@@ -746,7 +746,7 @@ const Admin = () => {
                 {activeTab === 'coupons' && (
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {coupons.map((coupon, i) => (
-                            <div key={i} className="bg-white dark:bg-brown-900 rounded-2xl p-5 border border-brown-200/80 dark:border-brown-800">
+                            <div key={i} className="bg-seed-snow dark:bg-[#132412] rounded-2xl p-5 border border-seed-forest/10 dark:border-white/10">
                                 <div className="flex items-center justify-between mb-3">
                                     <span className="font-mono font-extrabold text-lg text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-950 px-3 py-1 rounded-xl">
                                         {coupon.code}
@@ -755,7 +755,7 @@ const Admin = () => {
                                         {coupon.type === 'percent' ? `${coupon.value}٪ تخفیف` : `${formatPrice(coupon.value)}`}
                                     </span>
                                 </div>
-                                <h4 className="font-bold text-brown-900 dark:text-cream text-sm mb-1">{coupon.title}</h4>
+                                <h4 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">{coupon.title}</h4>
                                 <p className="text-xs text-brown-500">
                                     حداقل خرید: {coupon.min_total ? formatPrice(coupon.min_total) : 'بدون سقف'}
                                 </p>
@@ -768,14 +768,14 @@ const Admin = () => {
             {/* ORDER DETAILS MODAL */}
             {selectedOrderDetails && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                    <div className="bg-white dark:bg-brown-900 rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-brown-200 dark:border-brown-800 p-6 shadow-2xl relative">
+                    <div className="bg-seed-snow dark:bg-[#132412] rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-seed-forest/10 dark:border-white/10 p-6 shadow-2xl relative">
                         <button
                             onClick={() => setSelectedOrderDetails(null)}
                             className="absolute top-5 left-5 p-2 rounded-full hover:bg-cream dark:hover:bg-brown-800 text-brown-500"
                         >
                             <X className="w-5 h-5" />
                         </button>
-                        <h3 className="text-xl font-bold text-brown-900 dark:text-cream mb-4">
+                        <h3 className="text-xl font-bold text-seed-forest dark:text-seed-snow mb-4">
                             فاکتور سفارش {selectedOrderDetails.id}
                         </h3>
 
@@ -787,7 +787,7 @@ const Admin = () => {
                             {selectedOrderDetails.notes && <div>یادداشت: <b className="text-amber-700 dark:text-amber-400">{selectedOrderDetails.notes}</b></div>}
                         </div>
 
-                        <h4 className="font-bold text-xs text-brown-900 dark:text-cream mb-2">اقلام سفارش:</h4>
+                        <h4 className="font-bold text-xs text-seed-forest dark:text-seed-snow mb-2">اقلام سفارش:</h4>
                         <div className="space-y-2 mb-6">
                             {selectedOrderDetails.items?.map((it, idx) => (
                                 <div key={idx} className="flex justify-between items-center p-2.5 rounded-xl bg-cream dark:bg-brown-800/30 text-xs">
@@ -797,7 +797,7 @@ const Admin = () => {
                             ))}
                         </div>
 
-                        <div className="pt-4 border-t border-brown-100 dark:border-brown-800 flex justify-between items-center">
+                        <div className="pt-4 border-t border-seed-forest/10 dark:border-white/10 flex justify-between items-center">
                             <span className="font-bold text-sm">مبلغ نهایی پرداختی:</span>
                             <span className="text-xl font-extrabold text-primary-700 dark:text-primary-400">
                                 {formatPrice(selectedOrderDetails.total_price)}
@@ -810,14 +810,14 @@ const Admin = () => {
             {/* PRODUCT ADD/EDIT MODAL */}
             {isProductModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-                    <div className="bg-white dark:bg-brown-900 rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-brown-200 dark:border-brown-800 p-6 shadow-2xl relative">
+                    <div className="bg-seed-snow dark:bg-[#132412] rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto border border-seed-forest/10 dark:border-white/10 p-6 shadow-2xl relative">
                         <button
                             onClick={() => setIsProductModalOpen(false)}
                             className="absolute top-5 left-5 p-2 rounded-full hover:bg-cream dark:hover:bg-brown-800 text-brown-500"
                         >
                             <X className="w-5 h-5" />
                         </button>
-                        <h3 className="text-xl font-bold text-brown-900 dark:text-cream mb-4">
+                        <h3 className="text-xl font-bold text-seed-forest dark:text-seed-snow mb-4">
                             {editingProduct ? 'ویرایش محصول' : 'افزودن محصول جدید'}
                         </h3>
 
@@ -828,7 +828,7 @@ const Admin = () => {
                                     type="text"
                                     value={productFormData.name}
                                     onChange={(e) => setProductFormData({ ...productFormData, name: e.target.value })}
-                                    className="w-full px-3 py-2 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream"
+                                    className="w-full px-3 py-2 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow"
                                     required
                                 />
                             </div>
@@ -839,7 +839,7 @@ const Admin = () => {
                                     type="text"
                                     value={productFormData.name_en}
                                     onChange={(e) => setProductFormData({ ...productFormData, name_en: e.target.value })}
-                                    className="w-full px-3 py-2 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream font-mono"
+                                    className="w-full px-3 py-2 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow font-mono"
                                 />
                             </div>
 
@@ -849,7 +849,7 @@ const Admin = () => {
                                     <select
                                         value={productFormData.category}
                                         onChange={(e) => setProductFormData({ ...productFormData, category: e.target.value })}
-                                        className="w-full px-3 py-2 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream"
+                                        className="w-full px-3 py-2 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow"
                                     >
                                         <option value="microgreens">میکروگرین‌ها</option>
                                         <option value="growing_kits">کیت‌ها و بستر کشت</option>
@@ -864,7 +864,7 @@ const Admin = () => {
                                         type="number"
                                         value={productFormData.price}
                                         onChange={(e) => setProductFormData({ ...productFormData, price: e.target.value })}
-                                        className="w-full px-3 py-2 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream font-mono"
+                                        className="w-full px-3 py-2 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow font-mono"
                                         required
                                     />
                                 </div>
@@ -877,7 +877,7 @@ const Admin = () => {
                                         type="text"
                                         value={productFormData.weight}
                                         onChange={(e) => setProductFormData({ ...productFormData, weight: e.target.value })}
-                                        className="w-full px-3 py-2 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream"
+                                        className="w-full px-3 py-2 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow"
                                         required
                                     />
                                 </div>
@@ -886,7 +886,7 @@ const Admin = () => {
                                     <select
                                         value={productFormData.in_stock ? 'true' : 'false'}
                                         onChange={(e) => setProductFormData({ ...productFormData, in_stock: e.target.value === 'true' })}
-                                        className="w-full px-3 py-2 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream"
+                                        className="w-full px-3 py-2 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow"
                                     >
                                         <option value="true">موجود در انبار</option>
                                         <option value="false">ناموجود</option>
@@ -901,7 +901,7 @@ const Admin = () => {
                                     value={productFormData.features}
                                     onChange={(e) => setProductFormData({ ...productFormData, features: e.target.value })}
                                     placeholder="سرشار از سولفورافان ، بدون کود شیمیایی ، ارگانیک"
-                                    className="w-full px-3 py-2 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream"
+                                    className="w-full px-3 py-2 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow"
                                 />
                             </div>
 
@@ -911,7 +911,7 @@ const Admin = () => {
                                     value={productFormData.benefits}
                                     onChange={(e) => setProductFormData({ ...productFormData, benefits: e.target.value })}
                                     rows={2}
-                                    className="w-full px-3 py-2 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream"
+                                    className="w-full px-3 py-2 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow"
                                 />
                             </div>
 
@@ -921,7 +921,7 @@ const Admin = () => {
                                     value={productFormData.usage}
                                     onChange={(e) => setProductFormData({ ...productFormData, usage: e.target.value })}
                                     rows={2}
-                                    className="w-full px-3 py-2 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 text-brown-900 dark:text-cream"
+                                    className="w-full px-3 py-2 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-seed-forest dark:text-seed-snow"
                                 />
                             </div>
 

@@ -1,37 +1,41 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Gift, Copy, Sparkles } from 'lucide-react';
+import { Gift, Copy, Sparkles, Check, Users, Award, Zap, ArrowLeft } from 'lucide-react';
 import ForumList from './Forum/ForumList';
+import { GridBackground } from '@/components/backgrounds/grid';
+import { TextShimmer } from '@/components/animations/text-shimmer';
+import { SpotlightCard } from '@/components/animations/spotlight-card';
+import { Badge } from '@/components/ui/badge';
 
 const Club = () => {
     const { t } = useTranslation();
     const [copiedCode, setCopiedCode] = useState(null);
 
-    // Mock data for offers
+    // Offers & Accession Vouchers
     const offers = [
         {
             id: 1,
             code: 'WELCOME10',
-            discount: '10%',
-            title: t('club.offers.welcome.title'),
-            desc: t('club.offers.welcome.desc'),
-            color: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300'
+            discount: '۱۰٪ تخفیف',
+            title: 'ورود به زیست‌بوم رُستارا',
+            desc: 'هدیه عضویت ویژه اولین سفارش میکروگرین و بستر کشت.',
+            tag: 'خرید نخست'
         },
         {
             id: 2,
             code: 'FREESHIP',
-            discount: t('club.offers.shipping.discountBadge'),
-            title: t('club.offers.shipping.title'),
-            desc: t('club.offers.shipping.desc'),
-            color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+            discount: 'ارسال رایگان',
+            title: 'ترانزیت ایمن و سرد',
+            desc: 'ارسال با ناوگان کنترل دما برای بسته‌های بالای ۵۰۰ هزار تومان.',
+            tag: 'سراسر کشور'
         },
         {
             id: 3,
-            code: 'BULK20',
-            discount: '20%',
-            title: t('club.offers.bulk.title'),
-            desc: t('club.offers.bulk.desc'),
-            color: 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
+            code: 'ROSTARA20',
+            discount: '۲۰٪ هدیه',
+            title: 'باشگاه تندرستی پایدار',
+            desc: 'تخفیف ویژه دوره‌های کشت خانگی و اشتراک ماهانه میکروگرین.',
+            tag: 'تندرستی'
         }
     ];
 
@@ -42,69 +46,105 @@ const Club = () => {
     };
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 pt-24 pb-12 transition-colors duration-300">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow transition-colors duration-300">
             {/* Hero Section */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
-                <div className="text-center">
-                    <div className="inline-flex items-center justify-center space-x-2 space-x-reverse bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-4 py-1.5 rounded-full mb-6">
-                        <Sparkles className="w-4 h-4" />
-                        <span className="text-sm font-medium">{t('club.hero.badge')}</span>
+            <section className="relative pt-32 pb-16 border-b border-seed-forest/10 dark:border-white/10 overflow-hidden">
+                <GridBackground size={48} className="opacity-40 dark:opacity-20" />
+
+                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seed-stone/80 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 mb-6">
+                        <span className="w-1.5 h-1.5 rounded-full bg-seed-lime animate-pulse" />
+                        <TextShimmer className="text-xs font-mono tracking-wider text-seed-forest dark:text-seed-snow">
+                            حلقهٔ سلامت و همراهی زیستی • رُستارا
+                        </TextShimmer>
                     </div>
-                    <h1 className="text-4xl md:text-5xl font-display font-bold text-brown-900 dark:text-cream mb-6">
-                        {t('club.hero.title')}
+
+                    <h1 className="text-4xl sm:text-5xl font-display font-black text-seed-forest dark:text-seed-snow tracking-tight mb-4">
+                        باشگاه تندرستی و پژوهش زیستی
                     </h1>
-                    <p className="text-xl text-brown-600 dark:text-brown-300 max-w-2xl mx-auto">
-                        {t('club.hero.subtitle')}
+
+                    <p className="text-base sm:text-lg text-seed-pewter dark:text-seed-snow/75 max-w-2xl mx-auto leading-relaxed">
+                        دسترسی به تخفیف‌های انحصاری بذرها، تبادل تجربه در کشت آپارتمانی و مطالعه آخرین پژوهش‌های تغذیه بالینی.
                     </p>
                 </div>
-            </div>
+            </section>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Main Content Area */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-                {/* Exclusive Offers Section */}
-                <div className="lg:col-span-1 space-y-8">
-                    <div className="flex items-center gap-3 mb-6">
-                        <Gift className="w-6 h-6 text-primary-600 dark:text-primary-400" />
-                        <h2 className="text-2xl font-display font-bold text-brown-900 dark:text-cream">
-                            {t('club.offers.title', { defaultValue: 'پیشنهادات و کدهای تخفیف اختصاصی' })}
-                        </h2>
+                {/* Exclusive Offers Column */}
+                <div className="lg:col-span-1 space-y-6">
+                    <div className="flex items-center justify-between pb-2 border-b border-seed-forest/10 dark:border-white/10">
+                        <div className="flex items-center gap-2">
+                            <Gift className="w-5 h-5 text-seed-forest dark:text-seed-lime" />
+                            <h2 className="text-lg font-bold text-seed-forest dark:text-seed-snow">
+                                کدهای تخفیف و امتیازات
+                            </h2>
+                        </div>
+                        <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50">[VOUCHERS]</span>
                     </div>
 
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                         {offers.map((offer) => (
-                            <div key={offer.id} className="bg-white dark:bg-brown-900 rounded-2xl p-6 border border-brown-100 dark:border-brown-800 shadow-sm hover:shadow-md transition-all group">
-                                <div className={`inline-block px-3 py-1 rounded-lg text-sm font-bold mb-4 ${offer.color}`}>
-                                    {offer.discount}
+                            <SpotlightCard
+                                key={offer.id}
+                                className="p-6 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10"
+                            >
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="badge-lime text-xs font-bold">
+                                        {offer.discount}
+                                    </span>
+                                    <span className="text-[10px] font-mono text-seed-pewter dark:text-seed-snow/50">
+                                        {offer.tag}
+                                    </span>
                                 </div>
-                                <h3 className="text-xl font-bold text-brown-900 dark:text-cream mb-2">
+
+                                <h3 className="text-base font-bold text-seed-forest dark:text-seed-snow mb-1">
                                     {offer.title}
                                 </h3>
-                                <p className="text-brown-600 dark:text-brown-400 text-sm mb-6">
+
+                                <p className="text-xs text-seed-pewter dark:text-seed-snow/70 mb-5 leading-relaxed">
                                     {offer.desc}
                                 </p>
-                                <div className="flex items-center justify-between bg-cream dark:bg-brown-950 p-3 rounded-xl border border-brown-200 dark:border-brown-800 border-dashed">
-                                    <span className="font-mono font-bold text-brown-800 dark:text-brown-200 tracking-wider">
+
+                                <div className="flex items-center justify-between bg-seed-stone/60 dark:bg-white/5 p-3 rounded-xl border border-seed-forest/10 dark:border-white/10 border-dashed">
+                                    <span className="font-mono font-bold text-xs tracking-wider text-seed-forest dark:text-seed-lime">
                                         {offer.code}
                                     </span>
                                     <button
                                         onClick={() => copyToClipboard(offer.code)}
-                                        className="p-2 hover:bg-brown-200 dark:hover:bg-brown-800 rounded-lg transition-colors text-brown-600 dark:text-brown-400"
-                                        title={t('club.offers.copy')}
+                                        className="text-xs px-2.5 py-1 rounded-lg bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest font-bold hover:opacity-90 transition-all flex items-center gap-1"
                                     >
                                         {copiedCode === offer.code ? (
-                                            <span className="text-xs font-bold text-green-600 dark:text-green-400">{t('club.offers.copied')}</span>
+                                            <>
+                                                <Check className="w-3.5 h-3.5" />
+                                                <span>کپی شد</span>
+                                            </>
                                         ) : (
-                                            <Copy className="w-4 h-4" />
+                                            <>
+                                                <Copy className="w-3.5 h-3.5" />
+                                                <span>کپی کد</span>
+                                            </>
                                         )}
                                     </button>
                                 </div>
-                            </div>
+                            </SpotlightCard>
                         ))}
                     </div>
                 </div>
 
-                {/* Community Forum - Full Feature */}
+                {/* Community Forum Column */}
                 <div className="lg:col-span-2">
+                    <div className="flex items-center justify-between pb-2 mb-6 border-b border-seed-forest/10 dark:border-white/10">
+                        <div className="flex items-center gap-2">
+                            <Users className="w-5 h-5 text-seed-forest dark:text-seed-lime" />
+                            <h2 className="text-lg font-bold text-seed-forest dark:text-seed-snow">
+                                تالار گفت‌وگو و تجارب کشت خانگی
+                            </h2>
+                        </div>
+                        <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50">[FORUM]</span>
+                    </div>
+
                     <ForumList />
                 </div>
             </div>

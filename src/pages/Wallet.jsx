@@ -230,20 +230,20 @@ const Wallet = () => {
     if (loading) return <div className="min-h-screen pt-32 text-center">...</div>;
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 pt-32 pb-20 px-4">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow pt-32 pb-20 px-4 transition-colors duration-300">
             <div className="max-w-5xl mx-auto">
                 {/* Header */}
                 <div className="flex items-center gap-4 mb-8">
-                    <div className="p-3 bg-primary-100 dark:bg-primary-900 rounded-2xl">
-                        <WalletIcon className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+                    <div className="p-3 bg-seed-stone dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-2xl text-seed-forest dark:text-seed-lime">
+                        <WalletIcon className="w-8 h-8" />
                     </div>
                     <div className="flex-1">
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-3xl font-display font-bold text-brown-900 dark:text-cream">
-                                کیف پول من
+                        <div className="flex justify-between items-center mb-1">
+                            <h2 className="text-3xl font-display font-black text-seed-forest dark:text-seed-snow">
+                                پیشخوان شخصی و کیف پول رُستارا
                             </h2>
                         </div>
-                        <p className="text-brown-600 dark:text-brown-300">مدیریت کیف پول، سفارشات و بلیط‌ها</p>
+                        <p className="text-seed-pewter dark:text-seed-snow/70 text-xs">مدیریت اعتبارات زیستی، سفارشات فعال و سطوح همراهی</p>
                     </div>
                 </div>
 
@@ -288,32 +288,32 @@ const Wallet = () => {
                     </div>
 
                     {/* Credit Wallet */}
-                    <div className="bg-gradient-to-br from-brown-800 to-brown-900 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10"></div>
+                    <div className="bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 rounded-2xl p-6 text-seed-forest dark:text-seed-snow shadow-sm relative overflow-hidden">
                         <div className="relative z-10 flex flex-col h-full">
-                            <p className="text-brown-200 text-sm mb-1">کیف پول اعتباری (پاداش)</p>
-                            <h2 className="text-3xl font-bold mb-auto" dir="ltr">{formatPrice(balance.credit)}</h2>
+                            <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 block mb-1">[BIO_CREDIT]</span>
+                            <p className="text-seed-pewter dark:text-seed-snow/70 text-xs mb-1">اعتبار زیستی (پاداش همراهی)</p>
+                            <h2 className="text-2xl font-black mb-auto font-mono text-seed-forest dark:text-seed-lime" dir="ltr">{formatPrice(balance.credit)}</h2>
                             <button
                                 onClick={handleConvertTicket}
-                                className="mt-6 bg-white/10 hover:bg-white/20 text-white text-sm py-2.5 px-4 rounded-lg transition-colors flex items-center gap-2 w-full justify-center"
+                                className="mt-6 bg-seed-stone dark:bg-white/5 hover:bg-seed-stone/80 text-seed-forest dark:text-seed-snow text-xs py-2.5 px-4 rounded-xl transition-colors flex items-center gap-2 w-full justify-center border border-seed-forest/10 dark:border-white/10"
                             >
-                                <ArrowRightLeft className="w-4 h-4" />
-                                تبدیل به بلیط
+                                <ArrowRightLeft className="w-4 h-4 text-seed-forest dark:text-seed-lime" />
+                                تبدیل اعتبار به بلیط
                             </button>
                         </div>
                     </div>
 
                     {/* Ticket Wallet */}
-                    <div className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-10 -mt-10"></div>
+                    <div className="bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 rounded-2xl p-6 text-seed-forest dark:text-seed-snow shadow-sm relative overflow-hidden">
                         <div className="relative z-10 flex flex-col h-full">
-                            <p className="text-primary-100 text-sm mb-1">بلیط‌های جشنواره</p>
-                            <h2 className="text-3xl font-bold mb-auto">{toPersianDigits(balance.tickets)}</h2>
+                            <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 block mb-1">[VOUCHERS]</span>
+                            <p className="text-seed-pewter dark:text-seed-snow/70 text-xs mb-1">بلیط‌های جشنواره و تخفیف</p>
+                            <h2 className="text-2xl font-black mb-auto text-seed-forest dark:text-seed-lime font-mono">{toPersianDigits(balance.tickets)}</h2>
                             <button
                                 onClick={() => setActiveTab('transfer')}
-                                className="mt-6 bg-white/10 hover:bg-white/20 text-white text-sm py-2.5 px-4 rounded-lg transition-colors flex items-center gap-2 w-full justify-center"
+                                className="mt-6 bg-seed-stone dark:bg-white/5 hover:bg-seed-stone/80 text-seed-forest dark:text-seed-snow text-xs py-2.5 px-4 rounded-xl transition-colors flex items-center gap-2 w-full justify-center border border-seed-forest/10 dark:border-white/10"
                             >
-                                <Send className="w-4 h-4" />
+                                <Send className="w-4 h-4 text-seed-forest dark:text-seed-lime" />
                                 ارسال / اهدا
                             </button>
                         </div>
@@ -389,30 +389,30 @@ const Wallet = () => {
                     <div className="lg:col-span-1 space-y-2">
                         <button
                             onClick={() => setActiveTab('orders')}
-                            className={`w-full text-right p-4 rounded-xl font-medium transition-colors flex items-center gap-3 ${activeTab === 'orders' ? 'bg-primary-600 text-white shadow-md' : 'bg-white dark:bg-brown-900 text-brown-700 dark:text-brown-200 hover:bg-brown-50 dark:hover:bg-brown-800'}`}
+                            className={`w-full text-right p-3.5 rounded-xl text-xs font-bold transition-all flex items-center gap-3 ${activeTab === 'orders' ? 'bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest shadow-sm' : 'bg-seed-snow dark:bg-[#132412] text-seed-forest dark:text-seed-snow border border-seed-forest/10 dark:border-white/10 hover:bg-seed-stone dark:hover:bg-white/5'}`}
                         >
-                            <ShoppingBag className="w-5 h-5" />
+                            <ShoppingBag className="w-4 h-4" />
                             سفارش‌های من
                         </button>
                         <button
                             onClick={() => setActiveTab('overview')}
-                            className={`w-full text-right p-4 rounded-xl font-medium transition-colors flex items-center gap-3 ${activeTab === 'overview' ? 'bg-primary-600 text-white shadow-md' : 'bg-white dark:bg-brown-900 text-brown-700 dark:text-brown-200 hover:bg-brown-50 dark:hover:bg-brown-800'}`}
+                            className={`w-full text-right p-3.5 rounded-xl text-xs font-bold transition-all flex items-center gap-3 ${activeTab === 'overview' ? 'bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest shadow-sm' : 'bg-seed-snow dark:bg-[#132412] text-seed-forest dark:text-seed-snow border border-seed-forest/10 dark:border-white/10 hover:bg-seed-stone dark:hover:bg-white/5'}`}
                         >
-                            <History className="w-5 h-5" />
+                            <History className="w-4 h-4" />
                             تاریخچه تراکنش‌ها
                         </button>
                         <button
                             onClick={() => setActiveTab('deposit')}
-                            className={`w-full text-right p-4 rounded-xl font-medium transition-colors flex items-center gap-3 ${activeTab === 'deposit' ? 'bg-primary-600 text-white shadow-md' : 'bg-white dark:bg-brown-900 text-brown-700 dark:text-brown-200 hover:bg-brown-50 dark:hover:bg-brown-800'}`}
+                            className={`w-full text-right p-3.5 rounded-xl text-xs font-bold transition-all flex items-center gap-3 ${activeTab === 'deposit' ? 'bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest shadow-sm' : 'bg-seed-snow dark:bg-[#132412] text-seed-forest dark:text-seed-snow border border-seed-forest/10 dark:border-white/10 hover:bg-seed-stone dark:hover:bg-white/5'}`}
                         >
-                            <CreditCard className="w-5 h-5" />
+                            <CreditCard className="w-4 h-4" />
                             شارژ حساب (رمز ارز)
                         </button>
                         <button
                             onClick={() => setActiveTab('transfer')}
-                            className={`w-full text-right p-4 rounded-xl font-medium transition-colors flex items-center gap-3 ${activeTab === 'transfer' ? 'bg-primary-600 text-white shadow-md' : 'bg-white dark:bg-brown-900 text-brown-700 dark:text-brown-200 hover:bg-brown-50 dark:hover:bg-brown-800'}`}
+                            className={`w-full text-right p-3.5 rounded-xl text-xs font-bold transition-all flex items-center gap-3 ${activeTab === 'transfer' ? 'bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest shadow-sm' : 'bg-seed-snow dark:bg-[#132412] text-seed-forest dark:text-seed-snow border border-seed-forest/10 dark:border-white/10 hover:bg-seed-stone dark:hover:bg-white/5'}`}
                         >
-                            <Send className="w-5 h-5" />
+                            <Send className="w-4 h-4" />
                             انتقال بلیط
                         </button>
                     </div>
@@ -422,35 +422,35 @@ const Wallet = () => {
 
                         {/* 1. ORDERS TAB */}
                         {activeTab === 'orders' && (
-                            <div className="bg-white dark:bg-brown-900 rounded-2xl p-6 border border-brown-100 dark:border-brown-800 min-h-[400px]">
-                                <h3 className="text-xl font-bold text-brown-900 dark:text-cream mb-6">سفارش‌های من</h3>
+                            <div className="bg-seed-snow dark:bg-[#132412] rounded-2xl p-6 border border-seed-forest/10 dark:border-white/10 min-h-[400px]">
+                                <h3 className="text-lg font-bold text-seed-forest dark:text-seed-snow mb-6 pb-2 border-b border-seed-forest/10 dark:border-white/10">سفارش‌های ثبت شده</h3>
                                 {myOrders.length === 0 ? (
-                                    <p className="text-center text-brown-500 py-8">هنوز سفارشی ثبت نکرده‌اید.</p>
+                                    <p className="text-center text-seed-pewter dark:text-seed-snow/60 py-8 text-xs">هنوز سفارشی ثبت نکرده‌اید.</p>
                                 ) : (
                                     <div className="space-y-4">
                                         {myOrders.map(order => (
-                                            <div key={order.id} className="border border-brown-200 dark:border-brown-700 rounded-xl p-4 hover:border-primary-300 transition-colors">
+                                            <div key={order.id} className="border border-seed-forest/10 dark:border-white/10 rounded-xl p-4 hover:border-seed-lime/40 transition-colors">
                                                 <div className="flex justify-between items-start mb-3">
                                                     <div>
-                                                        <span className="font-bold text-brown-900 dark:text-cream block">سفارش #{order.id}</span>
-                                                        <span className="text-sm text-brown-500">{formatDate(order.created_at || order.timestamp)}</span>
+                                                        <span className="font-bold text-seed-forest dark:text-seed-snow block text-sm">سفارش #{order.id}</span>
+                                                        <span className="text-xs font-mono text-seed-pewter dark:text-seed-snow/60">{formatDate(order.created_at || order.timestamp)}</span>
                                                     </div>
-                                                    <span className={`px-3 py-1 rounded-full text-sm font-medium
-                                                        ${order.status === 'delivered' ? 'bg-green-100 text-green-700' :
-                                                            order.status === 'processing' ? 'bg-blue-100 text-blue-700' :
-                                                                order.status === 'cancelled' ? 'bg-red-100 text-red-700' :
-                                                                    'bg-yellow-100 text-yellow-700'
+                                                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium font-mono
+                                                        ${order.status === 'delivered' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' :
+                                                            order.status === 'processing' ? 'bg-blue-500/10 text-blue-600 dark:text-blue-400' :
+                                                                order.status === 'cancelled' ? 'bg-red-500/10 text-red-600 dark:text-red-400' :
+                                                                    'bg-amber-500/10 text-amber-600 dark:text-amber-400'
                                                         }`}>
                                                         {order.status === 'pending' && 'در انتظار بررسی'}
-                                                        {order.status === 'processing' && 'در حال پردازش'}
+                                                        {order.status === 'processing' && 'در حال آماده‌سازی'}
                                                         {order.status === 'shipped' && 'ارسال شده'}
                                                         {order.status === 'delivered' && 'تحویل شده'}
                                                         {order.status === 'cancelled' && 'لغو شده'}
                                                     </span>
                                                 </div>
-                                                <div className="flex justify-between text-sm text-brown-600 dark:text-brown-300 border-t border-brown-100 dark:border-brown-800 pt-3">
+                                                <div className="flex justify-between text-xs text-seed-pewter dark:text-seed-snow/70 border-t border-seed-forest/10 dark:border-white/10 pt-3">
                                                     <span>مبلغ کل:</span>
-                                                    <span className="font-bold text-primary-600">{formatPrice(order.total || order.total_price)} تومان</span>
+                                                    <span className="font-bold text-seed-forest dark:text-seed-lime font-mono">{formatPrice(order.total || order.total_price)} تومان</span>
                                                 </div>
                                             </div>
                                         ))}
@@ -461,31 +461,31 @@ const Wallet = () => {
 
                         {/* 2. TRANSACTIONS TAB */}
                         {activeTab === 'overview' && (
-                            <div className="bg-white dark:bg-brown-900 rounded-2xl p-6 border border-brown-100 dark:border-brown-800 min-h-[400px]">
-                                <h3 className="text-xl font-bold text-brown-900 dark:text-cream mb-6">تراکنش‌های کیف پول</h3>
+                            <div className="bg-seed-snow dark:bg-[#132412] rounded-2xl p-6 border border-seed-forest/10 dark:border-white/10 min-h-[400px]">
+                                <h3 className="text-lg font-bold text-seed-forest dark:text-seed-snow mb-6 pb-2 border-b border-seed-forest/10 dark:border-white/10">تراکنش‌های کیف پول</h3>
                                 {transactions.length === 0 ? (
-                                    <p className="text-center text-brown-500 py-8">تراکنشی یافت نشد.</p>
+                                    <p className="text-center text-seed-pewter dark:text-seed-snow/60 py-8 text-xs">تراکنشی یافت نشد.</p>
                                 ) : (
                                     <div className="space-y-4">
                                         {transactions.map(tx => (
-                                            <div key={tx.id} className="flex justify-between items-center p-4 bg-cream dark:bg-brown-800/50 rounded-xl">
+                                            <div key={tx.id} className="flex justify-between items-center p-4 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/5 dark:border-white/5 rounded-xl">
                                                 <div className="flex items-center gap-3">
-                                                    <div className={`p-2 rounded-full ${tx.amount > 0 || tx.ticket_amount > 0 ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
-                                                        {tx.amount > 0 ? <CreditCard className="w-5 h-5" /> : <History className="w-5 h-5" />}
+                                                    <div className={`p-2 rounded-full ${tx.amount > 0 || tx.ticket_amount > 0 ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' : 'bg-red-500/10 text-red-500'}`}>
+                                                        {tx.amount > 0 ? <CreditCard className="w-4 h-4" /> : <History className="w-4 h-4" />}
                                                     </div>
                                                     <div>
-                                                        <p className="font-medium text-brown-900 dark:text-cream">{tx.description}</p>
-                                                        <p className="text-xs text-brown-500">{formatDate(tx.created_at)}</p>
+                                                        <p className="font-bold text-seed-forest dark:text-seed-snow text-xs">{tx.description}</p>
+                                                        <p className="text-[11px] font-mono text-seed-pewter dark:text-seed-snow/60">{formatDate(tx.created_at)}</p>
                                                     </div>
                                                 </div>
-                                                <div className="text-left">
+                                                <div className="text-left font-mono">
                                                     {tx.amount !== 0 && (
-                                                        <p className={`font-bold ${tx.amount > 0 ? 'text-green-600' : 'text-red-600'}`} dir="ltr">
+                                                        <p className={`font-bold text-xs ${tx.amount > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500'}`} dir="ltr">
                                                             {tx.amount > 0 ? '+' : ''}{formatPrice(tx.amount)} T
                                                         </p>
                                                     )}
                                                     {tx.ticket_amount !== 0 && (
-                                                        <p className={`text-sm ${tx.ticket_amount > 0 ? 'text-green-600' : 'text-red-600'}`} dir="ltr">
+                                                        <p className={`text-xs ${tx.ticket_amount > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500'}`} dir="ltr">
                                                             {tx.ticket_amount > 0 ? '+' : ''}{tx.ticket_amount} Ticket
                                                         </p>
                                                     )}
@@ -499,26 +499,27 @@ const Wallet = () => {
 
                         {/* 3. TRANSFER TAB */}
                         {activeTab === 'transfer' && (
-                            <div className="bg-white dark:bg-brown-900 rounded-2xl p-6 border border-brown-100 dark:border-brown-800 min-h-[400px]">
-                                <h3 className="text-xl font-bold text-brown-900 dark:text-cream mb-4">ارسال بلیط / اهدا</h3>
-                                <div className="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-xl mb-6">
-                                    <p className="text-sm text-primary-800 dark:text-primary-200">
-                                        💡 <strong>نکته اهدا:</strong> با ارسال بلیط به آدرس <code className="bg-white/50 px-1 rounded">donate@rostara.ir</code>، شما ۵۰٪ ارزش تیکت (۲۵۰ هزار تومان) را به عنوان پاداش اعتباری دریافت میکنید!
+                            <div className="bg-seed-snow dark:bg-[#132412] rounded-2xl p-6 border border-seed-forest/10 dark:border-white/10 min-h-[400px]">
+                                <h3 className="text-lg font-bold text-seed-forest dark:text-seed-snow mb-4 pb-2 border-b border-seed-forest/10 dark:border-white/10">ارسال بلیط / اهدا</h3>
+                                <div className="bg-seed-stone/70 dark:bg-white/5 p-4 rounded-xl mb-6 border border-seed-forest/10 dark:border-white/10">
+                                    <p className="text-xs text-seed-forest dark:text-seed-snow leading-relaxed">
+                                        💡 <strong>نکته اهدا:</strong> با ارسال بلیط به آدرس <code className="bg-seed-forest/10 dark:bg-white/10 px-1 rounded font-mono">donate@rostara.ir</code>، شما ۵۰٪ ارزش تیکت (۲۵۰ هزار تومان) را به عنوان پاداش اعتباری دریافت می‌کنید!
                                     </p>
                                 </div>
-                                <form onSubmit={handleTransferTicket} className="space-y-4 max-w-md mx-auto">
+                                <form onSubmit={handleTransferTicket} className="space-y-4 max-w-md mx-auto text-xs">
                                     <div>
-                                        <label className="block text-sm font-medium text-brown-700 dark:text-brown-300 mb-1">ایمیل گیرنده</label>
+                                        <label className="block font-bold text-seed-forest dark:text-seed-snow mb-1">ایمیل گیرنده</label>
                                         <input
                                             type="email"
                                             required
                                             value={transferEmail}
                                             onChange={e => setTransferEmail(e.target.value)}
                                             placeholder="example@email.com"
-                                            className="w-full px-4 py-3 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 focus:ring-2 focus:ring-primary-500"
+                                            dir="ltr"
+                                            className="w-full px-4 py-3 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 focus:outline-none focus:border-seed-lime text-xs text-seed-forest dark:text-seed-snow"
                                         />
                                     </div>
-                                    <button className="w-full py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition">
+                                    <button className="w-full py-3 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest font-bold rounded-xl hover:opacity-95 transition text-xs shadow-sm">
                                         ارسال بلیط
                                     </button>
                                 </form>
@@ -527,21 +528,21 @@ const Wallet = () => {
 
                         {/* 4. DEPOSIT (RAMZARZ) TAB */}
                         {activeTab === 'deposit' && (
-                            <div className="bg-white dark:bg-brown-900 rounded-2xl p-6 border border-brown-100 dark:border-brown-800 min-h-[400px]">
-                                <h3 className="text-xl font-bold text-brown-900 dark:text-cream mb-4">شارژ حساب با رمز ارز</h3>
-                                <div className="space-y-6">
+                            <div className="bg-seed-snow dark:bg-[#132412] rounded-2xl p-6 border border-seed-forest/10 dark:border-white/10 min-h-[400px]">
+                                <h3 className="text-lg font-bold text-seed-forest dark:text-seed-snow mb-4 pb-2 border-b border-seed-forest/10 dark:border-white/10">شارژ حساب با رمز ارز</h3>
+                                <div className="space-y-6 text-xs">
                                     {/* Network Selector */}
                                     <div>
-                                        <label className="block text-sm font-medium text-brown-700 dark:text-brown-300 mb-2">شبکه پرداخت را انتخاب کنید:</label>
+                                        <label className="block font-bold text-seed-forest dark:text-seed-snow mb-2">شبکه پرداخت را انتخاب کنید:</label>
                                         <div className="grid grid-cols-3 gap-2">
                                             {['TRC20', 'BSC', 'ETH'].map(net => (
                                                 <button
                                                     key={net}
                                                     onClick={() => setSelectedNetwork(net)}
-                                                    className={`py-2 px-4 rounded-lg border font-medium transition-all
+                                                    className={`py-2 px-4 rounded-xl border font-bold font-mono transition-all
                                                         ${selectedNetwork === net
-                                                            ? 'border-green-600 bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                                                            : 'border-brown-200 dark:border-brown-700 text-brown-600 hover:bg-brown-50'}`}
+                                                            ? 'border-seed-forest bg-seed-forest text-seed-snow dark:border-seed-lime dark:bg-seed-lime dark:text-seed-forest'
+                                                            : 'border-seed-forest/10 dark:border-white/10 text-seed-pewter dark:text-seed-snow/70 hover:bg-seed-stone dark:hover:bg-white/5'}`}
                                                 >
                                                     {net}
                                                 </button>
@@ -550,46 +551,48 @@ const Wallet = () => {
                                     </div>
 
                                     {/* Address Display */}
-                                    <div className="bg-gray-100 dark:bg-brown-800 p-4 rounded-xl border border-gray-200 dark:border-brown-700">
-                                        <p className="text-xs text-brown-500 mb-1">آدرس کیف پول {selectedNetwork}:</p>
+                                    <div className="bg-seed-stone/50 dark:bg-white/5 p-4 rounded-xl border border-seed-forest/10 dark:border-white/10">
+                                        <p className="text-[11px] font-mono text-seed-pewter dark:text-seed-snow/60 mb-1">آدرس کیف پول {selectedNetwork}:</p>
                                         <div className="flex items-center justify-between gap-2">
-                                            <code className="text-sm font-mono break-all text-brown-900 dark:text-cream">
+                                            <code className="text-xs font-mono break-all text-seed-forest dark:text-seed-lime">
                                                 {WALLETS[selectedNetwork]}
                                             </code>
                                             <button
                                                 onClick={() => navigator.clipboard.writeText(WALLETS[selectedNetwork])}
-                                                className="p-2 text-primary-600 hover:bg-white rounded-lg transition-colors"
+                                                className="p-1.5 text-seed-forest dark:text-seed-lime hover:bg-white/20 rounded-lg transition-colors flex-shrink-0"
                                                 title="کپی آدرس"
                                             >
-                                                <ArrowRightLeft className="w-4 h-4 rotate-45" />
+                                                <ArrowRightLeft className="w-3.5 h-3.5 rotate-45" />
                                             </button>
                                         </div>
                                     </div>
 
-                                    <form onSubmit={handleCryptoDeposit} className="space-y-4 pt-4 border-t border-brown-100 dark:border-brown-800">
+                                    <form onSubmit={handleCryptoDeposit} className="space-y-4 pt-4 border-t border-seed-forest/10 dark:border-white/10">
                                         <div>
-                                            <label className="block text-sm font-medium text-brown-700 dark:text-brown-300 mb-1">مبلغ واریزی (USDT)</label>
+                                            <label className="block font-bold text-seed-forest dark:text-seed-snow mb-1">مبلغ واریزی (USDT)</label>
                                             <input
                                                 type="number"
                                                 required
                                                 value={cryptoAmount}
                                                 onChange={e => setCryptoAmount(e.target.value)}
-                                                className="w-full px-4 py-3 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700"
+                                                dir="ltr"
+                                                className="w-full px-4 py-3 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 text-xs text-seed-forest dark:text-seed-snow font-mono focus:outline-none focus:border-seed-lime"
                                                 placeholder="مثلا: 100"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-brown-700 dark:text-brown-300 mb-1">کد پیگیری تراکنش (TXID)</label>
+                                            <label className="block font-bold text-seed-forest dark:text-seed-snow mb-1">کد پیگیری تراکنش (TXID)</label>
                                             <input
                                                 type="text"
                                                 required
                                                 value={txHash}
                                                 onChange={e => setTxHash(e.target.value)}
-                                                className="w-full px-4 py-3 rounded-xl bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 font-mono text-sm"
+                                                dir="ltr"
+                                                className="w-full px-4 py-3 rounded-xl bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 font-mono text-xs text-seed-forest dark:text-seed-snow focus:outline-none focus:border-seed-lime"
                                                 placeholder="0x..."
                                             />
                                         </div>
-                                        <button className="w-full py-3 bg-green-600 text-white rounded-xl hover:bg-green-700 transition">
+                                        <button className="w-full py-3 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest font-bold rounded-xl hover:opacity-95 transition text-xs shadow-sm">
                                             ثبت درخواست واریز
                                         </button>
                                     </form>
@@ -598,22 +601,22 @@ const Wallet = () => {
                         )}
 
                         {/* Danger Zone */}
-                        <div className="mt-12 pt-8 border-t border-brown-200 dark:border-brown-800">
-                            <h3 className="text-lg font-bold text-red-600 mb-4">ناحیه خطر</h3>
-                            <div className="bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/30 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div className="mt-12 pt-8 border-t border-seed-forest/10 dark:border-white/10">
+                            <h3 className="text-sm font-bold text-red-500 mb-3">ناحیه مدیریت حساس</h3>
+                            <div className="bg-red-500/5 border border-red-500/20 rounded-xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
                                 <div>
-                                    <p className="font-bold text-brown-900 dark:text-cream mb-1">حذف حساب کاربری</p>
-                                    <p className="text-sm text-brown-600 dark:text-brown-400">
+                                    <p className="font-bold text-seed-forest dark:text-seed-snow mb-1">حذف حساب کاربری</p>
+                                    <p className="text-seed-pewter dark:text-seed-snow/60 text-[11px] leading-relaxed">
                                         با حذف حساب، تمام اطلاعات کیف پول و سفارشات شما برای همیشه پاک خواهد شد.
                                     </p>
                                 </div>
                                 <button
                                     onClick={handleDeleteAccount}
                                     disabled={isDeleting}
-                                    className="shrink-0 px-6 py-3 bg-white dark:bg-red-900/20 text-red-600 border border-red-200 dark:border-red-800 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors font-medium flex items-center gap-2"
+                                    className="shrink-0 px-4 py-2.5 bg-red-500/10 text-red-500 border border-red-500/20 rounded-xl hover:bg-red-500 hover:text-white transition-colors font-bold flex items-center gap-1.5"
                                 >
-                                    <LogOut className="w-4 h-4" />
-                                    {isDeleting ? 'در حال حذف...' : 'حذف حساب کاربری'}
+                                    <LogOut className="w-3.5 h-3.5" />
+                                    <span>{isDeleting ? 'در حال حذف...' : 'حذف حساب کاربری'}</span>
                                 </button>
                             </div>
                         </div>

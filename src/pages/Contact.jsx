@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Mail, Phone, MapPin, Send, CheckCircle, Sprout } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Sprout, MessageSquare, ShieldCheck } from 'lucide-react';
 import { db } from '../services/db';
 import { ShineButton } from '@/components/animations/shine-button';
+import { GridBackground } from '@/components/backgrounds/grid';
+import { TextShimmer } from '@/components/animations/text-shimmer';
+import { SpotlightCard } from '@/components/animations/spotlight-card';
 
 const Contact = () => {
     const { t } = useTranslation();
@@ -48,93 +51,106 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 transition-colors duration-300">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow transition-colors duration-300">
             {/* Hero */}
-            <section className="pt-32 pb-16 bg-gradient-to-b from-primary-50/60 via-cream to-brown-50/40 dark:from-primary-950/30 dark:via-brown-950 dark:to-brown-950">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-950 text-primary-800 dark:text-primary-300 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-primary-200 dark:border-primary-800">
-                        صدای شما برای ما مهم است
-                    </span>
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-brown-900 dark:text-cream mb-4">
-                        ارتباط با رُستارا
+            <section className="relative pt-32 pb-16 border-b border-seed-forest/10 dark:border-white/10 overflow-hidden">
+                <GridBackground size={48} className="opacity-40 dark:opacity-20" />
+
+                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seed-stone/80 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 mb-6">
+                        <span className="w-1.5 h-1.5 rounded-full bg-seed-lime animate-pulse" />
+                        <TextShimmer className="text-xs font-mono tracking-wider text-seed-forest dark:text-seed-snow">
+                            ارتباط مستقیم و پشتیبانی علمی • رُستارا
+                        </TextShimmer>
+                    </div>
+
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-seed-forest dark:text-seed-snow tracking-tight mb-4">
+                        ارتباط با کارشناسان رُستارا
                     </h1>
-                    <p className="text-lg text-brown-600 dark:text-brown-300 leading-relaxed max-w-2xl mx-auto">
-                        سوالی درباره پرورش میکروگرین‌ها، کیت‌های رشد، سوپرفودها یا سفارشات دارید؟ همکاران ما آماده پاسخگویی هستند.
+                    <p className="text-base sm:text-lg text-seed-pewter dark:text-seed-snow/75 leading-relaxed max-w-2xl mx-auto">
+                        سوالی درباره پرورش میکروگرین‌ها، کیت‌های رشد، گونه‌های زیستی یا همکاری در زمینه محصولات ارگانیک دارید؟ با کمال میل پاسخگوی شما هستیم.
                     </p>
                 </div>
             </section>
 
             {/* Contact Section */}
-            <section className="py-20">
+            <section className="py-16">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 gap-12 items-start">
-                        {/* Contact Info */}
-                        <div className="space-y-6">
-                            <h2 className="text-3xl font-display font-extrabold text-brown-900 dark:text-cream mb-6">
-                                راه‌های دسترسی و مشاوره
+                    <div className="grid md:grid-cols-2 gap-10 items-start">
+                        {/* Contact Info Cards */}
+                        <div className="space-y-4">
+                            <h2 className="text-xl font-bold text-seed-forest dark:text-seed-snow mb-4 flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
+                                کانال‌های ارتباطی و آزمایشگاه
                             </h2>
 
-                            <div className="p-6 bg-white dark:bg-brown-900 rounded-3xl border border-brown-200/80 dark:border-brown-800 shadow-sm flex items-start gap-4">
-                                <div className="w-12 h-12 bg-primary-100 dark:bg-primary-950 rounded-2xl flex items-center justify-center flex-shrink-0 text-primary-700 dark:text-primary-400 border border-primary-200 dark:border-primary-800">
+                            <SpotlightCard className="p-6 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 flex items-start gap-4">
+                                <div className="w-12 h-12 bg-seed-stone dark:bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10">
                                     <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-brown-900 dark:text-cream mb-1">مرکز زیستی و گلخانه</h3>
-                                    <p className="text-brown-600 dark:text-brown-300 text-sm leading-relaxed">
-                                        کارگاه و فارم کشت بیودینامیک رُستارا، گیلان و ارسال فوری به سراسر کشور
+                                    <div className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 mb-0.5">[LAB_FACILITY]</div>
+                                    <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">مرکز زیستی و کارگاه بستر کشت</h3>
+                                    <p className="text-seed-pewter dark:text-seed-snow/70 text-xs leading-relaxed">
+                                        کارگاه و فارم کشت ارگانیک رُستارا، گیلان؛ ارسال با ترانزیت تحت کنترل به تمام نقاط کشور.
                                     </p>
                                 </div>
-                            </div>
+                            </SpotlightCard>
 
-                            <div className="p-6 bg-white dark:bg-brown-900 rounded-3xl border border-brown-200/80 dark:border-brown-800 shadow-sm flex items-start gap-4">
-                                <div className="w-12 h-12 bg-primary-100 dark:bg-primary-950 rounded-2xl flex items-center justify-center flex-shrink-0 text-primary-700 dark:text-primary-400 border border-primary-200 dark:border-primary-800">
+                            <SpotlightCard className="p-6 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 flex items-start gap-4">
+                                <div className="w-12 h-12 bg-seed-stone dark:bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10">
                                     <Mail className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-brown-900 dark:text-cream mb-1">مکاتبات و پشتیبانی ایمیل</h3>
-                                    <p className="text-primary-700 dark:text-primary-400 font-semibold text-sm" dir="ltr">
+                                    <div className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 mb-0.5">[DIRECT_CORRESPONDENCE]</div>
+                                    <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">مکاتبات علمی و پشتیبانی سفارشات</h3>
+                                    <p className="font-mono font-bold text-xs text-seed-forest dark:text-seed-lime" dir="ltr">
                                         info@rostara.ir
                                     </p>
-                                    <p className="text-xs text-brown-500 dark:text-brown-400 mt-1">پاسخگویی سریع کمتر از ۲۴ ساعت</p>
+                                    <p className="text-[11px] text-seed-pewter dark:text-seed-snow/60 mt-1">پاسخگویی کمتر از ۲۴ ساعت کاری</p>
                                 </div>
-                            </div>
+                            </SpotlightCard>
 
-                            <div className="p-6 bg-white dark:bg-brown-900 rounded-3xl border border-brown-200/80 dark:border-brown-800 shadow-sm flex items-start gap-4">
-                                <div className="w-12 h-12 bg-primary-100 dark:bg-primary-950 rounded-2xl flex items-center justify-center flex-shrink-0 text-primary-700 dark:text-primary-400 border border-primary-200 dark:border-primary-800">
+                            <SpotlightCard className="p-6 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 flex items-start gap-4">
+                                <div className="w-12 h-12 bg-seed-stone dark:bg-white/5 rounded-xl flex items-center justify-center flex-shrink-0 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10">
                                     <Sprout className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-brown-900 dark:text-cream mb-1">همکاری در کشاورزی ارگانیک</h3>
-                                    <p className="text-brown-600 dark:text-brown-300 text-sm leading-relaxed">
-                                        اگر تولیدکننده بذر ارگانیک یا پرورش‌دهنده قارچ‌های دارویی و تخمیری‌ها هستید، مشتاق همکاری با شما هستیم.
+                                    <div className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 mb-0.5">[PARTNERSHIP]</div>
+                                    <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">تامین و پژوهش مشترک</h3>
+                                    <p className="text-seed-pewter dark:text-seed-snow/70 text-xs leading-relaxed">
+                                        اگر تولیدکننده بذرهای اصیل بومی، پرورش‌دهنده قارچ‌های دارویی یا محقق حوزه بیوتکنولوژی هستید، آماده همکاری علمی و تجاری با شما هستیم.
                                     </p>
                                 </div>
-                            </div>
+                            </SpotlightCard>
                         </div>
 
                         {/* Contact Form */}
-                        <div className="bg-white dark:bg-brown-900 p-8 sm:p-10 rounded-3xl border border-brown-200/80 dark:border-brown-800 shadow-xl relative overflow-hidden">
+                        <div className="bg-seed-snow dark:bg-[#132412] p-8 rounded-3xl border border-seed-forest/10 dark:border-white/10 shadow-md relative overflow-hidden">
                             {formStatus === 'success' ? (
                                 <div className="py-16 text-center">
-                                    <div className="w-20 h-20 bg-primary-100 dark:bg-primary-950 rounded-full flex items-center justify-center mx-auto mb-6 text-primary-700 dark:text-primary-400 border border-primary-200 dark:border-primary-800">
-                                        <CheckCircle className="w-10 h-10" />
+                                    <div className="w-16 h-16 bg-seed-stone dark:bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10">
+                                        <CheckCircle className="w-8 h-8" />
                                     </div>
-                                    <h3 className="text-2xl font-display font-extrabold text-brown-900 dark:text-cream mb-2">
-                                        پیام شما با موفقیت ثبت شد!
+                                    <h3 className="text-xl font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                        پیام شما با موفقیت ثبت شد
                                     </h3>
-                                    <p className="text-brown-600 dark:text-brown-300 text-sm">
-                                        از ارتباط شما متشکریم. تیم رُستارا به زودی با شما تماس خواهد گرفت.
+                                    <p className="text-seed-pewter dark:text-seed-snow/70 text-xs">
+                                        از ارتباط شما متشکریم. کارشناسان رُستارا در اولین فرصت با شما مکاتبه خواهند کرد.
                                     </p>
                                 </div>
                             ) : (
                                 <>
-                                    <h2 className="text-2xl font-display font-extrabold text-brown-900 dark:text-cream mb-6">
-                                        ارسال پیام مستقیم
-                                    </h2>
+                                    <div className="flex items-center justify-between pb-3 mb-6 border-b border-seed-forest/10 dark:border-white/10">
+                                        <h2 className="text-base font-bold text-seed-forest dark:text-seed-snow">
+                                            ارسال پیام مستقیم به کارشناسان
+                                        </h2>
+                                        <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50">[DISPATCH]</span>
+                                    </div>
 
-                                    <form className="space-y-5" onSubmit={handleSubmit}>
+                                    <form className="space-y-4 text-xs" onSubmit={handleSubmit}>
                                         <div>
-                                            <label className="block text-brown-800 dark:text-brown-200 font-semibold text-sm mb-2">
+                                            <label className="block text-seed-forest dark:text-seed-snow font-bold mb-2">
                                                 نام و نام خانوادگی
                                             </label>
                                             <input
@@ -143,15 +159,15 @@ const Contact = () => {
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 required
-                                                className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream text-sm"
-                                                placeholder="مثال: علی محمدی"
+                                                className="w-full px-4 py-3 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs"
+                                                placeholder="مثال: مریم کریمی"
                                             />
                                         </div>
 
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                             <div>
-                                                <label className="block text-brown-800 dark:text-brown-200 font-semibold text-sm mb-2">
-                                                    ایمیل
+                                                <label className="block text-seed-forest dark:text-seed-snow font-bold mb-2">
+                                                    نشانی ایمیل
                                                 </label>
                                                 <input
                                                     type="email"
@@ -159,13 +175,13 @@ const Contact = () => {
                                                     value={formData.email}
                                                     onChange={handleChange}
                                                     required
-                                                    className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream text-sm text-left"
+                                                    className="w-full px-4 py-3 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs"
                                                     placeholder="you@email.com"
                                                     dir="ltr"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-brown-800 dark:text-brown-200 font-semibold text-sm mb-2">
+                                                <label className="block text-seed-forest dark:text-seed-snow font-bold mb-2">
                                                     شماره تماس (اختیاری)
                                                 </label>
                                                 <input
@@ -173,16 +189,16 @@ const Contact = () => {
                                                     name="phone"
                                                     value={formData.phone}
                                                     onChange={handleChange}
-                                                    className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream text-sm text-left"
-                                                    placeholder="0912..."
+                                                    className="w-full px-4 py-3 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs"
+                                                    placeholder="۰۹۱۲..."
                                                     dir="ltr"
                                                 />
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-brown-800 dark:text-brown-200 font-semibold text-sm mb-2">
-                                                متن پیام شما
+                                            <label className="block text-seed-forest dark:text-seed-snow font-bold mb-2">
+                                                متن پرسش یا درخواست
                                             </label>
                                             <textarea
                                                 name="message"
@@ -190,22 +206,22 @@ const Contact = () => {
                                                 onChange={handleChange}
                                                 rows="4"
                                                 required
-                                                className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all resize-none text-brown-900 dark:text-cream text-sm"
-                                                placeholder="پرسش، پیشنهاد یا پیام خود را اینجا بنویسید..."
+                                                className="w-full px-4 py-3 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime resize-none transition-all text-seed-forest dark:text-seed-snow text-xs leading-relaxed"
+                                                placeholder="پرسش، پیشنهاد یا گزارش وضعیت کشت خود را بنویسید..."
                                             ></textarea>
                                         </div>
 
                                         <ShineButton
                                             type="submit"
                                             disabled={formStatus === 'sending'}
-                                            className="w-full py-4 bg-seed-forest hover:bg-seed-forestDeep text-seed-snow rounded-full font-bold shadow-md hover:shadow-lg active:scale-95 transition-all duration-300 flex items-center justify-center gap-2"
+                                            className="w-full py-3.5 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest rounded-full font-bold shadow-md flex items-center justify-center gap-2 hover:opacity-95"
                                         >
                                             {formStatus === 'sending' ? (
                                                 <span>در حال ارسال پیام...</span>
                                             ) : (
                                                 <>
                                                     <span>ارسال پیام به رُستارا</span>
-                                                    <Send className="w-4 h-4" />
+                                                    <Send className="w-3.5 h-3.5" />
                                                 </>
                                             )}
                                         </ShineButton>
