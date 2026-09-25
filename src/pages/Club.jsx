@@ -59,7 +59,7 @@ const Club = () => {
                         </TextShimmer>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl font-display font-black text-seed-forest dark:text-seed-snow tracking-normal mb-4">
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-seed-forest dark:text-seed-snow tracking-normal mb-4 leading-[1.35]">
                         باشگاه تندرستی و پژوهش زیستی
                     </h1>
 

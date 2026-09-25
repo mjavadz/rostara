@@ -64,7 +64,7 @@ const Contact = () => {
                         </TextShimmer>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-seed-forest dark:text-seed-snow tracking-normal mb-4">
+                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-seed-forest dark:text-seed-snow tracking-normal mb-4 leading-[1.35]">
                         ارتباط با کارشناسان رُستارا
                     </h1>
                     <p className="text-base sm:text-lg text-seed-pewter dark:text-seed-snow/75 leading-relaxed max-w-2xl mx-auto">

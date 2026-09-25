@@ -82,9 +82,9 @@ const Method = () => {
                         </TextShimmer>
                     </div>
 
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-seed-forest dark:text-seed-snow tracking-normal mb-6 leading-tight">
+                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-seed-forest dark:text-seed-snow tracking-normal mb-6 leading-[1.38]">
                         روش‌های کشت ارگانیک
-                        <span className="block text-seed-forest/80 dark:text-seed-lime text-2xl sm:text-3xl lg:text-4xl mt-2 font-bold">
+                        <span className="block text-seed-forest/80 dark:text-seed-lime text-2xl sm:text-3xl lg:text-4xl mt-3 font-medium">
                             و باغبانی باطراوت شهری
                         </span>
                     </h1>

@@ -149,9 +149,9 @@ const Home = () => {
                     {/* Architectural Editorial Headline */}
                     <div className="grid lg:grid-cols-12 gap-8 items-end mb-12">
                         <div className="lg:col-span-8">
-                            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black tracking-normal leading-[1.22] text-seed-forest dark:text-seed-snow">
+                            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-normal leading-[1.38] text-seed-forest dark:text-seed-snow">
                                 هوشِ بیولوژیک گیاه، <br />
-                                <span className="font-light italic text-seed-sage dark:text-seed-lime">
+                                <span className="font-normal text-seed-sage dark:text-seed-lime">
                                     تغذیهٔ زنده برای سلول.
                                 </span>
                             </h1>
