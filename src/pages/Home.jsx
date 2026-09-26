@@ -178,7 +178,7 @@ const Home = () => {
                             <ArrowUpRight className="w-4 h-4" />
                         </Link>
 
-                        <div className="hidden md:flex items-center gap-6 mr-auto text-xs text-seed-pewter dark:text-seed-snow/70 font-normal">
+                        <div className="hidden md:flex items-center gap-6 ms-auto text-xs text-seed-pewter dark:text-seed-snow/70 font-normal">
                             <span className="flex items-center gap-1.5">
                                 <Check className="w-3.5 h-3.5 text-seed-forest dark:text-seed-lime" />
                                 بذرهای ۱۰۰٪ غیرتراریخته

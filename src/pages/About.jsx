@@ -81,15 +81,15 @@ const About = () => {
             <section className="py-8 bg-seed-stone/50 dark:bg-seed-forest/20 border-b border-seed-forest/10 dark:border-white/10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                        <div className="border-l border-seed-forest/20 dark:border-white/20 last:border-l-0 pl-4">
+                        <div className="border-e border-seed-forest/20 dark:border-white/20 last:border-e-0 pe-4">
                             <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">۵۰×</div>
                             <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">تراکم مواد زیست‌فعال نسبت به سبزیجات بالغ</div>
                         </div>
-                        <div className="border-l border-seed-forest/20 dark:border-white/20 last:border-l-0 pl-4">
+                        <div className="border-e border-seed-forest/20 dark:border-white/20 last:border-e-0 pe-4">
                             <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">۱۰۰٪</div>
                             <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">بذرهای دیم اصیل غیرتراریخته (Non-GMO)</div>
                         </div>
-                        <div className="border-l border-seed-forest/20 dark:border-white/20 last:border-l-0 pl-4">
+                        <div className="border-e border-seed-forest/20 dark:border-white/20 last:border-e-0 pe-4">
                             <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">۷ روز</div>
                             <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">چرخه کامل جوانه تا چیدن تازه در آپارتمان</div>
                         </div>
