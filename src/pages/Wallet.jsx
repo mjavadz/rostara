@@ -290,7 +290,7 @@ const Wallet = () => {
                     {/* Credit Wallet */}
                     <div className="bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 rounded-2xl p-6 text-seed-forest dark:text-seed-snow shadow-sm relative overflow-hidden">
                         <div className="relative z-10 flex flex-col h-full">
-                            <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 block mb-1">[BIO_CREDIT]</span>
+                            <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 block mb-1">[اعتبار تندرستی]</span>
                             <p className="text-seed-pewter dark:text-seed-snow/70 text-xs mb-1">اعتبار زیستی (پاداش همراهی)</p>
                             <h2 className="text-2xl font-black mb-auto font-mono text-seed-forest dark:text-seed-lime" dir="ltr">{formatPrice(balance.credit)}</h2>
                             <button
@@ -306,7 +306,7 @@ const Wallet = () => {
                     {/* Ticket Wallet */}
                     <div className="bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 rounded-2xl p-6 text-seed-forest dark:text-seed-snow shadow-sm relative overflow-hidden">
                         <div className="relative z-10 flex flex-col h-full">
-                            <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 block mb-1">[VOUCHERS]</span>
+                            <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 block mb-1">[تخفیف‌های فعال]</span>
                             <p className="text-seed-pewter dark:text-seed-snow/70 text-xs mb-1">بلیط‌های جشنواره و تخفیف</p>
                             <h2 className="text-2xl font-black mb-auto text-seed-forest dark:text-seed-lime font-mono">{toPersianDigits(balance.tickets)}</h2>
                             <button

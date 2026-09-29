@@ -155,9 +155,9 @@ const Products = () => {
                     
                     <div className="flex items-center gap-2 mb-3">
                         <span className="badge-lime">
-                            CATALOGUE 2026
+                            فهرست جامع ۱۴۰۵
                         </span>
-                        <span className="label-mono">
+                        <span className="text-xs font-bold text-seed-forest/70 dark:text-seed-lime">
                             نمونه‌های زیستی فعال و کیت‌های کشت خانگی
                         </span>
                     </div>
@@ -250,7 +250,7 @@ const Products = () => {
                         </div>
                     ) : (
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {filteredProducts.map((product) => {
+                            {filteredProducts.map((product, pIndex) => {
                                 const isAdded = addedToCart[product.id];
                                 return (
                                     <div
@@ -260,8 +260,8 @@ const Products = () => {
                                         <div>
                                             {/* Specimen Header */}
                                             <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-seed-forest/10 dark:border-white/10">
-                                                <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 uppercase tracking-wider">
-                                                    [{product.id.replace(/^_/, '').substring(0, 10).toUpperCase()}]
+                                                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">
+                                                    [گونهٔ {fa(pIndex + 1)}]
                                                 </span>
                                                 <span className="badge-lime text-[10px]">
                                                     {categories.find(c => c.id === product.category)?.label}

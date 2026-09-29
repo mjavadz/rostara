@@ -9,8 +9,8 @@ const NotFound = () => {
             <GridBackground size={48} className="opacity-40 dark:opacity-20" />
 
             <div className="relative text-center max-w-md p-8 rounded-3xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 shadow-md">
-                <span className="font-mono text-xs text-seed-pewter dark:text-seed-snow/50 block mb-2">
-                    [ERROR: 404_PAGE_NOT_INDEXED]
+                <span className="text-xs font-bold text-seed-pewter dark:text-seed-snow/60 block mb-2">
+                    [خطای ۴۰۴: صفحه یافت نشد]
                 </span>
                 <h1 className="text-8xl font-mono font-black text-seed-forest dark:text-seed-lime mb-2 tracking-tight">
                     ۴۰۴

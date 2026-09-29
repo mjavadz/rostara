@@ -1,6 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Sprout, Sparkles, HeartPulse, Package, Leaf } from 'lucide-react';
+import { Sprout, Sparkles, HeartPulse, Package, Leaf, Camera } from 'lucide-react';
+import { GridBackground } from '@/components/backgrounds/grid';
+import { TextShimmer } from '@/components/animations/text-shimmer';
+import { SpotlightCard } from '@/components/animations/spotlight-card';
 
 const Gallery = () => {
     const { t } = useTranslation();
@@ -9,72 +12,91 @@ const Gallery = () => {
         {
             id: 1,
             title: 'رویش جوانه‌های بروکلی در سینی خانگی',
-            category: 'میکروگرین',
+            category: 'میکروگرین‌ها',
             icon: Sprout,
+            code: '[تصویر ۰۱]'
         },
         {
             id: 2,
             title: 'تخمیر سنتی کامبوچا با اسکوبی ارگانیک',
             category: 'تخمیری‌ها',
             icon: Sparkles,
+            code: '[تصویر ۰۲]'
         },
         {
             id: 3,
             title: 'کاشت و مه‌پاشی بستر ارگانیک کوکوپیت',
             category: 'کشاورزی شهری',
             icon: Package,
+            code: '[تصویر ۰۳]'
         },
         {
             id: 4,
             title: 'قارچ‌های دارویی شیتاکه روی چوب بلوط',
-            category: 'قارچ‌ها',
+            category: 'قارچ‌های دارویی',
             icon: HeartPulse,
+            code: '[تصویر ۰۴]'
         },
         {
             id: 5,
             title: 'پیچک‌های سبز و ترد نخودفرنگی برفی',
-            category: 'میکروگرین',
+            category: 'میکروگرین‌ها',
             icon: Sprout,
+            code: '[تصویر ۰۵]'
         },
         {
             id: 6,
             title: 'نان ساوردو با خمیرترش وحشی ۴۸ ساعته',
-            category: 'سلامت روده',
+            category: 'سلامت میکروبیوم',
             icon: Sparkles,
+            code: '[تصویر ۰۶]'
         },
         {
             id: 7,
             title: 'برداشت روزانه میکروگرین تربچه بنفش',
-            category: 'میکروگرین',
+            category: 'میکروگرین‌ها',
             icon: Sprout,
+            code: '[تصویر ۰۷]'
         },
         {
             id: 8,
-            title: 'اسموتی سبز سوپرفود با پودر علف گندم',
-            category: 'سبک زندگی سالم',
+            title: 'نوشیدنی سوپرفود با پودر علف گندم ارگانیک',
+            category: 'سوپرفودها',
             icon: Leaf,
+            code: '[تصویر ۰۸]'
         },
         {
             id: 9,
-            title: 'کیت جامع کشت آپارتمانی رُستارا',
-            category: 'تجهیزات خانگی',
+            title: 'کیت کامل کشت آپارتمانی رُستارا',
+            category: 'تجهیزات کشت',
             icon: Package,
+            code: '[تصویر ۰۹]'
         },
     ];
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 transition-colors duration-300">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow transition-colors duration-300">
             {/* Hero */}
-            <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 via-cream to-brown-50 dark:from-brown-900 dark:via-brown-950 dark:to-brown-950 transition-colors duration-500">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-                        تصویر رویش
-                    </span>
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-brown-900 dark:text-cream mb-6 leading-tight">
-                        گالری رویش رُستارا
+            <section className="relative pt-32 pb-20 border-b border-seed-forest/10 dark:border-white/10 overflow-hidden">
+                <GridBackground size={48} className="opacity-40 dark:opacity-30" />
+
+                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-seed-stone/80 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 mb-6">
+                        <span className="w-1.5 h-1.5 rounded-full bg-seed-lime animate-pulse" />
+                        <TextShimmer className="text-xs font-bold text-seed-forest dark:text-seed-snow tracking-normal">
+                            مستندات بصری و آزمایشگاه رویش • رُستارا
+                        </TextShimmer>
+                    </div>
+
+                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-seed-forest dark:text-seed-snow tracking-normal mb-6 leading-[1.38]">
+                        نگارخانهٔ حیات زیستی
+                        <span className="block text-seed-forest/80 dark:text-seed-lime text-2xl sm:text-3xl lg:text-4xl mt-3 font-medium">
+                            جلوه‌های رویش میکروگرین‌ها و کشاورزی شهری
+                        </span>
                     </h1>
-                    <p className="text-lg sm:text-xl text-brown-700 dark:text-brown-200 leading-relaxed max-w-2xl mx-auto">
-                        نگاهی به جهان زنده میکروگرین‌ها، فرآورده‌های تخمیری و کشاورزی ارگانیک خانگی.
+
+                    <p className="text-base sm:text-lg text-seed-pewter dark:text-seed-snow/75 leading-relaxed max-w-2xl mx-auto font-normal">
+                        مستندسازی مراحل جوانه‌زنی، فرآیندهای تخمیر و تجربهٔ همراهان رُستارا در تولید خانگی غذای زنده.
                     </p>
                 </div>
             </section>
@@ -82,29 +104,35 @@ const Gallery = () => {
             {/* Gallery Grid */}
             <section className="py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {items.map((item) => {
                             const IconComponent = item.icon;
                             return (
-                                <div
+                                <SpotlightCard
                                     key={item.id}
-                                    className="group relative h-80 bg-gradient-to-br from-primary-100/70 via-cream to-primary-50 dark:from-brown-800 dark:via-brown-850 dark:to-brown-800 rounded-3xl overflow-hidden border border-brown-100 dark:border-brown-700/80 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between p-8"
+                                    className="p-8 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 flex flex-col justify-between min-h-[260px]"
                                 >
-                                    <div className="flex justify-between items-start">
-                                        <span className="px-3.5 py-1.5 bg-white/90 dark:bg-brown-900/90 backdrop-blur-md rounded-full text-xs font-bold text-primary-700 dark:text-primary-300 shadow-sm border border-primary-100 dark:border-brown-700">
+                                    <div className="flex items-center justify-between pb-3 mb-4 border-b border-seed-forest/10 dark:border-white/10">
+                                        <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50">
+                                            {item.code}
+                                        </span>
+                                        <span className="badge-lime text-[11px]">
                                             {item.category}
                                         </span>
-                                        <div className="w-12 h-12 rounded-2xl bg-white/80 dark:bg-brown-700/60 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
-                                            <IconComponent className="w-6 h-6 text-primary-600 dark:text-primary-400" />
+                                    </div>
+
+                                    <div className="my-auto py-4 flex items-center justify-center">
+                                        <div className="w-16 h-16 rounded-2xl bg-seed-stone dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 flex items-center justify-center text-seed-forest dark:text-seed-lime shadow-sm">
+                                            <IconComponent className="w-8 h-8" />
                                         </div>
                                     </div>
 
-                                    <div className="mt-auto pt-6">
-                                        <h3 className="text-xl font-display font-bold text-brown-900 dark:text-cream leading-snug group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">
+                                    <div className="pt-4 border-t border-seed-forest/10 dark:border-white/10">
+                                        <h3 className="text-sm font-bold text-seed-forest dark:text-seed-snow leading-snug">
                                             {item.title}
                                         </h3>
                                     </div>
-                                </div>
+                                </SpotlightCard>
                             );
                         })}
                     </div>

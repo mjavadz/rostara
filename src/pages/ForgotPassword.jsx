@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Mail, ArrowRight, CheckCircle } from 'lucide-react';
+import { Mail, ArrowLeft, CheckCircle } from 'lucide-react';
 import { supabase } from '../supabase';
+import { ShineButton } from '@/components/animations/shine-button';
 
 const ForgotPassword = () => {
     const { t } = useTranslation();
@@ -22,10 +23,9 @@ const ForgotPassword = () => {
             });
 
             if (error) throw error;
-
             setSuccess(true);
         } catch (err) {
-            setError('خطا در ارسال ایمیل بازیابی. لطفاً دوباره تلاش کنید.');
+            setError('خطا در ارسال پیوند بازیابی گذرواژه. لطفاً مجدداً بررسی فرمایید.');
             console.error('Password reset error:', err);
         } finally {
             setLoading(false);
@@ -34,32 +34,32 @@ const ForgotPassword = () => {
 
     if (success) {
         return (
-            <div className="min-h-screen bg-cream dark:bg-brown-950 flex items-center justify-center px-4 py-20 transition-colors duration-300">
+            <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow flex items-center justify-center px-4 py-20 transition-colors duration-300">
                 <div className="max-w-md w-full">
                     <div className="text-center mb-8">
-                        <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full mb-4">
-                            <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+                        <div className="inline-flex items-center justify-center w-16 h-16 bg-seed-stone dark:bg-white/5 rounded-full mb-4 text-emerald-600 dark:text-seed-lime border border-seed-forest/10 dark:border-white/10">
+                            <CheckCircle className="w-8 h-8" />
                         </div>
-                        <h1 className="text-3xl font-display font-bold text-brown-900 dark:text-cream mb-2">
-                            {t('auth.forgotPassword.successTitle')}
+                        <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-2">
+                            پیوند بازیابی ارسال شد
                         </h1>
-                        <p className="text-brown-600 dark:text-brown-300 mb-6">
-                            {t('auth.forgotPassword.successDesc')}
+                        <p className="text-xs text-seed-pewter dark:text-seed-snow/70 mb-6 leading-relaxed">
+                            دستورالعمل تنظیم مجدد رمز عبور به نشانی ایمیل شما فرستاده شد.
                         </p>
                     </div>
 
-                    <div className="bg-white dark:bg-brown-900 rounded-2xl p-8 border border-brown-100 dark:border-brown-800 shadow-lg transition-colors">
-                        <div className="space-y-4 text-brown-700 dark:text-brown-300 text-sm">
-                            <p>{t('auth.forgotPassword.checkEmail')}</p>
-                            <p>{t('auth.forgotPassword.spamCheck')}</p>
+                    <div className="bg-seed-snow dark:bg-[#132412] rounded-3xl p-8 border border-seed-forest/10 dark:border-white/10 shadow-md">
+                        <div className="space-y-3 text-seed-pewter dark:text-seed-snow/80 text-xs leading-relaxed">
+                            <p>• لطفاً صندوق ورودی (Inbox) ایمیل خود را بررسی کنید.</p>
+                            <p>• در صورت عدم دریافت در ۵ دقیقه، پوشه هرزنامه (Spam) را چک فرمایید.</p>
                         </div>
 
                         <Link
                             to="/login"
-                            className="mt-6 flex items-center justify-center gap-2 w-full py-3 text-primary-600 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-xl font-medium transition-colors"
+                            className="mt-6 flex items-center justify-center gap-2 w-full py-3 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest rounded-full text-xs font-bold transition-all shadow-sm"
                         >
-                            <ArrowRight className="w-5 h-5" />
-                            <span>{t('auth.forgotPassword.backToLogin')}</span>
+                            <ArrowLeft className="w-4 h-4" />
+                            <span>بازگشت به صفحه ورود</span>
                         </Link>
                     </div>
                 </div>
@@ -68,42 +68,44 @@ const ForgotPassword = () => {
     }
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 flex items-center justify-center px-4 py-20 transition-colors duration-300">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow flex items-center justify-center px-4 py-20 transition-colors duration-300">
             <div className="max-w-md w-full">
                 {/* Header */}
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full mb-4">
-                        <Mail className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-seed-stone dark:bg-white/5 rounded-2xl mb-4 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10 shadow-sm">
+                        <Mail className="w-8 h-8" />
                     </div>
-                    <h1 className="text-3xl font-display font-bold text-brown-900 dark:text-cream mb-2">
-                        {t('auth.forgotPassword.title')}
+                    <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50 block mb-1">
+                        [بازیابی گذرواژه]
+                    </span>
+                    <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-2">
+                        فراموشی رمز عبور
                     </h1>
-                    <p className="text-brown-600 dark:text-brown-300">
-                        {t('auth.forgotPassword.subtitle')}
+                    <p className="text-xs text-seed-pewter dark:text-seed-snow/70">
+                        نشانی ایمیل ثبت‌شدهٔ خود را وارد کنید تا پیوند بازیابی ارسال شود.
                     </p>
                 </div>
 
                 {/* Form */}
-                <div className="bg-white dark:bg-brown-900 rounded-2xl p-8 border border-brown-100 dark:border-brown-800 shadow-lg transition-colors">
+                <div className="bg-seed-snow dark:bg-[#132412] rounded-3xl p-8 border border-seed-forest/10 dark:border-white/10 shadow-md transition-colors">
                     {error && (
-                        <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-700 dark:text-red-300 text-sm">
+                        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-600 dark:text-red-400 text-xs">
                             {error}
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Email */}
+                    <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
-                            <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
-                                {t('auth.email')}
+                            <label className="block text-xs font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                نشانی ایمیل حساب کاربری
                             </label>
                             <div className="relative">
-                                <Mail className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brown-400 dark:text-brown-500" />
+                                <Mail className="absolute end-4 top-1/2 -translate-y-1/2 w-4 h-4 text-seed-pewter" />
                                 <input
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full px-4 py-3 pr-12 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
+                                    className="w-full px-4 py-3 pe-11 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs font-medium"
                                     placeholder="example@email.com"
                                     dir="ltr"
                                     required
@@ -111,25 +113,26 @@ const ForgotPassword = () => {
                             </div>
                         </div>
 
-                        {/* Submit Button */}
-                        <button
+                        <ShineButton
                             type="submit"
                             disabled={loading}
-                            className={`w-full py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 ${loading ? 'opacity-75 cursor-wait' : ''
-                                }`}
+                            className="w-full py-3.5 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest rounded-full font-bold text-xs shadow-md flex items-center justify-center gap-2 hover:opacity-95"
                         >
-                            {loading ? t('auth.forgotPassword.sending') : t('auth.forgotPassword.submit')}
-                        </button>
+                            {loading ? (
+                                <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                            ) : (
+                                <span>ارسال پیوند بازیابی گذرواژه</span>
+                            )}
+                        </ShineButton>
                     </form>
 
-                    {/* Back to Login */}
-                    <div className="mt-6 text-center">
+                    <div className="mt-6 pt-6 border-t border-seed-forest/10 dark:border-white/10 text-center">
                         <Link
                             to="/login"
-                            className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+                            className="inline-flex items-center gap-1.5 text-xs text-seed-forest dark:text-seed-lime font-bold hover:underline"
                         >
-                            <ArrowRight className="w-4 h-4" />
-                            <span>{t('auth.forgotPassword.backToLogin')}</span>
+                            <ArrowLeft className="w-3.5 h-3.5" />
+                            <span>بازگشت به صفحه ورود</span>
                         </Link>
                     </div>
                 </div>

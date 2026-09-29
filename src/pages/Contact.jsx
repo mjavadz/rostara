@@ -89,7 +89,7 @@ const Contact = () => {
                                     <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 mb-0.5">[LAB_FACILITY]</div>
+                                    <div className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 mb-0.5">[مرکز زیستی و کارگاه]</div>
                                     <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">مرکز زیستی و کارگاه بستر کشت</h3>
                                     <p className="text-seed-pewter dark:text-seed-snow/70 text-xs leading-relaxed">
                                         کارگاه و فارم کشت ارگانیک رُستارا، گیلان؛ ارسال با ترانزیت تحت کنترل به تمام نقاط کشور.
@@ -102,7 +102,7 @@ const Contact = () => {
                                     <Mail className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 mb-0.5">[DIRECT_CORRESPONDENCE]</div>
+                                    <div className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 mb-0.5">[مکاتبات رسمی و سفارشات]</div>
                                     <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">مکاتبات علمی و پشتیبانی سفارشات</h3>
                                     <p className="font-mono font-bold text-xs text-seed-forest dark:text-seed-lime" dir="ltr">
                                         info@rostara.ir
@@ -116,7 +116,7 @@ const Contact = () => {
                                     <Sprout className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 mb-0.5">[PARTNERSHIP]</div>
+                                    <div className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 mb-0.5">[همکاری پژوهشی و تامین]</div>
                                     <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">تامین و پژوهش مشترک</h3>
                                     <p className="text-seed-pewter dark:text-seed-snow/70 text-xs leading-relaxed">
                                         اگر تولیدکننده بذرهای اصیل بومی، پرورش‌دهنده قارچ‌های دارویی یا محقق حوزه بیوتکنولوژی هستید، آماده همکاری علمی و تجاری با شما هستیم.
@@ -145,7 +145,7 @@ const Contact = () => {
                                         <h2 className="text-base font-bold text-seed-forest dark:text-seed-snow">
                                             ارسال پیام مستقیم به کارشناسان
                                         </h2>
-                                        <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50">[DISPATCH]</span>
+                                        <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">[ارسال مستقیم پیام]</span>
                                     </div>
 
                                     <form className="space-y-4 text-xs" onSubmit={handleSubmit}>

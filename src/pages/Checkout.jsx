@@ -121,8 +121,8 @@ const Checkout = () => {
                     <div className="inline-flex items-center justify-center w-20 h-20 bg-seed-stone dark:bg-white/5 rounded-full mb-6 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10">
                         <CheckCircle className="w-10 h-10" />
                     </div>
-                    <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 block mb-1">
-                        [ORDER DISPATCH CONFIRMED]
+                    <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 block mb-1">
+                        [تایید ثبت سفارش]
                     </span>
                     <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-3">
                         سفارش با موفقیت ثبت گردید
@@ -162,8 +162,8 @@ const Checkout = () => {
         <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow pt-32 pb-20 transition-colors duration-300">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-8 pb-4 border-b border-seed-forest/10 dark:border-white/10">
-                    <span className="font-mono text-xs text-seed-pewter dark:text-seed-snow/60 block mb-1">
-                        [DISPATCH PROTOCOL & CHECKOUT]
+                    <span className="text-xs font-bold text-seed-forest/70 dark:text-seed-lime block mb-1">
+                        [پروتکل تحویل و تسویه‌حساب]
                     </span>
                     <h1 className="text-3xl sm:text-4xl font-display font-black text-seed-forest dark:text-seed-snow">
                         ثبت نشانی تحویل و تسویه‌حساب
@@ -317,7 +317,7 @@ const Checkout = () => {
                                 <h2 className="text-base font-bold text-seed-forest dark:text-seed-snow">
                                     خلاصه اقلام فاکتور
                                 </h2>
-                                <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50">[SUMMARY]</span>
+                                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">[خلاصه فاکتور]</span>
                             </div>
 
                             <div className="space-y-3">

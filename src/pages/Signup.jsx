@@ -65,8 +65,8 @@ const Signup = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-seed-stone dark:bg-white/5 rounded-2xl mb-4 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10 shadow-sm">
                         <UserPlus className="w-8 h-8" />
                     </div>
-                    <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 block mb-1">
-                        [CREATE SCIENTIFIC PROFILE]
+                    <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 block mb-1">
+                        [عضویت در پلتفرم رُستارا]
                     </span>
                     <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-2">
                         عضویت در پلتفرم رُستارا

@@ -13,37 +13,37 @@ const About = () => {
 
     const values = [
         {
-            code: '[VAL-01]',
+            code: '[رکن ۱]',
             icon: Sprout,
             title: 'غذای زنده و تراکم آنزیمی',
             description: 'تمرکز بر میکروگرین‌ها و جوانه‌هایی که در اوج پتانسیل سلولی و بیولوژیک قرار دارند؛ تغذیه‌ای مستقیم از طبیعت به سلول‌های بدن بدون فوت وقت.'
         },
         {
-            code: '[VAL-02]',
+            code: '[رکن ۲]',
             icon: ShieldCheck,
             title: 'خلوص ژنتیکی و بذرهای دیم',
             description: 'تعهد قطعی به بذرهای غیرتراریخته و باستانی دیم، بدون استفاده از حتی یک قطره کود شیمیایی، قارچ‌کش‌های صنعتی یا علف‌کش.'
         },
         {
-            code: '[VAL-03]',
+            code: '[رکن ۳]',
             icon: Sparkles,
             title: 'سلامت میکروبیوم و محور روده-مغز',
             description: 'باور علمی به غذاهای تخمیری زنده و فعال (کامبوچا، کیمچی و میسو) به عنوان شالودهٔ تقویت ایمنی ذاتی و پایداری خلق‌وخو.'
         },
         {
-            code: '[VAL-04]',
+            code: '[رکن ۴]',
             icon: Users,
             title: 'خودکفایی زیستی و کشاورزی آپارتمانی',
             description: 'طراحی سینی‌های دوسطحی و پروتکل‌های کشت آسان تا هر خانواده بتواند تازه‌ترین سوپرفود سبز را روی پیشخوان خانه برداشت کند.'
         },
         {
-            code: '[VAL-05]',
+            code: '[رکن ۵]',
             icon: Heart,
             title: 'پایداری بوم‌شناختی و صفر پسماند',
             description: 'حذف زنجیره طولانی حمل‌ونقل و استفاده از پدهای سلولزی زیست‌تخریب‌پذیر که پس از برداشت مستقیماً به چرخه طبیعت بازمی‌گردند.'
         },
         {
-            code: '[VAL-06]',
+            code: '[رکن ۶]',
             icon: Microscope,
             title: 'تغذیه بالینی و مبتنی بر شواهد',
             description: 'ترویج سبک زندگی بر مبنای پژوهش‌های نوین بیوشیمی، رادیکال‌زدایی با سولفورافان و فعال‌سازی مسیر Nrf2 در فیزیولوژی انسانی.'
@@ -60,7 +60,7 @@ const About = () => {
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seed-stone/80 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 mb-6">
                         <span className="w-1.5 h-1.5 rounded-full bg-seed-lime animate-pulse" />
                         <TextShimmer className="text-xs font-bold text-seed-forest dark:text-seed-snow tracking-normal">
-                            منشور رویش زیست‌پایدار • رُستارا ۲۰۲۶
+                            منشور رویش زیست‌پایدار • رُستارا ۱۴۰۵
                         </TextShimmer>
                     </div>
 

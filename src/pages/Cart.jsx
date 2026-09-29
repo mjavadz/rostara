@@ -43,8 +43,8 @@ const Cart = () => {
                 {/* Header */}
                 <div className="mb-8 pb-4 border-b border-seed-forest/10 dark:border-white/10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                     <div>
-                        <span className="font-mono text-xs text-seed-pewter dark:text-seed-snow/60 block mb-1">
-                            [ACCESSION ORDER DISPATCH]
+                        <span className="text-xs font-bold text-seed-forest/70 dark:text-seed-lime block mb-1">
+                            [سفارش و تحویل گونه‌های زیستی]
                         </span>
                         <h1 className="text-3xl sm:text-4xl font-display font-black text-seed-forest dark:text-seed-snow">
                             سبد سفارشات و نمونه‌های زیستی
@@ -58,7 +58,7 @@ const Cart = () => {
                 <div className="grid lg:grid-cols-3 gap-8">
                     {/* Cart Items List */}
                     <div className="lg:col-span-2 space-y-4">
-                        {cartItems.map((item) => (
+                        {cartItems.map((item, cIndex) => (
                             <div
                                 key={item.id}
                                 className="bg-seed-snow dark:bg-[#132412] rounded-2xl p-6 border border-seed-forest/10 dark:border-white/10 shadow-sm transition-all"
@@ -73,8 +73,8 @@ const Cart = () => {
                                     <div className="flex-grow">
                                         <div className="flex items-start justify-between gap-2 mb-1">
                                             <div>
-                                                <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50 block">
-                                                    [{item.id.replace(/^_/, '').substring(0, 10).toUpperCase()}]
+                                                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 block">
+                                                    [قلم {fa(cIndex + 1)}]
                                                 </span>
                                                 <h3 className="text-base font-bold text-seed-forest dark:text-seed-snow">
                                                     {item.name || t(`products.items.${item.id}.name`)}
@@ -141,7 +141,7 @@ const Cart = () => {
                                 <h2 className="text-base font-bold text-seed-forest dark:text-seed-snow">
                                     خلاصه فاکتور
                                 </h2>
-                                <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50">[RECEIPT]</span>
+                                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">[صورت‌حساب فاکتور]</span>
                             </div>
 
                             <div className="space-y-3 text-xs">

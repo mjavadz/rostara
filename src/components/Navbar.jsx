@@ -6,6 +6,7 @@ import { Menu, X, ShoppingCart, User, LogOut, Sun, Moon, ArrowLeft } from 'lucid
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
+import { fa } from '@/lib/utils';
 
 const Navbar = () => {
     const { t } = useTranslation();
@@ -75,8 +76,8 @@ const Navbar = () => {
                             <ShoppingCart className="w-4 h-4" />
                             <span className="hidden md:inline">سبد خرید</span>
                             {getCartCount() > 0 && (
-                                <span className="px-1.5 py-0.5 rounded-full bg-seed-lime text-seed-forest font-mono text-[10px] font-black">
-                                    {getCartCount()}
+                                <span className="px-1.5 py-0.5 rounded-full bg-seed-lime text-seed-forest text-[11px] font-bold">
+                                    {fa(getCartCount())}
                                 </span>
                             )}
                         </Link>
@@ -138,8 +139,8 @@ const Navbar = () => {
                         >
                             <ShoppingCart className="w-5 h-5" />
                             {getCartCount() > 0 && (
-                                <span className="absolute top-0 right-0 w-4 h-4 rounded-full bg-seed-lime text-seed-forest font-mono text-[9px] font-black flex items-center justify-center">
-                                    {getCartCount()}
+                                <span className="absolute top-0 right-0 w-4 h-4 rounded-full bg-seed-lime text-seed-forest text-[10px] font-bold flex items-center justify-center">
+                                    {fa(getCartCount())}
                                 </span>
                             )}
                         </Link>

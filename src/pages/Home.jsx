@@ -29,7 +29,7 @@ const Home = () => {
     // Seed-style Specimen Products
     const specimens = [
         {
-            code: 'BIO-MG01',
+            code: 'نمونه زیستی ۰۱',
             name: 'میکروگرین بروکلی تازه',
             scientificName: 'Brassica oleracea var. italica',
             potencyBadge: 'سولفورافان تا ۵۰×',
@@ -42,9 +42,9 @@ const Home = () => {
             icon: Sprout
         },
         {
-            code: 'KIT-HK04',
+            code: 'کیت رویش ۰۴',
             name: 'کیت خانگی کشت ۷ روزه',
-            scientificName: 'Automated Urban Micro-Farm',
+            scientificName: 'سازهٔ کشت زیستی بدون خاک',
             potencyBadge: 'سیستم زهکشی دو‌طبقه',
             desc: 'مهندسی اختصاصی برای بازتولید اقلیم بهینه جوانه‌زنی در محیط بسته آپارتمان؛ همراه با پدهای زیست‌تخریب‌پذیر و ۴ واریته بذر دیم غیرتراریخته.',
             metrics: [
@@ -55,9 +55,9 @@ const Home = () => {
             icon: Package
         },
         {
-            code: 'FERM-KB21',
+            code: 'فرآورده تخمیر ۲۱',
             name: 'کامبوچای زنجبیل و لیمو',
-            scientificName: 'Symbiotic Ferment Matrix',
+            scientificName: 'تخمیر هم‌زیست باکتری و مخمر زنده',
             potencyBadge: 'پروبیوتیک زنده فعال',
             desc: 'تخمیر سنتی ۲۱ روزه چای سبز و سیاه با کشت همزیست باکتری و مخمر (SCOBY)؛ سرشار از اسید گلوکونیک و باکتری‌های مفید استیک برای احیای میکروبیوم روده.',
             metrics: [
@@ -139,7 +139,7 @@ const Home = () => {
                     <div className="flex items-center gap-3 mb-8">
                         <span className="badge-lime">
                             <span className="w-1.5 h-1.5 rounded-full bg-seed-forest animate-pulse" />
-                            BIO-NUTRITION
+                            تغذیهٔ زنده سلولی
                         </span>
                         <TextShimmer className="label-persian">
                             پلتفرم زیست‌پایدار کشاورزی شهری و غذای زنده • رُستارا
@@ -230,11 +230,13 @@ const Home = () => {
             <section className="py-24 border-b border-seed-forest/10 dark:border-white/10">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
                         <div>
-                            <span className="label-mono mb-2 block">CATALOGUE • نمونه‌های فعال زیستی</span>
-                            <h2 className="text-3xl sm:text-4xl font-display font-black text-seed-forest dark:text-seed-snow">
-                                گیاهان ریزمقیاس و محصولات زنده
+                            <span className="text-xs font-bold text-seed-forest/70 dark:text-seed-lime mb-2 block">
+                                واریته‌های زیست‌فعال و ارگانیک
+                            </span>
+                            <h2 className="text-2xl sm:text-4xl font-display font-extrabold text-seed-forest dark:text-seed-snow">
+                                گونه‌های گیاهی ریزمقیاس و محصولات زنده
                             </h2>
                         </div>
                         <Link 

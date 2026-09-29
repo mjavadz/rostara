@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import { Lock, Eye, EyeOff, CheckCircle } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Lock, Eye, EyeOff, CheckCircle, ArrowLeft } from 'lucide-react';
 import { supabase } from '../supabase';
+import { ShineButton } from '@/components/animations/shine-button';
 
 const ResetPassword = () => {
     const { t } = useTranslation();
@@ -15,11 +16,9 @@ const ResetPassword = () => {
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        // Check if we have a session (user clicked the magic link)
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (!session) {
-                // If no session, they might have come here directly or link expired
-                setError(t('auth.errors.sessionExpired') || 'لینک نامعتبر یا منقضی شده است.');
+                setError('پیوند بازیابی منقضی شده یا نامعتبر است. لطفاً مجدداً درخواست دهید.');
             }
         });
     }, []);
@@ -29,12 +28,12 @@ const ResetPassword = () => {
         setError('');
 
         if (password !== confirmPassword) {
-            setError(t('auth.errors.passwordMismatch'));
+            setError('رمز عبور و تکرار آن یکسان نیستند.');
             return;
         }
 
         if (password.length < 6) {
-            setError(t('auth.errors.passwordShort'));
+            setError('رمز عبور باید حداقل ۶ نویسه باشد.');
             return;
         }
 
@@ -50,10 +49,10 @@ const ResetPassword = () => {
             setSuccess(true);
             setTimeout(() => {
                 navigate('/login');
-            }, 3000);
+            }, 2500);
         } catch (err) {
             console.error('Update password error:', err);
-            setError('خطا در تغییر رمز عبور. لطفاً دوباره تلاش کنید.');
+            setError('خطا در به‌روزرسانی رمز عبور. لطفاً دوباره تلاش فرمایید.');
         } finally {
             setLoading(false);
         }
@@ -61,16 +60,16 @@ const ResetPassword = () => {
 
     if (success) {
         return (
-            <div className="min-h-screen bg-cream dark:bg-brown-950 flex items-center justify-center px-4 py-20 transition-colors duration-300">
-                <div className="max-w-md w-full text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full mb-4">
-                        <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+            <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow flex items-center justify-center px-4 py-20 transition-colors duration-300">
+                <div className="max-w-md w-full text-center p-8 bg-seed-snow dark:bg-[#132412] rounded-3xl border border-seed-forest/10 dark:border-white/10 shadow-md">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-seed-stone dark:bg-white/5 rounded-full mb-4 text-emerald-600 dark:text-seed-lime border border-seed-forest/10 dark:border-white/10">
+                        <CheckCircle className="w-8 h-8" />
                     </div>
-                    <h1 className="text-2xl font-display font-bold text-brown-900 dark:text-cream mb-2">
-                        رمز عبور تغییر کرد
+                    <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-2">
+                        رمز عبور با موفقیت تغییر کرد
                     </h1>
-                    <p className="text-brown-600 dark:text-brown-300">
-                        در حال انتقال به صفحه ورود...
+                    <p className="text-xs text-seed-pewter dark:text-seed-snow/70">
+                        در حال انتقال خودکار به صفحه ورود به حساب کاربری...
                     </p>
                 </div>
             </div>
@@ -78,76 +77,87 @@ const ResetPassword = () => {
     }
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 flex items-center justify-center px-4 py-20 transition-colors duration-300">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow flex items-center justify-center px-4 py-20 transition-colors duration-300">
             <div className="max-w-md w-full">
                 <div className="text-center mb-8">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-full mb-4">
-                        <Lock className="w-8 h-8 text-primary-600 dark:text-primary-400" />
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-seed-stone dark:bg-white/5 rounded-2xl mb-4 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10 shadow-sm">
+                        <Lock className="w-8 h-8" />
                     </div>
-                    <h1 className="text-3xl font-display font-bold text-brown-900 dark:text-cream mb-2">
+                    <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50 block mb-1">
+                        [تنظیم گذرواژه جدید]
+                    </span>
+                    <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-2">
                         تغییر رمز عبور
                     </h1>
-                    <p className="text-brown-600 dark:text-brown-300">
-                        لطفاً رمز عبور جدید خود را وارد کنید
+                    <p className="text-xs text-seed-pewter dark:text-seed-snow/70">
+                        رمز عبور جدید حساب خود را تعیین کنید.
                     </p>
                 </div>
 
-                <div className="bg-white dark:bg-brown-900 rounded-2xl p-8 border border-brown-100 dark:border-brown-800 shadow-lg transition-colors">
+                <div className="bg-seed-snow dark:bg-[#132412] rounded-3xl p-8 border border-seed-forest/10 dark:border-white/10 shadow-md transition-colors">
                     {error && (
-                        <div className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-700 dark:text-red-300 text-sm">
+                        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-red-600 dark:text-red-400 text-xs">
                             {error}
                         </div>
                     )}
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
-                                {t('auth.password')}
+                            <label className="block text-xs font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                رمز عبور جدید
                             </label>
                             <div className="relative">
-                                <Lock className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brown-400 dark:text-brown-500" />
+                                <Lock className="absolute end-4 top-1/2 -translate-y-1/2 w-4 h-4 text-seed-pewter" />
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full px-4 py-3 pr-12 pl-12 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
-                                    placeholder="••••••••"
+                                    className="w-full px-4 py-3 pe-11 ps-11 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs font-mono"
+                                    placeholder="حداقل ۶ نویسه"
                                     dir="ltr"
+                                    required
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 text-brown-400 dark:text-brown-500 hover:text-brown-600 dark:hover:text-brown-300 transition-colors"
+                                    className="absolute start-4 top-1/2 -translate-y-1/2 text-seed-pewter hover:text-seed-forest dark:hover:text-seed-snow transition-colors"
                                 >
-                                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                 </button>
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-brown-800 dark:text-brown-200 font-medium mb-2">
-                                {t('auth.confirmPassword')}
+                            <label className="block text-xs font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                تکرار رمز عبور جدید
                             </label>
                             <div className="relative">
-                                <Lock className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brown-400 dark:text-brown-500" />
+                                <Lock className="absolute end-4 top-1/2 -translate-y-1/2 w-4 h-4 text-seed-pewter" />
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className="w-full px-4 py-3 pr-12 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
+                                    className="w-full px-4 py-3 pe-11 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs font-mono"
                                     placeholder="••••••••"
                                     dir="ltr"
+                                    required
                                 />
                             </div>
                         </div>
 
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className={`w-full py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 ${loading ? 'opacity-75 cursor-wait' : ''}`}
-                        >
-                            {loading ? 'در حال ثبت...' : 'تغییر رمز عبور'}
-                        </button>
+                        <div className="pt-2">
+                            <ShineButton
+                                type="submit"
+                                disabled={loading}
+                                className="w-full py-3.5 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest rounded-full font-bold text-xs shadow-md flex items-center justify-center gap-2 hover:opacity-95"
+                            >
+                                {loading ? (
+                                    <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                ) : (
+                                    <span>ثبت و ذخیره رمز عبور جدید</span>
+                                )}
+                            </ShineButton>
+                        </div>
                     </form>
                 </div>
             </div>

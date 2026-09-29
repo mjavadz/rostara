@@ -2,109 +2,140 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Sprout, Sparkles, HeartPulse, Users, Coffee, Leaf, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { GridBackground } from '@/components/backgrounds/grid';
+import { TextShimmer } from '@/components/animations/text-shimmer';
+import { SpotlightCard } from '@/components/animations/spotlight-card';
+import { ShineButton } from '@/components/animations/shine-button';
 
 const Experience = () => {
     const { t } = useTranslation();
 
     const experiences = [
         {
+            code: '[تجربهٔ ۱]',
             icon: Sprout,
             title: 'پرورش سبز در آپارتمان',
-            description: 'تجربه دلنشین بذرپاشی، جوانه‌زدن و چیدن روزانه میکروگرین‌های تازه بدون نیاز به فضای باز یا باغچه.',
+            description: 'تجربه دلنشین بذرپاشی، جوانه‌زدن و چیدن روزانه میکروگرین‌های تازه بدون نیاز به فضای باز یا خاک سنتی.',
         },
         {
+            code: '[تجربهٔ ۲]',
             icon: Sparkles,
             title: 'کارگاه‌های تخمیر زنده',
-            description: 'آشنایی با تخمیر خانگی کامبوچا، کیمچی و خمیرترش برای غنی‌سازی میکروبیوم و تقویت گوارش.',
+            description: 'آشنایی با تخمیر خانگی کامبوچا، کیمچی و خوراک‌های فعال پروبیوتیک برای غنی‌سازی میکروبیوم روده و تقویت گوارش.',
         },
         {
+            code: '[تجربهٔ ۳]',
             icon: Coffee,
             title: 'تغذیه پاک و آگاهانه',
-            description: 'جایگزینی غذاهای فرآوری‌شده با سوپرفودهای ارگانیک، عصاره‌های قارچ و اسموتی‌های سرشار از کلروفیل.',
+            description: 'جایگزینی غذاهای فرآوری‌شده صنعتی با سوپرفودهای ارگانیک، عصاره‌های قارچ دارویی و اسموتی‌های سرشار از کلروفیل.',
         },
         {
+            code: '[تجربهٔ ۴]',
             icon: HeartPulse,
             title: 'ارتقای انرژی و ایمنی سلولی',
-            description: 'بهبود محسوس سطح انرژی، وضوح ذهنی و کیفیت خواب با حذف سموم و تأمین ریزمغذی‌های ضروری.',
+            description: 'بهبود محسوس سطح انرژی، تمرکز ذهنی و پایداری ایمنی با مهار رادیکال‌های آزاد و تأمین آنزیم‌های فعال زیستی.',
         },
         {
+            code: '[تجربهٔ ۵]',
             icon: Users,
-            title: 'باشگاه و جامعه دوست‌داران سلامت',
-            description: 'تبادل تجربه، رسپی‌های تغذیه و همراهی با افرادی که برای کیفیت زندگی و سلامت ارزش قائلند.',
+            title: 'باشگاه و همراهی دوست‌داران سلامت',
+            description: 'تبادل تجربه، دستورالعمل‌های تغذیه و همراهی با افرادی که برای طول عمر باکیفیت و سلامت ارزش قائلند.',
         },
         {
+            code: '[تجربهٔ ۶]',
             icon: Leaf,
-            title: 'همزیستی با ریتم‌های طبیعت',
-            description: 'هماهنگ‌سازی ساعات بیولوژیک بدن با طبیعت، احترام به چرخه فصل‌ها و مصرف مواد مغذی تازه.',
+            title: 'همزیستی با چرخه‌های طبیعت',
+            description: 'هماهنگ‌سازی ساعات بیولوژیک بدن با طبیعت، مصرف محصولات فصلی باطراوت و حذف پسماندهای پلاستیکی.',
         },
     ];
 
     return (
-        <div className="min-h-screen bg-cream dark:bg-brown-950 transition-colors duration-300">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow transition-colors duration-300">
             {/* Hero */}
-            <section className="pt-32 pb-16 bg-gradient-to-br from-primary-50 via-cream to-brown-50 dark:from-brown-900 dark:via-brown-950 dark:to-brown-950 transition-colors duration-500">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <span className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
-                        سفر به دنیای تندرستی
-                    </span>
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-brown-900 dark:text-cream mb-6 leading-tight">
-                        تجربه سبک زندگی سالم با رُستارا
+            <section className="relative pt-32 pb-20 border-b border-seed-forest/10 dark:border-white/10 overflow-hidden">
+                <GridBackground size={48} className="opacity-40 dark:opacity-30" />
+
+                <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-seed-stone/80 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 mb-6">
+                        <span className="w-1.5 h-1.5 rounded-full bg-seed-lime animate-pulse" />
+                        <TextShimmer className="text-xs font-bold text-seed-forest dark:text-seed-snow tracking-normal">
+                            زیست‌آگاهی و پایش سلامت سلولی • رُستارا
+                        </TextShimmer>
+                    </div>
+
+                    <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-seed-forest dark:text-seed-snow tracking-normal mb-6 leading-[1.38]">
+                        تجربهٔ سبک زندگی زیست‌پایدار
+                        <span className="block text-seed-forest/80 dark:text-seed-lime text-2xl sm:text-3xl lg:text-4xl mt-3 font-medium">
+                            همگام با هوش گیاهی و تغذیهٔ زنده
+                        </span>
                     </h1>
-                    <p className="text-lg sm:text-xl text-brown-700 dark:text-brown-200 leading-relaxed max-w-3xl mx-auto">
-                        رُستارا فراتر از یک فروشگاه، سبکی نوین از مراقبت از بدن، تغذیه آگاهانه و همزیستی با حیات گیاهی است.
+
+                    <p className="text-base sm:text-lg text-seed-pewter dark:text-seed-snow/75 leading-relaxed max-w-2xl mx-auto font-normal">
+                        رُستارا فراتر از یک فروشگاه، حرکتی علمی برای احیای رابطه انسان با خاک پاک، متابولیت‌های تازه گیاهی و آرامش پایدار سلولی است.
                     </p>
                 </div>
             </section>
 
             {/* Experiences Grid */}
-            <section className="py-20 bg-white dark:bg-brown-900 transition-colors duration-300">
+            <section className="py-20">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {experiences.map((exp, index) => {
                             const Icon = exp.icon;
                             return (
-                                <div
+                                <SpotlightCard
                                     key={index}
-                                    className="group p-8 bg-cream/40 dark:bg-brown-800/50 rounded-3xl border border-brown-100 dark:border-brown-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                                    className="p-8 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 flex flex-col justify-between"
                                 >
-                                    <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-md">
-                                        <Icon className="w-8 h-8 text-white" />
+                                    <div>
+                                        <div className="flex items-center justify-between pb-3 mb-5 border-b border-seed-forest/10 dark:border-white/10 text-[11px] text-seed-pewter dark:text-seed-snow/50 font-bold">
+                                            <span>{exp.code}</span>
+                                            <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
+                                        </div>
+
+                                        <div className="w-12 h-12 rounded-xl bg-seed-stone dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 flex items-center justify-center mb-5 text-seed-forest dark:text-seed-lime">
+                                            <Icon className="w-6 h-6" />
+                                        </div>
+
+                                        <h3 className="text-base font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                            {exp.title}
+                                        </h3>
+
+                                        <p className="text-xs text-seed-pewter dark:text-seed-snow/75 leading-relaxed font-normal">
+                                            {exp.description}
+                                        </p>
                                     </div>
-                                    <h3 className="text-xl font-display font-bold text-brown-900 dark:text-cream mb-3">
-                                        {exp.title}
-                                    </h3>
-                                    <p className="text-brown-600 dark:text-brown-300 leading-relaxed text-sm flex-grow">
-                                        {exp.description}
-                                    </p>
-                                </div>
+                                </SpotlightCard>
                             );
                         })}
                     </div>
                 </div>
             </section>
 
-            {/* CTA */}
-            <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
+            {/* Call to Action */}
+            <section className="py-20 bg-seed-forest text-seed-snow border-t border-seed-forest/40">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl sm:text-5xl font-display font-bold mb-6">
-                        سفر سلامتی خود را از امروز شروع کنید
+                    <span className="inline-block px-3 py-1 rounded-full bg-seed-lime text-seed-forest text-xs font-bold mb-6">
+                        رویش پاک در خانه
+                    </span>
+                    <h2 className="text-2xl sm:text-4xl font-display font-extrabold mb-4 leading-snug">
+                        مسیر سلامت سلولی خود را از امروز آغاز کنید
                     </h2>
-                    <p className="text-lg sm:text-xl text-primary-100 mb-10 leading-relaxed max-w-2xl mx-auto">
-                        کیت پرورش خانگی خود را انتخاب کنید یا به جمع اعضای باشگاه تندرستی رُستارا بپیوندید.
+                    <p className="text-sm sm:text-base text-seed-snow/80 mb-10 leading-relaxed max-w-2xl mx-auto font-normal">
+                        کیت پرورش خانگی خود را انتخاب کنید یا با پیوستن به باشگاه تندرستی رُستارا از آموزش‌ها و تخفیف‌های ویژه بهره‌مند شوید.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link
-                            to="/products"
-                            className="inline-flex items-center justify-center gap-2 px-9 py-4 bg-white text-primary-800 rounded-2xl font-bold text-lg hover:bg-cream hover:scale-105 transition-all shadow-xl"
-                        >
-                            <span>مشاهده محصولات و کیت‌ها</span>
-                            <ArrowLeft className="w-5 h-5" />
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <Link to="/products">
+                            <ShineButton className="px-8 py-3.5 rounded-full bg-seed-lime text-seed-forest font-bold text-xs shadow-md flex items-center gap-2 hover:opacity-95">
+                                <span>مشاهده نمونه‌های زیستی و کیت‌ها</span>
+                                <ArrowLeft className="w-4 h-4" />
+                            </ShineButton>
                         </Link>
                         <Link
                             to="/club"
-                            className="inline-flex items-center justify-center gap-2 px-9 py-4 bg-primary-800/60 text-white rounded-2xl font-bold text-lg hover:bg-primary-900 transition-all border border-white/20"
+                            className="px-8 py-3.5 rounded-full bg-transparent hover:bg-white/10 text-seed-snow font-bold text-xs border border-white/20 transition-all"
                         >
-                            عضویت در باشگاه تندرستی
+                            ورود به باشگاه تندرستی
                         </Link>
                     </div>
                 </div>

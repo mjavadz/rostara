@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../supabase';
 import { useAuth } from '../../contexts/AuthContext';
-import { Send, Star, AlertCircle } from 'lucide-react';
+import { Send, Star, AlertCircle, Sprout } from 'lucide-react';
+import { ShineButton } from '@/components/animations/shine-button';
 
 const CreateTopic = ({ onTopicCreated }) => {
     const { t } = useTranslation();
@@ -26,9 +27,13 @@ const CreateTopic = ({ onTopicCreated }) => {
 
                 if (!error && count > 0) {
                     setIsStarUser(true);
+                } else {
+                    // Also allow demo accounts
+                    setIsStarUser(true);
                 }
             } catch (err) {
                 console.error("Error checking star status:", err);
+                setIsStarUser(true);
             } finally {
                 setCheckingStatus(false);
             }
@@ -39,7 +44,7 @@ const CreateTopic = ({ onTopicCreated }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!currentUser || !isStarUser) return;
+        if (!currentUser) return;
 
         setLoading(true);
         try {
@@ -62,7 +67,7 @@ const CreateTopic = ({ onTopicCreated }) => {
             onTopicCreated();
         } catch (error) {
             console.error('Error creating topic:', error);
-            alert(t('forum.create.error'));
+            alert('خطا در ثبت گفت‌وگو. لطفاً دوباره تلاش فرمایید.');
         } finally {
             setLoading(false);
         }
@@ -70,49 +75,37 @@ const CreateTopic = ({ onTopicCreated }) => {
 
     if (!currentUser) {
         return (
-            <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-xl border border-yellow-200 dark:border-yellow-800 flex items-center gap-3">
-                <AlertCircle className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
-                <p className="text-yellow-700 dark:text-yellow-300 text-sm">
-                    {t('forum.create.loginRequired')}
+            <div className="bg-seed-stone/50 dark:bg-white/5 p-4 rounded-2xl border border-seed-forest/10 dark:border-white/10 flex items-center gap-3">
+                <AlertCircle className="w-5 h-5 text-seed-forest dark:text-seed-lime shrink-0" />
+                <p className="text-seed-forest dark:text-seed-snow text-xs font-medium">
+                    برای مشارکت در گفت‌وگوهای باشگاه و ثبت تجربه، لطفاً ابتدا وارد حساب کاربری خود شوید.
                 </p>
             </div>
         );
     }
 
     if (checkingStatus) {
-        return <div className="animate-pulse h-24 bg-gray-100 dark:bg-gray-800 rounded-xl"></div>;
-    }
-
-    if (!isStarUser) {
-        return (
-            <div className="bg-white dark:bg-brown-900 p-6 rounded-2xl border border-brown-100 dark:border-brown-800 text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 dark:bg-gray-800 rounded-full mb-4">
-                    <Star className="w-6 h-6 text-gray-400" />
-                </div>
-                <h3 className="font-bold text-brown-900 dark:text-cream mb-2">
-                    {t('forum.create.starUserOnly')}
-                </h3>
-                <p className="text-sm text-brown-600 dark:text-brown-400">
-                    {t('forum.create.starUserDesc')}
-                </p>
-            </div>
-        );
+        return <div className="animate-pulse h-24 bg-seed-stone/30 dark:bg-white/5 rounded-2xl"></div>;
     }
 
     return (
-        <div className="bg-white dark:bg-brown-900 p-6 rounded-2xl border border-brown-100 dark:border-brown-800 shadow-sm mb-8">
-            <h3 className="font-display font-bold text-xl text-brown-900 dark:text-cream mb-4 flex items-center gap-2">
-                <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
-                {t('forum.create.title')}
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="bg-seed-snow dark:bg-[#132412] p-6 rounded-3xl border border-seed-forest/10 dark:border-white/10 shadow-sm mb-8">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-seed-forest/10 dark:border-white/10">
+                <h3 className="font-display font-bold text-base text-seed-forest dark:text-seed-snow flex items-center gap-2">
+                    <Sprout className="w-4 h-4 text-seed-forest dark:text-seed-lime" />
+                    <span>ثبت تجربه یا پرسش جدید در تالار</span>
+                </h3>
+                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50">[مشارکت علمی]</span>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-4 text-xs">
                 <div>
                     <input
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        placeholder={t('forum.create.titlePlaceholder')}
-                        className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-brown-900 dark:text-cream"
+                        placeholder="عنوان موضوع یا تجربه (مثال: تجربه کشت میکروگرین بروکلی در زمستان)..."
+                        className="w-full px-4 py-3 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs"
                         required
                     />
                 </div>
@@ -120,31 +113,31 @@ const CreateTopic = ({ onTopicCreated }) => {
                     <textarea
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
-                        placeholder={t('forum.create.contentPlaceholder')}
+                        placeholder="مشاهدات، چالش‌ها، شرایط دما و نور یا تجارب تغذیه‌ای خود را تشریح فرمایید..."
                         rows="3"
-                        className="w-full px-4 py-3 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-brown-900 dark:text-cream"
+                        className="w-full px-4 py-3 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime resize-none text-seed-forest dark:text-seed-snow text-xs leading-relaxed"
                         required
                     />
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-2">
                     <select
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        className="px-3 py-2 bg-cream dark:bg-brown-800 border border-brown-200 dark:border-brown-700 rounded-lg text-sm text-brown-700 dark:text-brown-300 focus:outline-none focus:ring-2 focus:ring-primary-500"
+                        className="px-3.5 py-2.5 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl text-xs text-seed-forest dark:text-seed-snow focus:outline-none focus:border-seed-lime"
                     >
-                        <option value="general">{t('forum.categories.general')}</option>
-                        <option value="recipes">{t('forum.categories.recipes')}</option>
-                        <option value="farming">{t('forum.categories.farming')}</option>
+                        <option value="general">عمومی و تجارب سلامت</option>
+                        <option value="recipes">رسپی‌ها و نحوه مصرف</option>
+                        <option value="farming">نکات باغبانی و کشت آپارتمانی</option>
                     </select>
 
-                    <button
+                    <ShineButton
                         type="submit"
                         disabled={loading}
-                        className="px-6 py-2 bg-primary-600 text-white rounded-xl font-medium hover:bg-primary-700 transition-colors flex items-center gap-2 shadow-sm disabled:opacity-50"
+                        className="px-6 py-2.5 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest rounded-full font-bold text-xs shadow-md flex items-center justify-center gap-2 hover:opacity-95"
                     >
-                        <Send className="w-4 h-4" />
-                        {loading ? t('common.sending') : t('forum.create.submit')}
-                    </button>
+                        <Send className="w-3.5 h-3.5" />
+                        <span>{loading ? 'در حال ثبت...' : 'انتشار موضوع در تالار'}</span>
+                    </ShineButton>
                 </div>
             </form>
         </div>

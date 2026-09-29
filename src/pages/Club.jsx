@@ -81,7 +81,7 @@ const Club = () => {
                                 کدهای تخفیف و امتیازات
                             </h2>
                         </div>
-                        <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50">[VOUCHERS]</span>
+                        <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">[تخفیف‌ها و هدایا]</span>
                     </div>
 
                     <div className="space-y-4">
@@ -142,7 +142,7 @@ const Club = () => {
                                 تالار گفت‌وگو و تجارب کشت خانگی
                             </h2>
                         </div>
-                        <span className="font-mono text-[10px] text-seed-pewter dark:text-seed-snow/50">[FORUM]</span>
+                        <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">[تالار گفتگو]</span>
                     </div>
 
                     <ForumList />
