@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { supabase } from '../../supabase';
 import { useAuth } from '../../contexts/AuthContext';
 import { Send, Star, AlertCircle, Sprout } from 'lucide-react';
-import { ShineButton } from '@/components/animations/shine-button';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const CreateTopic = ({ onTopicCreated }) => {
     const { t } = useTranslation();
@@ -95,7 +95,9 @@ const CreateTopic = ({ onTopicCreated }) => {
                     <Sprout className="w-4 h-4 text-seed-forest dark:text-seed-lime" />
                     <span>ثبت تجربه یا پرسش جدید در تالار</span>
                 </h3>
-                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50">[مشارکت علمی]</span>
+                <TaxonomyTag variant="muted">
+                    {t('forum.create.title', { defaultValue: 'مشارکت علمی' })}
+                </TaxonomyTag>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4 text-xs">

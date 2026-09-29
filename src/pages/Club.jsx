@@ -5,6 +5,7 @@ import ForumList from './Forum/ForumList';
 import { GridBackground } from '@/components/backgrounds/grid';
 import { TextShimmer } from '@/components/animations/text-shimmer';
 import { SpotlightCard } from '@/components/animations/spotlight-card';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 import { Badge } from '@/components/ui/badge';
 
 const Club = () => {
@@ -78,10 +79,12 @@ const Club = () => {
                         <div className="flex items-center gap-2">
                             <Gift className="w-5 h-5 text-seed-forest dark:text-seed-lime" />
                             <h2 className="text-lg font-bold text-seed-forest dark:text-seed-snow">
-                                کدهای تخفیف و امتیازات
+                                {isEn ? 'Vouchers & Member Rewards' : 'کدهای تخفیف و امتیازات'}
                             </h2>
                         </div>
-                        <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">[تخفیف‌ها و هدایا]</span>
+                        <TaxonomyTag variant="lime">
+                            {isEn ? 'Vouchers' : 'تخفیف‌ها و هدایا'}
+                        </TaxonomyTag>
                     </div>
 
                     <div className="space-y-4">
@@ -139,10 +142,12 @@ const Club = () => {
                         <div className="flex items-center gap-2">
                             <Users className="w-5 h-5 text-seed-forest dark:text-seed-lime" />
                             <h2 className="text-lg font-bold text-seed-forest dark:text-seed-snow">
-                                تالار گفت‌وگو و تجارب کشت خانگی
+                                {isEn ? 'Home Cultivation Experiences & Forum' : 'تالار گفت‌وگو و تجارب کشت خانگی'}
                             </h2>
                         </div>
-                        <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">[تالار گفتگو]</span>
+                        <TaxonomyTag variant="muted">
+                            {isEn ? 'Community Board' : 'تالار گفتگو'}
+                        </TaxonomyTag>
                     </div>
 
                     <ForumList />

@@ -14,28 +14,34 @@ import {
     Copy, 
     Check, 
     ArrowRight,
+    ArrowLeft,
     Sprout,
     Sparkles
 } from 'lucide-react';
 import { db } from '../services/db';
 import { Stepper } from '@/components/ui/stepper';
 import { Price } from '@/components/ui/price';
-
-const STATUS_STEPS = [
-    { key: 'pending', label: 'ثبت سفارش', desc: 'سفارش در سیستم ثبت شد', icon: Clock },
-    { key: 'processing', label: 'آماده‌سازی ارگانیک', desc: 'چینش تازه میکروگرین و بسته‌بندی زیستی', icon: Sprout },
-    { key: 'shipped', label: 'ارسال با پیک/پست', desc: 'بسته تحویل ناوگان حمل‌ونقل گردید', icon: Truck },
-    { key: 'delivered', label: 'تحویل داده شد', desc: 'محصول سالم به دست شما رسید', icon: CheckCircle2 },
-];
+import { fa } from '@/lib/utils';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const TrackOrder = () => {
     const { t, i18n } = useTranslation();
+    const isEn = i18n.language === 'en';
+    const ArrowIcon = isEn ? ArrowRight : ArrowLeft;
+
     const [searchParams] = useSearchParams();
     const [query, setQuery] = useState(searchParams.get('code') || '');
     const [order, setOrder] = useState(null);
     const [searched, setSearched] = useState(false);
     const [loading, setLoading] = useState(false);
     const [copied, setCopied] = useState(false);
+
+    const statusSteps = [
+        { key: 'pending', label: isEn ? 'Order Placed' : 'ثبت سفارش', desc: isEn ? 'Registered in dispatch queue' : 'سفارش در سیستم ثبت شد', icon: Clock },
+        { key: 'processing', label: isEn ? 'Organic Prep' : 'آماده‌سازی ارگانیک', desc: isEn ? 'Fresh clipping & bio-packing' : 'چینش تازه میکروگرین و بسته‌بندی زیستی', icon: Sprout },
+        { key: 'shipped', label: isEn ? 'Dispatched' : 'ارسال با ترانزیت', desc: isEn ? 'Handed to cold-chain delivery' : 'بسته تحویل ناوگان حمل‌ونقل گردید', icon: Truck },
+        { key: 'delivered', label: isEn ? 'Delivered' : 'تحویل داده شد', desc: isEn ? 'Delivered in peak cellular state' : 'محصول سالم به دست شما رسید', icon: CheckCircle2 },
+    ];
 
     useEffect(() => {
         const code = searchParams.get('code');
@@ -73,10 +79,10 @@ const TrackOrder = () => {
     };
 
     const formatDate = (isoString) => {
-        if (!isoString) return 'نامشخص';
+        if (!isoString) return isEn ? 'Unknown' : 'نامشخص';
         try {
             const date = new Date(isoString);
-            return new Intl.DateTimeFormat('fa-IR', {
+            return new Intl.DateTimeFormat(isEn ? 'en-US' : 'fa-IR', {
                 dateStyle: 'medium',
                 timeStyle: 'short'
             }).format(date);
@@ -100,18 +106,20 @@ const TrackOrder = () => {
     const activeStep = order ? getStepIndex(order.status) : 0;
 
     return (
-        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark pt-28 pb-20 transition-colors duration-300">
+        <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-forest dark:text-seed-snow pt-32 pb-20 transition-colors duration-300">
             {/* Header */}
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
                 <span className="badge-lime mb-4">
                     <Sparkles className="w-3.5 h-3.5" />
-                    سامانه هوشمند رهگیری مرسولات
+                    {isEn ? 'Live Biological Shipment Tracking' : 'سامانه هوشمند رهگیری مرسولات'}
                 </span>
                 <h1 className="text-3xl sm:text-5xl font-display font-black text-seed-forest dark:text-seed-snow mb-4">
-                    پیگیری سفارش رُستارا
+                    {isEn ? 'Track Your Biological Order' : 'پیگیری سفارش رُستارا'}
                 </h1>
                 <p className="text-seed-pewter dark:text-seed-snow/70 text-sm sm:text-base max-w-xl mx-auto leading-relaxed font-normal">
-                    با وارد کردن کد پیگیری (مانند <span className="font-mono font-bold text-seed-forest dark:text-seed-lime">ROS-948122</span>) یا شماره تماس، از آخرین وضعیت آماده‌سازی و ارسال محصول خود آگاه شوید.
+                    {isEn 
+                        ? 'Enter your unique tracking code (e.g. ROS-948122) or recipient phone number to inspect the preparation and cold-chain dispatch status.'
+                        : 'با وارد کردن کد پیگیری (مانند ROS-948122) یا شماره تماس، از آخرین وضعیت آماده‌سازی و ارسال محصول خود آگاه شوید.'}
                 </p>
 
                 {/* Search Box */}
@@ -121,8 +129,9 @@ const TrackOrder = () => {
                             type="text"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            placeholder="کد رهگیری (مثلاً ROS-948122) یا شماره موبایل..."
-                            className="w-full px-6 py-3.5 bg-transparent text-seed-forest dark:text-seed-snow placeholder-seed-pewter/60 focus:outline-none text-xs sm:text-sm text-right font-medium"
+                            placeholder={isEn ? "Tracking code (e.g. ROS-948122) or phone..." : "کد رهگیری (مثلاً ROS-948122) یا شماره موبایل..."}
+                            className="w-full px-6 py-3.5 bg-transparent text-seed-forest dark:text-seed-snow placeholder-seed-pewter/60 focus:outline-none text-xs sm:text-sm font-medium"
+                            dir={isEn ? "ltr" : "rtl"}
                         />
                         <button
                             type="submit"
@@ -134,7 +143,7 @@ const TrackOrder = () => {
                             ) : (
                                 <>
                                     <Search className="w-3.5 h-3.5" />
-                                    <span>پیگیری</span>
+                                    <span>{isEn ? 'Track' : 'پیگیری'}</span>
                                 </>
                             )}
                         </button>
@@ -150,17 +159,19 @@ const TrackOrder = () => {
                             <AlertCircle className="w-7 h-7" />
                         </div>
                         <h3 className="text-lg font-display font-bold text-seed-forest dark:text-seed-snow mb-2">
-                            سفارشی با این مشخصات یافت نشد
+                            {isEn ? 'No Shipment Found with this Identifier' : 'سفارشی با این مشخصات یافت نشد'}
                         </h3>
-                        <p className="text-seed-pewter dark:text-seed-snow/70 text-xs mb-6 leading-relaxed">
-                            لطفاً از صحت کد پیگیری ارسالی در فاکتور یا پیامک اطمینان حاصل کنید. اگر به تازگی ثبت کرده‌اید، چند دقیقه دیگر مجدداً بررسی فرمایید.
+                        <p className="text-seed-pewter dark:text-seed-snow/70 text-xs mb-6 leading-relaxed font-normal">
+                            {isEn 
+                                ? 'Please verify your tracking code from your receipt or confirmation email. If recently placed, allow a few minutes for indexation.'
+                                : 'لطفاً از صحت کد پیگیری ارسالی در فاکتور یا پیامک اطمینان حاصل کنید. اگر به تازگی ثبت کرده‌اید، چند دقیقه دیگر مجدداً بررسی فرمایید.'}
                         </p>
                         <Link
                             to="/contact"
                             className="inline-flex items-center gap-2 text-seed-forest dark:text-seed-lime font-bold hover:underline text-xs"
                         >
-                            <span>ارتباط با پشتیبانی رُستارا</span>
-                            <ArrowRight className="w-3.5 h-3.5 rotate-180" />
+                            <span>{isEn ? 'Contact Rostara Support' : 'ارتباط با پشتیبانی رُستارا'}</span>
+                            <ArrowIcon className="w-3.5 h-3.5" />
                         </Link>
                     </div>
                 )}
@@ -172,14 +183,14 @@ const TrackOrder = () => {
                             <div>
                                 <div className="flex items-center gap-3 mb-2">
                                     <span className="text-[10px] font-mono px-2.5 py-0.5 bg-white/10 rounded-full">
-                                        شناسه سفارش
+                                        {isEn ? 'Order ID' : 'شناسه سفارش'}
                                     </span>
-                                    <h2 className="text-2xl font-mono font-black tracking-wider text-seed-lime">
+                                    <h2 className="text-2xl font-mono font-black tracking-wider text-seed-lime" dir="ltr">
                                         {order.id}
                                     </h2>
                                     <button
                                         onClick={handleCopyCode}
-                                        title="کپی شناسه"
+                                        title={isEn ? "Copy ID" : "کپی شناسه"}
                                         className="p-1.5 hover:bg-white/10 rounded-lg transition-colors"
                                     >
                                         {copied ? <Check className="w-4 h-4 text-seed-lime" /> : <Copy className="w-4 h-4" />}
@@ -187,28 +198,28 @@ const TrackOrder = () => {
                                 </div>
                                 <div className="flex items-center gap-2 text-xs text-seed-snow/70 font-mono">
                                     <Calendar className="w-3.5 h-3.5" />
-                                    <span>ثبت شده در: {formatDate(order.created_at)}</span>
+                                    <span>{isEn ? `Registered on: ${formatDate(order.created_at)}` : `ثبت شده در: ${formatDate(order.created_at)}`}</span>
                                 </div>
                             </div>
 
-                            <div className="text-left sm:text-right">
-                                <span className="text-xs text-seed-snow/70 block mb-1">مبلغ کل سفارش</span>
+                            <div className="text-start sm:text-end">
+                                <span className="text-xs text-seed-snow/70 block mb-1">{isEn ? 'Total Order Amount' : 'مبلغ کل سفارش'}</span>
                                 <Price amount={order.total_price} size="md" className="text-seed-lime" />
                             </div>
                         </div>
 
-                        {/* VibeFarsi RTL Stepper */}
+                        {/* Stepper */}
                         {order.status === 'cancelled' ? (
                             <div className="p-6 bg-red-50 dark:bg-red-950/40 border-b border-red-200 dark:border-red-900 text-center">
                                 <span className="text-red-700 dark:text-red-400 font-bold text-xs">
-                                    این سفارش به درخواست مشتری یا عدم تایید پرداخت لغو گردیده است.
+                                    {isEn ? 'This order was cancelled by customer request or pending payment expiration.' : 'این سفارش به درخواست مشتری یا عدم تایید پرداخت لغو گردیده است.'}
                                 </span>
                             </div>
                         ) : (
                             <div className="p-6 sm:p-8 border-b border-seed-forest/10 dark:border-white/10 bg-seed-stone/30 dark:bg-white/5">
                                 <Stepper
                                     current={activeStep}
-                                    steps={STATUS_STEPS.map(s => ({
+                                    steps={statusSteps.map(s => ({
                                         label: s.label,
                                         description: s.desc
                                     }))}
@@ -221,30 +232,30 @@ const TrackOrder = () => {
                             <div>
                                 <h3 className="text-sm font-bold text-seed-forest dark:text-seed-snow mb-4 flex items-center gap-2">
                                     <MapPin className="w-4 h-4 text-seed-forest dark:text-seed-lime" />
-                                    اطلاعات تحویل‌گیرنده
+                                    <span>{isEn ? 'Recipient Coordinates' : 'اطلاعات تحویل‌گیرنده'}</span>
                                 </h3>
                                 <div className="space-y-2 text-xs text-seed-pewter dark:text-seed-snow/80 bg-seed-stone/40 dark:bg-white/5 p-4 rounded-xl font-normal">
                                     <div className="flex justify-between">
-                                        <span>نام و نام‌خانوادگی:</span>
+                                        <span>{isEn ? 'Full Name:' : 'نام و نام‌خانوادگی:'}</span>
                                         <span className="font-bold text-seed-forest dark:text-seed-snow">{order.full_name}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span>شماره تماس:</span>
+                                        <span>{isEn ? 'Phone Number:' : 'شماره تماس:'}</span>
                                         <span className="font-mono">{order.phone}</span>
                                     </div>
                                     {order.city && (
                                         <div className="flex justify-between">
-                                            <span>شهر مقصد:</span>
+                                            <span>{isEn ? 'City:' : 'شهر مقصد:'}</span>
                                             <span>{order.city}</span>
                                         </div>
                                     )}
                                     <div className="pt-2 border-t border-seed-forest/10 dark:border-white/10">
-                                        <span className="block mb-1">نشانی پستی:</span>
+                                        <span className="block mb-1">{isEn ? 'Address:' : 'نشانی پستی:'}</span>
                                         <span className="leading-relaxed block text-seed-forest dark:text-seed-snow">{order.address}</span>
                                     </div>
                                     {order.postal_code && (
                                         <div className="flex justify-between pt-1">
-                                            <span>کد پستی:</span>
+                                            <span>{isEn ? 'Postal Code:' : 'کد پستی:'}</span>
                                             <span className="font-mono">{order.postal_code}</span>
                                         </div>
                                     )}
@@ -254,9 +265,9 @@ const TrackOrder = () => {
                             <div>
                                 <h3 className="text-sm font-bold text-seed-forest dark:text-seed-snow mb-4 flex items-center gap-2">
                                     <Package className="w-4 h-4 text-seed-forest dark:text-seed-lime" />
-                                    اقلام سفارش ({order.items?.length || 0} مورد)
+                                    <span>{isEn ? `Order Items (${order.items?.length || 0})` : `اقلام سفارش (${isEn ? (order.items?.length || 0) : fa(order.items?.length || 0)} مورد)`}</span>
                                 </h3>
-                                <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
+                                <div className="space-y-2 max-h-64 overflow-y-auto pe-1">
                                     {order.items && order.items.map((item, index) => (
                                         <div 
                                             key={index} 
@@ -264,7 +275,7 @@ const TrackOrder = () => {
                                         >
                                             <div className="flex items-center gap-3">
                                                 <div className="w-8 h-8 rounded-lg bg-seed-stone dark:bg-white/10 flex items-center justify-center font-mono font-bold text-xs text-seed-forest dark:text-seed-lime">
-                                                    {item.quantity}×
+                                                    {isEn ? `${item.quantity}×` : `${fa(item.quantity)}×`}
                                                 </div>
                                                 <div>
                                                     <h5 className="font-bold text-seed-forest dark:text-seed-snow">
@@ -283,7 +294,7 @@ const TrackOrder = () => {
                                 </div>
                                 {order.notes && (
                                     <div className="mt-3 p-3 bg-amber-50 dark:bg-amber-950/30 rounded-xl text-xs text-amber-800 dark:text-amber-300">
-                                        <span className="font-bold">یادداشت سفارش: </span>
+                                        <span className="font-bold">{isEn ? 'Order Note: ' : 'یادداشت سفارش: '}</span>
                                         <span>{order.notes}</span>
                                     </div>
                                 )}
@@ -293,14 +304,14 @@ const TrackOrder = () => {
                         {/* Footer / Support */}
                         <div className="p-6 bg-seed-stone/20 dark:bg-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
                             <span className="text-seed-pewter dark:text-seed-snow/70">
-                                نیاز به تغییر در آدرس یا زمان تحویل دارید؟
+                                {isEn ? 'Need modifications to address or delivery schedule?' : 'نیاز به تغییر در آدرس یا زمان تحویل دارید؟'}
                             </span>
                             <Link
                                 to="/contact"
                                 className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-seed-forest hover:bg-seed-forestDeep text-seed-snow rounded-pill font-bold transition-colors"
                             >
                                 <Phone className="w-3.5 h-3.5 text-seed-lime" />
-                                <span>پشتیبانی سفارشات</span>
+                                <span>{isEn ? 'Contact Order Support' : 'پشتیبانی سفارشات'}</span>
                             </Link>
                         </div>
                     </div>

@@ -6,9 +6,12 @@ import { ShineButton } from '@/components/animations/shine-button';
 import { GridBackground } from '@/components/backgrounds/grid';
 import { TextShimmer } from '@/components/animations/text-shimmer';
 import { SpotlightCard } from '@/components/animations/spotlight-card';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const Contact = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const isEn = i18n.language === 'en';
+
     const [formStatus, setFormStatus] = useState('idle'); // idle, sending, success
     const [formData, setFormData] = useState({
         name: '',
@@ -60,15 +63,17 @@ const Contact = () => {
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seed-stone/80 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 mb-6">
                         <span className="w-1.5 h-1.5 rounded-full bg-seed-lime animate-pulse" />
                         <TextShimmer className="text-xs font-bold text-seed-forest dark:text-seed-snow tracking-normal">
-                            ارتباط مستقیم و پشتیبانی علمی • رُستارا
+                            {isEn ? 'Direct Biological Consultation • Rostara' : 'ارتباط مستقیم و پشتیبانی علمی • رُستارا'}
                         </TextShimmer>
                     </div>
 
                     <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-seed-forest dark:text-seed-snow tracking-normal mb-4 leading-[1.35]">
-                        ارتباط با کارشناسان رُستارا
+                        {isEn ? 'Connect with Rostara Specialists' : 'ارتباط با کارشناسان رُستارا'}
                     </h1>
-                    <p className="text-base sm:text-lg text-seed-pewter dark:text-seed-snow/75 leading-relaxed max-w-2xl mx-auto">
-                        سوالی درباره پرورش میکروگرین‌ها، کیت‌های رشد، گونه‌های زیستی یا همکاری در زمینه محصولات ارگانیک دارید؟ با کمال میل پاسخگوی شما هستیم.
+                    <p className="text-base sm:text-lg text-seed-pewter dark:text-seed-snow/75 leading-relaxed max-w-2xl mx-auto font-normal">
+                        {isEn 
+                            ? 'Have inquiries regarding indoor microgreens, growing units, cellular enzyme metrics, or commercial bio-partnerships? We welcome your correspondence.'
+                            : 'سوالی درباره پرورش میکروگرین‌ها، کیت‌های رشد، گونه‌های زیستی یا همکاری در زمینه محصولات ارگانیک دارید؟ با کمال میل پاسخگوی شما هستیم.'}
                     </p>
                 </div>
             </section>
@@ -81,7 +86,7 @@ const Contact = () => {
                         <div className="space-y-4">
                             <h2 className="text-xl font-bold text-seed-forest dark:text-seed-snow mb-4 flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
-                                کانال‌های ارتباطی و آزمایشگاه
+                                {isEn ? 'Cultivation Facility & Inquiries' : 'کانال‌های ارتباطی و آزمایشگاه'}
                             </h2>
 
                             <SpotlightCard className="p-6 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 flex items-start gap-4">
@@ -89,10 +94,18 @@ const Contact = () => {
                                     <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 mb-0.5">[مرکز زیستی و کارگاه]</div>
-                                    <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">مرکز زیستی و کارگاه بستر کشت</h3>
-                                    <p className="text-seed-pewter dark:text-seed-snow/70 text-xs leading-relaxed">
-                                        کارگاه و فارم کشت ارگانیک رُستارا، گیلان؛ ارسال با ترانزیت تحت کنترل به تمام نقاط کشور.
+                                    <div className="mb-1">
+                                        <TaxonomyTag variant="muted">
+                                            {isEn ? 'Bio-Facility & Workshop' : 'مرکز زیستی و کارگاه'}
+                                        </TaxonomyTag>
+                                    </div>
+                                    <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">
+                                        {isEn ? 'Biological Facility & Growing Farm' : 'مرکز زیستی و کارگاه بستر کشت'}
+                                    </h3>
+                                    <p className="text-seed-pewter dark:text-seed-snow/70 text-xs leading-relaxed font-normal">
+                                        {isEn 
+                                            ? 'Rostara Organic Cultivation Farm, Gilan; dispatched with climate-controlled transit nationwide.'
+                                            : 'کارگاه و فارم کشت ارگانیک رُستارا، گیلان؛ ارسال با ترانزیت تحت کنترل به تمام نقاط کشور.'}
                                     </p>
                                 </div>
                             </SpotlightCard>
@@ -102,12 +115,20 @@ const Contact = () => {
                                     <Mail className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 mb-0.5">[مکاتبات رسمی و سفارشات]</div>
-                                    <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">مکاتبات علمی و پشتیبانی سفارشات</h3>
+                                    <div className="mb-1">
+                                        <TaxonomyTag variant="muted">
+                                            {isEn ? 'Scientific Correspondence' : 'مکاتبات رسمی و سفارشات'}
+                                        </TaxonomyTag>
+                                    </div>
+                                    <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">
+                                        {isEn ? 'Scientific Support & Orders' : 'مکاتبات علمی و پشتیبانی سفارشات'}
+                                    </h3>
                                     <p className="font-mono font-bold text-xs text-seed-forest dark:text-seed-lime" dir="ltr">
                                         info@rostara.ir
                                     </p>
-                                    <p className="text-[11px] text-seed-pewter dark:text-seed-snow/60 mt-1">پاسخگویی کمتر از ۲۴ ساعت کاری</p>
+                                    <p className="text-[11px] text-seed-pewter dark:text-seed-snow/60 mt-1 font-normal">
+                                        {isEn ? 'Response guaranteed within 24 business hours' : 'پاسخگویی کمتر از ۲۴ ساعت کاری'}
+                                    </p>
                                 </div>
                             </SpotlightCard>
 
@@ -116,10 +137,18 @@ const Contact = () => {
                                     <Sprout className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <div className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 mb-0.5">[همکاری پژوهشی و تامین]</div>
-                                    <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">تامین و پژوهش مشترک</h3>
-                                    <p className="text-seed-pewter dark:text-seed-snow/70 text-xs leading-relaxed">
-                                        اگر تولیدکننده بذرهای اصیل بومی، پرورش‌دهنده قارچ‌های دارویی یا محقق حوزه بیوتکنولوژی هستید، آماده همکاری علمی و تجاری با شما هستیم.
+                                    <div className="mb-1">
+                                        <TaxonomyTag variant="muted">
+                                            {isEn ? 'Research & Sourcing' : 'همکاری پژوهشی و تامین'}
+                                        </TaxonomyTag>
+                                    </div>
+                                    <h3 className="font-bold text-seed-forest dark:text-seed-snow text-sm mb-1">
+                                        {isEn ? 'Partnership & Co-Research' : 'تامین و پژوهش مشترک'}
+                                    </h3>
+                                    <p className="text-seed-pewter dark:text-seed-snow/70 text-xs leading-relaxed font-normal">
+                                        {isEn 
+                                            ? 'If you produce heirloom untreated seeds, cultivate medicinal functional fungi, or research bio-metabolites, we welcome collaboration.'
+                                            : 'اگر تولیدکننده بذرهای اصیل بومی، پرورش‌دهنده قارچ‌های دارویی یا محقق حوزه بیوتکنولوژی هستید، آماده همکاری علمی و تجاری با شما هستیم.'}
                                     </p>
                                 </div>
                             </SpotlightCard>
@@ -133,25 +162,27 @@ const Contact = () => {
                                         <CheckCircle className="w-8 h-8" />
                                     </div>
                                     <h3 className="text-xl font-bold text-seed-forest dark:text-seed-snow mb-2">
-                                        پیام شما با موفقیت ثبت شد
+                                        {isEn ? 'Message Sent Successfully' : 'پیام شما با موفقیت ثبت شد'}
                                     </h3>
                                     <p className="text-seed-pewter dark:text-seed-snow/70 text-xs">
-                                        از ارتباط شما متشکریم. کارشناسان رُستارا در اولین فرصت با شما مکاتبه خواهند کرد.
+                                        {isEn ? 'Thank you for reaching out. Rostara specialists will follow up with you promptly.' : 'از ارتباط شما متشکریم. کارشناسان رُستارا در اولین فرصت با شما مکاتبه خواهند کرد.'}
                                     </p>
                                 </div>
                             ) : (
                                 <>
                                     <div className="flex items-center justify-between pb-3 mb-6 border-b border-seed-forest/10 dark:border-white/10">
                                         <h2 className="text-base font-bold text-seed-forest dark:text-seed-snow">
-                                            ارسال پیام مستقیم به کارشناسان
+                                            {isEn ? 'Send Direct Inquiry' : 'ارسال پیام مستقیم به کارشناسان'}
                                         </h2>
-                                        <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">[ارسال مستقیم پیام]</span>
+                                        <TaxonomyTag variant="lime">
+                                            {isEn ? 'Direct Dispatch' : 'ارسال مستقیم پیام'}
+                                        </TaxonomyTag>
                                     </div>
 
                                     <form className="space-y-4 text-xs" onSubmit={handleSubmit}>
                                         <div>
                                             <label className="block text-seed-forest dark:text-seed-snow font-bold mb-2">
-                                                نام و نام خانوادگی
+                                                {isEn ? 'Full Name' : 'نام و نام خانوادگی'}
                                             </label>
                                             <input
                                                 type="text"
@@ -160,14 +191,14 @@ const Contact = () => {
                                                 onChange={handleChange}
                                                 required
                                                 className="w-full px-4 py-3 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs"
-                                                placeholder="مثال: مریم کریمی"
+                                                placeholder={isEn ? "e.g. Maryam Karimi" : "مثال: مریم کریمی"}
                                             />
                                         </div>
 
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                             <div>
                                                 <label className="block text-seed-forest dark:text-seed-snow font-bold mb-2">
-                                                    نشانی ایمیل
+                                                    {isEn ? 'Email Address' : 'نشانی ایمیل'}
                                                 </label>
                                                 <input
                                                     type="email"
@@ -182,7 +213,7 @@ const Contact = () => {
                                             </div>
                                             <div>
                                                 <label className="block text-seed-forest dark:text-seed-snow font-bold mb-2">
-                                                    شماره تماس (اختیاری)
+                                                    {isEn ? 'Phone Number (Optional)' : 'شماره تماس (اختیاری)'}
                                                 </label>
                                                 <input
                                                     type="tel"
@@ -190,7 +221,7 @@ const Contact = () => {
                                                     value={formData.phone}
                                                     onChange={handleChange}
                                                     className="w-full px-4 py-3 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime transition-all text-seed-forest dark:text-seed-snow text-xs"
-                                                    placeholder="۰۹۱۲..."
+                                                    placeholder={isEn ? "+98 912..." : "۰۹۱۲..."}
                                                     dir="ltr"
                                                 />
                                             </div>
@@ -198,7 +229,7 @@ const Contact = () => {
 
                                         <div>
                                             <label className="block text-seed-forest dark:text-seed-snow font-bold mb-2">
-                                                متن پرسش یا درخواست
+                                                {isEn ? 'Inquiry or Cultivation Query' : 'متن پرسش یا درخواست'}
                                             </label>
                                             <textarea
                                                 name="message"
@@ -207,7 +238,7 @@ const Contact = () => {
                                                 rows="4"
                                                 required
                                                 className="w-full px-4 py-3 bg-seed-stone/50 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 rounded-xl focus:outline-none focus:border-seed-lime resize-none transition-all text-seed-forest dark:text-seed-snow text-xs leading-relaxed"
-                                                placeholder="پرسش، پیشنهاد یا گزارش وضعیت کشت خود را بنویسید..."
+                                                placeholder={isEn ? "Write your inquiry, feedback, or cultivation status..." : "پرسش، پیشنهاد یا گزارش وضعیت کشت خود را بنویسید..."}
                                             ></textarea>
                                         </div>
 
@@ -217,10 +248,10 @@ const Contact = () => {
                                             className="w-full py-3.5 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest rounded-full font-bold shadow-md flex items-center justify-center gap-2 hover:opacity-95"
                                         >
                                             {formStatus === 'sending' ? (
-                                                <span>در حال ارسال پیام...</span>
+                                                <span>{isEn ? 'Dispatching Message...' : 'در حال ارسال پیام...'}</span>
                                             ) : (
                                                 <>
-                                                    <span>ارسال پیام به رُستارا</span>
+                                                    <span>{isEn ? 'Send Message to Rostara' : 'ارسال پیام به رُستارا'}</span>
                                                     <Send className="w-3.5 h-3.5" />
                                                 </>
                                             )}

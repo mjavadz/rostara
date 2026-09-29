@@ -1,31 +1,42 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import i18n from '../i18n';
-import { Menu, X, ShoppingCart, User, LogOut, Sun, Moon, ArrowLeft } from 'lucide-react';
+import { Menu, X, ShoppingCart, User, LogOut, Sun, Moon, Globe } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { fa } from '@/lib/utils';
 
 const Navbar = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const location = useLocation();
     const [isOpen, setIsOpen] = React.useState(false);
     const { getCartCount } = useCart();
     const { currentUser, logout } = useAuth();
     const { toggleTheme, isDark } = useTheme();
 
+    const isEn = i18n.language === 'en';
+
     const navItems = [
-        { path: '/', label: 'خانه' },
-        { path: '/products', label: 'محصولات و کیت‌ها' },
-        { path: '/method', label: 'راهنمای کشت' },
-        { path: '/track', label: 'رهگیری سفارش' },
-        { path: '/club', label: 'باشگاه تندرستی' },
-        { path: '/about', label: 'درباره ما' },
+        { path: '/', label: isEn ? 'Home' : 'خانه' },
+        { path: '/products', label: isEn ? 'Products & Kits' : 'محصولات و کیت‌ها' },
+        { path: '/method', label: isEn ? 'Cultivation SOP' : 'راهنمای کشت' },
+        { path: '/track', label: isEn ? 'Track Order' : 'رهگیری سفارش' },
+        { path: '/club', label: isEn ? 'Wellness Club' : 'باشگاه تندرستی' },
+        { path: '/about', label: isEn ? 'Bio-Manifesto' : 'درباره ما' },
     ];
 
     const isActive = (path) => location.pathname === path;
+
+    const handleLanguageToggle = () => {
+        const nextLang = isEn ? 'fa' : 'en';
+        i18n.changeLanguage(nextLang);
+        try {
+            localStorage.setItem('i18nextLng', nextLang);
+        } catch {}
+        document.documentElement.dir = nextLang === 'fa' ? 'rtl' : 'ltr';
+        document.documentElement.lang = nextLang;
+    };
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-seed-snow/90 dark:bg-seed-forestDark/90 backdrop-blur-md border-b border-seed-forest/10 dark:border-white/10 transition-colors duration-300">
@@ -39,7 +50,7 @@ const Navbar = () => {
                             </div>
                             <div className="flex items-baseline gap-1.5">
                                 <span className="text-2xl font-display font-black tracking-normal text-seed-forest dark:text-seed-snow">
-                                    رُستارا
+                                    {isEn ? 'Rostara' : 'رُستارا'}
                                 </span>
                                 <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
                             </div>
@@ -74,10 +85,10 @@ const Navbar = () => {
                             className="relative flex items-center gap-2 px-3.5 py-2 rounded-pill bg-seed-stone/70 dark:bg-white/5 hover:bg-seed-stone dark:hover:bg-white/10 text-seed-forest dark:text-seed-snow text-xs font-bold transition-colors border border-seed-forest/10 dark:border-white/10"
                         >
                             <ShoppingCart className="w-4 h-4" />
-                            <span className="hidden md:inline">سبد خرید</span>
+                            <span className="hidden md:inline">{isEn ? 'Cart' : 'سبد خرید'}</span>
                             {getCartCount() > 0 && (
                                 <span className="px-1.5 py-0.5 rounded-full bg-seed-lime text-seed-forest text-[11px] font-bold">
-                                    {fa(getCartCount())}
+                                    {isEn ? getCartCount() : fa(getCartCount())}
                                 </span>
                             )}
                         </Link>
@@ -95,7 +106,7 @@ const Navbar = () => {
                                 <button
                                     onClick={logout}
                                     className="p-2 text-seed-pewter hover:text-red-600 transition-colors"
-                                    title="خروج"
+                                    title={isEn ? 'Logout' : 'خروج'}
                                 >
                                     <LogOut className="w-4 h-4" />
                                 </button>
@@ -105,7 +116,7 @@ const Navbar = () => {
                                 to="/login"
                                 className="px-5 py-2 rounded-pill bg-seed-forest hover:bg-seed-forestDeep text-seed-snow dark:bg-seed-lime dark:hover:bg-seed-limeHover dark:text-seed-forest text-xs font-bold transition-all shadow-sm"
                             >
-                                <span>ورود / عضویت</span>
+                                <span>{isEn ? 'Sign In / Register' : 'ورود / عضویت'}</span>
                             </Link>
                         )}
 
@@ -113,25 +124,23 @@ const Navbar = () => {
                         <button
                             onClick={toggleTheme}
                             className="w-8 h-8 rounded-full flex items-center justify-center text-seed-pewter hover:text-seed-forest dark:hover:text-seed-snow hover:bg-seed-stone dark:hover:bg-white/10 transition-colors"
-                            title={isDark ? 'حالت روز' : 'حالت شب'}
+                            title={isEn ? (isDark ? 'Light Mode' : 'Dark Mode') : (isDark ? 'حالت روز' : 'حالت شب')}
                         >
                             {isDark ? <Sun className="w-4 h-4 text-seed-lime" /> : <Moon className="w-4 h-4 text-seed-forest" />}
                         </button>
 
                         {/* Language Switcher */}
                         <button
-                            onClick={() => {
-                                const newLang = i18n.language === 'fa' ? 'en' : 'fa';
-                                i18n.changeLanguage(newLang);
-                                document.dir = newLang === 'fa' ? 'rtl' : 'ltr';
-                            }}
-                            className="px-2.5 py-1 rounded-full text-seed-pewter hover:text-seed-forest dark:hover:text-seed-snow text-xs font-bold transition-colors border border-seed-forest/10 dark:border-white/10"
+                            onClick={handleLanguageToggle}
+                            className="px-3 py-1 rounded-full text-seed-pewter hover:text-seed-forest dark:hover:text-seed-snow text-xs font-bold transition-colors border border-seed-forest/10 dark:border-white/10 flex items-center gap-1.5"
+                            title={isEn ? 'تغییر به زبان فارسی' : 'Switch to English'}
                         >
-                            {i18n.language === 'fa' ? 'فارسی' : 'English'}
+                            <Globe className="w-3.5 h-3.5 opacity-70" />
+                            <span>{isEn ? 'فارسی' : 'EN'}</span>
                         </button>
                     </div>
 
-                    {/* Mobile Hamburger */}
+                    {/* Mobile Controls */}
                     <div className="flex items-center gap-2 sm:hidden">
                         <Link
                             to="/cart"
@@ -140,7 +149,7 @@ const Navbar = () => {
                             <ShoppingCart className="w-5 h-5" />
                             {getCartCount() > 0 && (
                                 <span className="absolute top-0 right-0 w-4 h-4 rounded-full bg-seed-lime text-seed-forest text-[10px] font-bold flex items-center justify-center">
-                                    {fa(getCartCount())}
+                                    {isEn ? getCartCount() : fa(getCartCount())}
                                 </span>
                             )}
                         </Link>
@@ -177,7 +186,7 @@ const Navbar = () => {
                                 onClick={() => setIsOpen(false)}
                                 className="block w-full py-2.5 px-4 rounded-full bg-seed-forest text-seed-snow text-xs font-bold text-center"
                             >
-                                حساب کاربری ({currentUser.user_metadata?.display_name || currentUser.email})
+                                {isEn ? 'Account Profile' : 'حساب کاربری'} ({currentUser.user_metadata?.display_name || currentUser.email})
                             </Link>
                         ) : (
                             <Link
@@ -185,7 +194,7 @@ const Navbar = () => {
                                 onClick={() => setIsOpen(false)}
                                 className="block w-full py-2.5 px-4 rounded-full bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest text-xs font-bold text-center"
                             >
-                                ورود / عضویت در رُستارا
+                                {isEn ? 'Sign In / Register' : 'ورود / عضویت در رُستارا'}
                             </Link>
                         )}
                     </div>
@@ -196,19 +205,18 @@ const Navbar = () => {
                             className="flex items-center gap-2 text-xs font-bold text-seed-pewter"
                         >
                             {isDark ? <Sun className="w-4 h-4 text-seed-lime" /> : <Moon className="w-4 h-4 text-seed-forest" />}
-                            <span>حالت تم</span>
+                            <span>{isEn ? 'Toggle Theme' : 'حالت تم'}</span>
                         </button>
 
                         <button
                             onClick={() => {
-                                const newLang = i18n.language === 'fa' ? 'en' : 'fa';
-                                i18n.changeLanguage(newLang);
-                                document.dir = newLang === 'fa' ? 'rtl' : 'ltr';
+                                handleLanguageToggle();
                                 setIsOpen(false);
                             }}
-                            className="text-xs font-mono font-bold text-seed-pewter"
+                            className="text-xs font-bold text-seed-pewter flex items-center gap-1.5"
                         >
-                            {i18n.language === 'fa' ? 'English' : 'فارسی'}
+                            <Globe className="w-3.5 h-3.5" />
+                            <span>{isEn ? 'زبان فارسی' : 'English Version'}</span>
                         </button>
                     </div>
                 </div>

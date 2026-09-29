@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Mail, ArrowLeft, CheckCircle } from 'lucide-react';
 import { supabase } from '../supabase';
 import { ShineButton } from '@/components/animations/shine-button';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const ForgotPassword = () => {
     const { t } = useTranslation();
@@ -75,9 +76,11 @@ const ForgotPassword = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-seed-stone dark:bg-white/5 rounded-2xl mb-4 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10 shadow-sm">
                         <Mail className="w-8 h-8" />
                     </div>
-                    <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50 block mb-1">
-                        [بازیابی گذرواژه]
-                    </span>
+                    <div className="mb-2">
+                        <TaxonomyTag variant="muted">
+                            {t('auth.forgotPassword.title', { defaultValue: 'بازیابی گذرواژه' })}
+                        </TaxonomyTag>
+                    </div>
                     <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-2">
                         فراموشی رمز عبور
                     </h1>

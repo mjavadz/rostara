@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Mail, ArrowLeft, Home } from 'lucide-react';
 import { ShineButton } from '@/components/animations/shine-button';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const CheckEmail = () => {
     const { t } = useTranslation();
@@ -14,9 +15,11 @@ const CheckEmail = () => {
                     <Mail className="w-8 h-8" />
                 </div>
 
-                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50 block mb-1">
-                    [تایید نشانی ایمیل]
-                </span>
+                <div className="mb-2">
+                    <TaxonomyTag variant="muted">
+                        {t('auth.checkEmail.title', { defaultValue: 'تایید نشانی ایمیل' })}
+                    </TaxonomyTag>
+                </div>
                 <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-3">
                     ایمیل فعال‌سازی حساب ارسال شد
                 </h1>

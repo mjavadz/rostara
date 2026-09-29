@@ -1,52 +1,65 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Sprout, ShieldCheck, Sparkles, Users, Heart, Target, ArrowLeft, Dna, Leaf, Zap, Microscope, Mail, MapPin } from 'lucide-react';
+import { Sprout, ShieldCheck, Sparkles, Users, Heart, Target, ArrowLeft, ArrowRight, Dna, Leaf, Zap, Microscope, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { GridBackground } from '@/components/backgrounds/grid';
 import { TextShimmer } from '@/components/animations/text-shimmer';
 import { SpotlightCard } from '@/components/animations/spotlight-card';
-import { Stat } from '@/components/ui/stat';
-import { Badge } from '@/components/ui/badge';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const About = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const isEn = i18n.language === 'en';
+    const ArrowIcon = isEn ? ArrowRight : ArrowLeft;
 
     const values = [
         {
-            code: '[رکن ۱]',
+            code: isEn ? 'Pillar 01' : 'رکن ۱',
             icon: Sprout,
-            title: 'غذای زنده و تراکم آنزیمی',
-            description: 'تمرکز بر میکروگرین‌ها و جوانه‌هایی که در اوج پتانسیل سلولی و بیولوژیک قرار دارند؛ تغذیه‌ای مستقیم از طبیعت به سلول‌های بدن بدون فوت وقت.'
+            title: isEn ? 'Living Food & Peak Enzyme Potency' : 'غذای زنده و تراکم آنزیمی',
+            description: isEn 
+                ? 'Harvesting at peak cellular vitality delivers intact active plant enzymes directly to tissues without the degradative loss of storage or thermal transit.'
+                : 'تمرکز بر میکروگرین‌ها و جوانه‌هایی که در اوج پتانسیل سلولی و بیولوژیک قرار دارند؛ تغذیه‌ای مستقیم از طبیعت به سلول‌های بدن بدون فوت وقت.'
         },
         {
-            code: '[رکن ۲]',
+            code: isEn ? 'Pillar 02' : 'رکن ۲',
             icon: ShieldCheck,
-            title: 'خلوص ژنتیکی و بذرهای دیم',
-            description: 'تعهد قطعی به بذرهای غیرتراریخته و باستانی دیم، بدون استفاده از حتی یک قطره کود شیمیایی، قارچ‌کش‌های صنعتی یا علف‌کش.'
+            title: isEn ? 'Genetic Integrity & Heirloom Seeds' : 'خلوص ژنتیکی و بذرهای دیم',
+            description: isEn 
+                ? 'Absolute commitment to non-GMO, untreated ancient seeds with zero synthetic pesticides, agricultural fungicides, or growth accelerators.'
+                : 'تعهد قطعی به بذرهای غیرتراریخته و باستانی دیم، بدون استفاده از حتی یک قطره کود شیمیایی، قارچ‌کش‌های صنعتی یا علف‌کش.'
         },
         {
-            code: '[رکن ۳]',
+            code: isEn ? 'Pillar 03' : 'رکن ۳',
             icon: Sparkles,
-            title: 'سلامت میکروبیوم و محور روده-مغز',
-            description: 'باور علمی به غذاهای تخمیری زنده و فعال (کامبوچا، کیمچی و میسو) به عنوان شالودهٔ تقویت ایمنی ذاتی و پایداری خلق‌وخو.'
+            title: isEn ? 'Microbiome & Gut-Brain Axis' : 'سلامت میکروبیوم و محور روده-مغز',
+            description: isEn 
+                ? 'Bioactive raw living ferments (Kombucha, Kimchi, Miso) provide symbiotic live cultures essential for mucosal immunity and cognitive neurochemistry.'
+                : 'باور علمی به غذاهای تخمیری زنده و فعال (کامبوچا، کیمچی و میسو) به عنوان شالودهٔ تقویت ایمنی ذاتی و پایداری خلق‌وخو.'
         },
         {
-            code: '[رکن ۴]',
+            code: isEn ? 'Pillar 04' : 'رکن ۴',
             icon: Users,
-            title: 'خودکفایی زیستی و کشاورزی آپارتمانی',
-            description: 'طراحی سینی‌های دوسطحی و پروتکل‌های کشت آسان تا هر خانواده بتواند تازه‌ترین سوپرفود سبز را روی پیشخوان خانه برداشت کند.'
+            title: isEn ? 'Biological Autonomy & Urban Cultivation' : 'خودکفایی زیستی و کشاورزی آپارتمانی',
+            description: isEn 
+                ? 'Dual-tier self-draining units and soilless protocols empower every household to crop pure living superfoods right on their kitchen countertop.'
+                : 'طراحی سینی‌های دوسطحی و پروتکل‌های کشت آسان تا هر خانواده بتواند تازه‌ترین سوپرفود سبز را روی پیشخوان خانه برداشت کند.'
         },
         {
-            code: '[رکن ۵]',
+            code: isEn ? 'Pillar 05' : 'رکن ۵',
             icon: Heart,
-            title: 'پایداری بوم‌شناختی و صفر پسماند',
-            description: 'حذف زنجیره طولانی حمل‌ونقل و استفاده از پدهای سلولزی زیست‌تخریب‌پذیر که پس از برداشت مستقیماً به چرخه طبیعت بازمی‌گردند.'
+            title: isEn ? 'Ecological Sustainability & Zero-Waste' : 'پایداری بوم‌شناختی و صفر پسماند',
+            description: isEn 
+                ? 'Eliminating long cold chains and utilizing 100% biodegradable cellulose pads that return naturally to the soil compost after every harvest.'
+                : 'حذف زنجیره طولانی حمل‌ونقل و استفاده از پدهای سلولزی زیست‌تخریب‌پذیر که پس از برداشت مستقیماً به چرخه طبیعت بازمی‌گردند.'
         },
         {
-            code: '[رکن ۶]',
+            code: isEn ? 'Pillar 06' : 'رکن ۶',
             icon: Microscope,
-            title: 'تغذیه بالینی و مبتنی بر شواهد',
-            description: 'ترویج سبک زندگی بر مبنای پژوهش‌های نوین بیوشیمی، رادیکال‌زدایی با سولفورافان و فعال‌سازی مسیر Nrf2 در فیزیولوژی انسانی.'
+            title: isEn ? 'Evidence-Based Clinical Nutrition' : 'تغذیه بالینی و مبتنی بر شواهد',
+            description: isEn 
+                ? 'Guided by biochemical research on Sulforaphane, Phase II cytoprotective enzymes, and cellular Nrf2 activation in human physiology.'
+                : 'ترویج سبک زندگی بر مبنای پژوهش‌های نوین بیوشیمی، رادیکال‌زدایی با سولفورافان و فعال‌سازی مسیر Nrf2 در فیزیولوژی انسانی.'
         }
     ];
 
@@ -60,19 +73,21 @@ const About = () => {
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seed-stone/80 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10 mb-6">
                         <span className="w-1.5 h-1.5 rounded-full bg-seed-lime animate-pulse" />
                         <TextShimmer className="text-xs font-bold text-seed-forest dark:text-seed-snow tracking-normal">
-                            منشور رویش زیست‌پایدار • رُستارا ۱۴۰۵
+                            {isEn ? 'Sustainable Bio-Manifesto • Rostara 2026' : 'منشور رویش زیست‌پایدار • رُستارا ۱۴۰۵'}
                         </TextShimmer>
                     </div>
 
                     <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-seed-forest dark:text-seed-snow tracking-normal mb-6 leading-[1.38]">
-                        داستان رُستارا؛
+                        <span>{isEn ? 'The Story of Rostara;' : 'داستان رُستارا؛'}</span>
                         <span className="block text-seed-forest/80 dark:text-seed-lime text-2xl sm:text-3xl lg:text-4xl mt-3 font-medium">
-                            رویشِ آراسته‌ی سلامت سلولی
+                            {isEn ? 'Cellular Vitality in Harmony with Biological Order' : 'رویشِ آراسته‌ی سلامت سلولی'}
                         </span>
                     </h1>
 
                     <p className="text-base sm:text-lg text-seed-pewter dark:text-seed-snow/75 leading-relaxed max-w-2xl mx-auto font-normal">
-                        پیوند دوبارهٔ انسان مدرن با زیست‌شناسی پاک خاک، متابولیت‌های فعال گیاهی و کشاورزی باطراوت در دل فضاهای شهری.
+                        {isEn 
+                            ? 'Reconnecting modern urban lives with the intelligence of clean soil, bioactive plant metabolites, and thriving indoor cultivation.'
+                            : 'پیوند دوبارهٔ انسان مدرن با زیست‌شناسی پاک خاک، متابولیت‌های فعال گیاهی و کشاورزی باطراوت در دل فضاهای شهری.'}
                     </p>
                 </div>
             </section>
@@ -82,20 +97,20 @@ const About = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                         <div className="border-e border-seed-forest/20 dark:border-white/20 last:border-e-0 pe-4">
-                            <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">۵۰×</div>
-                            <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">تراکم مواد زیست‌فعال نسبت به سبزیجات بالغ</div>
+                            <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">{isEn ? '50×' : '۵۰×'}</div>
+                            <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">{isEn ? 'Bioactive Density vs Mature Greens' : 'تراکم مواد زیست‌فعال نسبت به سبزیجات بالغ'}</div>
                         </div>
                         <div className="border-e border-seed-forest/20 dark:border-white/20 last:border-e-0 pe-4">
-                            <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">۱۰۰٪</div>
-                            <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">بذرهای دیم اصیل غیرتراریخته (Non-GMO)</div>
+                            <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">{isEn ? '100%' : '۱۰۰٪'}</div>
+                            <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">{isEn ? 'Untreated Non-GMO Heirloom Seeds' : 'بذرهای دیم اصیل غیرتراریخته (Non-GMO)'}</div>
                         </div>
                         <div className="border-e border-seed-forest/20 dark:border-white/20 last:border-e-0 pe-4">
-                            <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">۷ روز</div>
-                            <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">چرخه کامل جوانه تا چیدن تازه در آپارتمان</div>
+                            <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">{isEn ? '7 Days' : '۷ روز'}</div>
+                            <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">{isEn ? 'Full Cycle: Seed to Fresh Plate' : 'چرخه کامل جوانه تا چیدن تازه در آپارتمان'}</div>
                         </div>
                         <div>
-                            <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">۰</div>
-                            <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">آفت‌کش، علف‌کش و نگهدارنده شیمیایی</div>
+                            <div className="text-3xl lg:text-4xl font-mono font-black text-seed-forest dark:text-seed-lime">0</div>
+                            <div className="text-xs text-seed-pewter dark:text-seed-snow/80 mt-1 font-medium">{isEn ? 'Pesticides, Fungicides, or Additives' : 'آفت‌کش، علف‌کش و نگهدارنده شیمیایی'}</div>
                         </div>
                     </div>
                 </div>
@@ -108,19 +123,25 @@ const About = () => {
                         <div className="p-8 rounded-2xl bg-seed-stone/60 dark:bg-white/5 border border-seed-forest/10 dark:border-white/10">
                             <h2 className="text-xl sm:text-2xl font-bold text-seed-forest dark:text-seed-snow mb-4 flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-seed-lime" />
-                                چرا رُستارا پدید آمد؟
+                                {isEn ? 'Why was Rostara established?' : 'چرا رُستارا پدید آمد؟'}
                             </h2>
                             <p className="text-seed-forest/80 dark:text-seed-snow/80 leading-relaxed">
-                                رُستارا با این پرسش بنیادین متولد شد: چگونه می‌توان در دنیای پرترافیک و فرسایندهٔ امروز، سلامت واقعی و غذای زنده را مستقیماً به قلب خانه‌ها آورد؟ وقتی سبزیجات روزها در زنجیره‌های ترانزیت، انبارها و قفسه‌های فروشگاهی می‌مانند، بیش از ۷۰ درصد از آنزیم‌های فعال و ویتامین‌های حساس به اکسیداسیون خود را پیش از مصرف از دست می‌دهند.
+                                {isEn 
+                                    ? 'Rostara was born out of a fundamental inquiry: In a fast-paced urban world filled with shelf-stable ultra-processed food, how can we bring genuine cellular nutrition directly into modern homes? When greens spend weeks in cold storage and supply trucks, over 70% of vital active enzymes and fragile vitamins are oxidized long before consumption.'
+                                    : 'رُستارا با این پرسش بنیادین متولد شد: چگونه می‌توان در دنیای پرترافیک و فرسایندهٔ امروز، سلامت واقعی و غذای زنده را مستقیماً به قلب خانه‌ها آورد؟ وقتی سبزیجات روزها در زنجیره‌های ترانزیت، انبارها و قفسه‌های فروشگاهی می‌مانند، بیش از ۷۰ درصد از آنزیم‌های فعال و ویتامین‌های حساس به اکسیداسیون خود را پیش از مصرف از دست می‌دهند.'}
                             </p>
                         </div>
 
                         <p>
-                            پاسخ علمی ما، بازگشت به اعجاز <strong>میکروگرین‌ها (ریزسبزی‌های غنی‌شده)</strong>، <strong>تخمیرهای زندهٔ پروبیوتیک</strong> و <strong>کشاورزی ارگانیک خانگی</strong> است. گیاهچه در روز هفتم رشد خود، در بالاترین تراکم متابولیت‌های ثانویه قرار دارد؛ جایی که فیتوکمیکال‌ها، کلروفیل، ویتامین C و ترکیبات مهارکنندهٔ استرس اکسیداتیو در حداکثر توان بیولوژیک خود هستند.
+                            {isEn 
+                                ? 'Our scientific response is a return to the biological power of indoor microgreens, living probiotic ferments, and decentralized home cultivation. On day seven of germination, a seedling exhibits its highest density of secondary metabolites—where chlorophyll, sulforaphane, carotenoids, and Phase II cellular defense compounds peak.'
+                                : 'پاسخ علمی ما، بازگشت به اعجاز میکروگرین‌ها (ریزسبزی‌های غنی‌شده)، تخمیرهای زندهٔ پروبیوتیک و کشاورزی ارگانیک خانگی است. گیاهچه در روز هفتم رشد خود، در بالاترین تراکم متابولیت‌های ثانویه قرار دارد؛ جایی که فیتوکمیکال‌ها، کلروفیل، ویتامین C و ترکیبات مهارکنندهٔ استرس اکسیداتیو در حداکثر توان بیولوژیک خود هستند.'}
                         </p>
 
                         <p>
-                            در رُستارا، ما صرفاً بذر یا محصول نمی‌فروشیم؛ بلکه یک اکوسیستم استاندارد و متکی به علم فراهم ساخته‌ایم تا هر شخص بدون نیاز به مهارت باغبانی یا فضای باز، در سینی‌های بدون خاک و خودآبیار، منبع زندهٔ آنزیم و سلامت سلولی خانواده خود باشد.
+                            {isEn 
+                                ? 'At Rostara, we provide not just seeds, but an integrated scientific methodology enabling anyone, regardless of space or gardening background, to grow pristine, enzyme-rich living food in their own kitchen.'
+                                : 'در رُستارا، ما صرفاً بذر یا محصول نمی‌فروشیم؛ بلکه یک اکوسیستم استاندارد و متکی به علم فراهم ساخته‌ایم تا هر شخص بدون نیاز به مهارت باغبانی یا فضای باز، در سینی‌های بدون خاک و خودآبیار، منبع زندهٔ آنزیم و سلامت سلولی خانواده خود باشد.'}
                         </p>
                     </div>
                 </div>
@@ -130,11 +151,13 @@ const About = () => {
             <section className="py-20 bg-seed-stone/40 dark:bg-seed-forest/10 border-t border-seed-forest/10 dark:border-white/10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="font-mono text-xs font-bold text-seed-forest/60 dark:text-seed-lime uppercase tracking-widest block mb-2">
-                            [ شش رکن زیست‌پزشکی و اخلاق کشت ]
-                        </span>
+                        <div className="mb-2">
+                            <TaxonomyTag variant="lime">
+                                {isEn ? 'Six Biomedical Pillars & Cultivation Ethics' : 'شش رکن زیست‌پزشکی و اخلاق کشت'}
+                            </TaxonomyTag>
+                        </div>
                         <h2 className="text-3xl sm:text-4xl font-display font-black text-seed-forest dark:text-seed-snow">
-                            اصول و باورهای بنیادین رُستارا
+                            {isEn ? 'Core Principles of Rostara' : 'اصول و باورهای بنیادین رُستارا'}
                         </h2>
                     </div>
 
@@ -147,8 +170,10 @@ const About = () => {
                                     className="p-8 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 flex flex-col justify-between"
                                 >
                                     <div>
-                                        <div className="flex items-center justify-between pb-3 mb-6 border-b border-seed-forest/10 dark:border-white/10 font-mono text-[11px] text-seed-pewter dark:text-seed-snow/50">
-                                            <span>{val.code}</span>
+                                        <div className="flex items-center justify-between pb-3 mb-6 border-b border-seed-forest/10 dark:border-white/10">
+                                            <TaxonomyTag variant="muted">
+                                                {val.code}
+                                            </TaxonomyTag>
                                             <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
                                         </div>
 
@@ -160,7 +185,7 @@ const About = () => {
                                             {val.title}
                                         </h3>
 
-                                        <p className="text-xs text-seed-pewter dark:text-seed-snow/70 leading-relaxed">
+                                        <p className="text-xs text-seed-pewter dark:text-seed-snow/70 leading-relaxed font-normal">
                                             {val.description}
                                         </p>
                                     </div>
@@ -175,8 +200,8 @@ const About = () => {
                             to="/products"
                             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest font-bold text-xs sm:text-sm hover:opacity-95 transition-all shadow-md"
                         >
-                            <span>مشاهده کاتالوگ گونه‌های زیستی و کیت‌ها</span>
-                            <ArrowLeft className="w-4 h-4" />
+                            <span>{isEn ? 'Explore Biological Catalog & Kits' : 'مشاهده کاتالوگ گونه‌های زیستی و کیت‌ها'}</span>
+                            <ArrowIcon className="w-4 h-4" />
                         </Link>
                     </div>
                 </div>

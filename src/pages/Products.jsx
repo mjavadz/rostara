@@ -20,16 +20,21 @@ import {
     Info,
     MessageSquare,
     Eye,
-    ArrowLeft
+    ArrowLeft,
+    ArrowRight
 } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { db } from '../services/db';
 import { Price } from '@/components/ui/price';
 import { Badge } from '@/components/ui/badge';
 import { fa } from '@/lib/utils';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const Products = () => {
     const { t, i18n } = useTranslation();
+    const isEn = i18n.language === 'en';
+    const ArrowIcon = isEn ? ArrowRight : ArrowLeft;
+
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
     const [productsList, setProductsList] = useState([]);
@@ -48,12 +53,12 @@ const Products = () => {
     const { addToCart } = useCart();
 
     const categories = [
-        { id: 'all', label: 'همه نمونه‌ها' },
-        { id: 'microgreens', label: 'میکروگرین‌ها' },
-        { id: 'growing_kits', label: 'کیت‌ها و بستر کشت' },
-        { id: 'fermented', label: 'خوراک‌های تخمیری' },
-        { id: 'mushrooms', label: 'قارچ‌های دارویی' },
-        { id: 'superfoods', label: 'سوپرفودها' },
+        { id: 'all', label: isEn ? 'All Specimens' : 'همه نمونه‌ها' },
+        { id: 'microgreens', label: isEn ? 'Fresh Microgreens' : 'میکروگرین‌ها' },
+        { id: 'growing_kits', label: isEn ? 'Kits & Mediums' : 'کیت‌ها و بستر کشت' },
+        { id: 'fermented', label: isEn ? 'Living Ferments' : 'خوراک‌های تخمیری' },
+        { id: 'mushrooms', label: isEn ? 'Medicinal Fungi' : 'قارچ‌های دارویی' },
+        { id: 'superfoods', label: isEn ? 'Raw Superfoods' : 'سوپرفودها' },
     ];
 
     useEffect(() => {
@@ -82,7 +87,28 @@ const Products = () => {
     }, [selectedProduct]);
 
     const formatPrice = (price) => {
+        if (isEn) {
+            return new Intl.NumberFormat('en-US').format(price) + ' Toman';
+        }
         return new Intl.NumberFormat('fa-IR').format(price) + ' تومان';
+    };
+
+    const formatWeight = (w) => {
+        if (!isEn || !w) return w;
+        return w
+            .replace('پک کامل با ۴ بذر', 'Full Kit + 4 Seeds')
+            .replace('۱۰۰ گرم عصاره', '100g Pure Extract')
+            .replace('۱۵۰ گرم عصاره', '150g Pure Extract')
+            .replace('۲۰۰ گرم پودر خالص', '200g Pure Powder')
+            .replace('۴ بسته بذر ارگانیک', '4 Organic Seed Packs')
+            .replace('بسته ۵ لیتری', '5L Bio-Pack')
+            .replace('۵۰۰ گرم تازه', '500g Fresh')
+            .replace('۱۰۰ گرم', '100g Fresh Cut')
+            .replace('۳۰۰ گرم', '300g')
+            .replace('۴۰۰ گرم', '400g')
+            .replace('۷۵۰ گرم', '750g Loaf')
+            .replace('۸۰۰ گرم', '800g Jar')
+            .replace('۱ لیتر', '1 Liter Bottle');
     };
 
     const handleAddToCart = (product, quantity = 1) => {
@@ -151,40 +177,42 @@ const Products = () => {
         <div className="min-h-screen bg-seed-snow dark:bg-seed-forestDark text-seed-charcoal dark:text-seed-snow transition-colors duration-300">
             {/* Hero Header */}
             <section className="pt-28 pb-12 border-b border-seed-forest/10 dark:border-white/10">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-right">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     
                     <div className="flex items-center gap-2 mb-3">
                         <span className="badge-lime">
-                            فهرست جامع ۱۴۰۵
+                            {isEn ? 'Official Catalog 2026' : 'فهرست جامع ۱۴۰۵'}
                         </span>
                         <span className="text-xs font-bold text-seed-forest/70 dark:text-seed-lime">
-                            نمونه‌های زیستی فعال و کیت‌های کشت خانگی
+                            {isEn ? 'Bioactive Living Specimens & Indoor Growing Units' : 'نمونه‌های زیستی فعال و کیت‌های کشت خانگی'}
                         </span>
                     </div>
 
                     <h1 className="text-3xl sm:text-5xl font-display font-black text-seed-forest dark:text-seed-snow mb-4">
-                        واریته‌های فعال و تغذیه سلولی
+                        {isEn ? 'Bioactive Cultivars & Cellular Nutrition' : 'واریته‌های فعال و تغذیه سلولی'}
                     </h1>
                     
                     <p className="text-sm sm:text-base text-seed-pewter dark:text-seed-snow/70 max-w-2xl leading-relaxed font-normal">
-                        تمام محصولات از بذرهای دیم اصلاح‌نشده با بالاترین پتانسیل جوانه‌زنی کشت شده و عاری از هرگونه کود شیمیایی، آفت‌کش و نگهدارنده صنعتی هستند.
+                        {isEn 
+                            ? 'Every botanical specimen is propagated from pure, untreated non-GMO heirloom seeds with high germination vigor. Free from synthetic pesticides, commercial fertilizers, and artificial preservatives.'
+                            : 'تمام محصولات از بذرهای دیم اصلاح‌نشده با بالاترین پتانسیل جوانه‌زنی کشت شده و عاری از هرگونه کود شیمیایی، آفت‌کش و نگهدارنده صنعتی هستند.'}
                     </p>
 
                     {/* Live Search Input (Clinical Seed style) */}
                     <div className="mt-8 max-w-lg relative">
                         <div className="relative flex items-center rounded-pill bg-white dark:bg-seed-glassDark border border-seed-forest/15 dark:border-white/15 focus-within:border-seed-forest dark:focus-within:border-seed-lime transition-all">
-                            <Search className="w-4 h-4 text-seed-pewter mr-4 ml-1 flex-shrink-0" />
+                            <Search className="w-4 h-4 text-seed-pewter ms-4 me-1 flex-shrink-0" />
                             <input
                                 type="text"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                placeholder="جستجوی گونه، ترکیب زیستی (سولفورافان، کیت، کامبوچا)..."
-                                className="w-full py-3 pr-2 pl-6 bg-transparent text-seed-forest dark:text-seed-snow placeholder-seed-pewter/60 focus:outline-none text-xs sm:text-sm font-medium"
+                                placeholder={isEn ? "Search species, compound (sulforaphane, kit, kombucha)..." : "جستجوی گونه، ترکیب زیستی (سولفورافان، کیت، کامبوچا)..."}
+                                className="w-full py-3 ps-2 pe-6 bg-transparent text-seed-forest dark:text-seed-snow placeholder-seed-pewter/60 focus:outline-none text-xs sm:text-sm font-medium"
                             />
                             {searchQuery && (
                                 <button
                                     onClick={() => setSearchQuery('')}
-                                    className="p-2 ml-2 text-seed-pewter hover:text-seed-forest"
+                                    className="p-2 me-2 text-seed-pewter hover:text-seed-forest"
                                 >
                                     <X className="w-4 h-4" />
                                 </button>
@@ -220,7 +248,7 @@ const Products = () => {
                                                 ? 'bg-white/20 text-white dark:bg-seed-forest/20 dark:text-seed-forest' 
                                                 : 'bg-seed-stone dark:bg-white/10 text-seed-pewter dark:text-seed-snow/60'
                                         }`}>
-                                            {fa(count)}
+                                            {isEn ? count : fa(count)}
                                         </span>
                                     </button>
                                 );
@@ -232,37 +260,53 @@ const Products = () => {
                     {loading ? (
                         <div className="py-20 text-center">
                             <div className="w-8 h-8 border-2 border-seed-forest dark:border-seed-lime border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-                            <p className="text-xs text-seed-pewter">در حال فراخوانی کاتالوگ زیستی رُستارا...</p>
+                            <p className="text-xs text-seed-pewter">{isEn ? 'Loading biological catalog...' : 'در حال فراخوانی کاتالوگ زیستی رُستارا...'}</p>
                         </div>
                     ) : filteredProducts.length === 0 ? (
                         <div className="py-16 text-center seed-card p-8 max-w-md mx-auto">
                             <Leaf className="w-10 h-10 text-seed-pewter mx-auto mb-3" />
-                            <h3 className="text-base font-bold text-seed-forest dark:text-seed-snow mb-2">نمونه‌ای یافت نشد</h3>
+                            <h3 className="text-base font-bold text-seed-forest dark:text-seed-snow mb-2">
+                                {isEn ? 'No Specimens Found' : 'نمونه‌ای یافت نشد'}
+                            </h3>
                             <p className="text-xs text-seed-pewter mb-6">
-                                با عبارت «{searchQuery}» موردی پیدا نشد.
+                                {isEn ? `No match found for "${searchQuery}".` : `با عبارت «${searchQuery}» موردی پیدا نشد.`}
                             </p>
                             <button
                                 onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
                                 className="px-5 py-2 rounded-pill bg-seed-forest text-seed-snow text-xs font-bold"
                             >
-                                مشاهده تمام نمونه‌ها
+                                {isEn ? 'View All Specimens' : 'مشاهده تمام نمونه‌ها'}
                             </button>
                         </div>
                     ) : (
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredProducts.map((product, pIndex) => {
                                 const isAdded = addedToCart[product.id];
+                                const displayName = isEn 
+                                    ? t(`products.items.${product.id}.name`, { defaultValue: product.name_en || product.name })
+                                    : product.name;
+                                const displayScientific = isEn 
+                                    ? (product.scientificName || 'Heirloom Botanical Cultivar')
+                                    : product.name_en;
+                                const displayDesc = isEn 
+                                    ? t(`products.items.${product.id}.desc`, { defaultValue: product.benefits || product.desc })
+                                    : (product.benefits || product.desc);
+                                const rawFeatures = isEn
+                                    ? t(`products.items.${product.id}.features`, { returnObjects: true, defaultValue: product.features })
+                                    : product.features;
+                                const displayFeatures = Array.isArray(rawFeatures) ? rawFeatures : (product.features || []);
+
                                 return (
                                     <div
                                         key={product.id}
-                                        className="seed-card p-6 flex flex-col justify-between hover:border-seed-forest/30 dark:hover:border-seed-lime/40 group"
+                                        className="seed-card p-6 flex flex-col justify-between hover:border-seed-forest/30 dark:hover:border-seed-lime/40 group text-start"
                                     >
                                         <div>
-                                            {/* Specimen Header */}
+                                            {/* Specimen Header with TaxonomyTag */}
                                             <div className="flex items-center justify-between gap-2 pb-3 mb-4 border-b border-seed-forest/10 dark:border-white/10">
-                                                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">
-                                                    [گونهٔ {fa(pIndex + 1)}]
-                                                </span>
+                                                <TaxonomyTag variant="muted">
+                                                    {isEn ? `Specimen ${pIndex + 1 < 10 ? '0' : ''}${pIndex + 1}` : `گونهٔ ${fa(pIndex + 1)}`}
+                                                </TaxonomyTag>
                                                 <span className="badge-lime text-[10px]">
                                                     {categories.find(c => c.id === product.category)?.label}
                                                 </span>
@@ -275,11 +319,11 @@ const Products = () => {
                                                         onClick={() => setSelectedProduct(product)}
                                                         className="text-lg font-display font-bold text-seed-forest dark:text-seed-snow cursor-pointer hover:text-seed-sage transition-colors"
                                                     >
-                                                        {product.name}
+                                                        {displayName}
                                                     </h3>
-                                                    {product.name_en && (
+                                                    {displayScientific && (
                                                         <p className="text-[11px] font-mono text-seed-sage dark:text-seed-snow/50 italic mt-0.5">
-                                                            {product.name_en}
+                                                            {displayScientific}
                                                         </p>
                                                     )}
                                                 </div>
@@ -288,14 +332,14 @@ const Products = () => {
                                                 </div>
                                             </div>
 
-                                            <p className="text-xs text-seed-pewter dark:text-seed-snow/80 leading-relaxed mb-4 font-normal line-clamp-2">
-                                                {product.benefits || product.desc}
+                                            <p className="text-xs text-seed-pewter dark:text-seed-snow/80 leading-relaxed mb-4 font-normal line-clamp-3 min-h-[52px] text-start">
+                                                {displayDesc}
                                             </p>
 
                                             {/* Biological Key Features */}
                                             <div className="space-y-1 mb-5">
-                                                {Array.isArray(product.features) && product.features.slice(0, 2).map((feat, idx) => (
-                                                    <div key={idx} className="flex items-center gap-1.5 text-[11px] text-seed-pewter dark:text-seed-snow/70">
+                                                {displayFeatures.slice(0, 2).map((feat, idx) => (
+                                                    <div key={idx} className="flex items-center gap-1.5 text-[11px] text-seed-pewter dark:text-seed-snow/70 text-start">
                                                         <span className="w-1 h-1 rounded-full bg-seed-forest dark:bg-seed-lime flex-shrink-0" />
                                                         <span className="line-clamp-1">{feat}</span>
                                                     </div>
@@ -306,7 +350,7 @@ const Products = () => {
                                         <div>
                                             {/* Price & Unit Specs */}
                                             <div className="flex items-center justify-between py-3 border-t border-seed-forest/10 dark:border-white/10 mb-4 text-xs">
-                                                <span className="text-seed-pewter dark:text-seed-snow/70 font-medium">{product.weight}</span>
+                                                <span className="text-seed-pewter dark:text-seed-snow/70 font-medium">{formatWeight(product.weight)}</span>
                                                 <Price amount={product.price} size="sm" />
                                             </div>
 
@@ -314,7 +358,7 @@ const Products = () => {
                                             <div className="grid grid-cols-5 gap-2">
                                                 <button
                                                     onClick={() => setSelectedProduct(product)}
-                                                    title="بررسی مشخصات علمی"
+                                                    title={isEn ? "View Specimen Details" : "بررسی مشخصات علمی"}
                                                     className="col-span-1 py-2.5 rounded-pill bg-seed-stone dark:bg-white/10 hover:bg-seed-stone/80 text-seed-forest dark:text-seed-snow flex items-center justify-center transition-colors text-xs"
                                                 >
                                                     <Info className="w-4 h-4" />
@@ -332,12 +376,12 @@ const Products = () => {
                                                     {isAdded ? (
                                                         <>
                                                             <Check className="w-4 h-4" />
-                                                            <span>ثبت شد</span>
+                                                            <span>{isEn ? 'Added!' : 'ثبت شد'}</span>
                                                         </>
                                                     ) : (
                                                         <>
                                                             <ShoppingCart className="w-4 h-4" />
-                                                            <span>افزودن به سبد</span>
+                                                            <span>{isEn ? 'Add to Cart' : 'افزودن به سبد'}</span>
                                                         </>
                                                     )}
                                                 </button>
@@ -358,7 +402,7 @@ const Products = () => {
                         
                         <button
                             onClick={() => setSelectedProduct(null)}
-                            className="absolute top-5 left-5 w-8 h-8 rounded-full bg-seed-stone dark:bg-white/10 flex items-center justify-center text-seed-pewter hover:text-seed-forest transition-colors"
+                            className="absolute top-5 end-5 w-8 h-8 rounded-full bg-seed-stone dark:bg-white/10 flex items-center justify-center text-seed-pewter hover:text-seed-forest transition-colors"
                         >
                             <X className="w-4 h-4" />
                         </button>
@@ -370,16 +414,16 @@ const Products = () => {
                                     {categories.find(c => c.id === selectedProduct.category)?.label}
                                 </span>
                                 <span className="font-mono text-xs text-seed-pewter">
-                                    امتیاز: {selectedProduct.rating || 5.0} ★
+                                    {isEn ? 'Score:' : 'امتیاز:'} {selectedProduct.rating || 5.0} ★
                                 </span>
                             </div>
 
                             <h2 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-1">
-                                {selectedProduct.name}
+                                {isEn && selectedProduct.name_en ? selectedProduct.name_en : selectedProduct.name}
                             </h2>
                             {selectedProduct.name_en && (
                                 <p className="font-mono text-xs text-seed-sage dark:text-seed-snow/50 italic mb-3">
-                                    {selectedProduct.name_en}
+                                    {isEn ? selectedProduct.name : selectedProduct.name_en}
                                 </p>
                             )}
 
@@ -393,7 +437,9 @@ const Products = () => {
                         <div className="space-y-5 text-xs text-seed-pewter dark:text-seed-snow/80 leading-relaxed font-normal">
                             {selectedProduct.benefits && (
                                 <div>
-                                    <h4 className="font-bold text-seed-forest dark:text-seed-snow mb-1.5">پروفایل بیولوژیک و فواید زیستی:</h4>
+                                    <h4 className="font-bold text-seed-forest dark:text-seed-snow mb-1.5">
+                                        {isEn ? 'Biological Profile & Cellular Benefits:' : 'پروفایل بیولوژیک و فواید زیستی:'}
+                                    </h4>
                                     <p className="p-3 bg-seed-stone/50 dark:bg-white/5 rounded-xl border border-seed-forest/10 dark:border-white/10">
                                         {selectedProduct.benefits}
                                     </p>
@@ -402,7 +448,9 @@ const Products = () => {
 
                             {selectedProduct.usage && (
                                 <div>
-                                    <h4 className="font-bold text-seed-forest dark:text-seed-snow mb-1.5">دستورالعمل مصرف و نگهداری:</h4>
+                                    <h4 className="font-bold text-seed-forest dark:text-seed-snow mb-1.5">
+                                        {isEn ? 'Usage Protocol & Maintenance:' : 'دستورالعمل مصرف و نگهداری:'}
+                                    </h4>
                                     <p className="p-3 bg-seed-stone/50 dark:bg-white/5 rounded-xl border border-seed-forest/10 dark:border-white/10">
                                         {selectedProduct.usage}
                                     </p>
@@ -411,7 +459,9 @@ const Products = () => {
 
                             {/* Modal Reviews */}
                             <div className="pt-4 border-t border-seed-forest/10 dark:border-white/10">
-                                <h4 className="font-bold text-seed-forest dark:text-seed-snow mb-3">تجارب مشتریان ({reviews.length})</h4>
+                                <h4 className="font-bold text-seed-forest dark:text-seed-snow mb-3">
+                                    {isEn ? `Customer Verified Experiences (${reviews.length})` : `تجارب مشتریان (${fa(reviews.length)})`}
+                                </h4>
                                 <div className="space-y-2 max-h-36 overflow-y-auto mb-4">
                                     {reviews.map(r => (
                                         <div key={r.id} className="p-2.5 rounded-lg bg-seed-stone/40 dark:bg-white/5 border border-seed-forest/5 dark:border-white/5">
@@ -435,7 +485,7 @@ const Products = () => {
                                 >
                                     <Minus className="w-3.5 h-3.5" />
                                 </button>
-                                <span className="w-6 text-center font-bold text-xs">{fa(modalQuantity)}</span>
+                                <span className="w-6 text-center font-bold text-xs">{isEn ? modalQuantity : fa(modalQuantity)}</span>
                                 <button
                                     onClick={() => setModalQuantity(modalQuantity + 1)}
                                     className="w-7 h-7 rounded-full flex items-center justify-center hover:bg-white dark:hover:bg-white/20 transition-colors"
@@ -452,7 +502,7 @@ const Products = () => {
                                 className="btn-seed flex-1 py-3 text-xs flex items-center justify-center gap-2"
                             >
                                 <ShoppingCart className="w-4 h-4" />
-                                <span>افزودن به سبد • {formatPrice(selectedProduct.price * modalQuantity)}</span>
+                                <span>{isEn ? `Add to Cart • ${formatPrice(selectedProduct.price * modalQuantity)}` : `افزودن به سبد • ${formatPrice(selectedProduct.price * modalQuantity)}`}</span>
                             </button>
                         </div>
                     </div>

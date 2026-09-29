@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth, DEMO_ACCOUNTS } from '../contexts/AuthContext';
 import { Mail, Lock, LogIn, UserCheck, Sparkles, Check, KeyRound, ShieldCheck } from 'lucide-react';
 import { ShineButton } from '@/components/animations/shine-button';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const Login = () => {
     const { t } = useTranslation();
@@ -53,9 +54,11 @@ const Login = () => {
                     <div className="inline-flex items-center justify-center w-16 h-16 bg-seed-stone dark:bg-white/5 rounded-2xl mb-4 text-seed-forest dark:text-seed-lime border border-seed-forest/10 dark:border-white/10 shadow-sm">
                         <LogIn className="w-8 h-8" />
                     </div>
-                    <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 block mb-1">
-                        [ورود امن به حساب]
-                    </span>
+                    <div className="mb-2">
+                        <TaxonomyTag variant="muted">
+                            {i18n.language === 'en' ? 'Secure Authentication' : 'ورود امن به حساب'}
+                        </TaxonomyTag>
+                    </div>
                     <h1 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-2">
                         ورود به حساب رُستارا
                     </h1>

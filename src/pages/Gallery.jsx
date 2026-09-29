@@ -4,6 +4,7 @@ import { Sprout, Sparkles, HeartPulse, Package, Leaf, Camera } from 'lucide-reac
 import { GridBackground } from '@/components/backgrounds/grid';
 import { TextShimmer } from '@/components/animations/text-shimmer';
 import { SpotlightCard } from '@/components/animations/spotlight-card';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const Gallery = () => {
     const { t } = useTranslation();
@@ -113,9 +114,7 @@ const Gallery = () => {
                                     className="p-8 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 flex flex-col justify-between min-h-[260px]"
                                 >
                                     <div className="flex items-center justify-between pb-3 mb-4 border-b border-seed-forest/10 dark:border-white/10">
-                                        <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/50">
-                                            {item.code}
-                                        </span>
+                                        <TaxonomyTag variant="muted">{item.code}</TaxonomyTag>
                                         <span className="badge-lime text-[11px]">
                                             {item.category}
                                         </span>

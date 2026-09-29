@@ -4,8 +4,11 @@ import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../supabase';
 import { db } from '../services/db';
 import { Wallet as WalletIcon, Gift, ArrowRightLeft, CreditCard, History, Send, ShoppingBag, Clock, Crown, Award, CheckCircle, LogOut } from 'lucide-react';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const Wallet = () => {
+    const { t, i18n } = useTranslation();
+    const isEn = i18n.language === 'en';
     const { currentUser, logout } = useAuth();
     const [balance, setBalance] = useState({ credit: 0, cash: 0, tickets: 0 });
     const [vipData, setVipData] = useState({ level: 0, dailyClicks: 0, claimedRewards: [], nextClickAt: null });
@@ -290,15 +293,19 @@ const Wallet = () => {
                     {/* Credit Wallet */}
                     <div className="bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 rounded-2xl p-6 text-seed-forest dark:text-seed-snow shadow-sm relative overflow-hidden">
                         <div className="relative z-10 flex flex-col h-full">
-                            <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 block mb-1">[اعتبار تندرستی]</span>
+                            <div className="mb-1">
+                                <TaxonomyTag variant="muted">
+                                    {isEn ? 'Bio Credit' : 'اعتبار تندرستی'}
+                                </TaxonomyTag>
+                            </div>
                             <p className="text-seed-pewter dark:text-seed-snow/70 text-xs mb-1">اعتبار زیستی (پاداش همراهی)</p>
                             <h2 className="text-2xl font-black mb-auto font-mono text-seed-forest dark:text-seed-lime" dir="ltr">{formatPrice(balance.credit)}</h2>
                             <button
-                                onClick={handleConvertTicket}
-                                className="mt-6 bg-seed-stone dark:bg-white/5 hover:bg-seed-stone/80 text-seed-forest dark:text-seed-snow text-xs py-2.5 px-4 rounded-xl transition-colors flex items-center gap-2 w-full justify-center border border-seed-forest/10 dark:border-white/10"
+                                onClick={handleCreditToCash}
+                                className="mt-4 w-full py-2 bg-seed-stone dark:bg-white/10 text-seed-forest dark:text-seed-snow hover:bg-seed-stone/80 text-xs font-bold rounded-xl transition-all shadow-sm flex items-center justify-center gap-1.5"
                             >
-                                <ArrowRightLeft className="w-4 h-4 text-seed-forest dark:text-seed-lime" />
-                                تبدیل اعتبار به بلیط
+                                <ArrowRightLeft className="w-3.5 h-3.5" />
+                                <span>تبدیل به نقدینگی (کسر ۲۰٪)</span>
                             </button>
                         </div>
                     </div>
@@ -306,7 +313,11 @@ const Wallet = () => {
                     {/* Ticket Wallet */}
                     <div className="bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 rounded-2xl p-6 text-seed-forest dark:text-seed-snow shadow-sm relative overflow-hidden">
                         <div className="relative z-10 flex flex-col h-full">
-                            <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 block mb-1">[تخفیف‌های فعال]</span>
+                            <div className="mb-1">
+                                <TaxonomyTag variant="muted">
+                                    {isEn ? 'Vouchers' : 'تخفیف‌های فعال'}
+                                </TaxonomyTag>
+                            </div>
                             <p className="text-seed-pewter dark:text-seed-snow/70 text-xs mb-1">بلیط‌های جشنواره و تخفیف</p>
                             <h2 className="text-2xl font-black mb-auto text-seed-forest dark:text-seed-lime font-mono">{toPersianDigits(balance.tickets)}</h2>
                             <button

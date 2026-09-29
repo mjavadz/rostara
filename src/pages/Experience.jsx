@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { GridBackground } from '@/components/backgrounds/grid';
 import { TextShimmer } from '@/components/animations/text-shimmer';
 import { SpotlightCard } from '@/components/animations/spotlight-card';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 import { ShineButton } from '@/components/animations/shine-button';
 
 const Experience = () => {
@@ -88,8 +89,8 @@ const Experience = () => {
                                     className="p-8 rounded-2xl bg-seed-snow dark:bg-[#132412] border border-seed-forest/10 dark:border-white/10 flex flex-col justify-between"
                                 >
                                     <div>
-                                        <div className="flex items-center justify-between pb-3 mb-5 border-b border-seed-forest/10 dark:border-white/10 text-[11px] text-seed-pewter dark:text-seed-snow/50 font-bold">
-                                            <span>{exp.code}</span>
+                                        <div className="flex items-center justify-between pb-3 mb-5 border-b border-seed-forest/10 dark:border-white/10">
+                                            <TaxonomyTag variant="muted">{exp.code}</TaxonomyTag>
                                             <span className="w-1.5 h-1.5 rounded-full bg-seed-lime" />
                                         </div>
 

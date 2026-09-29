@@ -2,14 +2,17 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
-import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, Package, ShieldCheck } from 'lucide-react';
+import { ShoppingCart, Trash2, Plus, Minus, ArrowLeft, ArrowRight, Package, ShieldCheck } from 'lucide-react';
 import { Price } from '@/components/ui/price';
-import { EmptyState } from '@/components/ui/empty-state';
 import { fa } from '@/lib/utils';
 import { ShineButton } from '@/components/animations/shine-button';
+import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const Cart = () => {
     const { t, i18n } = useTranslation();
+    const isEn = i18n.language === 'en';
+    const ArrowIcon = isEn ? ArrowRight : ArrowLeft;
+
     const { cartItems, removeFromCart, updateQuantity, getCartTotal, clearCart } = useCart();
 
     if (cartItems.length === 0) {
@@ -20,17 +23,19 @@ const Cart = () => {
                         <ShoppingCart className="w-10 h-10" />
                     </div>
                     <h2 className="text-2xl font-display font-black text-seed-forest dark:text-seed-snow mb-3">
-                        سبد نمونه‌های زیستی خالی است
+                        {isEn ? 'Your Biological Cart is Empty' : 'سبد نمونه‌های زیستی خالی است'}
                     </h2>
-                    <p className="text-xs text-seed-pewter dark:text-seed-snow/70 mb-8 leading-relaxed">
-                        شما هنوز هیچ واریته یا کیت کشتی به سبد خود اضافه نکرده‌اید. با مراجعه به کاتالوگ، گونه‌های فعال را انتخاب کنید.
+                    <p className="text-xs text-seed-pewter dark:text-seed-snow/70 mb-8 leading-relaxed font-normal">
+                        {isEn 
+                            ? 'You have not added any living cultivars or home growing units to your cart yet. Explore the biological catalog to select active species.'
+                            : 'شما هنوز هیچ واریته یا کیت کشتی به سبد خود اضافه نکرده‌اید. با مراجعه به کاتالوگ، گونه‌های فعال را انتخاب کنید.'}
                     </p>
                     <Link
                         to="/products"
                         className="inline-flex items-center gap-2 px-8 py-3.5 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest rounded-full text-xs font-bold hover:opacity-95 transition-all shadow-md"
                     >
-                        <span>مشاهده کاتالوگ گونه‌های زیستی</span>
-                        <ArrowLeft className="w-4 h-4" />
+                        <span>{isEn ? 'Explore Biological Catalog' : 'مشاهده کاتالوگ گونه‌های زیستی'}</span>
+                        <ArrowIcon className="w-4 h-4" />
                     </Link>
                 </div>
             </div>
@@ -43,15 +48,21 @@ const Cart = () => {
                 {/* Header */}
                 <div className="mb-8 pb-4 border-b border-seed-forest/10 dark:border-white/10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                     <div>
-                        <span className="text-xs font-bold text-seed-forest/70 dark:text-seed-lime block mb-1">
-                            [سفارش و تحویل گونه‌های زیستی]
-                        </span>
+                        <div className="mb-1">
+                            <TaxonomyTag variant="lime">
+                                {isEn ? 'Biological Dispatch & Order Manifest' : 'سفارش و تحویل گونه‌های زیستی'}
+                            </TaxonomyTag>
+                        </div>
                         <h1 className="text-3xl sm:text-4xl font-display font-black text-seed-forest dark:text-seed-snow">
-                            سبد سفارشات و نمونه‌های زیستی
+                            {isEn ? 'Selected Biological Specimens' : 'سبد سفارشات و نمونه‌های زیستی'}
                         </h1>
                     </div>
                     <span className="text-xs font-mono text-seed-pewter dark:text-seed-snow/60">
-                        تعداد اقلام: <b className="font-sans text-seed-forest dark:text-seed-lime">{fa(cartItems.length)}</b> مورد
+                        {isEn ? 'Item Count: ' : 'تعداد اقلام: '}
+                        <b className="font-sans text-seed-forest dark:text-seed-lime">
+                            {isEn ? cartItems.length : fa(cartItems.length)}
+                        </b>
+                        {isEn ? ' units' : ' مورد'}
                     </span>
                 </div>
 
@@ -73,17 +84,19 @@ const Cart = () => {
                                     <div className="flex-grow">
                                         <div className="flex items-start justify-between gap-2 mb-1">
                                             <div>
-                                                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60 block">
-                                                    [قلم {fa(cIndex + 1)}]
-                                                </span>
+                                                <div className="mb-1">
+                                                    <TaxonomyTag variant="muted">
+                                                        {isEn ? `Item ${cIndex + 1}` : `قلم ${fa(cIndex + 1)}`}
+                                                    </TaxonomyTag>
+                                                </div>
                                                 <h3 className="text-base font-bold text-seed-forest dark:text-seed-snow">
-                                                    {item.name || t(`products.items.${item.id}.name`)}
+                                                    {isEn && item.name_en ? item.name_en : item.name}
                                                 </h3>
                                             </div>
                                             <button
                                                 onClick={() => removeFromCart(item.id)}
                                                 className="p-1.5 text-seed-pewter hover:text-red-500 rounded-lg hover:bg-red-500/10 transition-colors"
-                                                title="حذف از سبد"
+                                                title={isEn ? 'Remove Item' : 'حذف از سبد'}
                                             >
                                                 <Trash2 className="w-4 h-4" />
                                             </button>
@@ -103,7 +116,7 @@ const Cart = () => {
                                                     <Minus className="w-3.5 h-3.5" />
                                                 </button>
                                                 <span className="w-8 text-center text-xs font-bold text-seed-forest dark:text-seed-snow">
-                                                    {fa(item.quantity)}
+                                                    {isEn ? item.quantity : fa(item.quantity)}
                                                 </span>
                                                 <button
                                                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
@@ -124,12 +137,12 @@ const Cart = () => {
                         ))}
 
                         {/* Clear Cart Button */}
-                        <div className="pt-2 text-left">
+                        <div className="pt-2 text-start">
                             <button
                                 onClick={clearCart}
                                 className="text-xs text-red-500 hover:text-red-600 transition-colors font-medium underline-offset-4 hover:underline"
                             >
-                                خالی کردن کل سبد خرید
+                                {isEn ? 'Clear Entire Cart' : 'خالی کردن کل سبد خرید'}
                             </button>
                         </div>
                     </div>
@@ -139,22 +152,28 @@ const Cart = () => {
                         <div className="bg-seed-snow dark:bg-[#132412] rounded-2xl p-6 border border-seed-forest/10 dark:border-white/10 sticky top-32 shadow-sm space-y-6">
                             <div className="flex items-center justify-between pb-3 border-b border-seed-forest/10 dark:border-white/10">
                                 <h2 className="text-base font-bold text-seed-forest dark:text-seed-snow">
-                                    خلاصه فاکتور
+                                    {isEn ? 'Summary' : 'خلاصه فاکتور'}
                                 </h2>
-                                <span className="text-[11px] font-bold text-seed-pewter dark:text-seed-snow/60">[صورت‌حساب فاکتور]</span>
+                                <TaxonomyTag variant="muted">
+                                    {isEn ? 'Invoice Sheet' : 'صورت‌حساب فاکتور'}
+                                </TaxonomyTag>
                             </div>
 
-                            <div className="space-y-3 text-xs">
+                            <div className="space-y-3 text-xs font-normal">
                                 <div className="flex justify-between items-center text-seed-pewter dark:text-seed-snow/70">
-                                    <span>تعداد کل نمونه‌ها</span>
-                                    <span className="font-bold text-seed-forest dark:text-seed-snow">{fa(cartItems.length)} قلم</span>
+                                    <span>{isEn ? 'Total Specimens' : 'تعداد کل نمونه‌ها'}</span>
+                                    <span className="font-bold text-seed-forest dark:text-seed-snow">
+                                        {isEn ? `${cartItems.length} items` : `${fa(cartItems.length)} قلم`}
+                                    </span>
                                 </div>
                                 <div className="flex justify-between items-center text-seed-pewter dark:text-seed-snow/70">
-                                    <span>هزینه ترانزیت سرد</span>
-                                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">رایگان (طرح سلامت)</span>
+                                    <span>{isEn ? 'Cold-Chain Transit' : 'هزینه ترانزیت سرد'}</span>
+                                    <span className="text-emerald-600 dark:text-emerald-400 font-bold">
+                                        {isEn ? 'Free (Health Initiative)' : 'رایگان (طرح سلامت)'}
+                                    </span>
                                 </div>
                                 <div className="border-t border-seed-forest/10 dark:border-white/10 pt-4 flex justify-between items-center">
-                                    <span className="text-sm font-bold text-seed-forest dark:text-seed-snow">مبلغ قابل پرداخت</span>
+                                    <span className="text-sm font-bold text-seed-forest dark:text-seed-snow">{isEn ? 'Total Payable' : 'مبلغ قابل پرداخت'}</span>
                                     <Price amount={getCartTotal()} size="md" className="text-seed-forest dark:text-seed-lime font-black" />
                                 </div>
                             </div>
@@ -164,20 +183,20 @@ const Cart = () => {
                                 className="block w-full"
                             >
                                 <ShineButton className="w-full py-3.5 bg-seed-forest dark:bg-seed-lime text-seed-snow dark:text-seed-forest rounded-full text-xs font-bold text-center shadow-md">
-                                    ادامه جهت ثبت اطلاعات و ارسال
+                                    {isEn ? 'Proceed to Delivery & Dispatch' : 'ادامه جهت ثبت اطلاعات و ارسال'}
                                 </ShineButton>
                             </Link>
 
                             <Link
                                 to="/products"
-                                className="block w-full py-2.5 text-center text-xs text-seed-pewter dark:text-seed-snow/70 hover:text-seed-forest dark:hover:text-seed-snow transition-colors"
+                                className="block w-full py-2.5 text-center text-xs text-seed-pewter dark:text-seed-snow/70 hover:text-seed-forest dark:hover:text-seed-snow transition-colors font-medium"
                             >
-                                بازگشت به کاتالوگ و افزودن گونه‌های دیگر
+                                {isEn ? 'Return to Catalog for More Species' : 'بازگشت به کاتالوگ و افزودن گونه‌های دیگر'}
                             </Link>
 
-                            <div className="pt-4 border-t border-seed-forest/10 dark:border-white/10 flex items-center gap-2 text-[11px] text-seed-pewter dark:text-seed-snow/50 font-mono">
+                            <div className="pt-4 border-t border-seed-forest/10 dark:border-white/10 flex items-center gap-2 text-[11px] text-seed-pewter dark:text-seed-snow/50 font-sans font-normal">
                                 <ShieldCheck className="w-4 h-4 text-seed-forest dark:text-seed-lime flex-shrink-0" />
-                                <span>تضمین سلامت زیستی و تازگی بذرها در زمان تحویل</span>
+                                <span>{isEn ? 'Guaranteed biological freshness and seed viability on arrival.' : 'تضمین سلامت زیستی و تازگی بذرها در زمان تحویل'}</span>
                             </div>
                         </div>
                     </div>
