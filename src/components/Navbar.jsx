@@ -125,9 +125,9 @@ const Navbar = () => {
                                 i18n.changeLanguage(newLang);
                                 document.dir = newLang === 'fa' ? 'rtl' : 'ltr';
                             }}
-                            className="px-2.5 py-1 rounded-full text-seed-pewter hover:text-seed-forest dark:hover:text-seed-snow font-mono text-[11px] font-bold transition-colors border border-seed-forest/10 dark:border-white/10"
+                            className="px-2.5 py-1 rounded-full text-seed-pewter hover:text-seed-forest dark:hover:text-seed-snow text-xs font-bold transition-colors border border-seed-forest/10 dark:border-white/10"
                         >
-                            {i18n.language === 'fa' ? 'EN' : 'فا'}
+                            {i18n.language === 'fa' ? 'فارسی' : 'English'}
                         </button>
                     </div>
 
