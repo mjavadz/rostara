@@ -109,6 +109,10 @@ const Wallet = () => {
         }
     };
 
+    const handleCreditToCash = async () => {
+        alert(isEn ? 'Cash conversion feature will be available soon.' : 'امکان تبدیل اعتبار زیستی به نقدینگی به زودی فعال خواهد شد.');
+    };
+
     const handleTransferTicket = async (e) => {
         e.preventDefault();
         if (balance.tickets < 1) return alert('بلیط کافی ندارید.');

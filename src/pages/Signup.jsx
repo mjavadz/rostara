@@ -7,7 +7,7 @@ import { ShineButton } from '@/components/animations/shine-button';
 import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const Signup = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const { signup } = useAuth();
     const [formData, setFormData] = useState({

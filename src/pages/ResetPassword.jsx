@@ -7,7 +7,7 @@ import { ShineButton } from '@/components/animations/shine-button';
 import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 
 const ResetPassword = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');

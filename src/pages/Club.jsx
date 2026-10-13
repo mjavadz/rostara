@@ -9,7 +9,8 @@ import { TaxonomyTag } from '@/components/ui/TaxonomyTag';
 import { Badge } from '@/components/ui/badge';
 
 const Club = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const isEn = i18n?.language === 'en';
     const [copiedCode, setCopiedCode] = useState(null);
 
     // Offers & Accession Vouchers
